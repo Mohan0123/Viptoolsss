@@ -1,0 +1,125 @@
+import os
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters, CallbackContext
+from pdf2image import convert_from_path
+from PyPDF2 import PdfMerger
+from PIL import Image
+
+# Temporary file storage
+user_data = {}
+
+# Start Command
+def start(update: Update, context: CallbackContext):
+    keyboard = [
+        [InlineKeyboardButton("📄 PDF to Image", callback_data='pdf_to_image')],
+        [InlineKeyboardButton("🖼️ Image to PDF", callback_data='image_to_pdf')],
+        [InlineKeyboardButton("🗂️ Merge PDFs", callback_data='merge_pdfs')],
+        [InlineKeyboardButton("🌐 Visit PDF Tool", url='https://www.ilovepdf.com/')],
+        [InlineKeyboardButton("🆘 Help", url='https://t.me/YourSupportBot')]
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text("Welcome to PDF Bot! Choose an option below 👇", reply_markup=reply_markup)
+
+# Button Handler
+def button_callback(update: Update, context: CallbackContext):
+    query = update.callback_query
+    query.answer()
+
+    if query.data == 'pdf_to_image':
+        context.user_data['action'] = 'pdf_to_image'
+        query.edit_message_text(text="Send me the PDF file you want to convert to images.")
+    elif query.data == 'image_to_pdf':
+        context.user_data['action'] = 'image_to_pdf'
+        context.user_data['images'] = []
+        query.edit_message_text(text="Send me the images one by one. Send /done when finished.")
+    elif query.data == 'merge_pdfs':
+        context.user_data['action'] = 'merge_pdfs'
+        context.user_data['pdfs'] = []
+        query.edit_message_text(text="Send me the PDF files one by one. Send /done when finished.")
+
+# File Handler
+def handle_file(update: Update, context: CallbackContext):
+    user_action = context.user_data.get('action')
+
+    if user_action == 'pdf_to_image':
+        file = update.message.document.get_file()
+        file.download('input.pdf')
+
+        update.message.reply_text("Processing PDF...")
+
+        images = convert_from_path('input.pdf')
+        for i, image in enumerate(images):
+            image_path = f'page_{i + 1}.jpg'
+            image.save(image_path, 'JPEG')
+            update.message.reply_photo(photo=open(image_path, 'rb'))
+            os.remove(image_path)
+
+        os.remove('input.pdf')
+        update.message.reply_text("✅ PDF to Image conversion done!")
+
+    elif user_action == 'image_to_pdf':
+        file = update.message.photo[-1].get_file()
+        file_path = f'image_{len(context.user_data["images"])}.jpg'
+        file.download(file_path)
+        context.user_data['images'].append(file_path)
+        update.message.reply_text(f"Image {len(context.user_data['images'])} received.")
+
+    elif user_action == 'merge_pdfs':
+        file = update.message.document.get_file()
+        file_path = f'pdf_{len(context.user_data["pdfs"])}.pdf'
+        file.download(file_path)
+        context.user_data['pdfs'].append(file_path)
+        update.message.reply_text(f"PDF {len(context.user_data['pdfs'])} received.")
+
+# Done Command
+def done(update: Update, context: CallbackContext):
+    user_action = context.user_data.get('action')
+
+    if user_action == 'image_to_pdf':
+        images = [Image.open(img).convert('RGB') for img in context.user_data['images']]
+        if images:
+            output_path = 'output.pdf'
+            images[0].save(output_path, save_all=True, append_images=images[1:])
+            update.message.reply_document(document=open(output_path, 'rb'))
+            os.remove(output_path)
+
+            for img in context.user_data['images']:
+                os.remove(img)
+
+            update.message.reply_text("✅ Images merged into PDF successfully!")
+        else:
+            update.message.reply_text("❌ No images found!")
+
+    elif user_action == 'merge_pdfs':
+        merger = PdfMerger()
+        for pdf in context.user_data['pdfs']:
+            merger.append(pdf)
+
+        output_path = 'merged.pdf'
+        merger.write(output_path)
+        merger.close()
+
+        update.message.reply_document(document=open(output_path, 'rb'))
+        os.remove(output_path)
+
+        for pdf in context.user_data['pdfs']:
+            os.remove(pdf)
+
+        update.message.reply_text("✅ PDFs merged successfully!")
+
+# Main Bot Setup
+def main():
+    updater = Updater('YOUR_BOT_TOKEN', use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(CommandHandler('start', start))
+    dp.add_handler(CallbackQueryHandler(button_callback))
+    dp.add_handler(MessageHandler(Filters.document.pdf | Filters.photo, handle_file))
+    dp.add_handler(CommandHandler('done', done))
+
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
