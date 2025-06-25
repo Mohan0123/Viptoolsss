@@ -110,7 +110,7 @@ def done(update: Update, context: CallbackContext):
 
 # Main Bot Setup
 def main():
-    updater = Updater('YOUR_BOT_TOKEN', use_context=True)
+    updater = Updater('8106813737:AAEZ0xk24_uGLbQDILQOMXaNFnZoDORi59k', use_context=True)
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('start', start))
