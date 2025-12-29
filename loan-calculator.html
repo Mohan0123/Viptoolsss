@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Online Loan Calculator. Estimate monthly payments, total interest, and payoff amounts for personal loans, auto loans, and mortgages. Accurate and fast financial tool.">
+    <meta name="keywords" content="loan calculator, monthly payment calculator, interest calculator, personal loan estimate, auto loan calculator, mortgage payment estimator, amortization tool">
+    <meta name="author" content="Loan Calculator Tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Free Loan Calculator - Estimate Payments Online">
+    <meta property="og:description" content="Calculate monthly payments and total interest for any loan instantly. Secure, fast, and free.">
+    <meta property="og:type" content="website">
+    
+    <title>Free Loan Calculator - Estimate Monthly Payments & Interest</title>
+
+    <style>
+        /* CSS VARIABLES & RESET */
+        :root {
+            --primary-color: #0f766e; /* Teal-700 */
+            --primary-hover: #0d9488; /* Teal-600 */
+            --secondary-color: #475569; /* Slate-600 */
+            --bg-color: #f1f5f9; /* Slate-100 */
+            --card-bg: #ffffff;
+            --text-color: #0f172a; /* Slate-900 */
+            --border-color: #e2e8f0;
+            --success-color: #22c55e;
+            --error-color: #ef4444;
+            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* ADSENSE PLACEHOLDER */
+        .ad-placeholder {
+            width: 100%;
+            height: 100px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            border: 2px dashed #cbd5e1;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* TOOL INTERFACE */
+        .tool-wrapper {
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* INPUTS */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 12px;
+            padding-left: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: #fff;
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        /* BUTTONS */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .calculate-btn {
+            flex: 2;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .reset-btn {
+            flex: 1;
+            padding: 14px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .reset-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* RESULTS AREA */
+        .results-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            opacity: 0.6;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .results-box.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .monthly-payment-display {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .big-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin: 10px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .summary-value {
+            font-weight: 700;
+        }
+
+        .error-msg {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* CHART (CSS Only Visual) */
+        .chart-visual {
+            margin-top: 20px;
+            height: 20px;
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .chart-bar-principal {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 50%; /* JS will update this */
+            transition: width 0.5s;
+        }
+
+        .chart-bar-interest {
+            height: 100%;
+            background-color: #fbbf24; /* Amber */
+            width: 50%; /* JS will update this */
+            transition: width 0.5s;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* TEXT CONTENT STYLES */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #334155;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* ACCORDION (FAQ) */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            display: none;
+            color: var(--secondary-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .toggle-icon {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* LEGAL SECTIONS */
+        .legal-section {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 40px;
+            background: #fff;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <h1>Loan Calculator</h1>
+        <p class="subtitle">Calculate monthly payments and total interest for Personal, Auto, or Home loans.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="ad-placeholder">
+            Advertisement Space
+        </div>
+
+        <section class="section tool-wrapper">
+            <div class="calculator-grid">
+                
+                <div class="inputs-area">
+                    
+                    <div class="input-group">
+                        <label for="currency-selector">Currency</label>
+                        <div class="input-wrapper">
+                            <select id="currency-selector" onchange="calculateLoan()">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="INR">INR (₹)</option>
+                                <option value="AUD">AUD ($)</option>
+                                <option value="CAD">CAD ($)</option>
+                                <option value="JPY">JPY (¥)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loan-amount">Loan Amount (Principal)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="loan-amount" placeholder="e.g. 25000" min="1">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="interest-rate">Annual Interest Rate (%)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="interest-rate" placeholder="e.g. 5.5" step="0.1" min="0">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loan-term">Loan Term</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="loan-term" placeholder="e.g. 5" min="1">
+                        </div>
+                        <div class="radio-group">
+                            <label><input type="radio" name="term-type" value="years" checked> Years</label>
+                            <label><input type="radio" name="term-type" value="months"> Months</label>
+                        </div>
+                    </div>
+
+                    <p class="error-msg" id="error-msg">Please enter valid positive numbers for all fields.</p>
+
+                    <div class="btn-container">
+                        <button class="calculate-btn" onclick="calculateLoan()">Calculate Loan</button>
+                        <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+                    </div>
+                </div>
+
+                <div class="results-box" id="results-box">
+                    <div class="monthly-payment-display">
+                        <p style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Your Monthly Payment</p>
+                        <div class="big-amount" id="monthly-payment">0</div>
+                    </div>
+
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Total Principal:</span>
+                            <span class="summary-value" id="total-principal">0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Total Interest:</span>
+                            <span class="summary-value" id="total-interest">0</span>
+                        </div>
+                        <div class="summary-row" style="border-top: 1px solid #e2e8f0; margin-top: 10px; padding-top: 10px;">
+                            <span>Total Cost of Loan:</span>
+                            <span class="summary-value" id="total-cost">0</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-visual">
+                        <div class="chart-bar-principal" id="bar-principal"></div>
+                        <div class="chart-bar-interest" id="bar-interest"></div>
+                    </div>
+                    <div class="legend">
+                        <span><span class="legend-dot" style="background: var(--primary-color);"></span>Principal</span>
+                        <span><span class="legend-dot" style="background: #fbbf24;"></span>Interest</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="ad-placeholder">
+            Advertisement Space
+        </div>
+
+        <section class="section">
+            <h2>How to Use This Loan Calculator</h2>
+            <ol>
+                <li><strong>Select Currency:</strong> Choose your preferred currency (USD, EUR, INR, etc.).</li>
+                <li><strong>Enter Loan Amount:</strong> Input the total amount of money you intend to borrow (the principal).</li>
+                <li><strong>Enter Interest Rate:</strong> Input the annual percentage rate (APR) provided by the lender.</li>
+                <li><strong>Enter Loan Term:</strong> Specify how long you will take to repay the loan. You can select either Years or Months.</li>
+                <li><strong>Calculate:</strong> Click the "Calculate Loan" button to instantly see your monthly payment and total interest cost.</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>Benefits of Calculating Before You Borrow</h2>
+            <ul>
+                <li><strong>Budget Planning:</strong> Knowing the exact monthly payment helps you determine if the loan fits your monthly budget.</li>
+                <li><strong>Interest Awareness:</strong> See exactly how much extra you are paying in interest over the life of the loan.</li>
+                <li><strong>Compare Options:</strong> Quickly switch between different interest rates or terms to see which loan offer is best for you.</li>
+                <li><strong>Financial Safety:</strong> Avoid over-borrowing by understanding the full cost of debt.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Understanding Loan Amortization and Interest</h2>
+            <p>Taking out a loan is a significant financial commitment, whether it's a personal loan for home renovations, an auto loan for a new vehicle, or a mortgage for your dream house. While the immediate influx of cash is helpful, understanding the long-term implications of repayment is crucial for financial health. Our <strong>Loan Calculator</strong> is designed to provide transparency into this process.</p>
+
+            <h3>What Determines Your Monthly Payment?</h3>
+            <p>Your monthly loan payment is calculated based on three primary factors: the principal amount, the interest rate, and the loan term. This process is often referred to as "amortization."</p>
+            <ul>
+                <li><strong>Principal:</strong> This is the initial amount of money you borrow.</li>
+                <li><strong>Interest Rate (APR):</strong> This is the cost of borrowing money, expressed as a yearly percentage. Even a small difference in the interest rate can result in thousands of dollars saved (or lost) over the life of a loan.</li>
+                <li><strong>Loan Term:</strong> The duration of the loan. Longer terms usually mean lower monthly payments but significantly higher total interest costs. Shorter terms have higher monthly payments but save you money on interest.</li>
+            </ul>
+
+            <h3>Types of Loans You Can Calculate</h3>
+            <p>This tool is versatile and can be used for various types of financing:</p>
+            <ul>
+                <li><strong>Personal Loans:</strong> Often unsecured loans used for debt consolidation, medical bills, or major purchases.</li>
+                <li><strong>Auto Loans:</strong> Secured loans specifically for purchasing vehicles. These typically range from 3 to 7 years.</li>
+                <li><strong>Mortgages:</strong> Long-term loans (15 to 30 years) for real estate. While this calculator provides a standard estimate, remember that real mortgages often include taxes and insurance in the escrow payment.</li>
+                <li><strong>Business Loans:</strong> Capital borrowed to start or expand a business operation.</li>
+            </ul>
+            <p>By using an online calculator, you empower yourself to negotiate better terms with lenders and avoid the trap of high-interest debt. Always aim to secure the lowest possible interest rate and choose the shortest term you can comfortably afford.</p>
+        </section>
+
+        <section class="section">
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is this calculator accurate for all types of loans?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, this calculator uses the standard amortization formula used by most banks for fixed-rate loans, including personal, auto, and home loans. However, it does not account for variable rates or additional fees like insurance or taxes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Does the loan term affect my total interest?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely. A longer loan term lowers your monthly payment but increases the total interest you pay. A shorter term increases the monthly payment but reduces the total interest cost.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is this tool free to use?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, this Loan Calculator is 100% free to use. There are no hidden fees, and you can perform unlimited calculations.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Do you store my financial data?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    No. We value your privacy. All calculations happen instantly in your browser (client-side). We do not save, store, or transmit your financial inputs to any server.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I use this for credit card payments?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    While the math is similar, credit cards often use different compounding schedules and minimum payment rules. This tool is best suited for installment loans like car loans or personal loans.
+                </div>
+            </div>
+        </section>
+
+        <section class="legal-section" id="privacy-policy">
+            <h3>Privacy Policy</h3>
+            <p><strong>Last Updated: 30/12/2025</strong></p>
+            <p>Your privacy is important to us. This Privacy Policy explains how we handle information.</p>
+            <ul>
+                <li><strong>Data Collection:</strong> We do not collect, store, or transmit any personal financial data entered into the Loan Calculator. All processing occurs locally on your device.</li>
+                <li><strong>Cookies:</strong> We may use cookies to improve user experience and analyze website traffic. You can choose to disable cookies through your browser settings.</li>
+                <li><strong>Third-Party Advertising:</strong> We use third-party advertising companies (such as Google AdSense) to serve ads when you visit our website. These companies may use aggregated information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</li>
+                <li><strong>Analytics:</strong> We may use tools like Google Analytics to track anonymous usage statistics to improve our service.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section" id="terms-conditions">
+            <h3>Terms and Conditions</h3>
+            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+            <ul>
+                <li><strong>Usage:</strong> This tool is free for personal and educational use.</li>
+                <li><strong>No Warranties:</strong> The website and its tools are provided "as is" without any representation or warranty, express or implied.</li>
+                <li><strong>Liability:</strong> We shall not be held liable for any damages or financial losses resulting from the use of this tool. Users are responsible for verifying calculations with their financial institution.</li>
+                <li><strong>Modifications:</strong> We reserve the right to modify these terms at any time without prior notice.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section" id="disclaimer">
+            <h3>Disclaimer</h3>
+            <p>The Loan Calculator provided on this website is for estimation and informational purposes only. It does not constitute financial advice, nor is it an offer to lend. Actual loan terms, interest rates, and monthly payments may vary depending on the lender, your credit score, and other factors. We strongly recommend consulting with a qualified financial advisor or loan officer before making any financial decisions.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VIP Tool. All Rights Reserved.</p>
+        <p>
+            <a href="#privacy-policy">Privacy Policy</a> | 
+            <a href="#terms-conditions">Terms & Conditions</a> | 
+            <a href="#disclaimer">Disclaimer</a>
+        </p>
+    </footer>
+
+    <script>
+        // Select DOM Elements
+        const amountInput = document.getElementById('loan-amount');
+        const rateInput = document.getElementById('interest-rate');
+        const termInput = document.getElementById('loan-term');
+        const currencySelect = document.getElementById('currency-selector');
+        const errorMsg = document.getElementById('error-msg');
+        const resultsBox = document.getElementById('results-box');
+
+        // Output Elements
+        const monthlyPaymentEl = document.getElementById('monthly-payment');
+        const totalPrincipalEl = document.getElementById('total-principal');
+        const totalInterestEl = document.getElementById('total-interest');
+        const totalCostEl = document.getElementById('total-cost');
+        
+        // Chart Elements
+        const barPrincipal = document.getElementById('bar-principal');
+        const barInterest = document.getElementById('bar-interest');
+
+        // Helper: Format Currency
+        function formatMoney(amount) {
+            const currency = currencySelect.value;
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2
+            }).format(amount);
+        }
+
+        // Core Calculation Function
+        function calculateLoan() {
+            // Get values
+            const principal = parseFloat(amountInput.value);
+            const rate = parseFloat(rateInput.value);
+            const term = parseFloat(termInput.value);
+            const termType = document.querySelector('input[name="term-type"]:checked').value;
+
+            // Validation
+            if (isNaN(principal) || isNaN(rate) || isNaN(term) || principal <= 0 || rate < 0 || term <= 0) {
+                errorMsg.style.display = 'block';
+                resultsBox.classList.remove('active');
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+
+            // Convert term to months
+            const months = termType === 'years' ? term * 12 : term;
+
+            // Monthly interest rate
+            const monthlyRate = rate / 100 / 12;
+
+            let monthlyPayment = 0;
+            let totalPayment = 0;
+            let totalInterest = 0;
+
+            // Calculation Logic
+            if (rate === 0) {
+                // Zero interest case
+                monthlyPayment = principal / months;
+                totalPayment = principal;
+                totalInterest = 0;
+            } else {
+                // Standard Amortization Formula: M = P [ i(1+i)^n ] / [ (1+i)^n – 1 ]
+                const x = Math.pow(1 + monthlyRate, months);
+                monthlyPayment = (principal * x * monthlyRate) / (x - 1);
+                totalPayment = monthlyPayment * months;
+                totalInterest = totalPayment - principal;
+            }
+
+            // Update UI
+            monthlyPaymentEl.textContent = formatMoney(monthlyPayment);
+            totalPrincipalEl.textContent = formatMoney(principal);
+            totalInterestEl.textContent = formatMoney(totalInterest);
+            totalCostEl.textContent = formatMoney(totalPayment);
+
+            // Update Chart Visuals
+            const principalPercent = (principal / totalPayment) * 100;
+            const interestPercent = (totalInterest / totalPayment) * 100;
+
+            barPrincipal.style.width = principalPercent + "%";
+            barInterest.style.width = interestPercent + "%";
+
+            // Show Results
+            resultsBox.classList.add('active');
+        }
+
+        // Reset Function
+        function resetCalculator() {
+            amountInput.value = '';
+            rateInput.value = '';
+            termInput.value = '';
+            errorMsg.style.display = 'none';
+            resultsBox.classList.remove('active');
+            
+            // Reset visual bar
+            barPrincipal.style.width = "50%";
+            barInterest.style.width = "50%";
+        }
+
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            const icon = element.querySelector('.toggle-icon');
+            
+            // Check if currently active
+            const isActive = parent.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.toggle-icon').textContent = '+';
+            });
+
+            // If it wasn't active, open it
+            if (!isActive) {
+                parent.classList.add('active');
+                icon.textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>

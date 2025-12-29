@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Online Base64 Encoder / Decoder Tool. Convert text to Base64 strings or decode Base64 back to text instantly. Secure, fast, and developer-friendly.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, online tool, developer tools, decode base64">
+    <meta name="author" content="Base64 Tool">
+    <meta name="robots" content="index, follow">
+    <title>Base64 Encoder / Decoder - Convert Text Online</title>
+
+    <style>
+        /* RESET & BASE STYLES */
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #475569;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* LAYOUT UTILITIES */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* ADSENSE PLACEHOLDER */
+        .ad-placeholder {
+            width: 100%;
+            height: 100px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            border: 2px dashed #cbd5e1;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TOOL INTERFACE */
+        .tool-wrapper {
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: -2px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: var(--error-color);
+            margin-top: 10px;
+            display: none;
+            font-weight: 600;
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #fee2e2;
+        }
+
+        /* CONTENT STYLES */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #334155;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* FAQ ACCORDION */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            display: none;
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* LEGAL SECTIONS */
+        .legal-section {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 40px;
+            background: #fff;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 12px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .section { padding: 20px; }
+            .actions { flex-direction: column; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <h1>Base64 Encoder / Decoder</h1>
+        <p class="subtitle">Convert text to Base64 strings and decode them back instantly.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="ad-placeholder">
+            Advertisement Space
+        </div>
+
+        <section class="section tool-wrapper">
+            
+            <div class="tabs">
+                <button class="tab-btn active" id="tab-encode" onclick="switchMode('encode')">Encode</button>
+                <button class="tab-btn" id="tab-decode" onclick="switchMode('decode')">Decode</button>
+            </div>
+
+            <div class="input-group">
+                <label for="input-text" id="input-label">Enter Text to Encode:</label>
+                <textarea id="input-text" placeholder="Type or paste content here..."></textarea>
+            </div>
+
+            <div class="actions">
+                <button class="btn-primary" onclick="processConversion()" id="action-btn">Encode to Base64</button>
+                <button class="btn-outline" onclick="copyResult()">Copy Result</button>
+                <button class="btn-outline" onclick="clearFields()">Clear All</button>
+            </div>
+
+            <div class="error-msg" id="error-msg">Invalid Base64 string detected.</div>
+
+            <div class="input-group">
+                <label for="output-text" id="output-label">Base64 Result:</label>
+                <textarea id="output-text" readonly style="background-color: #f8fafc;" placeholder="Result will appear here..."></textarea>
+            </div>
+
+        </section>
+
+        <div class="ad-placeholder">
+            Advertisement Space
+        </div>
+
+        <section class="section">
+            <h2>How to Use This Tool</h2>
+            <p>Using our Base64 Encoder/Decoder is simple and secure. Follow these steps:</p>
+            <ol>
+                <li><strong>Select Mode:</strong> Click "Encode" to convert plain text to Base64, or "Decode" to convert a Base64 string back to text.</li>
+                <li><strong>Enter Data:</strong> Paste or type your content into the top box.</li>
+                <li><strong>Convert:</strong> Click the main button (Encode/Decode) to process the data instantly.</li>
+                <li><strong>Copy:</strong> Use the "Copy Result" button to save the output to your clipboard.</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>Why Use Our Base64 Tool?</h2>
+            <ul>
+                <li><strong>Client-Side Processing:</strong> Your data never leaves your browser. All encoding and decoding happen locally via JavaScript, ensuring maximum privacy.</li>
+                <li><strong>UTF-8 Support:</strong> Unlike basic tools, ours handles special characters and emojis correctly.</li>
+                <li><strong>Fast & Responsive:</strong> Works instantly on mobile, tablet, and desktop devices without page reloads.</li>
+                <li><strong>Developer Friendly:</strong> Ideal for debugging, data transfer, and handling binary data in text formats.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Understanding Base64 Encoding</h2>
+            <p>Base64 is a group of binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation. It is extremely common in the world of web development and data transmission.</p>
+
+            <h3>Why is Base64 Used?</h3>
+            <p>The primary purpose of Base64 is to transmit binary data across channels that only support text content. Common use cases include:</p>
+            <ul>
+                <li><strong>Email Attachments:</strong> Sending images or files via SMTP (email protocols) often requires converting binary files into text.</li>
+                <li><strong>Data URLs:</strong> Embedding small images directly into HTML or CSS files using `data:image/png;base64,...` syntax to reduce HTTP requests.</li>
+                <li><strong>APIs & JSON:</strong> Transmitting binary data inside JSON payloads which only support text strings.</li>
+            </ul>
+
+            <h3>How Does Base64 Work?</h3>
+            <p>Base64 operates by breaking binary data into 6-bit chunks. Each 6-bit chunk maps to a specific character in the Base64 alphabet, which consists of `A-Z`, `a-z`, `0-9`, `+`, and `/`. The equals sign `=` is used as padding at the end of the encoded string to ensure the length is a multiple of 4.</p>
+
+            <h3>Is Base64 Encryption?</h3>
+            <p>No, <strong>Base64 is not encryption</strong>. It is an encoding scheme. It does not provide security or confidentiality. Anyone can decode a Base64 string back to its original form. Do not use Base64 to hide sensitive information like passwords or keys without proper encryption layers.</p>
+        </section>
+
+        <section class="section">
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Is this tool free? <span class="faq-toggle">+</span></div>
+                <div class="faq-answer">Yes, this Base64 Encoder / Decoder is 100% free to use for personal and commercial purposes.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Is my data safe? <span class="faq-toggle">+</span></div>
+                <div class="faq-answer">Absolutely. This tool runs entirely in your web browser. No data is sent to our servers, ensuring your information remains private.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Can I encode images with this? <span class="faq-toggle">+</span></div>
+                <div class="faq-answer">This specific tool is optimized for text. While the algorithm is the same, converting large image files directly in a text box may be slow. We recommend using specialized Image to Base64 tools for files.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Why do I see "=" at the end of the string? <span class="faq-toggle">+</span></div>
+                <div class="faq-answer">The "=" sign is a padding character used in Base64 encoding to ensure the output string length is a multiple of 4 bytes.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Does it support UTF-8 characters? <span class="faq-toggle">+</span></div>
+                <div class="faq-answer">Yes, our tool handles UTF-8 characters (like emojis and non-Latin scripts) correctly by properly encoding URI components before conversion.</div>
+            </div>
+        </section>
+
+        <div class="legal-section" id="privacy">
+            <h3>Privacy Policy</h3>
+            <p><strong>Last Updated: [Current Date]</strong></p>
+            <p>Your privacy is important to us. This Privacy Policy explains how we handle information.</p>
+            <p><strong>1. Data Collection:</strong> We do not collect, store, or transmit any data entered into the tool. All processing is done locally on your device via JavaScript.</p>
+            <p><strong>2. Cookies:</strong> We may use cookies to improve user experience. You can disable cookies in your browser settings.</p>
+            <p><strong>3. Third-Party Ads (Google AdSense):</strong> We use third-party advertising companies to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+            <p><strong>4. Analytics:</strong> We may use tools like Google Analytics to understand traffic trends. This data is anonymous.</p>
+        </div>
+
+        <div class="legal-section" id="terms">
+            <h3>Terms and Conditions</h3>
+            <p>By using this website, you agree to the following terms:</p>
+            <p><strong>1. Usage:</strong> This tool is provided for personal and informational use only.</p>
+            <p><strong>2. Liability:</strong> We are not responsible for any errors, data loss, or damages resulting from the use of this tool.</p>
+            <p><strong>3. Modifications:</strong> We reserve the right to modify or discontinue the service at any time.</p>
+        </div>
+
+        <div class="legal-section" id="disclaimer">
+            <h3>Disclaimer</h3>
+            <p>The Base64 Encoder / Decoder is provided "as is" without any warranties. While we strive for accuracy, we cannot guarantee that the tool will be error-free in all scenarios. Users are responsible for verifying the output before using it in critical applications.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Base64 Tool. All Rights Reserved.</p>
+        <p>
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms & Conditions</a> | 
+            <a href="#disclaimer">Disclaimer</a>
+        </p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const inputText = document.getElementById('input-text');
+        const outputText = document.getElementById('output-text');
+        const errorMsg = document.getElementById('error-msg');
+        const tabEncode = document.getElementById('tab-encode');
+        const tabDecode = document.getElementById('tab-decode');
+        const inputLabel = document.getElementById('input-label');
+        const outputLabel = document.getElementById('output-label');
+        const actionBtn = document.getElementById('action-btn');
+
+        let currentMode = 'encode';
+
+        // Switch Mode Function
+        function switchMode(mode) {
+            currentMode = mode;
+            errorMsg.style.display = 'none';
+            inputText.value = '';
+            outputText.value = '';
+
+            if (mode === 'encode') {
+                tabEncode.classList.add('active');
+                tabDecode.classList.remove('active');
+                inputLabel.textContent = 'Enter Text to Encode:';
+                outputLabel.textContent = 'Base64 Result:';
+                actionBtn.textContent = 'Encode to Base64';
+                inputText.placeholder = 'Type plain text here...';
+            } else {
+                tabEncode.classList.remove('active');
+                tabDecode.classList.add('active');
+                inputLabel.textContent = 'Enter Base64 String to Decode:';
+                outputLabel.textContent = 'Decoded Text:';
+                actionBtn.textContent = 'Decode to Text';
+                inputText.placeholder = 'Paste Base64 string here...';
+            }
+        }
+
+        // Convert Function (UTF-8 Safe)
+        function processConversion() {
+            const input = inputText.value;
+            errorMsg.style.display = 'none';
+            outputText.value = '';
+
+            if (!input.trim()) {
+                return;
+            }
+
+            try {
+                if (currentMode === 'encode') {
+                    // Safe Encode: Text -> Base64
+                    const encoded = btoa(unescape(encodeURIComponent(input)));
+                    outputText.value = encoded;
+                } else {
+                    // Safe Decode: Base64 -> Text
+                    // Remove whitespace/newlines which might break decode
+                    const cleanInput = input.replace(/\s/g, '');
+                    const decoded = decodeURIComponent(escape(window.atob(cleanInput)));
+                    outputText.value = decoded;
+                }
+            } catch (e) {
+                console.error(e);
+                errorMsg.style.display = 'block';
+                if (currentMode === 'decode') {
+                    errorMsg.textContent = 'Error: The input string is not a valid Base64 string.';
+                } else {
+                    errorMsg.textContent = 'Error: Could not encode this text.';
+                }
+            }
+        }
+
+        // Copy Result Function
+        function copyResult() {
+            if (!outputText.value) return;
+            
+            outputText.select();
+            document.execCommand('copy');
+            
+            // Temporary feedback
+            const originalBtnText = document.querySelector('button[onclick="copyResult()"]').textContent;
+            const btn = document.querySelector('button[onclick="copyResult()"]');
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = originalBtnText;
+            }, 1500);
+        }
+
+        // Clear Fields
+        function clearFields() {
+            inputText.value = '';
+            outputText.value = '';
+            errorMsg.style.display = 'none';
+        }
+
+        // Auto-resize textarea logic (optional nice-to-have)
+        inputText.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            // Limit max height if needed
+            if(this.scrollHeight > 300) this.style.height = '300px';
+        });
+
+        // FAQ Accordion Logic
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const toggle = el.querySelector('.faq-toggle');
+            
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close others
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                    const t = i.querySelector('.faq-toggle');
+                    if(t) t.textContent = '+';
+                });
+                item.classList.add('active');
+                toggle.textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>

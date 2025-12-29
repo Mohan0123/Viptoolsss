@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Online Image to PDF Converter. Convert JPG, PNG, and WEBP images into a single PDF document instantly. fast, secure, and privacy-focused.">
+    <meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, convert image to pdf, free pdf converter, online pdf tool, image merger">
+    <meta name="author" content="Image to PDF Tool">
+    <meta name="robots" content="index, follow">
+    <title>Free Image to PDF Converter - Convert JPG & PNG to PDF</title>
+
+    <style>
+        /* RESET & BASE VARIABLES */
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #475569;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* ADSENSE PLACEHOLDER */
+        .ad-placeholder {
+            width: 100%;
+            height: 100px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            border: 1px dashed #cbd5e1;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TOOL INTERFACE */
+        .tool-wrapper {
+            border: 2px solid var(--primary-color);
+            text-align: center;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            padding: 40px 20px;
+            border-radius: 8px;
+            background-color: #f1f5f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--primary-color);
+            background-color: #eff6ff;
+        }
+
+        .drop-zone p {
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        .drop-zone strong {
+            color: var(--primary-color);
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-primary:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* PREVIEW AREA */
+        .preview-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .preview-item {
+            position: relative;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-msg {
+            color: var(--error-color);
+            margin-top: 10px;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* PDF OUTPUT AREA (Hidden on screen, visible on print) */
+        #pdf-output-container {
+            display: none;
+        }
+
+        /* CONTENT TYPOGRAPHY */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px 0;
+            color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* FAQ ACCORDION */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            display: none;
+            color: var(--secondary-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* LEGAL SECTIONS */
+        .legal-section {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 40px;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        /* PRINT STYLES - CRITICAL FOR PDF GENERATION */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #pdf-output-container, #pdf-output-container * {
+                visibility: visible;
+            }
+            #pdf-output-container {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .pdf-page {
+                page-break-after: always;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .pdf-page img {
+                max-width: 100%;
+                max-height: 100vh;
+                object-fit: contain;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <h1>Image to PDF Converter</h1>
+        <p class="subtitle">Convert JPG, PNG, and WEBP images into a single PDF document instantly.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="ad-placeholder">
+            <span>Advertisement Space</span>
+        </div>
+
+        <section class="section tool-wrapper">
+            <div class="drop-zone" id="drop-zone">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp" multiple style="display: none;">
+                <p><strong>Click to Upload Images</strong></p>
+                <p style="font-size: 0.9rem; color: #666;">or drag and drop files here</p>
+            </div>
+
+            <div class="preview-area" id="preview-area">
+                </div>
+
+            <p class="error-msg" id="error-msg"></p>
+
+            <div class="controls">
+                <button class="btn-primary" id="convert-btn" disabled onclick="generatePDF()">Convert & Print to PDF</button>
+            </div>
+            <p style="margin-top:10px; font-size: 0.8rem; color: #666;">*Select "Save as PDF" in the print dialog.</p>
+        </section>
+
+        <div id="pdf-output-container"></div>
+
+        <div class="ad-placeholder">
+            <span>Advertisement Space</span>
+        </div>
+
+        <section class="section">
+            <h2>How to Use This Image to PDF Tool</h2>
+            <ol>
+                <li>Click the <strong>upload area</strong> to select images (JPG, PNG) from your device.</li>
+                <li>You can select multiple images at once.</li>
+                <li>Preview the selected images in the grid below the upload box.</li>
+                <li>Click the <strong>"Convert & Print to PDF"</strong> button.</li>
+                <li>The print dialog will open. Change the destination to <strong>"Save as PDF"</strong>.</li>
+                <li>Click Save to download your new PDF file.</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>Benefits of Using Our Tool</h2>
+            <ul>
+                <li><strong>100% Free:</strong> No hidden costs or subscriptions.</li>
+                <li><strong>Secure & Private:</strong> Processing happens in your browser. Images are <strong>not</strong> uploaded to a server.</li>
+                <li><strong>No Software Needed:</strong> Works on Mobile, Tablet, and Desktop without installation.</li>
+                <li><strong>Universal Format:</strong> PDF is the most accepted document format worldwide.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Why Convert Images to PDF?</h2>
+            <p>In today's digital workflow, sharing multiple image files can be cumbersome and unprofessional. Whether you are submitting documents for a job application, compiling receipts for expense reports, or creating a digital portfolio, the PDF format offers a universal solution.</p>
+
+            <h3>Professionalism and Compatibility</h3>
+            <p>Sending a single PDF file is far more professional than attaching ten separate JPEG files to an email. PDFs maintain formatting across all devices, ensuring that the recipient views your documents exactly as you intended. Our <strong>Image to PDF Converter</strong> ensures your images are compiled neatly into a single, scrollable document.</p>
+
+            <h3>Reduced File Clutter</h3>
+            <p>By merging multiple images into one PDF, you significantly reduce file clutter. This makes archiving and organizing digital files much easier. Instead of searching for "page1.jpg" and "page2.jpg", you simply have "document.pdf".</p>
+
+            <h3>Client-Side Security</h3>
+            <p>Privacy is a major concern when handling sensitive documents like ID cards or financial statements. Unlike many other online tools that upload your files to a cloud server for processing, our tool operates entirely on the <strong>client-side</strong>. This means your images never leave your device, providing you with maximum security and peace of mind.</p>
+        </section>
+
+        <section class="section">
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Is this tool free? <span>+</span></div>
+                <div class="faq-answer">Yes, this Image to PDF converter is completely free to use without limits.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Are my images secured? <span>+</span></div>
+                <div class="faq-answer">Absolutely. We use browser-based processing, meaning your files are never uploaded to our servers. They stay on your device.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Can I convert multiple images? <span>+</span></div>
+                <div class="faq-answer">Yes, you can upload multiple images and they will be arranged into a single PDF document.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Does it work on mobile? <span>+</span></div>
+                <div class="faq-answer">Yes, the tool is fully responsive and works on iPhone, Android, and tablets.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How do I save the PDF? <span>+</span></div>
+                <div class="faq-answer">After clicking "Convert", the print window will open. Simply change the printer destination to "Save as PDF".</div>
+            </div>
+        </section>
+
+        <div class="legal-section" id="privacy">
+            <h3>Privacy Policy</h3>
+            <p><strong>Last Updated: 01/01/2026</strong></p>
+            <p>Your privacy is important to us. This Privacy Policy explains how we handle information.</p>
+            <p><strong>1. Data Collection:</strong> We do not collect, store, or transmit any images you upload. All processing is done locally on your device via the browser.</p>
+            <p><strong>2. Cookies:</strong> We may use cookies to improve user experience. You can disable cookies in your browser settings.</p>
+            <p><strong>3. Third-Party Ads (Google AdSense):</strong> We use third-party advertising companies to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+            <p><strong>4. Analytics:</strong> We may use tools like Google Analytics to understand traffic trends. This data is anonymous.</p>
+        </div>
+
+        <div class="legal-section" id="terms">
+            <h3>Terms and Conditions</h3>
+            <p>By using this website, you agree to the following terms:</p>
+            <p><strong>1. Usage:</strong> This tool is provided for personal and commercial use. You agree not to use it for any illegal activities.</p>
+            <p><strong>2. Liability:</strong> We are not responsible for any data loss or damages resulting from the use of this tool.</p>
+            <p><strong>3. Modifications:</strong> We reserve the right to modify or discontinue the service at any time without notice.</p>
+        </div>
+
+        <div class="legal-section" id="disclaimer">
+            <h3>Disclaimer</h3>
+            <p>The materials on this website are provided "as is". We make no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Vip Tool. All Rights Reserved.</p>
+        <p>
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms & Conditions</a> | 
+            <a href="#disclaimer">Disclaimer</a>
+        </p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const previewArea = document.getElementById('preview-area');
+        const convertBtn = document.getElementById('convert-btn');
+        const errorMsg = document.getElementById('error-msg');
+        const pdfOutputContainer = document.getElementById('pdf-output-container');
+
+        // Store selected files
+        let selectedFiles = [];
+
+        // Event Listeners
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#2563eb';
+            dropZone.style.backgroundColor = '#eff6ff';
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#e2e8f0';
+            dropZone.style.backgroundColor = '#f1f5f9';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#e2e8f0';
+            dropZone.style.backgroundColor = '#f1f5f9';
+            
+            if (e.dataTransfer.files.length > 0) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                handleFiles(fileInput.files);
+            }
+        });
+
+        // Handle File Processing
+        function handleFiles(files) {
+            errorMsg.style.display = 'none';
+            const newFiles = Array.from(files);
+
+            // Filter for images only
+            const validFiles = newFiles.filter(file => file.type.startsWith('image/'));
+
+            if (validFiles.length !== newFiles.length) {
+                showError("Some files were skipped because they are not images.");
+            }
+
+            if (validFiles.length === 0 && selectedFiles.length === 0) {
+                showError("Please upload valid image files (JPG, PNG).");
+                return;
+            }
+
+            selectedFiles = [...selectedFiles, ...validFiles];
+            updatePreview();
+            updateButtonState();
+        }
+
+        function updatePreview() {
+            previewArea.innerHTML = '';
+            
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const div = document.createElement('div');
+                    div.className = 'preview-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    
+                    const btn = document.createElement('button');
+                    btn.className = 'remove-btn';
+                    btn.innerHTML = '×';
+                    btn.onclick = (event) => {
+                        event.stopPropagation();
+                        removeFile(index);
+                    };
+
+                    div.appendChild(img);
+                    div.appendChild(btn);
+                    previewArea.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updatePreview();
+            updateButtonState();
+        }
+
+        function updateButtonState() {
+            convertBtn.disabled = selectedFiles.length === 0;
+            if (selectedFiles.length > 0) {
+                dropZone.querySelector('p strong').textContent = `${selectedFiles.length} Images Selected`;
+            } else {
+                dropZone.querySelector('p strong').textContent = 'Click to Upload Images';
+            }
+        }
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = 'block';
+        }
+
+        // Generate PDF Logic (Uses Browser Print)
+        function generatePDF() {
+            if (selectedFiles.length === 0) return;
+
+            // Clear previous output
+            pdfOutputContainer.innerHTML = '';
+
+            let processedCount = 0;
+
+            selectedFiles.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    // Create a page container
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'pdf-page';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    
+                    pageDiv.appendChild(img);
+                    pdfOutputContainer.appendChild(pageDiv);
+
+                    processedCount++;
+
+                    // Once all images are processed, trigger print
+                    if (processedCount === selectedFiles.length) {
+                        setTimeout(() => {
+                            window.print();
+                        }, 500); // Slight delay to ensure rendering
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // FAQ Toggle Logic
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            const isOpen = parent.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-question span').textContent = '+';
+            });
+
+            // Open clicked if it wasn't open
+            if (!isOpen) {
+                parent.classList.add('active');
+                element.querySelector('span').textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>
