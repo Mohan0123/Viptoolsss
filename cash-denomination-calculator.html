@@ -1,8 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://viptool.online/count-money-by-denomination">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free online Money Counter tool. Count cash by denomination instantly. Features total value and total note count. Mobile-friendly, secure, and print-ready.">
@@ -431,7 +430,7 @@
         </section>
 
         <footer>
-            <p>&copy; 2025 VIP Tool. All Rights Reserved.</p>
+            <p>&copy; 2024 Money Counter Tool. All Rights Reserved.</p>
             <p>
                 <a href="#privacy">Privacy</a> | 
                 <a href="#terms">Terms</a> | 
@@ -482,7 +481,7 @@
             for (const [code, data] of Object.entries(currencies)) {
                 const opt = document.createElement('option');
                 opt.value = code;
-                opt.textContent = ${data.symbol} - ${code};
+                opt.textContent = `${data.symbol} - ${code}`;
                 selectEl.appendChild(opt);
             }
             loadCurrency();
@@ -501,7 +500,7 @@
                 // Left: Label + 'x'
                 const left = document.createElement('div');
                 left.className = 'denom-left';
-                left.innerHTML = <span>${val}</span> <span class="symbol-x">×</span>;
+                left.innerHTML = `<span>${val}</span> <span class="symbol-x">×</span>`;
 
                 // Center: Input
                 const center = document.createElement('div');
@@ -519,7 +518,7 @@
                 const right = document.createElement('div');
                 right.className = 'denom-right';
                 // Using a span for the calculated value to update easily
-                right.innerHTML = <span class="symbol-eq">=</span> <span class="row-total">0</span>;
+                right.innerHTML = `<span class="symbol-eq">=</span> <span class="row-total">0</span>`;
 
                 row.appendChild(left);
                 row.appendChild(center);
