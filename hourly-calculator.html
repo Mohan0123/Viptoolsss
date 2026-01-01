@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Hourly Calculator by VIP Tool. Calculate your weekly, monthly, and yearly salary based on your hourly wage. Supports USD, INR, EUR, and more.">
+    <title>Hourly Calculator - Calculate Salary from Hourly Wage | VIP Tool</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Hourly Calculator",
+      "url": "https://viptool.online/hourly-calculator",
+      "description": "Calculate your income based on hourly rates. Converts hourly wages to weekly, monthly, and annual salary estimates with multi-currency support.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5.",
+      "author": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://viptool.online"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://viptool.online/tools"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Hourly Calculator"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How is the annual salary calculated from hourly rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We calculate annual salary by multiplying the hourly rate by the number of working hours in a year. Standard full-time work is typically calculated as 40 hours per week multiplied by 52 weeks (2,080 hours)."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does this support different currencies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can select USD, INR, EUR, GBP, CAD, or AUD. The tool formats the currency symbol and number system according to the selected region."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this tool free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the Hourly Calculator on VIP Tool is completely free and works directly in your browser."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does this calculate taxes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, this calculator provides Gross Pay (before taxes). Net pay depends on your specific tax bracket, location, and deductions."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 20px 0 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background-color: #fff;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        /* Results Section */
+        #result-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+            display: none;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-box {
+            background: #f1f8ff;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            overflow-wrap: break-word;
+        }
+
+        .total-box {
+            background: #e8f5e9;
+            border-left-color: var(--success-color);
+        }
+
+        /* RELATED TOOLS SECTION (CRITICAL) */
+        .related-tools-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .related-link-item {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .related-link-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Content & Legal */
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .content-section h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .content-section p, .content-section ul {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .content-section ul {
+            padding-left: 20px;
+        }
+
+        .ad-placeholder {
+            background: #eee;
+            color: #999;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px dashed #ccc;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: #343a40;
+            color: #adb5bd;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6rem; }
+            .btn-group { flex-direction: column; }
+            .result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
+    </header>
+
+    <main>
+        <h1>Hourly Calculator</h1>
+        <p class="subtitle">Instantly calculate your weekly, monthly, and yearly income based on your hourly wage.</p>
+
+        <div class="tool-card">
+            
+            <div class="form-group">
+                <label for="currencySelect">Select Currency</label>
+                <select id="currencySelect" onchange="if(document.getElementById('result-area').style.display === 'block') calculateSalary()">
+                    <option value="USD">USD ($) - United States Dollar</option>
+                    <option value="INR">INR (₹) - Indian Rupee</option>
+                    <option value="EUR">EUR (€) - Euro</option>
+                    <option value="GBP">GBP (£) - British Pound</option>
+                    <option value="CAD">CAD ($) - Canadian Dollar</option>
+                    <option value="AUD">AUD ($) - Australian Dollar</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="hourlyRate">Hourly Rate</label>
+                    <input type="number" id="hourlyRate" placeholder="e.g. 25.50" min="0" step="0.01">
+                </div>
+                <div class="col form-group">
+                    <label for="hoursPerWeek">Hours per Week</label>
+                    <input type="number" id="hoursPerWeek" placeholder="e.g. 40" min="0" step="0.5" value="40">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="weeksPerYear">Weeks per Year</label>
+                    <input type="number" id="weeksPerYear" placeholder="e.g. 52" min="1" max="52" value="52">
+                </div>
+                <div class="col form-group">
+                    <label for="overtimeHours">Overtime Hours (per week)</label>
+                    <input type="number" id="overtimeHours" placeholder="Optional" min="0" step="0.5" value="0">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                 <label for="overtimeMulti">Overtime Multiplier</label>
+                 <select id="overtimeMulti">
+                     <option value="1.5" selected>1.5x (Time and a half)</option>
+                     <option value="2">2.0x (Double time)</option>
+                     <option value="1">1.0x (Regular rate)</option>
+                 </select>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary" onclick="calculateSalary()">Calculate Pay</button>
+                <button class="btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <div id="result-area">
+                <h3>Estimated Gross Income</h3>
+                <div class="result-grid">
+                    <div class="result-box">
+                        <div class="result-label">Weekly Pay</div>
+                        <div class="result-value" id="res-weekly">$0.00</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">Monthly Pay (Avg)</div>
+                        <div class="result-value" id="res-monthly">$0.00</div>
+                    </div>
+                    <div class="result-box total-box">
+                        <div class="result-label">Annual Salary</div>
+                        <div class="result-value" id="res-annual">$0.00</div>
+                    </div>
+                </div>
+                <p style="margin-top:15px; font-size:0.9rem; color:var(--text-light);">* Estimations are based on Gross Income before taxes.</p>
+            </div>
+        </div>
+
+        <section class="related-tools-section">
+            <div class="related-title">Related Tools</div>
+            <div class="related-links">
+                <a href="https://viptool.online/salary-converter" class="related-link-item">Salary Converter</a>
+                <a href="https://viptool.online/gst-calulatore" class="related-link-item">GST Calculator</a>
+                <a href="https://viptool.online/percentage-calculator" class="related-link-item">Percentage Calculator</a>
+                <a href="https://viptool.online/age-calculator" class="related-link-item">Age Calculator</a>
+                <a href="https://viptool.online/word-counter" class="related-link-item">Word Counter</a>
+                <a href="https://viptool.online/character-counter" class="related-link-item">Character Counter</a>
+            </div>
+        </section>
+
+        <div class="ad-placeholder">
+            Advertisement
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use the Hourly Calculator</h2>
+            <p>Using the VIP Tool Hourly Calculator is simple. Follow these steps to determine your paycheck in your preferred currency:</p>
+            <ol style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Select Currency:</strong> Choose your currency (USD, INR, EUR, etc.) from the dropdown menu.</li>
+                <li><strong>Enter Hourly Rate:</strong> Input your current hourly wage in the input field.</li>
+                <li><strong>Enter Hours Worked:</strong> Input the number of hours you work in a standard week (default is 40).</li>
+                <li><strong>Adjust Weeks:</strong> If you work fewer than 52 weeks a year, adjust this number.</li>
+                <li><strong>Overtime (Optional):</strong> If you work extra hours, enter them and select the multiplier (usually 1.5x).</li>
+                <li><strong>Click Calculate:</strong> The tool will instantly display your Weekly, Monthly, and Annual gross income formatted correctly.</li>
+            </ol>
+
+            <h2>Why Use an Hourly Wage Calculator?</h2>
+            <p>Whether you are a student doing part-time work, a freelancer, or a full-time employee, understanding your annual salary based on an hourly rate is crucial for financial planning. This tool helps you convert <a href="https://viptool.online/tools" style="color:var(--primary-color);">hourly to salary</a> instantly.</p>
+            
+            <ul>
+                <li><strong>Global Support:</strong> Whether you earn in Dollars ($) or Rupees (₹), our tool adapts the formatting for you.</li>
+                <li><strong>Budgeting:</strong> Know exactly how much you earn per month to plan rent and expenses.</li>
+                <li><strong>Negotiation:</strong> When offered a job with an hourly rate, quickly see what that means annually.</li>
+            </ul>
+
+            <div class="ad-placeholder">
+                Advertisement
+            </div>
+
+            <h2>Understanding Gross vs. Net Pay</h2>
+            <p>Please note that this calculator provides <strong>Gross Pay</strong>. This is the total amount of money you earn before any deductions are taken out.</p>
+            <p><strong>Deductions usually include:</strong></p>
+            <ul>
+                <li>Government Taxes (Federal/State/Central)</li>
+                <li>Social Security / PF</li>
+                <li>Health Insurance premiums</li>
+                <li>Retirement contributions</li>
+            </ul>
+            <p>Your actual "take-home" pay (Net Pay) will be lower than the figures shown here depending on your local tax laws and personal deductions.</p>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <h3>1. Does this tool convert currency values?</h3>
+            <p>No, this tool does not convert exchange rates (e.g., USD to INR). It formats your input and result based on the selected currency. If you enter 500 and select INR, the result is calculated in INR.</p>
+
+            <h3>2. How is the monthly pay calculated?</h3>
+            <p>Since months have different numbers of days, we calculate the monthly average by taking the Annual Salary and dividing it by 12.</p>
+
+            <h3>3. What is "Time and a Half"?</h3>
+            <p>Time and a half refers to an overtime rate that is 1.5 times your regular hourly wage. For example, if you make 20/hour, time and a half would be 30/hour.</p>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div id="legal">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool, we prioritize your privacy. This Hourly Calculator operates entirely on the client-side (in your browser). We do not collect, store, or transmit the salary data or hourly rates you input. We use third-party services like Google Analytics to monitor site traffic and Google AdSense to display advertisements. These third parties may use cookies to serve ads based on prior visits.</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>By using this tool, you agree that it is provided for informational purposes only. VIP Tool does not guarantee the accuracy of calculations for legal or tax purposes. Users are responsible for verifying results before making financial decisions. We reserve the right to modify the tool's functionality at any time.</p>
+
+                <h3>Disclaimer</h3>
+                <p>The results provided by the Hourly Calculator are estimates based on the input provided. VIP Tool is not a financial advisor or tax professional. The figures represent Gross Pay and do not account for taxes or other deductions. Use this tool at your own risk.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function calculateSalary() {
+        // Get Inputs
+        const rate = parseFloat(document.getElementById('hourlyRate').value);
+        const hours = parseFloat(document.getElementById('hoursPerWeek').value);
+        const weeks = parseFloat(document.getElementById('weeksPerYear').value);
+        const overtimeHours = parseFloat(document.getElementById('overtimeHours').value) || 0;
+        const overtimeMulti = parseFloat(document.getElementById('overtimeMulti').value);
+        const currency = document.getElementById('currencySelect').value;
+
+        // Validation
+        if (isNaN(rate) || isNaN(hours) || isNaN(weeks) || rate < 0 || hours < 0) {
+            alert("Please enter valid positive numbers for Rate and Hours.");
+            return;
+        }
+
+        // Logic
+        // 1. Regular Weekly Pay
+        const regularWeeklyPay = rate * hours;
+        
+        // 2. Overtime Weekly Pay
+        const overtimeRate = rate * overtimeMulti;
+        const overtimeWeeklyPay = overtimeRate * overtimeHours;
+
+        // 3. Total Weekly
+        const totalWeekly = regularWeeklyPay + overtimeWeeklyPay;
+
+        // 4. Annual (Total Weekly * Weeks per year)
+        const totalAnnual = totalWeekly * weeks;
+
+        // 5. Monthly (Annual / 12)
+        const totalMonthly = totalAnnual / 12;
+
+        // Update UI with correct Currency
+        document.getElementById('res-weekly').innerText = formatCurrency(totalWeekly, currency);
+        document.getElementById('res-monthly').innerText = formatCurrency(totalMonthly, currency);
+        document.getElementById('res-annual').innerText = formatCurrency(totalAnnual, currency);
+
+        // Show Result Area
+        document.getElementById('result-area').style.display = 'block';
+        
+        // Scroll to results on mobile
+        if(window.innerWidth < 600) {
+            document.getElementById('result-area').scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
+    function formatCurrency(num, currencyCode) {
+        // Map currency codes to locales for better formatting (e.g. INR uses 1,00,000 style)
+        let locale = 'en-US'; // Default
+        
+        if (currencyCode === 'INR') locale = 'en-IN';
+        else if (currencyCode === 'EUR') locale = 'de-DE';
+        else if (currencyCode === 'GBP') locale = 'en-GB';
+        else if (currencyCode === 'AUD') locale = 'en-AU';
+        else if (currencyCode === 'CAD') locale = 'en-CA';
+
+        return num.toLocaleString(locale, {
+            style: 'currency',
+            currency: currencyCode,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    function resetForm() {
+        document.getElementById('hourlyRate').value = '';
+        document.getElementById('hoursPerWeek').value = '40';
+        document.getElementById('weeksPerYear').value = '52';
+        document.getElementById('overtimeHours').value = '';
+        document.getElementById('currencySelect').value = 'USD'; // Reset to Default
+        document.getElementById('result-area').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
