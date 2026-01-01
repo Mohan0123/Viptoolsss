@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Create professional invoices in seconds with VIP Tool's Free Invoice Generator. Customizable, printable, and PDF-friendly. No login required. Perfect for freelancers and SMBs.">
+<title>Free Invoice Generator Online | Create Professional Invoices - VIP Tool</title>
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "WebApplication",
+  "name": "Invoice Generator",
+  "url": "[https://viptool.online/invoice-generator](https://viptool.online/invoice-generator)",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VIP Tool"
+  },
+  "featureList": "Generate invoices, Calculate totals, Print to PDF, GST/Tax calculation"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "[https://viptool.online](https://viptool.online)"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Tools",
+    "item": "[https://viptool.online/tools](https://viptool.online/tools)"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "Invoice Generator"
+  }]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Is this Invoice Generator free to use?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, this tool is 100% free for students, freelancers, and professionals. There are no hidden fees or subscriptions."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Does VIP Tool store my invoice data?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. All processing happens in your browser (client-side). We do not store or view your invoice data on our servers."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Can I save the invoice as a PDF?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Click the 'Print / Save PDF' button. In the print dialog, select 'Save as PDF' as the destination to download your invoice."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Can I add taxes like GST or VAT?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely. You can set a tax percentage which will be automatically calculated into the final total."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Is this tool mobile-friendly?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, VIP Tool's invoice generator is fully responsive and works on smartphones, tablets, and desktops."
+    }
+  }]
+}
+</script>
+
+<style>
+    :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #64748b;
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --text: #0f172a;
+        --border: #e2e8f0;
+        --success: #22c55e;
+        --danger: #ef4444;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    /* Layout */
+    header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    main {
+        padding: 2rem 0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: var(--text);
+    }
+
+    .subtitle {
+        text-align: center;
+        color: var(--secondary);
+        margin-bottom: 2rem;
+    }
+
+    /* Tool Styles */
+    .tool-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .invoice-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--secondary);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .invoice-items {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.5rem;
+    }
+
+    .invoice-items th {
+        text-align: left;
+        background: var(--bg);
+        padding: 0.75rem;
+        border-bottom: 2px solid var(--border);
+        font-size: 0.875rem;
+    }
+
+    .invoice-items td {
+        padding: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+    }
+
+    .item-desc { width: 40%; }
+    .item-qty { width: 15%; }
+    .item-rate { width: 20%; }
+    .item-total { width: 20%; text-align: right; }
+    .item-action { width: 5%; text-align: center; }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+        background: #e2e8f0;
+    }
+
+    .btn-danger {
+        background: #fee2e2;
+        color: var(--danger);
+        padding: 0.4rem;
+    }
+
+    .btn-danger:hover {
+        background: #fecaca;
+    }
+
+    .totals-section {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+
+    .totals-table {
+        width: 300px;
+    }
+
+    .totals-table td {
+        padding: 0.5rem;
+        text-align: right;
+    }
+
+    .totals-table .total-label {
+        font-weight: 600;
+        color: var(--secondary);
+    }
+
+    .totals-table .grand-total {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary);
+        border-top: 2px solid var(--border);
+    }
+
+    .currency-selector {
+        margin-bottom: 1rem;
+        text-align: right;
+    }
+
+    /* Related Tools Block (Fixed Position) */
+    .related-tools-block {
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .related-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .related-link {
+        background: white;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        transition: all 0.2s;
+        text-align: center;
+    }
+
+    .related-link:hover {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    /* Content Sections */
+    .content-section {
+        background: var(--surface);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        margin-bottom: 2rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+
+    .content-section h3 {
+        font-size: 1.25rem;
+        margin: 1.5rem 0 0.75rem;
+        color: var(--text);
+    }
+
+    .content-section p, .content-section ul {
+        margin-bottom: 1rem;
+        color: #475569;
+    }
+
+    .content-section ul {
+        padding-left: 1.5rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .faq-question {
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+    }
+
+    .faq-answer {
+        color: #475569;
+    }
+
+    /* Legal */
+    .legal-section {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+
+    /* Footer */
+    footer {
+        background: #1e293b;
+        color: #94a3b8;
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    footer a {
+        color: #e2e8f0;
+        text-decoration: none;
+        margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+        color: white;
+    }
+
+    /* Ad Placeholder */
+    .ad-placeholder {
+        background: #f1f5f9;
+        border: 2px dashed #cbd5e1;
+        padding: 2rem;
+        text-align: center;
+        color: #64748b;
+        margin: 2rem 0;
+        border-radius: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .invoice-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .item-qty, .item-rate {
+            width: 25%;
+        }
+        .item-desc {
+            width: 100%;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .invoice-items td {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+         .invoice-items td.item-total {
+            text-align: left;
+            font-weight: bold;
+            background: #f8fafc;
+         }
+    }
+
+    /* Print Styles */
+    @media print {
+        body {
+            background: white;
+        }
+        header, .related-tools-block, .content-section, footer, .ad-placeholder, .btn-section, .legal-section {
+            display: none !important;
+        }
+        .tool-card {
+            box-shadow: none;
+            border: none;
+            padding: 0;
+        }
+        .form-control {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        textarea.form-control {
+            resize: none;
+        }
+        .btn-danger, .add-row-btn {
+            display: none !important;
+        }
+        h1 { font-size: 24px; text-align: left; }
+        .subtitle { display: none; }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <a href="[https://viptool.online](https://viptool.online)" class="logo">VIP Tool</a>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Free Invoice Generator Online</h1>
+    <p class="subtitle">Create, download, and print professional invoices instantly.</p>
+
+    <div class="tool-card" id="tool-container">
+        <div class="currency-selector btn-section">
+            <label for="currency">Currency: </label>
+            <select id="currency" class="form-control" style="width: auto; display: inline-block;">
+                <option value="$">USD ($)</option>
+                <option value="₹">INR (₹)</option>
+                <option value="€">EUR (€)</option>
+                <option value="£">GBP (£)</option>
+            </select>
+        </div>
+
+        <div class="invoice-grid">
+            <div>
+                <div class="form-group">
+                    <label>From (Your Business)</label>
+                    <textarea class="form-control" rows="3" placeholder="Your Name&#10;Company Name&#10;Address&#10;Phone"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Bill To (Client)</label>
+                    <textarea class="form-control" rows="3" placeholder="Client Name&#10;Company Name&#10;Address&#10;Email"></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label>Invoice Number</label>
+                    <input type="text" class="form-control" value="INV-001">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" class="form-control" id="invoiceDate">
+                </div>
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <table class="invoice-items">
+            <thead>
+                <tr>
+                    <th class="item-desc">Description</th>
+                    <th class="item-qty">Qty</th>
+                    <th class="item-rate">Rate</th>
+                    <th class="item-total">Amount</th>
+                    <th class="item-action"></th>
+                </tr>
+            </thead>
+            <tbody id="itemsBody">
+                </tbody>
+        </table>
+
+        <div class="btn-section" style="margin-bottom: 1rem;">
+            <button type="button" class="btn btn-secondary add-row-btn" onclick="addItem()">+ Add Item</button>
+        </div>
+
+        <div class="totals-section">
+            <table class="totals-table">
+                <tr>
+                    <td class="total-label">Subtotal</td>
+                    <td id="subtotal">0.00</td>
+                </tr>
+                <tr>
+                    <td class="total-label">Tax (%) <input type="number" id="taxRate" value="0" style="width: 50px; padding: 2px;" onchange="calculateTotals()"></td>
+                    <td id="taxAmount">0.00</td>
+                </tr>
+                <tr>
+                    <td class="total-label grand-total">Total</td>
+                    <td id="grandTotal" class="grand-total">0.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border);" class="btn-section">
+
+        <div style="text-align: center;" class="btn-section">
+            <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+            <button class="btn btn-secondary" onclick="resetForm()" style="margin-left: 1rem;">Reset</button>
+        </div>
+    </div>
+
+    <div class="related-tools-block">
+        <div class="related-title">
+            <span>🔥</span> Popular Related Tools
+        </div>
+        <div class="related-grid">
+            <a href="/gst-calculator" class="related-link">GST Calculator</a>
+            <a href="/discount-calculator" class="related-link">Discount Calculator</a>
+            <a href="/percentage-calculator" class="related-link">Percentage Calculator</a>
+            <a href="/age-calculator" class="related-link">Age Calculator</a>
+            <a href="/word-counter" class="related-link">Word Counter</a>
+            <a href="/text-case-converter" class="related-link">Text Case Converter</a>
+        </div>
+    </div>
+
+    <div class="ad-placeholder">
+        <p>Advertisement Space</p>
+    </div>
+
+    <div class="content-section">
+        <h2>How to Use the VIP Tool Invoice Generator</h2>
+        <ol>
+            <li><strong>Enter Business Details:</strong> Fill in your company details in the "From" section and your client's details in the "Bill To" section.</li>
+            <li><strong>Add Invoice Items:</strong> List the services or products provided. Enter the description, quantity, and rate for each. The tool calculates the amount automatically.</li>
+            <li><strong>Set Tax:</strong> If applicable, enter the tax percentage (GST, VAT, etc.) to calculate the final total.</li>
+            <li><strong>Download or Print:</strong> Click the "Print / Save as PDF" button. To save as a file, select "Save as PDF" in the print destination options.</li>
+        </ol>
+
+        <h3>Why Use an Online Invoice Generator?</h3>
+        <p>Creating invoices manually using spreadsheets or word processors can be time-consuming and prone to calculation errors. The <strong>VIP Tool Invoice Generator</strong> streamlines this process for freelancers, consultants, and small business owners.</p>
+        <p>Our tool ensures your invoices look professional and consistent. Professional invoicing helps you get paid faster and maintains a trustworthy image with your clients. Plus, because it is web-based, you can generate an invoice from any device without installing software.</p>
+
+        <h3>Key Benefits</h3>
+        <ul>
+            <li><strong>100% Free:</strong> No subscriptions or watermarks.</li>
+            <li><strong>Privacy First:</strong> Data is processed in your browser; we don't store your financial details.</li>
+            <li><strong>Automatic Calculations:</strong> Avoid math errors with automated subtotal and tax computations.</li>
+            <li><strong>Instant PDF:</strong> Generate a clean, printer-friendly version instantly.</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+        <div class="faq-item">
+            <div class="faq-question">Is this invoice generator free?</div>
+            <div class="faq-answer">Yes, VIP Tool provides this invoice generator completely free of charge for unlimited use.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I change the currency symbol?</div>
+            <div class="faq-answer">Yes, use the dropdown menu at the top of the tool to switch between USD ($), INR (₹), EUR (€), and GBP (£).</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is my data safe?</div>
+            <div class="faq-answer">Absolutely. This tool operates entirely on your device (client-side). No invoice data is sent to or stored on our servers.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I add a discount?</div>
+            <div class="faq-answer">Currently, you can manually add a line item with a negative rate (e.g., "-50") to represent a discount.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I download the PDF?</div>
+            <div class="faq-answer">Click the blue "Print / Save as PDF" button. When the print window opens, change the "Destination" or "Printer" setting to "Save as PDF".</div>
+        </div>
+    </div>
+
+    <div class="ad-placeholder">
+        <p>Advertisement Space</p>
+    </div>
+
+    <div class="legal-section">
+        <h3>Privacy Policy</h3>
+        <p>VIP Tool respects your privacy. This Invoice Generator operates using client-side JavaScript. We do not collect, store, or transmit the personal or financial data you enter into the form fields. We use third-party services like Google Analytics to track usage statistics and Google AdSense to serve advertisements. By using this site, you consent to the use of cookies for these purposes.</p>
+        
+        <h3 style="margin-top: 1rem;">Terms & Conditions</h3>
+        <p>By using this tool, you agree that VIP Tool is not responsible for any errors or omissions in the invoices generated. This tool is provided for convenience only. You are responsible for ensuring your invoices comply with local tax laws and regulations. We reserve the right to modify or discontinue this service at any time.</p>
+
+        <h3 style="margin-top: 1rem;">Disclaimer</h3>
+        <p>The VIP Tool Invoice Generator is provided "as-is" without any warranties. It does not constitute professional accounting or legal advice. VIP Tool is not affiliated with any government tax authority. Users utilize the generated documents at their own risk.</p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="[https://viptool.online](https://viptool.online)">All Tools</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Set today's date
+    document.getElementById('invoiceDate').valueAsDate = new Date();
+
+    function getCurrency() {
+        return document.getElementById('currency').value;
+    }
+
+    function formatMoney(amount) {
+        return getCurrency() + ' ' + parseFloat(amount).toFixed(2);
+    }
+
+    function addItem() {
+        const tbody = document.getElementById('itemsBody');
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td><input type="text" class="form-control" placeholder="Item Name / Description"></td>
+            <td><input type="number" class="form-control qty" value="1" min="1" oninput="calculateTotals()"></td>
+            <td><input type="number" class="form-control rate" value="0" min="0" oninput="calculateTotals()"></td>
+            <td class="item-total">0.00</td>
+            <td class="item-action"><button type="button" class="btn btn-danger" onclick="deleteRow(this)">×</button></td>
+        `;
+        tbody.appendChild(row);
+        calculateTotals();
+    }
+
+    function deleteRow(btn) {
+        const row = btn.closest('tr');
+        row.remove();
+        calculateTotals();
+    }
+
+    function calculateTotals() {
+        const rows = document.querySelectorAll('#itemsBody tr');
+        let subtotal = 0;
+
+        rows.forEach(row => {
+            const qty = parseFloat(row.querySelector('.qty').value) || 0;
+            const rate = parseFloat(row.querySelector('.rate').value) || 0;
+            const amount = qty * rate;
+            
+            row.querySelector('.item-total').textContent = formatMoney(amount);
+            subtotal += amount;
+        });
+
+        const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+        const taxAmount = subtotal * (taxRate / 100);
+        const grandTotal = subtotal + taxAmount;
+
+        document.getElementById('subtotal').textContent = formatMoney(subtotal);
+        document.getElementById('taxAmount').textContent = formatMoney(taxAmount);
+        document.getElementById('grandTotal').textContent = formatMoney(grandTotal);
+    }
+
+    function resetForm() {
+        if(confirm('Are you sure you want to clear the invoice?')) {
+            document.getElementById('itemsBody').innerHTML = '';
+            document.getElementById('taxRate').value = 0;
+            addItem(); // Add one empty row
+        }
+    }
+
+    // Listen for currency change
+    document.getElementById('currency').addEventListener('change', calculateTotals);
+
+    // Initialize with one row
+    addItem();
+</script>
+</body>
+</html>
