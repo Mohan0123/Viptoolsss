@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Fuel Cost Converter & Trip Calculator by VIP Tool. Calculate gas, petrol, or diesel cost for your trip. Supports MPG, Km/L, L/100km and multiple currencies.">
+    <title>Fuel Cost Converter - Calculate Trip Gas & Petrol Price | VIP Tool</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Fuel Cost Converter",
+      "url": "https://viptool.online/fuel-cost-converter",
+      "description": "Calculate fuel cost for any trip. Converts between MPG, L/100km, and Km/L to estimate total gas or petrol expenses.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5.",
+      "author": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://viptool.online"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://viptool.online/tools"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Fuel Cost Converter"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I calculate fuel cost for a trip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter your trip distance, your vehicle's fuel efficiency (MPG or Km/L), and the current price of fuel. Our tool calculates the total fuel needed and the cost."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does this tool support electric vehicles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently, this tool is optimized for liquid fuel (gas, petrol, diesel). However, if you know your cost per km, you can estimate it manually."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the difference between MPG US and MPG UK?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A UK gallon is larger (4.54 liters) than a US gallon (3.78 liters). Therefore, MPG UK figures are higher than MPG US figures for the same efficiency. Our tool handles this conversion."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the Fuel Cost Converter on VIP Tool is 100% free to use."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #dee2e6;
+            --accent-color: #ff9800;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 20px 0 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .input-group {
+            display: flex;
+        }
+
+        .input-group input {
+            flex: 2;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .input-group select {
+            flex: 1;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+            background-color: #f1f3f5;
+            font-weight: 500;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        /* Results Section */
+        #result-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+            display: none;
+        }
+
+        .result-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-card.highlight {
+            background: #e3f2fd;
+            border-color: var(--primary-color);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .currency-symbol {
+            font-size: 1rem;
+            vertical-align: super;
+        }
+
+        /* RELATED TOOLS SECTION (CRITICAL) */
+        .related-tools-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .related-link-item {
+            background: #f8f9fa;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .related-link-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .related-link-item::after {
+            content: "→";
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        /* Content & Legal */
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+        }
+
+        .content-section h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .content-section p, .content-section ul {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .content-section ul {
+            padding-left: 20px;
+        }
+
+        .ad-placeholder {
+            background: #f1f3f5;
+            color: #adb5bd;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 2px dashed #dee2e6;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: #343a40;
+            color: #adb5bd;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6rem; }
+            .btn-group { flex-direction: column; }
+            .result-cards { grid-template-columns: 1fr; }
+            .input-group { flex-direction: column; }
+            .input-group input { border-radius: 6px 6px 0 0; }
+            .input-group select { border-radius: 0 0 6px 6px; border-left: 1px solid var(--border-color); border-top: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
+    </header>
+
+    <main>
+        <h1>Fuel Cost Converter</h1>
+        <p class="subtitle">Accurate Trip Cost Calculator for Cars, Bikes, and Trucks.</p>
+
+        <div class="tool-card">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="distance">Trip Distance</label>
+                    <div class="input-group">
+                        <input type="number" id="distance" placeholder="e.g. 500" min="0" step="0.1">
+                        <select id="distanceUnit">
+                            <option value="km">Kilometers (km)</option>
+                            <option value="miles">Miles (mi)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="efficiency">Fuel Efficiency / Mileage</label>
+                    <div class="input-group">
+                        <input type="number" id="efficiency" placeholder="e.g. 15" min="0.1" step="0.1">
+                        <select id="efficiencyUnit">
+                            <option value="kmpl">km/L (Kilometers per Liter)</option>
+                            <option value="l100">L/100km (Liters per 100km)</option>
+                            <option value="mpg_us">MPG (US)</option>
+                            <option value="mpg_uk">MPG (UK)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Fuel Price</label>
+                    <div class="input-group">
+                        <input type="number" id="price" placeholder="e.g. 98.50" min="0" step="0.01">
+                        <select id="priceUnit">
+                            <option value="per_liter">Price per Liter</option>
+                            <option value="per_gallon_us">Price per Gallon (US)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="currency">Currency</label>
+                    <select id="currency">
+                        <option value="$">USD ($)</option>
+                        <option value="₹">INR (₹)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="£">GBP (£)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary" onclick="calculateFuelCost()">Calculate Cost</button>
+                <button class="btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <div id="result-area">
+                <div class="result-cards">
+                    <div class="result-card highlight">
+                        <div class="result-label">Total Trip Cost</div>
+                        <div class="result-value" id="res-cost">$0.00</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Fuel Needed</div>
+                        <div class="result-value" id="res-fuel">0 Liters</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Efficiency (Standard)</div>
+                        <div class="result-value" id="res-efficiency">0 km/L</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-tools-section">
+            <div class="related-title">Related Tools You Might Need</div>
+            <div class="related-links">
+                <a href="https://viptool.online/fuel-cost-converter" class="related-link-item">Mileage Calculator</a>
+                <a href="https://viptool.online/speed-converter" class="related-link-item">Speed Converter</a>
+                <a href="https://viptool.online/distance-converter" class="related-link-item">Distance Converter</a>
+                <a href="https://viptool.online/gst-calculatore" class="related-link-item">GST Calculator</a>
+                <a href="https://viptool.online/hourly-calculator" class="related-link-item">Hourly Calculator</a>
+                <a href="https://viptool.online/simple-interest-calculator" class="related-link-item">Simple Interest Calculator</a>
+            </div>
+        </section>
+
+        <div class="ad-placeholder">
+            Advertisement
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use the Fuel Cost Converter</h2>
+            <p>Planning a road trip or just want to know how much your daily commute costs? The VIP Tool Fuel Cost Converter makes it easy. Follow these simple steps:</p>
+            <ol style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Enter Distance:</strong> Input the total distance of your trip and select whether it's in Kilometers (km) or Miles.</li>
+                <li><strong>Enter Fuel Efficiency:</strong> Input your vehicle's mileage. You can use any unit: km/L (common in India/Asia), MPG (US/UK), or L/100km (Europe).</li>
+                <li><strong>Enter Fuel Price:</strong> Input the current price of fuel at the station and select if it is per Liter or per Gallon.</li>
+                <li><strong>Select Currency:</strong> Choose your local currency symbol for the display.</li>
+                <li><strong>Calculate:</strong> Click the button to see the estimated total cost and the amount of fuel required.</li>
+            </ol>
+
+            <h2>Why Calculate Fuel Costs Before Travelling?</h2>
+            <p>Fuel prices fluctuate constantly, and different vehicles have vastly different consumption rates. By using a <a href="https://viptool.online/tools" style="color:var(--primary-color);">reliable trip calculator</a>, you can:</p>
+            <ul>
+                <li><strong>Budget Accurately:</strong> Know exactly how much cash to set aside for gas or petrol.</li>
+                <li><strong>Compare Routes:</strong> Determine if a longer but smoother route is cheaper than a shorter, stop-and-go route.</li>
+                <li><strong>Split Costs:</strong> If carpooling, you can easily calculate the fair share for each passenger.</li>
+            </ul>
+
+            <div class="ad-placeholder">
+                Advertisement
+            </div>
+
+            <h2>Understanding Fuel Efficiency Units</h2>
+            <p>Different regions use different standards to measure how efficient a car is. Our tool handles conversions automatically:</p>
+            <ul>
+                <li><strong>km/L:</strong> Kilometers per Liter. Common in India, Japan, and South America. Higher is better.</li>
+                <li><strong>MPG (US/UK):</strong> Miles Per Gallon. Used in the USA and UK. Note that a UK gallon is larger than a US gallon.</li>
+                <li><strong>L/100km:</strong> Liters per 100 Kilometers. The standard in Europe and Canada. Lower is better.</li>
+            </ul>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <h3>1. Is the calculation 100% accurate?</h3>
+            <p>The tool is mathematically accurate based on your inputs. However, real-world factors like traffic, tire pressure, and driving style (AC usage, speeding) can affect actual fuel consumption.</p>
+
+            <h3>2. How do I convert Miles to Kilometers?</h3>
+            <p>1 Mile is approximately equal to 1.609 Kilometers. Our tool performs this conversion automatically in the background.</p>
+
+            <h3>3. Does this work for Diesel and Petrol?</h3>
+            <p>Yes. The calculator works on the principle of volume and price. It does not matter if the fluid is Petrol, Diesel, or Ethanol, as long as you input the correct price and efficiency.</p>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div id="legal">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool, we value your privacy. This Fuel Cost Converter functions entirely within your browser. No data about your location, trip details, or vehicle is sent to our servers. We use third-party services like Google Analytics and Google AdSense, which may use cookies to improve user experience and serve relevant ads.</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>This tool is provided for informational and estimation purposes only. VIP Tool is not responsible for any discrepancies between the estimated cost and the actual cost incurred. Fuel prices and vehicle performance vary.</p>
+
+                <h3>Disclaimer</h3>
+                <p>The results generated by this tool are estimates. VIP Tool is not affiliated with any fuel provider or automotive authority. Please drive responsibly and obey all traffic laws.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function calculateFuelCost() {
+        // Inputs
+        const distance = parseFloat(document.getElementById('distance').value);
+        const distanceUnit = document.getElementById('distanceUnit').value;
+        const efficiency = parseFloat(document.getElementById('efficiency').value);
+        const efficiencyUnit = document.getElementById('efficiencyUnit').value;
+        const price = parseFloat(document.getElementById('price').value);
+        const priceUnit = document.getElementById('priceUnit').value;
+        const currency = document.getElementById('currency').value;
+
+        // Validation
+        if (isNaN(distance) || isNaN(efficiency) || isNaN(price) || distance <= 0 || efficiency <= 0 || price < 0) {
+            alert("Please enter valid positive numbers for all fields.");
+            return;
+        }
+
+        // 1. Normalize Distance to Kilometers
+        let distInKm = distance;
+        if (distanceUnit === 'miles') {
+            distInKm = distance * 1.60934;
+        }
+
+        // 2. Calculate Fuel Needed in Liters
+        let litersNeeded = 0;
+        let kmPerLiterDisplay = 0; // For display purposes
+
+        if (efficiencyUnit === 'l100') {
+            // Formula: (Distance / 100) * Efficiency
+            litersNeeded = (distInKm / 100) * efficiency;
+            kmPerLiterDisplay = 100 / efficiency;
+        } 
+        else if (efficiencyUnit === 'kmpl') {
+            // Formula: Distance / Efficiency
+            litersNeeded = distInKm / efficiency;
+            kmPerLiterDisplay = efficiency;
+        } 
+        else if (efficiencyUnit === 'mpg_us') {
+            // Convert MPG US to km/L -> 1 MPG US = 0.425144 km/L
+            let kmpl = efficiency * 0.425144;
+            litersNeeded = distInKm / kmpl;
+            kmPerLiterDisplay = kmpl;
+        } 
+        else if (efficiencyUnit === 'mpg_uk') {
+            // Convert MPG UK to km/L -> 1 MPG UK = 0.5542 km/L (approx) or more precisely via gallons
+            // 1 Imperial Gallon = 4.54609 Liters. 1 Mile = 1.60934 Km.
+            // km/L = MPG * (1.60934 / 4.54609) = MPG * 0.354006
+            let kmpl = efficiency * 0.354006;
+            litersNeeded = distInKm / kmpl;
+            kmPerLiterDisplay = kmpl;
+        }
+
+        // 3. Normalize Price to Price per Liter
+        let pricePerLiter = price;
+        if (priceUnit === 'per_gallon_us') {
+            // 1 US Gallon = 3.78541 Liters
+            pricePerLiter = price / 3.78541;
+        }
+
+        // 4. Calculate Total Cost
+        const totalCost = litersNeeded * pricePerLiter;
+
+        // 5. Update UI
+        document.getElementById('res-cost').innerHTML = `<span class="currency-symbol">${currency}</span>` + totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        document.getElementById('res-fuel').innerText = litersNeeded.toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 2}) + " Liters";
+        
+        document.getElementById('res-efficiency').innerText = kmPerLiterDisplay.toFixed(1) + " km/L";
+
+        // Show Results
+        document.getElementById('result-area').style.display = 'block';
+        
+        // Mobile scroll
+        if(window.innerWidth < 600) {
+            document.getElementById('result-area').scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('distance').value = '';
+        document.getElementById('efficiency').value = '';
+        document.getElementById('price').value = '';
+        document.getElementById('result-area').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
