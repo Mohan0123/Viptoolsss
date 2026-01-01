@@ -1,36 +1,35 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="/favicon.png">
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "VIPTool Online",
-  "alternateName": [
-    "VIP Tool",
-    "VIPTool",
-    "VIP Tools Online"
-  ],
-  "url": "https://viptool.online",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://viptool.online/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Tool – All-in-One Free Online Tools</title>
+    
     <meta name="description" content="VIP Tool - Access 40+ free online tools including GST Calculator, Resume Maker, SEO Tools, Image Converters, and more. Fast, secure, and browser-based.">
     <meta name="keywords" content="gst calculator, resume maker, seo tools, image converter, pdf tools, age calculator, viptool online">
     <meta name="author" content="VIP Tool Online">
-    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX"> <link rel="canonical" href="https://viptool.online">
+    <link rel="canonical" href="https://viptool.online">
     
-    <title>VIP Tool – All-in-One Free Online Tools</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "VIPTool Online",
+      "alternateName": ["VIP Tool", "VIPTool", "VIP Tools Online"],
+      "url": "https://viptool.online",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://viptool.online/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <style>
         /* CSS VARIABLES & RESET */
@@ -49,21 +48,20 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
         /* LAYOUT UTILS */
         .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
-        .flex-center { display: flex; align-items: center; justify-content: center; }
-        .section-padding { padding: 60px 0; }
         
         /* HEADER */
         header { background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
         .logo svg { width: 28px; height: 28px; }
+        nav a { margin-left: 15px; font-weight: 500; transition: color 0.2s; }
+        nav a:hover { color: var(--primary); }
 
         /* HERO */
         .hero { background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%); color: white; text-align: center; padding: 80px 20px 100px; }
@@ -83,7 +81,7 @@
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 25px 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; height: 100%; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 25px 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; }
         .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--primary); }
         
         .icon-box { width: 50px; height: 50px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 15px; transition: 0.3s; }
@@ -121,7 +119,7 @@
 
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        /* ADSENSE */
+        /* ADSENSE AREA */
         .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; height: 100px; display: flex; align-items: center; justify-content: center; color: #94a3b8; margin: 40px 0; border-radius: 8px; font-size: 0.9rem; }
 
         /* RESPONSIVE */
@@ -142,9 +140,9 @@
                 VIP Tool
             </a>
             <nav>
-                <a href="#calculators" style="margin-left: 15px; font-weight: 500;">Calculators</a>
-                <a href="#images" style="margin-left: 15px; font-weight: 500;">Images</a>
-                <a href="#seo" style="margin-left: 15px; font-weight: 500;">SEO</a>
+                <a href="#calculators">Calculators</a>
+                <a href="#images">Images</a>
+                <a href="#seo">SEO</a>
             </nav>
         </div>
     </header>
@@ -159,7 +157,7 @@
     <div class="search-wrapper">
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search tools (e.g., GST, Resume, PDF, SEO...)" onkeyup="filterTools()">
-            <button>Search</button>
+            <button onclick="filterTools()">Search</button>
         </div>
     </div>
 
@@ -179,80 +177,58 @@
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7zM7 14h10v2H7zm0 4h10v2H7z"/></svg></div>
                     <h3>GST Calculator</h3>
                     <p>Calculate Goods and Service Tax easily.</p>
-                    <a class='card-btn' href='/gst-calulatore'>Use Tool</a>
+                    <a class='card-btn' href='/gst-calculator.html'>Use Tool</a>
                 </div>
+
                 <div class="card" data-name="Mortgage Calculator">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 3l9 8h-3v9h-4v-6H10v6H6v-9H3l9-8z"/>
-        </svg>
-    </div>
-    <h3>Mortgage Calculator</h3>
-    <p>Calculate home loan EMI, interest & total payment.</p>
-    <a href="mortgage-calculator.html" class="card-btn">Use Tool</a>
-</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-4v-6H10v6H6v-9H3l9-8z"/></svg>
+                    </div>
+                    <h3>Mortgage Calculator</h3>
+                    <p>Calculate home loan EMI, interest & total payment.</p>
+                    <a href="mortgage-calculator.html" class="card-btn">Use Tool</a>
+                </div>
 
                 <div class="card" data-name="Cash Denomination Calculator">
                    <div class="icon-box">
-                   <svg viewBox="0 0 24 24">
-                   <path d="M12 1C6.48 1 2 4.58 2 9c0 2.38 1.31 4.47 3.44 5.88L5 22l7-3 7 3-.44-7.12C20.69 13.47 22 11.38 22 9c0-4.42-4.48-8-10-8z"/>
-                   </svg>
+                       <svg viewBox="0 0 24 24"><path d="M12 1C6.48 1 2 4.58 2 9c0 2.38 1.31 4.47 3.44 5.88L5 22l7-3 7 3-.44-7.12C20.69 13.47 22 11.38 22 9c0-4.42-4.48-8-10-8z"/></svg>
+                   </div>
+                   <h3>Cash Denomination</h3>
+                   <p>Count total cash by entering number of notes.</p>
+                   <a class='card-btn' href='/cash-denomination-calculator.html'>Use Tool</a>
                 </div>
-                    <div class="card" data-name="Discount Calculator">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 
-                     10-4.48 10-10S17.52 2 12 2zm-2 14.5
-                     c-.83 0-1.5-.67-1.5-1.5s.67-1.5 
-                     1.5-1.5 1.5.67 1.5 1.5-.67 
-                     1.5-1.5 1.5zm4-7c-.83 0-1.5-.67
-                     -1.5-1.5S13.17 6 14 6s1.5.67
-                     1.5 1.5S14.83 9.5 14 9.5zM8.41
-                     17.59L6.99 16.17 16.17 6.99
-                     17.59 8.41 8.41 17.59z"/>
-        </svg>
-    </div>
-    <h3>Discount Calculator</h3>
-    <p>Calculate discount amount and final price easily.</p>
-    <a href="discount-calculator.html" class="card-btn">Use Tool</a>
-</div>
-                <div class="card" data-name="Paycheck Calculator">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 7H3c-1.1 0-2 .9-2 2v6
-                     c0 1.1.9 2 2 2h18
-                     c1.1 0 2-.9 2-2V9
-                     c0-1.1-.9-2-2-2zm-10
-                     7c-1.1 0-2-.9-2-2
-                     s.9-2 2-2 2 .9
-                     2 2-.9 2-2 2z"/>
-        </svg>
-    </div>
-    <h3>Paycheck Calculator</h3>
-    <p>Estimate take-home salary after tax & deductions.</p>
-    <a href="paycheck-calculator.html" class="card-btn">Use Tool</a>
-</div>
 
-               <h3>Cash Denomination</h3>
-                <p>Count total cash by entering number of notes.</p>
-                 <a class='card-btn' href='/cash-denomination-calculator'>Use Tool</a>
+                <div class="card" data-name="Discount Calculator">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-7c-.83 0-1.5-.67-1.5-1.5S13.17 6 14 6s1.5.67 1.5 1.5S14.83 9.5 14 9.5zM8.41 17.59L6.99 16.17 16.17 6.99 17.59 8.41 8.41 17.59z"/></svg>
+                    </div>
+                    <h3>Discount Calculator</h3>
+                    <p>Calculate discount amount and final price easily.</p>
+                    <a href="discount-calculator.html" class="card-btn">Use Tool</a>
                 </div>
+
+                <div class="card" data-name="Paycheck Calculator">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 7H3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-10 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                    </div>
+                    <h3>Paycheck Calculator</h3>
+                    <p>Estimate take-home salary after tax & deductions.</p>
+                    <a href="paycheck-calculator.html" class="card-btn">Use Tool</a>
+                </div>
+
                 <div class="card" data-name="Fuel Cost Converter">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 4h-1V3c0-.55-.45-1-1-1H6c-.55 0-1 .45-1 1v16c0 .55.45 1 1 1h11c.55 0 1-.45 1-1v-5h1c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-3 15H7V5h9v14zm3-7h-1V6h1v6z"/>
-                </svg>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V3c0-.55-.45-1-1-1H6c-.55 0-1 .45-1 1v16c0 .55.45 1 1 1h11c.55 0 1-.45 1-1v-5h1c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-3 15H7V5h9v14zm3-7h-1V6h1v6z"/></svg>
+                    </div>
+                    <h3>Fuel Cost Converter</h3>
+                    <p>Calculate fuel cost per trip using distance & mileage.</p>
+                    <a href="fuel-cost-converter.html" class="card-btn">Use Tool</a>
                 </div>
-                <h3>Fuel Cost Converter</h3>
-                <p>Calculate fuel cost per trip using distance & mileage.</p>
-                <a href="fuel-cost-converter.html" class="card-btn">Use Tool</a>
-                </div>
+
                 <div class="card" data-name="Crypto Converter">
-                  <div class="icon-box">
-                    <svg viewBox="0 0 24 24"><path d="M12 2l4 4-4 4-4-4z"/></svg>
-                  </div>
+                  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2l4 4-4 4-4-4z"/></svg></div>
                   <h3>Crypto Converter</h3>
-                 <p>Convert crypto to USD, INR & other currencies.</p>
+                  <p>Convert crypto to USD, INR & other currencies.</p>
                   <a href="crypto-converter.html" class="card-btn">Use Tool</a>
                 </div>
 
@@ -260,53 +236,53 @@
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
                     <h3>EMI Calculator</h3>
                     <p>Calculate monthly loan installments.</p>
-                    <a class='card-btn' href='/emi-calculator'>Use Tool</a>
+                    <a class='card-btn' href='/emi-calculator.html'>Use Tool</a>
                 </div>
+
                 <div class="card" data-name="Loan Calculator">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg></div>
                     <h3>Loan Calculator</h3>
                     <p>Estimate loan repayment and interest.</p>
-                    <a class='card-btn' href='/loan-calculator'>Use Tool</a>
+                    <a class='card-btn' href='/loan-calculator.html'>Use Tool</a>
                 </div>
+
                 <div class="card" data-name="Percentage Calculator">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M7.5 11C9.43 11 11 9.43 11 7.5S9.43 4 7.5 4 4 5.57 4 7.5 5.57 11 7.5 11zm0-5C8.33 6 9 6.67 9 7.5S8.33 9 7.5 9 6 8.33 6 7.5 6.67 6 7.5 6zM16.5 13c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM19 5.41L5.41 19 4 17.59 17.59 4 19 5.41z"/></svg></div>
                     <h3>Percentage Calculator</h3>
                     <p>Solve math percentage problems easily.</p>
-                    <a class='card-btn' href='/percentage-calculator'>Use Tool</a>
+                    <a class='card-btn' href='/percentage-calculator.html'>Use Tool</a>
                 </div>
+
                 <div class="card" data-name="Hourly Calculator">
-           <div class="icon-box">
-           <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm1 11.41V6h-2v7l5 3 1-1.73-4-2.86z"/>
-           </svg>
-          </div>
-           <h3>Hourly Calculator</h3>
-         <p>Convert hourly pay into daily, monthly & yearly income.</p>
-         <a href="hourly-calculator.html" class="card-btn">Use Tool</a>
-          </div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm1 11.41V6h-2v7l5 3 1-1.73-4-2.86z"/></svg>
+                    </div>
+                    <h3>Hourly Calculator</h3>
+                    <p>Convert hourly pay into daily, monthly & yearly income.</p>
+                    <a href="hourly-calculator.html" class="card-btn">Use Tool</a>
+                </div>
 
                 <div class="card" data-name="Age Calculator">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
                     <h3>Age Calculator</h3>
                     <p>Find your exact age in years and days.</p>
-                    <a class='card-btn' href='/age-calculator'>Use Tool</a>
+                    <a class='card-btn' href='/age-calculator.html'>Use Tool</a>
                 </div>
+
                 <div class="card" data-name="Invoice Generator">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-        </svg>
-    </div>
-    <h3>Invoice Generator</h3>
-    <p>Create professional invoices and download as PDF.</p>
-    <a href="invoice-generator.html" class="card-btn">Use Tool</a>
-</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <h3>Invoice Generator</h3>
+                    <p>Create professional invoices and download as PDF.</p>
+                    <a href="invoice-generator.html" class="card-btn">Use Tool</a>
+                </div>
 
                 <div class="card" data-name="BMI Calculator">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7.7 1.6z"/></svg></div>
                     <h3>BMI Calculator</h3>
                     <p>Check body mass index for health.</p>
-                    <a class='card-btn' href='/bmi-calculator'>Use Tool</a>
+                    <a class='card-btn' href='/bmi-calculator.html'>Use Tool</a>
                 </div>
             </div>
         </div>
@@ -321,66 +297,63 @@
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M8 16h8v2H8v-2zm0-4h8v2H8v-2zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg></div>
                     <h3>Image Compressor</h3>
                     <p>Compress images without quality loss.</p>
-                    <a class='card-btn' href='/image-compressor'>Use Tool</a>
+                    <a class='card-btn' href='/image-compressor.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Image Resizer">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 12h-2v3h-3v2h5v-5zM7 9h2V6h3V4H7v5zm14-6H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16.01H3V4.99h18v14.02z"/></svg></div>
                     <h3>Image Resizer</h3>
                     <p>Resize images to custom dimensions.</p>
-                    <a class='card-btn' href='/image-resizer'>Use Tool</a>
+                    <a class='card-btn' href='/image-resizer.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Image Converter">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9l-3 4h6l-3-4z"/></svg></div>
                     <h3>Image Converter</h3>
                     <p>Convert between image formats.</p>
-                    <a class='card-btn' href='/image-converter'>Use Tool</a>
+                    <a class='card-btn' href='/image-converter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="JPG to PNG">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
                     <h3>JPG to PNG</h3>
                     <p>Convert JPG files to Transparent PNG.</p>
-                    <a class='card-btn' href='/jpg-to-png-converter'>Use Tool</a>
+                    <a class='card-btn' href='/jpg-to-png-converter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="PNG to JPG">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg></div>
                     <h3>PNG to JPG</h3>
                     <p>Convert PNG files to JPG format.</p>
-                    <a class='card-btn' href='/png-to-jpg-converter'>Use Tool</a>
+                    <a class='card-btn' href='/png-to-jpg-converter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="WebP to JPG">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></div>
                     <h3>WebP to JPG</h3>
                     <p>Convert WebP images to JPG.</p>
-                    <a href="wepb-to-jpg-converter.html" class="card-btn">Use Tool</a>
+                    <a href="webp-to-jpg-converter.html" class="card-btn">Use Tool</a>
                 </div>
                 <div class="card" data-name="Image to PDF">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5z"/></svg></div>
                     <h3>Image to PDF</h3>
                     <p>Convert multiple images to PDF.</p>
-                    <a class='card-btn' href='/image-to-pdf-converter'>Use Tool</a>
+                    <a class='card-btn' href='/image-to-pdf-converter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="PDF Split">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 3h-6v2h6v14h-6v2h6c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 6l-5 5 5 5v-4h9v-2h-9V9z"/></svg></div>
                     <h3>PDF Splitter</h3>
                     <p>Extract pages from PDF files.</p>
-                    <a class='card-btn' href='/pdf-split'>Use Tool</a>
+                    <a class='card-btn' href='/pdf-splitter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="PDF to Image">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm-3-9V3.5L18.5 9H13z"/>
-        </svg>
-    </div>
-    <h3>PDF to Image</h3>
-    <p>Convert PDF pages into JPG or PNG images.</p>
-    <a href="pdf-to-image.html" class="card-btn">Use Tool</a>
-</div>
-
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm-3-9V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <h3>PDF to Image</h3>
+                    <p>Convert PDF pages into JPG or PNG images.</p>
+                    <a href="pdf-to-image.html" class="card-btn">Use Tool</a>
+                </div>
                 <div class="card" data-name="Color Picker">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg></div>
                     <h3>Color Picker</h3>
                     <p>Get HEX, RGB color codes.</p>
-                    <a href="couler-picker-tool.html" class="card-btn">Use Tool</a>
+                    <a href="color-picker-tool.html" class="card-btn">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -395,67 +368,67 @@
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
                     <h3>Resume Maker</h3>
                     <p>Create professional CVs online.</p>
-                    <a class='card-btn' href='/resume-maker'>Use Tool</a>
+                    <a class='card-btn' href='/resume-maker.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Resume Bullet">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg></div>
                     <h3>Resume Bullets</h3>
                     <p>Generate resume bullet points.</p>
-                    <a href="resume-bullet-generator .html" class="card-btn">Use Tool</a>
+                    <a href="resume-bullet-generator.html" class="card-btn">Use Tool</a>
                 </div>
                 <div class="card" data-name="SEO Analyzer">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
                     <h3>SEO Analyzer</h3>
                     <p>Check website SEO performance.</p>
-                    <a class='card-btn' href='/seo-analyzer'>Use Tool</a>
+                    <a class='card-btn' href='/seo-analyzer.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="Meta Tag">
+                <div class="card" data-name="Meta Tag">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
                     <h3>Meta Tag Generator</h3>
                     <p>Create SEO meta tags.</p>
-                    <a class='card-btn' href='/meta-tag-generator'>Use Tool</a>
+                    <a class='card-btn' href='/meta-tag-generator.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Sitemap">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg></div>
                     <h3>Sitemap Generator</h3>
                     <p>Create XML sitemaps for Google.</p>
-                    <a class='card-btn' href='/sitemap-generator'>Use Tool</a>
+                    <a class='card-btn' href='/sitemap-generator.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Robots">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 8h-1V4H6v4H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 6h8v2H8V6zm8 12v2H8v-2h8zm2-2v-2h-2v2H8v-2H6v2H4v-4c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v4h-2z"/></svg></div>
                     <h3>Robots.txt Gen</h3>
                     <p>Generate robots.txt files.</p>
-                    <a class='card-btn' href='/robots.txt-generator'>Use Tool</a>
+                    <a class='card-btn' href='/robots-txt-generator.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Keyword Density">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 10h12v2H4zm0-4h12v2H4zm0 8h8v2H4zm10 0v6l5-3z"/></svg></div>
                     <h3>Keyword Density</h3>
                     <p>Analyze keyword frequency.</p>
-                    <a class='card-btn' href='/keyword-density-checker'>Use Tool</a>
+                    <a class='card-btn' href='/keyword-density-checker.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="JSON Formatter">
+                <div class="card" data-name="JSON Formatter">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
                     <h3>JSON Formatter</h3>
                     <p>Beautify JSON code.</p>
-                    <a class='card-btn' href='/json-formatter'>Use Tool</a>
+                    <a class='card-btn' href='/json-formatter.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="URL Encoder">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
                     <h3>URL Encoder</h3>
                     <p>Encode and decode URLs.</p>
-                    <a class='card-btn' href='/url-encoder-decoder'>Use Tool</a>
+                    <a class='card-btn' href='/url-encoder-decoder.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="Base64">
+                <div class="card" data-name="Base64">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53-1.7 1.7-4.05 2.94-6.55 3.51l-.54.12v1.08h1.22c-.6 2.36-1.84 4.59-3.58 6.53l-.03.03-2.54 2.51L3.5 18.5l3.24-3.24c1.83-1.83 3.09-4.21 3.49-6.76H1.5V6.75h5.37V3h1.5v3.75h5.38v1.75H12.5c-.39 2.55-1.66 4.93-3.49 6.76l3.24 3.24-1.38 1.57z"/></svg></div>
                     <h3>Base64 Encoder</h3>
                     <p>Encode/Decode Base64 strings.</p>
-                    <a class='card-btn' href='/base64-encoder-decoder'>Use Tool</a>
+                    <a class='card-btn' href='/base64-encoder-decoder.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="Favicon">
+                <div class="card" data-name="Favicon">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6z"/></svg></div>
                     <h3>Favicon Gen</h3>
                     <p>Create favicons for websites.</p>
-                    <a class='card-btn' href='/favicon-genratore'>Use Tool</a>
+                    <a class='card-btn' href='/favicon-generator.html'>Use Tool</a>
                 </div>
             </div>
         </div>
@@ -466,73 +439,66 @@
                 Text & Content
             </h2>
             <div class="grid">
-                 <div class="card" data-name="Word Counter">
+                <div class="card" data-name="Word Counter">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 4h16v2H4V8zm0 4h10v2H4v-2zM4 16h10v2H4v-2zM16 16h4v4h-4v-4z"/></svg></div>
                     <h3>Word Counter</h3>
                     <p>Count words and characters.</p>
-                    <a class='card-btn' href='/word-counter'>Use Tool</a>
+                    <a class='card-btn' href='/word-counter.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="Product Description">
+                <div class="card" data-name="Product Description">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 15h16v-2H4v2zM4 5v2h16V5H4z"/></svg></div>
                     <h3>Product Desc Gen</h3>
                     <p>Write product descriptions.</p>
-                    <a class='card-btn' href='/product-description-generator'>Use Tool</a>
+                    <a class='card-btn' href='/product-description-generator.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Case Converter">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9 4v3h5v12h3V7h5V4H9zm-6 8h3v7h3v-7h3V9H3v3z"/></svg></div>
                     <h3>Case Converter</h3>
                     <p>Change text to uppercase/lower.</p>
-                    <a class='card-btn' href='/case-converter-tool'>Use Tool</a>
+                    <a class='card-btn' href='/case-converter-tool.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Line Break">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M5 5h14v2H5V5zm0 6h10v2H5v-2zm0 6h14v2H5v-2z"/></svg></div>
                     <h3>Line Break Remover</h3>
                     <p>Remove breaks from text.</p>
-                    <a class='card-btn' href='/line-break-remover'>Use Tool</a>
+                    <a class='card-btn' href='/line-break-remover.html'>Use Tool</a>
                 </div>
-                 <div class="card" data-name="Remove Spaces">
+                <div class="card" data-name="Remove Spaces">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm0 4H4v2h16V8zm-8 4H4v2h8v-2zm0 4H4v2h8v-2z"/></svg></div>
                     <h3>Remove Spaces</h3>
                     <p>Clean up extra whitespaces.</p>
-                    <a class='card-btn' href='/remove-extra-spaces'>Use Tool</a>
+                    <a class='card-btn' href='/remove-extra-spaces.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Text Repeater">
                     <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg></div>
                     <h3>Text Repeater</h3>
                     <p>Repeat text multiple times.</p>
-                    <a class='card-btn' href='/text-repeater'>Use Tool</a>
+                    <a class='card-btn' href='/text-repeater.html'>Use Tool</a>
                 </div>
                 <div class="card" data-name="Character Counter">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4h16v2H4V4zm0 4h10v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/>
-        </svg>
-    </div>
-    <h3>Character Counter</h3>
-    <p>Count characters with or without spaces instantly.</p>
-    <a href="character-counter.html" class="card-btn">Use Tool</a>
-</div>
-
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v2H4V4zm0 4h10v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg>
+                    </div>
+                    <h3>Character Counter</h3>
+                    <p>Count characters with or without spaces instantly.</p>
+                    <a href="character-counter.html" class="card-btn">Use Tool</a>
+                </div>
                 <div class="card" data-name="Unicode to KrutiDev">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24">
-            <path d="M4 6h16v2H4V6zm0 4h10v2H4v-2zm0 4h16v2H4v-2z"/>
-        </svg>
-    </div>
-    <h3>Unicode to KrutiDev</h3>
-    <p>Convert Hindi Unicode text to KrutiDev font.</p>
-    <a class='card-btn' href='/unicode-to-krutidev'>Use Tool</a>
-</div>
-<div class="card" data-name="KrutiDev Hindi Typing Test">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 5h18v2H3V5zm0 4h14v2H3v-2zm0 4h18v2H3v-2zm0 4h10v2H3v-2z"/>
-        </svg>
-    </div>
-    <h3>KrutiDev Hindi Typing</h3>
-    <p>Practice Hindi typing in KrutiDev font for exams.</p>
-    <a class='card-btn' href='/krutidev-hindi-typing-test'>Use Tool</a>
-</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 4h10v2H4v-2zm0 4h16v2H4v-2z"/></svg>
+                    </div>
+                    <h3>Unicode to KrutiDev</h3>
+                    <p>Convert Hindi Unicode text to KrutiDev font.</p>
+                    <a class='card-btn' href='/unicode-to-krutidev.html'>Use Tool</a>
+                </div>
+                <div class="card" data-name="KrutiDev Hindi Typing Test">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18v2H3V5zm0 4h14v2H3v-2zm0 4h18v2H3v-2zm0 4h10v2H3v-2z"/></svg>
+                    </div>
+                    <h3>KrutiDev Hindi Typing</h3>
+                    <p>Practice Hindi typing in KrutiDev font for exams.</p>
+                    <a class='card-btn' href='/krutidev-hindi-typing-test.html'>Use Tool</a>
+                </div>
             </div>
         </div>
     </main>
