@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Online Character Counter by VIP Tool. Real-time word count, character count (with and without spaces), sentence count, and reading time estimator. Perfect for SEO and social media.">
+    <title>Character Counter - Free Word & Letter Count Tool | VIP Tool</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Character Counter",
+      "url": "https://viptool.online/character-counter",
+      "description": "A free online tool to count characters, words, sentences, and paragraphs in real-time. Includes reading time estimation.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5.",
+      "author": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://viptool.online"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://viptool.online/tools"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Character Counter"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Does this tool count spaces?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our Character Counter provides two metrics: 'Characters (with spaces)' and 'Characters (no spaces)' so you can choose the one you need."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is there a limit to how much text I can check?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, you can paste as much text as your browser memory allows. The tool works efficiently even with long essays or articles."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is my text saved on your server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. VIP Tool prioritizes privacy. All calculations happen in your browser using JavaScript. No text is sent to our servers."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How is reading time calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We estimate reading time based on an average reading speed of 200 words per minute."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does it work for other languages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the character counter works with any language supported by Unicode, including Hindi, Spanish, French, and more."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #dee2e6;
+            --accent-bg: #e3f2fd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 20px 0 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #b3e5fc;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-area {
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+            margin-bottom: 15px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+
+        .secondary-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .secondary-stats span strong {
+            color: var(--text-main);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover { background-color: #5a6268; }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* RELATED TOOLS SECTION (CRITICAL) */
+        .related-tools-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .related-link-item {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .related-link-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Content & Legal */
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+        }
+
+        .content-section h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .content-section p, .content-section ul {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .content-section ul {
+            padding-left: 20px;
+        }
+
+        .ad-placeholder {
+            background: #eee;
+            color: #999;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px dashed #ccc;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: #343a40;
+            color: #adb5bd;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .btn-group { flex-direction: column; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
+    </header>
+
+    <main>
+        <h1>Character Counter</h1>
+        <p class="subtitle">Instant real-time analysis: counts characters, words, sentences, and paragraphs.</p>
+
+        <div class="tool-card">
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-value" id="charCount">0</span>
+                    <span class="stat-label">Characters</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="wordCount">0</span>
+                    <span class="stat-label">Words</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="sentenceCount">0</span>
+                    <span class="stat-label">Sentences</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="paragraphCount">0</span>
+                    <span class="stat-label">Paragraphs</span>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea id="textInput" placeholder="Type or paste your text here..." oninput="updateCounts()"></textarea>
+            </div>
+
+            <div class="secondary-stats">
+                <span><strong>No Spaces:</strong> <span id="noSpacesCount">0</span> chars</span>
+                <span style="border-left: 1px solid #ccc; margin: 0 10px; display: inline-block; height: 15px;"></span>
+                <span><strong>Est. Reading Time:</strong> <span id="readingTime">0</span> min</span>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-outline" onclick="copyText()">Copy Text</button>
+                <button class="btn-secondary" onclick="clearText()">Clear All</button>
+            </div>
+        </div>
+
+        <section class="related-tools-section">
+            <div class="related-title">Related Tools</div>
+            <div class="related-links">
+                <a href="https://viptool.online/word-counter" class="related-link-item">Word Counter</a>
+                <a href="https://viptool.online/case-converter-tool" class="related-link-item">Text Case Converter</a>
+                <a href="https://viptool.online/line-break-remover" class="related-link-item">Remove Line Breaks</a>
+                <a href="https://viptool.online/reverse-text" class="related-link-item">Reverse Text Generator</a>
+                <a href="https://viptool.online/google-fonts-pairings" class="related-link-item">Font Pairings</a>
+                <a href="https://viptool.online/meta-tag-analyzer" class="related-link-item">Meta Tag Analyzer</a>
+            </div>
+        </section>
+
+        <div class="ad-placeholder">
+            Advertisement
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use the Character Counter</h2>
+            <p>The VIP Tool Character Counter is a seamless, browser-based utility designed for writers, students, and social media managers. Here is how to make the most of it:</p>
+            <ol style="margin-bottom: 20px;">
+                <li><strong>Input Text:</strong> Simply type or paste your content into the large text box above.</li>
+                <li><strong>Real-Time Analysis:</strong> Watch the numbers update instantly. You don't need to press any "Calculate" button.</li>
+                <li><strong>Analyze Details:</strong> Check specific metrics like character count (for tweets), word count (for essays), or sentence count (for readability).</li>
+                <li><strong>Copy or Clear:</strong> Use the action buttons to quickly copy your refined text to the clipboard or clear the field to start over.</li>
+            </ol>
+
+            <h2>Why is Character Counting Important?</h2>
+            <p>In the digital age, length matters. Whether you are crafting the perfect social media post or adhering to strict academic guidelines, knowing your exact counts is essential.</p>
+            
+            <h3>Social Media Limits</h3>
+            <p>Different platforms have different restrictions. Our tool helps you stay within limits:</p>
+            <ul>
+                <li><strong>X (Twitter):</strong> 280 characters limit.</li>
+                <li><strong>Instagram Bio:</strong> 150 characters limit.</li>
+                <li><strong>LinkedIn Headlines:</strong> 120 characters limit (for optimal visibility).</li>
+                <li><strong>Google SEO Titles:</strong> ~60 characters is the sweet spot.</li>
+                <li><strong>Meta Descriptions:</strong> 150-160 characters recommended.</li>
+            </ul>
+
+            <div class="ad-placeholder">
+                Advertisement
+            </div>
+
+            <h2>Features of VIP Tool Character Counter</h2>
+            <p>Unlike basic counters, our <a href="https://viptool.online/tools" style="color:var(--primary-color);">text analysis tools</a> offer deeper insights:</p>
+            <ul>
+                <li><strong>Privacy First:</strong> Your text is processed 100% in your browser. We never store or upload your content.</li>
+                <li><strong>Space Calculation:</strong> We provide counts both with and without spaces, which is crucial for certain submission forms.</li>
+                <li><strong>Reading Time:</strong> Get an estimate of how long it will take an average reader to finish your text (based on 200 WPM).</li>
+                <li><strong>Sentence & Paragraph Tracking:</strong> Helps you monitor the structure and flow of your writing.</li>
+            </ul>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <h3>1. What is the difference between character count and word count?</h3>
+            <p>A "character" refers to any single letter, number, space, or punctuation mark. A "word" is a group of characters separated by spaces. For example, "VIP Tool" is 2 words and 8 characters (including the space).</p>
+
+            <h3>2. Does this tool count emojis?</h3>
+            <p>Yes, emojis are counted as characters. Note that some complex emojis may count as multiple characters due to how Unicode encoding works.</p>
+
+            <h3>3. Is there a limit to the text size?</h3>
+            <p>There is no hard limit imposed by our tool. You can paste entire book chapters or long essays, and the counter will process them instantly.</p>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div id="legal">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool, user privacy is paramount. This Character Counter operates exclusively on the client-side using JavaScript. No data entered into the text area is transmitted to, stored on, or processed by our servers. We use third-party services like Google Analytics for usage statistics and Google AdSense for advertising. These services may use cookies to personalize content and ads.</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>By using this website, you agree to our terms. This tool is provided for informational and utility purposes. While we strive for accuracy, VIP Tool is not liable for any discrepancies in counts that may arise due to different encoding standards used by other platforms. Users are responsible for verifying their content before final submission to critical platforms.</p>
+
+                <h3>Disclaimer</h3>
+                <p>The Character Counter is provided "as-is" without any warranties. Results may vary slightly depending on browser interpretation of line breaks and special characters. VIP Tool is not affiliated with any social media platform mentioned.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function updateCounts() {
+        const text = document.getElementById('textInput').value;
+        
+        // Character Count (Length)
+        const charCount = text.length;
+        document.getElementById('charCount').innerText = charCount.toLocaleString();
+
+        // No Spaces Count
+        const noSpaces = text.replace(/\s/g, '').length;
+        document.getElementById('noSpacesCount').innerText = noSpaces.toLocaleString();
+
+        // Word Count
+        // Trim whitespace and split by spaces/newlines, filtering out empty strings
+        const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+        const wordCount = words.length;
+        document.getElementById('wordCount').innerText = wordCount.toLocaleString();
+
+        // Sentence Count
+        // Split by ., !, or ? followed by a space or end of string
+        // Simple regex approximation for sentences
+        const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
+        document.getElementById('sentenceCount').innerText = sentences.length.toLocaleString();
+
+        // Paragraph Count
+        // Split by newlines, filtering out empty lines
+        const paragraphs = text.split(/\n+/).filter(para => para.trim().length > 0);
+        document.getElementById('paragraphCount').innerText = paragraphs.length.toLocaleString();
+
+        // Reading Time Calculation
+        // Average reading speed ~200 words per minute
+        const readingTime = Math.ceil(wordCount / 200);
+        // Display "< 1" if less than a minute but has words
+        const timeDisplay = (wordCount > 0 && readingTime === 0) ? "< 1" : readingTime; 
+        document.getElementById('readingTime').innerText = timeDisplay;
+    }
+
+    function clearText() {
+        document.getElementById('textInput').value = '';
+        updateCounts(); // Reset counters
+        document.getElementById('textInput').focus();
+    }
+
+    function copyText() {
+        const text = document.getElementById('textInput');
+        text.select();
+        text.setSelectionRange(0, 99999); /* For mobile devices */
+        
+        if (text.value.length > 0) {
+            navigator.clipboard.writeText(text.value).then(() => {
+                alert("Text copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    }
+
+    // Initialize on load (in case browser caches input)
+    window.onload = updateCounts;
+</script>
+
+</body>
+</html>
