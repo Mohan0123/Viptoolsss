@@ -250,6 +250,34 @@
             resize: vertical;
         }
 
+        .preview-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            background: #fff;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 6px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         /* ADS SECTIONS (Conditional) */
         .ad-section {
             display: none; /* Default Hidden */
@@ -396,10 +424,25 @@
             <button onclick="generatePolicy()">Generate Privacy Policy</button>
 
             <div id="outputArea">
-                <h3 style="margin-bottom:15px;">Your Generated HTML Code:</h3>
-                <textarea id="policyResult" class="result-box" readonly></textarea>
-                <button class="btn-secondary" onclick="copyToClipboard()">Copy HTML Code</button>
-                <p style="font-size:0.85rem; color:#666; margin-top:10px;">*Copy this code and paste it into the HTML source of your Privacy Policy page.</p>
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('html')">HTML Code</div>
+                    <div class="tab" onclick="switchTab('text')">Text / Word</div>
+                    <div class="tab" onclick="switchTab('preview')">Live Preview</div>
+                </div>
+
+                <div id="html-view">
+                    <textarea id="policyResult" class="result-box" readonly></textarea>
+                </div>
+
+                <div id="text-view" style="display:none;">
+                    <textarea id="policyResultText" class="result-box" readonly placeholder="Text format for MS Word..."></textarea>
+                </div>
+
+                <div id="preview-view" style="display:none;">
+                    <div id="previewContent" class="preview-box"></div>
+                </div>
+
+                <button class="btn-secondary" id="copyBtn" onclick="copyToClipboard()">Copy HTML Code</button>
             </div>
         </div>
 
@@ -431,7 +474,7 @@
                 <li><strong>Enter Details:</strong> Fill in your website name, URL, and contact email address.</li>
                 <li><strong>Select Options:</strong> Check the boxes if you use cookies, AdSense, or third-party advertisers.</li>
                 <li><strong>Generate:</strong> Click the button to instantly create your custom policy.</li>
-                <li><strong>Publish:</strong> Copy the HTML code and paste it into a new page on your website (e.g., <code>yourdomain.com/privacy-policy</code>).</li>
+                <li><strong>Copy or Preview:</strong> Use the tabs to choose between HTML code or Text format for Word documents.</li>
             </ol>
 
             <div class="ad-section" id="ad-bottom">
@@ -494,7 +537,9 @@
         // Current Date
         const date = new Date().toDateString();
 
-        // Build HTML Template
+        // ------------------
+        // BUILD HTML VERSION
+        // ------------------
         let policyHTML = `<h1>Privacy Policy for ${name}</h1>
 <p>At ${name}, accessible from ${url}, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ${name} and how we use it.</p>
 
@@ -512,27 +557,64 @@
 <h2>Log Files</h2>
 <p>${name} follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>`;
 
+        // ------------------
+        // BUILD TEXT VERSION
+        // ------------------
+        let policyText = `PRIVACY POLICY FOR ${name.toUpperCase()}\n\n`;
+        policyText += `At ${name}, accessible from ${url}, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ${name} and how we use it.\n\n`;
+        policyText += `If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.\n\n`;
+        policyText += `This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in ${name}. This policy is not applicable to any information collected offline or via channels other than this website.\n\n`;
+        
+        policyText += `--- CONSENT ---\n`;
+        policyText += `By using our website, you hereby consent to our Privacy Policy and agree to its terms.\n\n`;
+        
+        policyText += `--- INFORMATION WE COLLECT ---\n`;
+        policyText += `The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.\n`;
+        policyText += `If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.\n\n`;
+        
+        policyText += `--- LOG FILES ---\n`;
+        policyText += `${name} follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.\n\n`;
+
+
+        // CONDITIONAL SECTIONS
         if (hasCookies) {
+            // HTML
             policyHTML += `
 <h2>Cookies and Web Beacons</h2>
 <p>Like any other website, ${name} uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>`;
+            
+            // Text
+            policyText += `--- COOKIES AND WEB BEACONS ---\n`;
+            policyText += `Like any other website, ${name} uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.\n\n`;
         }
 
         if (hasAdsense) {
+            // HTML
             policyHTML += `
 <h2>Google DoubleClick DART Cookie</h2>
 <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.website.com and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>`;
+            
+            // Text
+            policyText += `--- GOOGLE DOUBLECLICK DART COOKIE ---\n`;
+            policyText += `Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.website.com and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – https://policies.google.com/technologies/ads \n\n`;
         }
 
         if (hasThirdParty || hasAdsense) {
+            // HTML
             policyHTML += `
 <h2>Our Advertising Partners</h2>
 <p>Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.</p>
 <ul>
     <li>Google: <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></li>
 </ul>`;
+            
+            // Text
+            policyText += `--- OUR ADVERTISING PARTNERS ---\n`;
+            policyText += `Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has their own Privacy Policy for their policies on user data.\n`;
+            policyText += `- Google: https://policies.google.com/technologies/ads \n\n`;
         }
 
+        // STANDARD CLOSING SECTIONS (HTML)
         policyHTML += `
 <h2>Third Party Privacy Policies</h2>
 <p>${name}'s Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
@@ -566,22 +648,96 @@
 <p>Last updated: ${date}</p>
 <p>Contact: ${email}</p>`;
 
-        // Output Result
+        // STANDARD CLOSING SECTIONS (TEXT)
+        policyText += `--- THIRD PARTY PRIVACY POLICIES ---\n`;
+        policyText += `${name}'s Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information.\n\n`;
+        
+        policyText += `--- CCPA PRIVACY RIGHTS ---\n`;
+        policyText += `Under the CCPA, among other rights, California consumers have the right to:\n`;
+        policyText += `- Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.\n`;
+        policyText += `- Request that a business delete any personal data about the consumer that a business has collected.\n`;
+        policyText += `- Request that a business that sells a consumer's personal data, not sell the consumer's personal data.\n`;
+        policyText += `If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.\n\n`;
+        
+        policyText += `--- GDPR DATA PROTECTION RIGHTS ---\n`;
+        policyText += `We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:\n`;
+        policyText += `- The right to access – You have the right to request copies of your personal data.\n`;
+        policyText += `- The right to rectification – You have the right to request that we correct any information you believe is inaccurate.\n`;
+        policyText += `- The right to erasure – You have the right to request that we erase your personal data, under certain conditions.\n`;
+        policyText += `- The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.\n`;
+        policyText += `- The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.\n`;
+        policyText += `- The right to data portability – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.\n`;
+        policyText += `If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.\n\n`;
+        
+        policyText += `--- CHILDREN'S INFORMATION ---\n`;
+        policyText += `Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.\n`;
+        policyText += `${name} does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.\n\n`;
+        
+        policyText += `Last updated: ${date}\nContact: ${email}`;
+
+        // OUTPUT RESULTS
         document.getElementById('policyResult').value = policyHTML;
+        document.getElementById('policyResultText').value = policyText;
+        document.getElementById('previewContent').innerHTML = policyHTML;
+        
         document.getElementById('outputArea').style.display = 'block';
         
         // Scroll to result
         document.getElementById('outputArea').scrollIntoView({behavior: 'smooth'});
+        
+        // Default View
+        switchTab('html');
+    }
+
+    function switchTab(tab) {
+        const htmlView = document.getElementById('html-view');
+        const textView = document.getElementById('text-view');
+        const previewView = document.getElementById('preview-view');
+        const tabs = document.querySelectorAll('.tab');
+        const btn = document.getElementById('copyBtn');
+
+        // Reset
+        htmlView.style.display = 'none';
+        textView.style.display = 'none';
+        previewView.style.display = 'none';
+        tabs.forEach(t => t.classList.remove('active'));
+
+        if (tab === 'html') {
+            htmlView.style.display = 'block';
+            tabs[0].classList.add('active');
+            btn.innerText = "Copy HTML Code";
+            btn.style.display = 'inline-block';
+        } else if (tab === 'text') {
+            textView.style.display = 'block';
+            tabs[1].classList.add('active');
+            btn.innerText = "Copy Text";
+            btn.style.display = 'inline-block';
+        } else {
+            previewView.style.display = 'block';
+            tabs[2].classList.add('active');
+            btn.style.display = 'none'; // No copy button for preview usually, or can set to copy text
+        }
     }
 
     function copyToClipboard() {
-        const copyText = document.getElementById("policyResult");
-        if(copyText.value === "") return;
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value).then(() => {
-            alert("HTML code copied to clipboard!");
-        });
+        let copyElement;
+        const htmlView = document.getElementById('html-view');
+        
+        // Check which tab is visible
+        if (htmlView.style.display !== 'none') {
+            copyElement = document.getElementById("policyResult");
+        } else {
+            // Default to text box if in text mode
+            copyElement = document.getElementById("policyResultText");
+        }
+
+        if(copyElement && copyElement.value !== "") {
+            copyElement.select();
+            copyElement.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyElement.value).then(() => {
+                alert("Content copied to clipboard!");
+            });
+        }
     }
 
     // ADSENSE AUTO-VISIBILITY LOGIC
