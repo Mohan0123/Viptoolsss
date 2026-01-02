@@ -387,18 +387,23 @@
 
             <div class="action-bar">
                 <button onclick="generateTerms()">Generate T&C</button>
-                <button class="btn-copy" id="copyBtn" onclick="copyToClipboard()">Copy HTML</button>
+                <button class="btn-copy" id="copyBtn" onclick="copyToClipboard()">Copy Code</button>
                 <button class="btn-reset" onclick="resetForm()">Reset</button>
             </div>
 
             <div id="result-wrapper">
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('html')">HTML Code</div>
+                    <div class="tab" onclick="switchTab('text')">Text / Word</div>
                     <div class="tab" onclick="switchTab('preview')">Live Preview</div>
                 </div>
                 
                 <div id="html-view">
                     <textarea id="resultBox" class="result-box" readonly></textarea>
+                </div>
+
+                <div id="text-view" style="display:none;">
+                    <textarea id="resultBoxText" class="result-box" readonly placeholder="Text format for MS Word..."></textarea>
                 </div>
                 
                 <div id="preview-view" style="display:none;">
@@ -437,7 +442,7 @@
             <ol>
                 <li><strong>Enter Details:</strong> Fill in your Company Name (or Site Name), Website URL, Country, and Support Email.</li>
                 <li><strong>Generate:</strong> Click the "Generate T&C" button.</li>
-                <li><strong>Copy or Preview:</strong> View the "Live Preview" to see how it looks, or copy the "HTML Code" to paste directly into your website's editor (WordPress, Blogger, or custom HTML).</li>
+                <li><strong>Copy or Preview:</strong> Use the tabs to choose between HTML code (for websites) or Text format (for MS Word/Docs).</li>
             </ol>
 
             <h2>Is this suitable for AdSense?</h2>
@@ -498,7 +503,7 @@
             return;
         }
 
-        // 2. Generate Template
+        // 2. Generate Template (HTML)
         const termsHTML = `<h2><strong>Terms and Conditions</strong></h2>
 
 <p>Welcome to ${company}!</p>
@@ -544,21 +549,72 @@
 <p>If you have any questions about these Terms, please contact us via email: <strong>${email}</strong>.</p>
 <p>Jurisdiction: These terms are governed by the laws of <strong>${country}</strong>.</p>`;
 
-        // 3. Output
+        // 3. Generate Template (TEXT / WORD)
+        const termsText = `TERMS AND CONDITIONS
+
+Welcome to ${company}!
+
+These terms and conditions outline the rules and regulations for the use of ${company}'s Website, located at ${url}.
+
+By accessing this website we assume you accept these terms and conditions. Do not continue to use ${company} if you do not agree to take all of the terms and conditions stated on this page.
+
+--- COOKIES ---
+We employ the use of cookies. By accessing ${company}, you agreed to use cookies in agreement with the ${company}'s Privacy Policy.
+
+--- LICENSE ---
+Unless otherwise stated, ${company} and/or its licensors own the intellectual property rights for all material on ${company}. All intellectual property rights are reserved. You may access this from ${company} for your own personal use subjected to restrictions set in these terms and conditions.
+
+You must not:
+- Republish material from ${company}
+- Sell, rent or sub-license material from ${company}
+- Reproduce, duplicate or copy material from ${company}
+- Redistribute content from ${company}
+
+--- HYPERLINKING TO OUR CONTENT ---
+The following organizations may link to our Website without prior written approval:
+- Government agencies;
+- Search engines;
+- News organizations;
+
+--- CONTENT LIABILITY ---
+We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website.
+
+--- DISCLAIMER ---
+To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website.
+
+If you have any questions about these Terms, please contact us via email: ${email}.
+
+Jurisdiction: These terms are governed by the laws of ${country}.`;
+
+        // 4. Output
         document.getElementById('resultBox').value = termsHTML;
+        document.getElementById('resultBoxText').value = termsText;
         document.getElementById('previewContent').innerHTML = termsHTML;
         
-        // 4. Show UI
+        // 5. Show UI
         document.getElementById('result-wrapper').style.display = 'block';
         document.getElementById('copyBtn').style.display = 'inline-block';
+        
+        // Default to HTML view on generation
+        switchTab('html');
     }
 
     function copyToClipboard() {
-        const copyText = document.getElementById("resultBox");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value).then(() => {
-            alert("HTML Code Copied to Clipboard!");
+        let copyElement;
+        const htmlView = document.getElementById('html-view');
+        
+        // Check which tab is visible
+        if (htmlView.style.display !== 'none') {
+            copyElement = document.getElementById("resultBox");
+        } else {
+            // Default to text box if in text or preview mode
+            copyElement = document.getElementById("resultBoxText");
+        }
+
+        copyElement.select();
+        copyElement.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyElement.value).then(() => {
+            alert("Content Copied to Clipboard!");
         });
     }
 
@@ -568,6 +624,7 @@
         document.getElementById('country').value = '';
         document.getElementById('email').value = '';
         document.getElementById('resultBox').value = '';
+        document.getElementById('resultBoxText').value = '';
         document.getElementById('previewContent').innerHTML = '';
         document.getElementById('result-wrapper').style.display = 'none';
         document.getElementById('copyBtn').style.display = 'none';
@@ -575,19 +632,30 @@
 
     function switchTab(tab) {
         const htmlView = document.getElementById('html-view');
+        const textView = document.getElementById('text-view');
         const previewView = document.getElementById('preview-view');
         const tabs = document.querySelectorAll('.tab');
 
+        // Reset all views
+        htmlView.style.display = 'none';
+        textView.style.display = 'none';
+        previewView.style.display = 'none';
+        
+        // Reset all tabs active state
+        tabs.forEach(t => t.classList.remove('active'));
+
         if (tab === 'html') {
             htmlView.style.display = 'block';
-            previewView.style.display = 'none';
             tabs[0].classList.add('active');
-            tabs[1].classList.remove('active');
-        } else {
-            htmlView.style.display = 'none';
-            previewView.style.display = 'block';
-            tabs[0].classList.remove('active');
+            document.getElementById('copyBtn').innerText = "Copy HTML Code";
+        } else if (tab === 'text') {
+            textView.style.display = 'block';
             tabs[1].classList.add('active');
+            document.getElementById('copyBtn').innerText = "Copy Text";
+        } else {
+            previewView.style.display = 'block';
+            tabs[2].classList.add('active');
+            document.getElementById('copyBtn').innerText = "Copy Text";
         }
     }
 
@@ -610,3 +678,4 @@
 
 </body>
 </html>
+
