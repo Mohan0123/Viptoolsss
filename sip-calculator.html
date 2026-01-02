@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free SIP Calculator by VIP Tool. Estimate the future value of your Systematic Investment Plan (SIP). Calculate mutual fund returns instantly.">
+    <title>SIP Calculator - Calculate Mutual Fund Returns | VIP Tool</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SIP Calculator",
+      "url": "https://viptool.online/sip-calculator",
+      "description": "Calculate the estimated returns on your monthly Mutual Fund SIP investments with the VIP Tool SIP Calculator.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5.",
+      "author": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://viptool.online"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://viptool.online/tools"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "SIP Calculator"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What is a SIP Calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A SIP (Systematic Investment Plan) Calculator is an online tool that helps you estimate the returns on your mutual fund investments made through SIP over a specific period."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How does the SIP formula work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The SIP calculator uses the compound interest formula adapted for monthly contributions to determine the future value of your investments based on the expected annual return rate."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this calculator accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator provides estimates based on the mathematical formula. However, actual mutual fund returns are subject to market risks and may vary."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can I use this for goal planning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, by adjusting the monthly investment amount and time period, you can determine how much you need to invest to achieve a specific financial goal."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this tool free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the SIP Calculator on VIP Tool is 100% free to use."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+            --chart-invested: #e9ecef;
+            --chart-returns: #007bff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 20px 0 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Tool Interface */
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .range-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input[type="number"] {
+            width: 120px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Results Section */
+        #result-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+            display: none;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .total-box {
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+        .total-box .result-value {
+            color: var(--primary-color);
+        }
+
+        /* Simple Visual Bar */
+        .visual-bar-container {
+            margin-top: 30px;
+            height: 30px;
+            background: var(--chart-invested);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .visual-bar-returns {
+            background: var(--chart-returns);
+            height: 100%;
+            width: 0%; /* JS will update */
+            transition: width 0.5s ease;
+        }
+
+        .visual-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Related Tools */
+        .related-tools-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .related-link-item {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .related-link-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Ad Sections (Conditional Visibility) */
+        .ad-section {
+            margin: 30px 0;
+            text-align: center;
+            min-height: 0; /* Collapsed by default */
+            background: transparent;
+        }
+        
+        /* If content exists (injected by AdSense), it might have height. 
+           We can add a placeholder style for development visualization if needed, 
+           but per instructions, we keep it clean. */
+        .ad-placeholder-text {
+            display: none; /* Only for debugging, hidden in production */
+        }
+
+        /* Content & Legal */
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 { margin-top: 25px; margin-bottom: 15px; color: var(--text-main); }
+        .content-section h3 { margin-top: 20px; margin-bottom: 10px; font-size: 1.2rem; }
+        .content-section p, .content-section ul { margin-bottom: 15px; color: var(--text-light); }
+        .content-section ul { padding-left: 20px; }
+
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: #343a40;
+            color: #adb5bd;
+            text-align: center;
+        }
+
+        footer a { color: #f8f9fa; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .range-wrapper { flex-direction: column; align-items: stretch; }
+            input[type="number"] { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
+    </header>
+
+    <main>
+        <h1>SIP Calculator</h1>
+        <p class="subtitle">Plan your financial future. Calculate estimated returns on your monthly SIP investments.</p>
+
+        <div class="ad-section">
+            </div>
+
+        <div class="tool-card">
+            
+            <div class="input-group">
+                <label for="monthlyInvestment">Monthly Investment (₹)</label>
+                <div class="range-wrapper">
+                    <input type="range" id="rangeInvestment" min="500" max="100000" step="500" value="5000" oninput="syncInputs('rangeInvestment', 'monthlyInvestment')">
+                    <input type="number" id="monthlyInvestment" value="5000" oninput="syncInputs('monthlyInvestment', 'rangeInvestment')">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="returnRate">Expected Return Rate (% p.a)</label>
+                <div class="range-wrapper">
+                    <input type="range" id="rangeRate" min="1" max="30" step="0.1" value="12" oninput="syncInputs('rangeRate', 'returnRate')">
+                    <input type="number" id="returnRate" value="12" oninput="syncInputs('returnRate', 'rangeRate')">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="timePeriod">Time Period (Years)</label>
+                <div class="range-wrapper">
+                    <input type="range" id="rangeTime" min="1" max="40" step="1" value="10" oninput="syncInputs('rangeTime', 'timePeriod')">
+                    <input type="number" id="timePeriod" value="10" oninput="syncInputs('timePeriod', 'rangeTime')">
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary" onclick="calculateSIP()">Calculate</button>
+                <button class="btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <div id="result-area">
+                <div class="result-grid">
+                    <div class="result-box">
+                        <div class="result-label">Invested Amount</div>
+                        <div class="result-value" id="res-invested">₹0</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">Est. Returns</div>
+                        <div class="result-value" id="res-returns" style="color:var(--success-color)">₹0</div>
+                    </div>
+                    <div class="result-box total-box">
+                        <div class="result-label">Total Value</div>
+                        <div class="result-value" id="res-total">₹0</div>
+                    </div>
+                </div>
+
+                <div class="visual-bar-container">
+                    <div class="visual-bar-returns" id="visualBar"></div>
+                </div>
+                <div class="visual-legend">
+                    <div class="legend-item"><span class="dot" style="background:var(--chart-invested)"></span> Invested</div>
+                    <div class="legend-item"><span class="dot" style="background:var(--chart-returns)"></span> Returns</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-tools-section">
+            <div class="related-title">Related Finance Tools</div>
+            <div class="related-links">
+                <a href="https://viptool.online/gst-calculator" class="related-link-item">GST Calculator</a>
+                <a href="https://viptool.online/emi-calculator" class="related-link-item">EMI Calculator</a>
+                <a href="https://viptool.online/simple-interest-calculator" class="related-link-item">Simple Interest Calculator</a>
+                <a href="https://viptool.online/percentage-calculator" class="related-link-item">Percentage Calculator</a>
+                <a href="https://viptool.online/discount-calculator" class="related-link-item">Discount Calculator</a>
+                <a href="https://viptool.online/hourly-calculator" class="related-link-item">Hourly Calculator</a>
+            </div>
+        </section>
+
+        <div class="ad-section">
+            </div>
+
+        <div class="content-section">
+            <h2>How to Use the VIP Tool SIP Calculator</h2>
+            <p>Investing in Mutual Funds via SIP (Systematic Investment Plan) is one of the most effective ways to build wealth over time. Our tool simplifies the complex math for you.</p>
+            <ol>
+                <li><strong>Enter Monthly Investment:</strong> Input the amount you plan to invest every month (e.g., ₹5,000).</li>
+                <li><strong>Set Expected Rate of Return:</strong> Enter the annual interest rate you expect (e.g., 12% for equity funds).</li>
+                <li><strong>Choose Time Period:</strong> Select the number of years you intend to stay invested.</li>
+                <li><strong>Analyze Results:</strong> Click "Calculate" to see your total investment, estimated profit, and final maturity value.</li>
+            </ol>
+
+            <h2>Benefits of Using a SIP Calculator</h2>
+            <p>Using an <a href="https://viptool.online/tools" style="color:var(--primary-color);">online financial calculator</a> offers several advantages for your financial planning:</p>
+            <ul>
+                <li><strong>Goal Planning:</strong> Helps you determine how much to save monthly to reach a target (e.g., buying a car or retirement).</li>
+                <li><strong>Power of Compounding:</strong> Visualizes how small regular investments grow exponentially over long periods.</li>
+                <li><strong>Instant Analysis:</strong> Compare different scenarios by changing the investment amount or tenure instantly.</li>
+            </ul>
+
+            <h2>What is SIP?</h2>
+            <p>A Systematic Investment Plan (SIP) is a facility offered by mutual funds to investors to invest in a disciplined manner. Unlike a lumpsum investment, SIP allows you to invest fixed amounts at regular intervals (usually monthly). This approach helps in averaging out the cost of investment (Rupee Cost Averaging) and instills financial discipline.</p>
+
+            <h3>Formula Used</h3>
+            <p>The VIP Tool SIP calculator uses the following formula:</p>
+            <p style="background:#f8f9fa; padding:10px; border-radius:4px; font-family:monospace;">FV = P × [ (1 + i)^n - 1 ] / i × (1 + i)</p>
+            <p>Where:</p>
+            <ul>
+                <li><strong>FV:</strong> Future Value</li>
+                <li><strong>P:</strong> Monthly Investment Amount</li>
+                <li><strong>i:</strong> Periodic Rate of Interest (Annual Rate / 12 / 100)</li>
+                <li><strong>n:</strong> Total number of payments (Years × 12)</li>
+            </ul>
+
+            <div class="ad-section">
+                </div>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            
+            <h3>1. Does this calculator guarantee returns?</h3>
+            <p>No. The SIP calculator provides estimates based on the expected rate of return you input. Mutual fund investments are subject to market risks, and actual returns may vary.</p>
+
+            <h3>2. What is a good return rate for SIP?</h3>
+            <p>Historically, equity mutual funds in India have delivered 10% to 15% annual returns over the long term (5-10+ years). Debt funds typically offer lower but more stable returns (6% to 8%).</p>
+
+            <h3>3. Can I change the investment amount later?</h3>
+            <p>Yes, most mutual funds allow you to increase or decrease your SIP amount (Step-up SIP), or you can stop and start a new SIP.</p>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div id="legal">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool, your privacy is a priority. This SIP Calculator operates entirely on your device (client-side). We do not collect, store, or transmit your financial inputs to any server. We use Google AdSense to display advertisements and Google Analytics to monitor site traffic. These third-party services may use cookies in accordance with their privacy policies.</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>This tool is provided for educational and informational purposes only. VIP Tool does not provide financial advice. Users should consult a certified financial planner before making investment decisions. We do not guarantee the accuracy of the calculations and accept no liability for any losses incurred based on these results.</p>
+
+                <h3>Disclaimer</h3>
+                <p>The results generated by this tool are indicative. VIP Tool is not affiliated with any government authority, bank, or mutual fund house. Use this tool at your own risk.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Initialize
+    window.onload = function() {
+        calculateSIP();
+    };
+
+    function syncInputs(sourceId, targetId) {
+        document.getElementById(targetId).value = document.getElementById(sourceId).value;
+        // Auto-calculate on slide for better UX
+        calculateSIP();
+    }
+
+    function calculateSIP() {
+        // Get Inputs
+        const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value);
+        const annualRate = parseFloat(document.getElementById('returnRate').value);
+        const years = parseFloat(document.getElementById('timePeriod').value);
+
+        // Validation
+        if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years) || monthlyInvestment <= 0 || years <= 0) {
+            return; // Exit silently or show error in UI if strictly needed, but inputs are controlled
+        }
+
+        // Logic
+        // Monthly Rate i
+        const i = (annualRate / 100) / 12;
+        // Total months n
+        const n = years * 12;
+
+        // Formula: P * [ (1+i)^n - 1 ] / i * (1+i)
+        const totalValue = monthlyInvestment * ( (Math.pow(1 + i, n) - 1) / i ) * (1 + i);
+        
+        const totalInvested = monthlyInvestment * n;
+        const estReturns = totalValue - totalInvested;
+
+        // Update UI Text
+        document.getElementById('res-invested').innerText = formatCurrency(totalInvested);
+        document.getElementById('res-returns').innerText = formatCurrency(estReturns);
+        document.getElementById('res-total').innerText = formatCurrency(totalValue);
+
+        // Update Visual Bar
+        // We want the bar to show the ratio of Returns vs Invested within the total
+        // The container is Invested Color (Grey), the inner div is Returns Color (Blue)
+        // Actually, let's make container grey (invested base) and fill overlay? 
+        // Better: Flex bar. 
+        // Let's calculate percentage of Returns in Total Value
+        let returnPercentage = (estReturns / totalValue) * 100;
+        if(returnPercentage < 0) returnPercentage = 0; // Prevent negative width if loss (rare in SIP logic but possible)
+        
+        document.getElementById('visualBar').style.width = returnPercentage + '%';
+        
+        // Show result area
+        document.getElementById('result-area').style.display = 'block';
+    }
+
+    function formatCurrency(num) {
+        return '₹' + Math.round(num).toLocaleString('en-IN');
+    }
+
+    function resetForm() {
+        document.getElementById('monthlyInvestment').value = 5000;
+        document.getElementById('rangeInvestment').value = 5000;
+        
+        document.getElementById('returnRate').value = 12;
+        document.getElementById('rangeRate').value = 12;
+        
+        document.getElementById('timePeriod').value = 10;
+        document.getElementById('rangeTime').value = 10;
+        
+        calculateSIP();
+    }
+</script>
+
+</body>
+</html>
