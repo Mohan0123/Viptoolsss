@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Disclaimer Generator by VIP Tool. Create professional, legal disclaimer pages for your website in HTML or Plain Text format.">
+    <title>Disclaimer Generator - HTML & Text Output | VIP Tool</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Disclaimer Generator",
+      "url": "https://viptool.online/disclaimer-generator",
+      "description": "Generate a professional disclaimer for your website instantly. Offers both HTML code and Plain Text output.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5.",
+      "author": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://viptool.online"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://viptool.online/tools"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Disclaimer Generator"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Can I get the disclaimer in HTML format?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our tool generates a ready-to-use HTML code block that you can paste directly into your website's source code or CMS (like WordPress)."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can I get plain text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, simply switch to the 'Plain Text' tab to copy the unformatted text, perfect for pasting into Word documents or emails."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this AdSense compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, having a proper disclaimer page is a requirement for Google AdSense compliance."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #343a40;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 20px 0 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Tool Interface */
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        input[type="text"], input[type="email"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .action-bar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+            margin-left: 10px;
+        }
+        .btn-secondary:hover { background-color: #23272b; }
+
+        /* Output Area with Tabs */
+        #output-area {
+            display: none;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .tab-header {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 0;
+        }
+
+        .tab-btn {
+            background: #e9ecef;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            padding: 10px 20px;
+            border-radius: 6px 6px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .output-box {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 0 6px 6px 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            background: #f8fbff;
+            color: #333;
+        }
+
+        .copy-row {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Ads */
+        .ad-section {
+            display: none;
+            background: #f1f1f1;
+            padding: 15px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+        }
+        .ad-section.visible { display: block; }
+        .ad-label { font-size: 0.8rem; color: #999; margin-bottom: 5px; text-transform: uppercase; }
+
+        /* Related Tools */
+        .related-tools-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .related-links { display: flex; flex-wrap: wrap; gap: 15px; }
+        .related-link-item {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .related-link-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Content */
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .content-section h2 { margin-top: 25px; margin-bottom: 15px; color: var(--text-main); }
+        .content-section h3 { margin-top: 20px; margin-bottom: 10px; font-size: 1.2rem; }
+        .content-section p, .content-section ul { margin-bottom: 15px; color: var(--text-light); }
+        .content-section ul { padding-left: 20px; }
+
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: var(--secondary-color);
+            color: #adb5bd;
+            text-align: center;
+        }
+        footer a { color: #f8f9fa; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
+    </header>
+
+    <main>
+        <div class="ad-section" id="ad-top">
+            <div class="ad-label">Advertisement</div>
+            </div>
+
+        <h1>Disclaimer Generator</h1>
+        <p class="subtitle">Generate a legal disclaimer in HTML or Plain Text format for your website.</p>
+
+        <div class="tool-card">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName" placeholder="e.g. VIP Tool Inc.">
+                </div>
+                <div class="form-group">
+                    <label for="websiteName">Website Name</label>
+                    <input type="text" id="websiteName" placeholder="e.g. VIP Tool">
+                </div>
+                <div class="form-group">
+                    <label for="websiteUrl">Website URL</label>
+                    <input type="url" id="websiteUrl" placeholder="e.g. https://viptool.online">
+                </div>
+                <div class="form-group">
+                    <label for="email">Contact Email</label>
+                    <input type="email" id="email" placeholder="e.g. support@viptool.online">
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn-primary" onclick="generateDisclaimer()">Generate Disclaimer</button>
+                <button class="btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <div id="output-area">
+                <div class="tab-header">
+                    <button class="tab-btn active" id="tab-html" onclick="switchTab('html')">&lt;/&gt; HTML Code</button>
+                    <button class="tab-btn" id="tab-text" onclick="switchTab('text')">📄 Plain Text</button>
+                </div>
+                
+                <textarea id="result-box" class="output-box" readonly placeholder="Your generated disclaimer will appear here..."></textarea>
+                
+                <div class="copy-row">
+                    <button class="btn-primary" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-tools-section">
+            <div class="related-title">Related Legal Tools</div>
+            <div class="related-links">
+                <a href="https://viptool.online/privacy-policy-generator" class="related-link-item">Privacy Policy Generator</a>
+                <a href="https://viptool.online/terms-and-conditions-generator" class="related-link-item">Terms & Conditions Generator</a>
+                <a href="https://viptool.online/about-us-generator" class="related-link-item">About Us Generator</a>
+                <a href="https://viptool.online/xml-sitemap-generator" class="related-link-item">XML Sitemap Generator</a>
+                <a href="https://viptool.online/robots-txt-generator" class="related-link-item">Robots.txt Generator</a>
+            </div>
+        </section>
+
+        <div class="ad-section" id="ad-mid">
+            <div class="ad-label">Advertisement</div>
+            </div>
+
+        <div class="content-section">
+            <h2>How to Use the Disclaimer Generator</h2>
+            <p>Creating a disclaimer page is crucial for limiting liability. We offer two output formats: HTML (for your website source code) and Plain Text (for documents).</p>
+            <ol>
+                <li><strong>Enter Details:</strong> Fill in your Company Name, Website Name, URL, and Contact Email.</li>
+                <li><strong>Generate:</strong> Click "Generate Disclaimer".</li>
+                <li><strong>Choose Format:</strong>
+                    <ul>
+                        <li><strong>HTML Code:</strong> Select this tab if you want code with tags (<code>&lt;p&gt;, &lt;h2&gt;</code>) to paste into WordPress (Text view) or HTML files.</li>
+                        <li><strong>Plain Text:</strong> Select this tab if you want clean text to paste into Word, Docs, or a visual editor.</li>
+                    </ul>
+                </li>
+                <li><strong>Copy:</strong> Click "Copy to Clipboard" and paste it where needed.</li>
+            </ol>
+
+            <h2>Why Your Website Needs a Disclaimer</h2>
+            <p>A disclaimer is a legal statement that limits your liability for the outcome of the use of your site. Using a <a href="https://viptool.online/tools" style="color:var(--primary-color);">disclaimer generator</a> ensures you cover essential legal bases.</p>
+            <ul>
+                <li><strong>Legal Protection:</strong> It protects you from lawsuits regarding the accuracy of your content.</li>
+                <li><strong>Third-Party Liability:</strong> It clarifies that you are not responsible for the content of external links.</li>
+                <li><strong>AdSense Approval:</strong> Google requires clear policies regarding content validity and user responsibility.</li>
+            </ul>
+
+            <div class="ad-section" id="ad-bottom">
+                <div class="ad-label">Advertisement</div>
+                </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div id="legal">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool, user privacy is paramount. This Disclaimer Generator operates entirely client-side. We do not collect, store, or transmit the data you enter.</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>This tool is provided "as-is" for informational purposes. VIP Tool is not a law firm, and the generated disclaimer is not a substitute for professional legal advice.</p>
+
+                <h3>Disclaimer</h3>
+                <p>The documents generated by this tool are templates. VIP Tool accepts no liability for any legal issues arising from the use of these templates.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let generatedHTML = "";
+    let generatedText = "";
+    let currentTab = "html";
+
+    function generateDisclaimer() {
+        const companyName = document.getElementById('companyName').value.trim() || '[Company Name]';
+        const websiteName = document.getElementById('websiteName').value.trim() || '[Website Name]';
+        const websiteUrl = document.getElementById('websiteUrl').value.trim() || '[Website URL]';
+        const email = document.getElementById('email').value.trim() || '[Email Address]';
+
+        if(document.getElementById('websiteName').value === "") {
+            alert("Please enter at least the Website Name.");
+            return;
+        }
+
+        // Generate HTML Version
+        generatedHTML = `<h2>Disclaimer for ${websiteName}</h2>
+<p>If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at ${email}.</p>
+
+<h3>Disclaimers for ${websiteName}</h3>
+<p>All the information on this website - ${websiteUrl} - is published in good faith and for general information purpose only. ${companyName} does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (${websiteName}), is strictly at your own risk. ${companyName} will not be liable for any losses and/or damages in connection with the use of our website.</p>
+
+<p>From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.</p>
+
+<p>Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their "Terms of Service" before engaging in any business or uploading any information.</p>
+
+<h3>Consent</h3>
+<p>By using our website, you hereby consent to our disclaimer and agree to its terms.</p>
+
+<h3>Update</h3>
+<p>Should we update, amend or make any changes to this document, those changes will be prominently posted here.</p>`;
+
+        // Generate Text Version (Strip Tags)
+        generatedText = generatedHTML.replace(/<[^>]*>/g, '').replace(/\n\s*\n/g, '\n\n');
+
+        // Show result based on current tab
+        updateOutputBox();
+        document.getElementById('output-area').style.display = 'block';
+    }
+
+    function switchTab(type) {
+        currentTab = type;
+        
+        // Update Buttons
+        document.getElementById('tab-html').className = type === 'html' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('tab-text').className = type === 'text' ? 'tab-btn active' : 'tab-btn';
+        
+        // Update Content
+        updateOutputBox();
+    }
+
+    function updateOutputBox() {
+        const box = document.getElementById('result-box');
+        if (currentTab === 'html') {
+            box.value = generatedHTML;
+        } else {
+            box.value = generatedText;
+        }
+    }
+
+    function copyToClipboard() {
+        const box = document.getElementById('result-box');
+        box.select();
+        box.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(box.value).then(() => {
+            alert("Copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy. Please select manually.");
+        });
+    }
+
+    function resetForm() {
+        document.getElementById('companyName').value = '';
+        document.getElementById('websiteName').value = '';
+        document.getElementById('websiteUrl').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('output-area').style.display = 'none';
+        generatedHTML = "";
+        generatedText = "";
+        document.getElementById('result-box').value = "";
+    }
+
+    // AdSense Auto-Visibility Logic
+    window.addEventListener('load', function() {
+        const adSections = document.querySelectorAll('.ad-section');
+        adSections.forEach(section => {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (section.children.length > 1 || section.offsetHeight > 20) {
+                        section.classList.add('visible');
+                        observer.disconnect(); 
+                    }
+                });
+            });
+            observer.observe(section, { childList: true, subtree: true, attributes: true });
+        });
+    });
+</script>
+
+</body>
+</html>
