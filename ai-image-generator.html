@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Create stunning AI art instantly with the VIP Tool Free AI Image Generator. Use Flux & Turbo models, customize styles, and generate high-quality 8K images from text prompts.">
+<title>Free AI Image Generator (Flux & Turbo) - VIP Tool</title>
+
+<link rel="canonical" href="[https://viptool.online/ai-image-generator](https://viptool.online/ai-image-generator)">
+
+<script async src="[https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS](https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS)"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SWZKBP3TTS');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "WebApplication",
+  "name": "AI Image Generator",
+  "url": "[https://viptool.online/ai-image-generator](https://viptool.online/ai-image-generator)",
+  "description": "A powerful, free online AI Image Generator tool using Flux and Turbo models to create photorealistic images from text prompts.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "All",
+  "publisher": {
+    "@type": "Organization",
+    "name": "VIP Tool",
+    "url": "[https://viptool.online](https://viptool.online)"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "[https://viptool.online](https://viptool.online)"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Tools",
+    "item": "[https://viptool.online/#tools](https://viptool.online/#tools)"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "AI Image Generator"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Is this AI Image Generator free?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, the VIP Tool AI Image Generator is 100% free to use. You can generate unlimited images without any credits or subscription."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Which AI models are used?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We utilize advanced models like Flux and Turbo via the Pollinations API to ensure high-quality, fast generation."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Can I use the images for commercial purposes?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, images generated are generally public domain, but we recommend checking specific model licenses for commercial use."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Why is the generation taking time?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "High-quality models like Flux require complex processing. Depending on server load, it usually takes 5-15 seconds."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Do you store my prompts?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No, VIP Tool processes everything client-side. We do not store your prompts or generated images on our servers."
+    }
+  }]
+}
+</script>
+
+<style>
+    :root {
+        --bg-color: #020617;
+        --surface-color: #0f172a;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --primary-gradient: linear-gradient(135deg, #6366f1 0%, #d946ef 100%);
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --accent-glow: rgba(99, 102, 241, 0.5);
+        --glass-bg: rgba(15, 23, 42, 0.7);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        outline: none;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+
+    /* Layout & Typography */
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    h1, h2, h3 {
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-top: 2rem;
+        letter-spacing: -1px;
+    }
+
+    p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: #6366f1;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    a:hover { color: #d946ef; }
+
+    /* Header */
+    header {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(2, 6, 23, 0.8);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    /* Tool Interface - Glassmorphism */
+    .tool-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
+    textarea, input[type="text"], input[type="number"], select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    textarea:focus, input:focus, select:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .col { flex: 1; min-width: 200px; }
+
+    /* Buttons */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+        background: var(--primary-gradient);
+        color: white;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(217, 70, 239, 0.5);
+    }
+    
+    .btn-primary:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .btn-secondary {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        border: 1px solid var(--border-color);
+        text-transform: none;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+    /* Output Section */
+    .output-area {
+        margin-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        padding-top: 2rem;
+        text-align: center;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.2);
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .generated-image {
+        max-width: 100%;
+        max-height: 600px;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        display: none;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255,255,255,0.1);
+        border-left-color: #d946ef;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        display: none;
+    }
+
+    .download-btn {
+        margin-top: 1rem;
+        display: none;
+        background: #10b981;
+        color: white;
+    }
+    .download-btn:hover { background: #059669; }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* Related Tools */
+    .related-section {
+        margin: 3rem 0;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    .tool-link-card {
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        color: #fff;
+        transition: all 0.3s;
+    }
+    .tool-link-card:hover {
+        border-color: #d946ef;
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.05);
+    }
+
+    /* Ad Containers */
+    .ad-container {
+        display: none; /* Hidden by default */
+        width: 100%;
+        background: #1e293b;
+        text-align: center;
+        padding: 10px;
+        margin: 2rem 0;
+        border-radius: 8px;
+        border: 1px dashed var(--border-color);
+        min-height: 100px;
+    }
+    .ad-container[data-visible="true"] { display: block; }
+
+    /* Content & Legal */
+    .content-block {
+        background: var(--surface-color);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+    }
+    .content-block h2 { color: #d946ef; font-size: 1.5rem; }
+    .content-block h3 { color: #818cf8; font-size: 1.2rem; margin-top: 1.5rem; }
+    .content-block ul { padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); }
+    .content-block li { margin-bottom: 0.5rem; }
+
+    .faq-item {
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 0;
+    }
+    .faq-question { color: #fff; font-weight: 600; cursor: pointer; }
+    .faq-answer { margin-top: 0.5rem; font-size: 0.95rem; }
+
+    footer {
+        border-top: 1px solid var(--border-color);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 3rem;
+        background: #020617;
+        font-size: 0.9rem;
+    }
+    footer a { margin: 0 10px; color: var(--text-secondary); }
+    footer a:hover { color: #fff; }
+
+    /* Mobile Adjustments */
+    @media (max-width: 600px) {
+        h1 { font-size: 2rem; }
+        .tool-card { padding: 1rem; }
+        .row { flex-direction: column; gap: 0.5rem; }
+    }
+</style>
+
+```
+
+</head>
+<body>
+
+```
+<header>
+    <div class="container header-content">
+        <div class="logo">VIP Tool</div>
+        <nav>
+            <a href="[https://viptool.online](https://viptool.online)">All Tools</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    
+    <div class="ad-container" id="ad-top">
+        </div>
+
+    <h1>AI Image Generator</h1>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem auto;">
+        Generate photorealistic images, anime art, and 3D renders instantly with our free AI tool. Powered by Flux & Turbo models.
+    </p>
+
+    <main class="tool-card">
+        <div class="form-group">
+            <label for="prompt">Describe your image (Prompt)</label>
+            <textarea id="prompt" rows="3" placeholder="A futuristic city with flying cars, cyberpunk style, neon lights..."></textarea>
+            <button type="button" class="btn btn-secondary" id="magicEnhance">✨ Magic Enhance Prompt</button>
+        </div>
+
+        <div class="row">
+            <div class="col form-group">
+                <label for="style">Style Preset</label>
+                <select id="style">
+                    <option value="">No Preset (Default)</option>
+                    <option value="cinematic">Cinematic (Movie Look)</option>
+                    <option value="anime">Anime / Manga</option>
+                    <option value="photorealistic">Photorealistic</option>
+                    <option value="3d-render">3D Render (Unreal Engine)</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="painting">Oil Painting</option>
+                </select>
+            </div>
+            <div class="col form-group">
+                <label for="aspectRatio">Aspect Ratio</label>
+                <select id="aspectRatio">
+                    <option value="square">Square (1:1)</option>
+                    <option value="wide">Wide (16:9)</option>
+                    <option value="portrait">Portrait (9:16)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col form-group">
+                <label for="model">AI Model</label>
+                <select id="model">
+                    <option value="flux">Flux (Best Quality)</option>
+                    <option value="turbo">Turbo (Fastest)</option>
+                </select>
+            </div>
+            <div class="col form-group">
+                <label for="seed">Seed (Optional)</label>
+                <input type="number" id="seed" placeholder="Random if empty">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="generateBtn">Generate Image</button>
+
+        <div class="output-area" id="outputArea">
+            <div class="loading-spinner" id="spinner"></div>
+            <img id="resultImage" class="generated-image" alt="AI Generated Art">
+            <div id="placeholderText" style="color: var(--text-secondary);">Your masterpiece will appear here...</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a id="downloadLink" class="btn download-btn" download="viptool-ai-art.png">Download Image</a>
+        </div>
+    </main>
+
+    <div class="related-section">
+        <h3 style="text-align: center; color: #fff;">Explore Related Tools</h3>
+        <div class="tools-grid">
+            <a href="/image-resizer" class="tool-link-card">Image Resizer</a>
+            <a href="/color-picker-tool" class="tool-link-card">Color Picker</a>
+            <a href="/gradient-generator" class="tool-link-card">Gradient Generator</a>
+            <a href="/qr-code-generator" class="tool-link-card">QR Code Generator</a>
+            <a href="/password-generator" class="tool-link-card">Password Gen</a>
+        </div>
+    </div>
+
+    <div class="ad-container" id="ad-mid">
+        </div>
+
+    <section class="content-block">
+        <h2>How to Use the VIP Tool AI Image Generator</h2>
+        <p>Creating professional-grade AI art has never been easier. Follow these simple steps to bring your imagination to life:</p>
+        <ol style="margin-left: 20px; color: var(--text-secondary); margin-bottom: 20px;">
+            <li><strong>Enter a Prompt:</strong> Describe what you want to see in detail. For example, "A majestic lion wearing a golden crown, dramatic lighting."</li>
+            <li><strong>Enhance (Optional):</strong> Click the "Magic Enhance" button to automatically add professional keywords like "8k resolution" and "ultra-detailed" to your prompt.</li>
+            <li><strong>Select Settings:</strong> Choose your preferred aspect ratio (Square, Wide, or Portrait) and pick a style preset.</li>
+            <li><strong>Choose Model:</strong> Select 'Flux' for the highest quality details or 'Turbo' for quicker results.</li>
+            <li><strong>Generate:</strong> Click the "Generate Image" button and wait a few seconds.</li>
+            <li><strong>Download:</strong> Once satisfied, click the green "Download Image" button to save the PNG file to your device.</li>
+        </ol>
+
+        <h2>Why Use Our AI Tool?</h2>
+        <p>The <strong>VIP Tool AI Image Generator</strong> stands out because it combines simplicity with power. Unlike complex software requiring high-end GPUs, our tool runs entirely in your browser using cloud-based APIs.</p>
+        <ul>
+            <li><strong>100% Free:</strong> No hidden costs, credits, or subscriptions required.</li>
+            <li><strong>No Login Needed:</strong> Start creating immediately without registering an account.</li>
+            <li><strong>Privacy First:</strong> We do not store your personal data or your generated images.</li>
+            <li><strong>High Quality:</strong> Access state-of-the-art models like Flux for stunning visual fidelity.</li>
+        </ul>
+
+        <h3>Tips for Better Prompts</h3>
+        <p>To get the best results from any AI image generator, specificity is key. Instead of "a cat," try "a fluffy white Persian cat sitting on a velvet sofa, warm sunlight, photorealistic, 8k." Using our <strong>Magic Enhance</strong> feature helps automate this process for you.</p>
+        <p>Check out our <a href="/color-picker-tool">Color Picker Tool</a> if you need specific hex codes for your design projects alongside your AI images.</p>
+    </section>
+
+    <div class="ad-container" id="ad-bottom">
+        </div>
+
+    <section class="content-block" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">Is there a limit to how many images I can generate?</div>
+            <div class="faq-answer">No, there is currently no limit. You can use the tool as much as you like.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What file format are the images?</div>
+            <div class="faq-answer">The AI generates images in high-quality PNG or JPEG format, perfect for sharing on social media or using in web design.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Does it work on mobile?</div>
+            <div class="faq-answer">Yes, our website is fully responsive and works perfectly on iPhone, Android, and tablets.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I use this for YouTube thumbnails?</div>
+            <div class="faq-answer">Absolutely! The "Wide (16:9)" aspect ratio is perfect for creating unique YouTube thumbnails.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How does the Magic Enhance button work?</div>
+            <div class="faq-answer">It appends high-value keywords used by professional prompt engineers (like "masterpiece", "ray tracing", "4k") to your input to improve image quality.</div>
+        </div>
+    </section>
+
+    <section class="content-block" style="font-size: 0.85rem; border: none; background: transparent;">
+        <h3>Privacy Policy</h3>
+        <p>At VIP Tool, we respect your privacy. This AI Image Generator operates client-side and interacts with public APIs. We do not store your prompts or generated images. We use Google Analytics (G-SWZKBP3TTS) to track website usage and Google AdSense to serve ads. Cookies may be used by these third-party services.</p>
+
+        <h3>Terms & Conditions</h3>
+        <p>By using this tool, you agree that VIP Tool provides this service "as is" without warranties. You are responsible for the content you generate and must not use the tool to create illegal, harmful, or offensive content. We reserve the right to modify the service at any time.</p>
+
+        <h3>Disclaimer</h3>
+        <p>VIP Tool is not affiliated with the AI model providers. The generated images are created by artificial intelligence and may occasionally contain artifacts or inaccuracies. This tool is for entertainment and creative purposes only.</p>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div style="margin-top: 10px;">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-conditions">Terms & Conditions</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="[https://viptool.online](https://viptool.online)">All Tools</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const promptInput = document.getElementById('prompt');
+        const styleSelect = document.getElementById('style');
+        const aspectRatioSelect = document.getElementById('aspectRatio');
+        const modelSelect = document.getElementById('model');
+        const seedInput = document.getElementById('seed');
+        const generateBtn = document.getElementById('generateBtn');
+        const magicEnhanceBtn = document.getElementById('magicEnhance');
+        const resultImage = document.getElementById('resultImage');
+        const spinner = document.getElementById('spinner');
+        const placeholderText = document.getElementById('placeholderText');
+        const downloadLink = document.getElementById('downloadLink');
+
+        // Magic Enhance Logic
+        magicEnhanceBtn.addEventListener('click', () => {
+            const enhancements = "highly detailed, 8k resolution, cinematic lighting, masterpiece, photorealistic, sharp focus";
+            if(promptInput.value.trim() === "") {
+                promptInput.value = "A futuristic cyberpunk city, " + enhancements;
+            } else if (!promptInput.value.includes(enhancements)) {
+                promptInput.value += ", " + enhancements;
+            }
+        });
+
+        // Generation Logic
+        generateBtn.addEventListener('click', () => {
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                alert("Please enter a description for your image.");
+                return;
+            }
+
+            // UI Loading State
+            generateBtn.disabled = true;
+            generateBtn.innerText = "Generating...";
+            spinner.style.display = "block";
+            resultImage.style.display = "none";
+            placeholderText.style.display = "none";
+            downloadLink.style.display = "none";
+
+            // Parameters
+            const style = styleSelect.value ? ` ${styleSelect.value} style` : "";
+            const finalPrompt = encodeURIComponent(prompt + style);
+            
+            let width = 1024, height = 1024;
+            if (aspectRatioSelect.value === 'wide') { width = 1280; height = 720; }
+            if (aspectRatioSelect.value === 'portrait') { width = 720; height = 1280; }
+
+            const model = modelSelect.value; // flux or turbo
+            const seed = seedInput.value ? seedInput.value : Math.floor(Math.random() * 1000000);
+
+            // Construct API URL (Pollinations.ai)
+            // URL Pattern: [https://image.pollinations.ai/prompt/](https://image.pollinations.ai/prompt/){prompt}?width={w}&height={h}&seed={s}&model={m}&nologo=true
+            const imageUrl = `https://image.pollinations.ai/prompt/${finalPrompt}?width=${width}&height=${height}&seed=${seed}&model=${model}&nologo=true`;
+
+            // Load Image
+            resultImage.src = imageUrl;
+
+            resultImage.onload = () => {
+                spinner.style.display = "none";
+                resultImage.style.display = "block";
+                generateBtn.disabled = false;
+                generateBtn.innerText = "Generate Image";
+                
+                // Setup Download Link
+                downloadLink.href = imageUrl;
+                downloadLink.style.display = "inline-flex";
+            };
+
+            resultImage.onerror = () => {
+                spinner.style.display = "none";
+                placeholderText.style.display = "block";
+                placeholderText.innerText = "Error generating image. Please try again or switch models.";
+                generateBtn.disabled = false;
+                generateBtn.innerText = "Generate Image";
+            };
+        });
+
+        // Ad Visibility Logic (MutationObserver)
+        // Checks if AdSense has injected content. If yes, show container.
+        const adContainers = document.querySelectorAll('.ad-container');
+        const adObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.childNodes.length > 0) {
+                    const container = mutation.target.closest('.ad-container') || mutation.target;
+                    // Check if it contains iframe or ins tag
+                    if(container.querySelector('iframe') || container.querySelector('ins')) {
+                        container.setAttribute('data-visible', 'true');
+                    }
+                }
+            });
+        });
+
+        adContainers.forEach(container => {
+            adObserver.observe(container, { childList: true, subtree: true });
+        });
+    });
+</script>
+
+</body>
+</html>
