@@ -1,677 +1,629 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Use our free Online Colour Picker Tool to find the perfect color codes. Convert HEX to RGB, RGB to HSL, and generate color palettes instantly for web design. Fast, free, and accurate.">
+<title>Free Online Colour Picker Tool - VIP Tool</title>
+
+<link rel="canonical" href="[https://viptool.online/colour-picker-tool](https://viptool.online/colour-picker-tool)">
+
+<script async src="[https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS](https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS)"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SWZKBP3TTS');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SWZKBP3TTS');
 </script>
-    <link rel="canonical" href="https://viptool.online/colour-picker-tool">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Online Color Picker Tool. Generate HEX, RGB, and HSL color codes instantly. A perfect tool for web designers, developers, and graphic artists.">
-    <meta name="keywords" content="color picker, hex code generator, rgb converter, hsl color, web design tool, html color codes, css color picker">
-    <meta name="author" content="Color Picker Tool">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Free Online Color Picker Tool">
-    <meta property="og:description" content="Generate and convert HEX, RGB, and HSL color codes instantly.">
-    <meta property="og:type" content="website">
-    <title>Free Online Color Picker Tool - Get HEX, RGB & HSL Codes</title>
 
-    <style>
-        /* RESET & BASE STYLES */
-        :root {
-            --primary-color: #3b82f6;
-            --primary-hover: #2563eb;
-            --secondary-color: #64748b;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --success-color: #10b981;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "WebApplication",
+  "name": "Colour Picker Tool",
+  "url": "[https://viptool.online/colour-picker-tool](https://viptool.online/colour-picker-tool)",
+  "description": "A professional online colour picker tool to generate HEX, RGB, and HSL color codes for designers and developers.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "publisher": {
+    "@type": "Organization",
+    "name": "VIP Tool",
+    "url": "[https://viptool.online](https://viptool.online)"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "[https://viptool.online](https://viptool.online)"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Tools",
+    "item": "[https://viptool.online/#tools](https://viptool.online/#tools)"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "Colour Picker Tool"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "[https://schema.org](https://schema.org)",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How do I use this Colour Picker Tool?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Simply click on the color input box to open the selector, choose your desired color, and the tool will automatically generate the corresponding HEX, RGB, and HSL codes."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Is this tool free to use?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, the VIP Tool Colour Picker is 100% free for all students, professionals, and developers."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Can I convert HEX to RGB here?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely. When you select a color or type in a HEX code, the RGB and HSL values are calculated instantly."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Does this tool work on mobile devices?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, our tool is fully responsive and works perfectly on smartphones, tablets, and desktop computers."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Do you store my color data?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. All processing happens locally in your browser. We do not collect or store any of your input data."
+    }
+  }]
+}
+</script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+    :root {
+        --primary-color: #007bff;
+        --primary-hover: #0056b3;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --border-color: #e0e0e0;
+        --success-color: #28a745;
+    }
 
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
 
-        a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
+    /* Layout */
+    header {
+        background: var(--card-bg);
+        padding: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 
-        /* LAYOUT */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    header h2 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        font-weight: 700;
+    }
 
-        .section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            margin-bottom: 30px;
-        }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
+    /* Tool Interface */
+    .tool-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            letter-spacing: -0.025em;
-        }
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
 
-        .subtitle {
-            color: var(--secondary-color);
-            font-size: 1.125rem;
-        }
+    .short-desc {
+        color: #666;
+        margin-bottom: 2rem;
+    }
 
-        /* ADSENSE PLACEHOLDER */
-        .ad-placeholder {
-            width: 100%;
-            height: 100px;
-            background-color: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.875rem;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+    /* Color Picker Specifics */
+    .color-display {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 2rem auto;
+        border: 5px solid #fff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    input[type="color"] {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+        cursor: pointer;
+    }
 
-        /* TOOL INTERFACE */
-        .color-picker-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+    .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        background: #f1f3f5;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: border-color 0.3s;
+    }
 
-        .picker-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+    .input-group:focus-within {
+        border-color: var(--primary-color);
+    }
 
-        /* Custom Color Input Styling */
-        .color-input-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 4px solid #fff;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+    .input-label {
+        font-weight: 600;
+        width: 50px;
+        text-align: left;
+        color: #555;
+    }
 
-        .color-input-container:hover {
-            transform: scale(1.05);
-        }
+    .input-value {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-family: monospace;
+        font-size: 1.1rem;
+        color: #333;
+        outline: none;
+        padding: 0 1rem;
+    }
 
-        input[type="color"] {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200%;
-            height: 200%;
-            padding: 0;
-            border: none;
-            cursor: pointer;
-            background: none;
-        }
+    .btn-copy {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.2s;
+    }
 
-        .instruction-text {
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
+    .btn-copy:hover {
+        background: var(--primary-hover);
+    }
 
-        /* Result Values Grid */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
+    .btn-copy.copied {
+        background: var(--success-color);
+    }
 
-        .value-card {
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+    /* Related Tools */
+    .related-tools {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
 
-        .value-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            text-transform: uppercase;
-        }
+    .related-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
 
-        .value-display {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+    }
 
-        .code-input {
-            flex: 1;
-            padding: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: #fff;
-            color: var(--text-color);
-        }
+    .tool-link {
+        display: block;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 0.8rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text-color);
+        text-align: center;
+        font-size: 0.9rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-        .copy-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: background 0.2s;
-        }
+    .tool-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
 
-        .copy-btn:hover {
-            background-color: var(--primary-hover);
-        }
+    /* Ad Section */
+    .ad-container {
+        width: 100%;
+        margin: 2rem 0;
+        text-align: center;
+        overflow: hidden;
+        display: none; /* Hidden by default */
+        background-color: #fafafa;
+        border: 1px dashed #e0e0e0;
+    }
+    
+    /* Show ad container if it contains AdSense elements (handled by JS for robustness or manual CSS if specific tags exist) */
+    .ad-container[data-has-ad="true"] {
+        display: block;
+        min-height: 90px;
+    }
 
-        /* Color Preview Block */
-        .preview-block {
-            width: 100%;
-            height: 60px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-            font-weight: bold;
-        }
+    /* Content Section */
+    .content-section {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
 
-        /* CONTENT TYPOGRAPHY */
-        h2 {
-            font-size: 1.75rem;
-            color: var(--text-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
-        }
+    .content-section h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+    }
 
-        h3 {
-            font-size: 1.25rem;
-            color: var(--text-color);
-            margin: 25px 0 15px;
-        }
+    .content-section h3 {
+        font-size: 1.2rem;
+        margin-top: 1.2rem;
+        margin-bottom: 0.8rem;
+        color: #34495e;
+    }
 
-        p {
-            margin-bottom: 15px;
-            color: #475569;
-        }
+    .content-section p, .content-section li {
+        margin-bottom: 1rem;
+        color: #555;
+    }
 
-        ul, ol {
-            margin-bottom: 20px;
-            padding-left: 25px;
-            color: #475569;
-        }
+    .content-section ul {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
 
-        li {
-            margin-bottom: 8px;
-        }
+    /* FAQ */
+    .faq-item {
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    .faq-answer {
+        color: #666;
+        font-size: 0.95rem;
+    }
 
-        /* FAQ */
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 10px;
-        }
+    /* Legal */
+    .legal-section {
+        font-size: 0.85rem;
+        color: #777;
+        background: #fff;
+        padding: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+    .legal-section h2 { font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem; }
 
-        .faq-question {
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 15px 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    footer {
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 2rem;
+        color: #666;
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-color);
+    }
 
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
+    footer a { color: #666; text-decoration: none; margin: 0 10px; }
+    footer a:hover { color: var(--primary-color); }
 
-        .faq-item.active .faq-question::after {
-            content: '-';
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            color: #475569;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding-bottom: 20px;
-        }
-
-        /* TOAST NOTIFICATION */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--text-color);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .toast.show {
-            opacity: 1;
-        }
-
-        /* LEGAL SECTION */
-        .legal-box {
-            font-size: 0.9rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 40px;
-        }
-
-        .legal-box h3 {
-            margin-top: 0;
-            font-size: 1.1rem;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: var(--secondary-color);
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            color: var(--primary-color);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 600px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+        .tool-card { padding: 1.5rem 1rem; }
+        h1 { font-size: 1.6rem; }
+    }
+</style>
 </head>
 <body>
 
-    <header class="container">
-        <h1>Color Picker Tool</h1>
-        <p class="subtitle">Select colors and instantly convert them to HEX, RGB, and HSL.</p>
-    </header>
-
+<header>
     <div class="container">
-        
-        <div class="ad-placeholder">
-            Advertisement Space
-        </div>
-
-        <section class="section">
-            <div class="color-picker-wrapper">
-                
-                <div class="picker-area">
-                    <div class="color-input-container" id="color-preview">
-                        <input type="color" id="color-input" value="#3b82f6">
-                    </div>
-                    <p class="instruction-text">Tap the circle to change color</p>
-                    
-                    <div class="preview-block" id="full-preview">
-                        Current Color
-                    </div>
-                </div>
-
-                <div class="values-grid">
-                    
-                    <div class="value-card">
-                        <span class="value-label">HEX Code</span>
-                        <div class="value-display">
-                            <input type="text" class="code-input" id="hex-val" value="#3b82f6" readonly>
-                            <button class="copy-btn" onclick="copyToClipboard('hex-val')">Copy</button>
-                        </div>
-                    </div>
-
-                    <div class="value-card">
-                        <span class="value-label">RGB Code</span>
-                        <div class="value-display">
-                            <input type="text" class="code-input" id="rgb-val" value="rgb(59, 130, 246)" readonly>
-                            <button class="copy-btn" onclick="copyToClipboard('rgb-val')">Copy</button>
-                        </div>
-                    </div>
-
-                    <div class="value-card">
-                        <span class="value-label">HSL Code</span>
-                        <div class="value-display">
-                            <input type="text" class="code-input" id="hsl-val" value="hsl(217, 91%, 60%)" readonly>
-                            <button class="copy-btn" onclick="copyToClipboard('hsl-val')">Copy</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <div class="ad-placeholder">
-            Advertisement Space
-        </div>
-
-        <section class="section">
-            <h2>How to Use This Color Picker</h2>
-            <ol>
-                <li><strong>Select a Color:</strong> Click on the large circular color swatch above. This will open your device's native color selection tool (system palette).</li>
-                <li><strong>Adjust Shade:</strong> Use the hue slider and saturation area in the popup to find your exact color.</li>
-                <li><strong>View Codes:</strong> Once selected, the tool automatically generates the corresponding HEX, RGB, and HSL codes.</li>
-                <li><strong>Copy:</strong> Click the "Copy" button next to any format to save the code to your clipboard for use in your CSS or design software.</li>
-            </ol>
-        </section>
-
-        <section class="section">
-            <h2>Benefits of an Online Color Tool</h2>
-            <ul>
-                <li><strong>Instant Conversion:</strong> No need to manually calculate math to convert HEX to RGB. We do it instantly.</li>
-                <li><strong>Cross-Browser Compatible:</strong> Generates standard HTML5 and CSS3 compliant color codes ensuring your website looks the same on all browsers.</li>
-                <li><strong>Accessibility:</strong> Easy to read formats help you ensure you are picking colors that work well for your design system.</li>
-                <li><strong>No Installation:</strong> Works directly in your browser without needing heavy design software like Photoshop or Figma.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Understanding Web Color Formats</h2>
-            <p>In web design and development, color is one of the most critical aspects of user interface (UI) and user experience (UX). However, browsers and design tools interpret colors using different mathematical models. Our <strong>Color Picker Tool</strong> helps bridge the gap between these formats.</p>
-
-            <h3>What is a HEX Code?</h3>
-            <p>A <strong>HEX code</strong> (Hexadecimal) is the most common color format used in HTML and CSS. It starts with a hashtag (#) followed by six digits (e.g., #FF5733). The first two digits represent Red, the next two Green, and the last two Blue. It is compact and widely supported.</p>
-
-            <h3>Understanding RGB</h3>
-            <p><strong>RGB</strong> stands for Red, Green, and Blue. This model defines colors by the intensity of these three primary light sources, ranging from 0 to 255. For example, <code>rgb(255, 0, 0)</code> represents pure red. This format is often used when transparency (RGBA) is needed.</p>
-
-            <h3>What is HSL?</h3>
-            <p><strong>HSL</strong> stands for Hue, Saturation, and Lightness. Unlike computer-centric formats like HEX and RGB, HSL is more intuitive for humans. 
-            <br>
-            * <strong>Hue:</strong> The degree on the color wheel (0 to 360).
-            <br>
-            * <strong>Saturation:</strong> The intensity of the color (0% to 100%).
-            <br>
-            * <strong>Lightness:</strong> How bright or dark the color is (0% is black, 100% is white).
-            </p>
-            
-            <p>Using the right format depends on your workflow. Designers often prefer HSL for tweaking shades, while developers typically stick to HEX for codebase consistency.</p>
-        </section>
-
-        <section class="section">
-            <h2>Frequently Asked Questions (FAQs)</h2>
-            
-            <div class="faq-item">
-                <button class="faq-question">Is this Color Picker free?</button>
-                <div class="faq-answer">
-                    <p>Yes, this tool is 100% free to use for personal and commercial projects. There are no limits on usage.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What formats does this tool support?</button>
-                <div class="faq-answer">
-                    <p>We currently support the three most popular web formats: HEX (Hexadecimal), RGB (Red Green Blue), and HSL (Hue Saturation Lightness).</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I use these colors in CSS?</button>
-                <div class="faq-answer">
-                    <p>Absolutely. The codes generated are standard CSS values. You can paste them directly into your stylesheet, e.g., <code>background-color: #3b82f6;</code>.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Does it work on mobile?</button>
-                <div class="faq-answer">
-                    <p>Yes, our tool is fully responsive. On mobile devices, clicking the color circle will open your phone's native color selection interface.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Do you save my color history?</button>
-                <div class="faq-answer">
-                    <p>No, we prioritize your privacy. The tool runs entirely in your browser (client-side), and we do not store or track your color selections.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="legal-box" id="privacy-policy">
-            <h3>Privacy Policy</h3>
-            <p><strong>Last Updated: 30/12/2025</strong></p>
-            <p>This Privacy Policy applies to the usage of the Color Picker Tool.</p>
-            <p><strong>1. Data Collection:</strong> We do not collect, store, or transmit any personally identifiable information. All color processing occurs locally within your web browser using JavaScript.</p>
-            <p><strong>2. Cookies:</strong> We may use standard cookies to ensure the website functions correctly. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.</p>
-            <p><strong>3. Advertising:</strong> We use Google AdSense to display advertisements. Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet. Users may opt-out of personalized advertising by visiting Google Ads Settings.</p>
-            <p><strong>4. Analytics:</strong> We may use anonymous analytics tools to track website performance (e.g., page views), but this data is not linked to specific user identities.</p>
-        </section>
-
-        <section class="legal-box" id="terms">
-            <h3>Terms & Conditions</h3>
-            <p>By using this website, you agree to the following terms:</p>
-            <p><strong>1. Usage:</strong> The tool is provided for informational and utility purposes. You are free to use the generated codes in any project.</p>
-            <p><strong>2. Disclaimer of Warranties:</strong> The service is provided "as is". We make no warranties regarding the accuracy of the color conversion algorithms, although we strive for standard compliance.</p>
-            <p><strong>3. Liability:</strong> We shall not be held liable for any damages arising from the use or inability to use this tool.</p>
-        </section>
-
-        <section class="legal-box" id="disclaimer">
-            <h3>Disclaimer</h3>
-            <p>This Color Picker Tool is an online utility provided for convenience. While every effort is made to ensure the accuracy of the color codes (HEX, RGB, HSL), screen calibration and browser rendering differences may affect how colors appear visually. This tool does not constitute professional design advice. Users are responsible for verifying color codes before printing or final production.</p>
-        </section>
-
+        <h2>VIP Tool</h2>
     </div>
+</header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 VIP Tool. All rights reserved.</p>
-            <p>
-                <a href="#privacy-policy">Privacy Policy</a> | 
-                <a href="#terms">Terms & Conditions</a> | 
-                <a href="#disclaimer">Disclaimer</a>
-            </p>
+<div class="container">
+    
+    <div class="ad-container" id="ad-top">
         </div>
-    </footer>
 
-    <div id="toast" class="toast">Copied to clipboard!</div>
+    <main class="tool-card">
+        <h1>Colour Picker Tool</h1>
+        <p class="short-desc">Pick any color, convert between formats, and generate palettes instantly.</p>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        <div id="tool-interface">
+            <div class="color-display" id="colorDisplay" style="background-color: #007bff;">
+                <input type="color" id="colorInput" value="#007bff">
+            </div>
             
-            // Elements
-            const colorInput = document.getElementById('color-input');
-            const colorPreview = document.getElementById('color-preview');
-            const fullPreview = document.getElementById('full-preview');
-            const hexInput = document.getElementById('hex-val');
-            const rgbInput = document.getElementById('rgb-val');
-            const hslInput = document.getElementById('hsl-val');
+            <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #888;">Click circle to change color</p>
 
-            // Event Listener for Color Change
-            colorInput.addEventListener('input', (e) => {
-                const hex = e.target.value;
-                updateColors(hex);
-            });
+            <div class="input-group">
+                <span class="input-label">HEX</span>
+                <input type="text" class="input-value" id="hexOutput" value="#007bff" readonly>
+                <button class="btn-copy" onclick="copyToClipboard('hexOutput')">Copy</button>
+            </div>
 
-            // Initial Update
-            updateColors(colorInput.value);
+            <div class="input-group">
+                <span class="input-label">RGB</span>
+                <input type="text" class="input-value" id="rgbOutput" value="rgb(0, 123, 255)" readonly>
+                <button class="btn-copy" onclick="copyToClipboard('rgbOutput')">Copy</button>
+            </div>
 
-            // Core Update Function
-            function updateColors(hex) {
-                // Update Visuals
-                colorPreview.style.backgroundColor = hex;
-                fullPreview.style.backgroundColor = hex;
-                
-                // Determine text color for contrast
-                const rgbObj = hexToRgbObj(hex);
-                const brightness = Math.round(((parseInt(rgbObj.r) * 299) + (parseInt(rgbObj.g) * 587) + (parseInt(rgbObj.b) * 114)) / 1000);
-                fullPreview.style.color = (brightness > 125) ? 'black' : 'white';
+            <div class="input-group">
+                <span class="input-label">HSL</span>
+                <input type="text" class="input-value" id="hslOutput" value="hsl(211, 100%, 50%)" readonly>
+                <button class="btn-copy" onclick="copyToClipboard('hslOutput')">Copy</button>
+            </div>
+        </div>
 
-                // Update Inputs
-                hexInput.value = hex;
-                
-                const rgbString = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
-                rgbInput.value = rgbString;
+        <div class="related-tools">
+            <div class="related-title">Explore Related Tools</div>
+            <div class="tools-grid">
+                <a href="/gradient-generator" class="tool-link">Gradient Generator</a>
+                <a href="/image-resizer" class="tool-link">Image Resizer</a>
+                <a href="/word-counter" class="tool-link">Word Counter</a>
+                <a href="/qr-code-generator" class="tool-link">QR Generator</a>
+                <a href="/password-generator" class="tool-link">Password Gen</a>
+                <a href="/age-calculator" class="tool-link">Age Calculator</a>
+            </div>
+        </div>
 
-                const hslString = hexToHsl(hex);
-                hslInput.value = hslString;
-            }
+    </main>
 
-            // Helper: Hex to RGB Object
-            function hexToRgbObj(hex) {
-                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                return result ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16)
-                } : null;
-            }
+    <div class="ad-container" id="ad-mid">
+        </div>
 
-            // Helper: Hex to HSL String
-            function hexToHsl(hex) {
-                let {r, g, b} = hexToRgbObj(hex);
-                
-                r /= 255;
-                g /= 255;
-                b /= 255;
+    <section class="content-section">
+        <h2>How to Use the VIP Tool Colour Picker</h2>
+        <p>Using our <strong>Colour Picker Tool</strong> is intuitive and straightforward. Whether you are a web designer needing an exact HEX code or a student learning about color models, this tool is designed for you.</p>
+        <ol>
+            <li><strong>Click the Circle:</strong> Tap on the large colored circle at the top of the tool. This opens your device's native color selection interface.</li>
+            <li><strong>Select Your Color:</strong> Drag your cursor or finger to choose the exact shade you need.</li>
+            <li><strong>View Codes:</strong> As soon as you select a color, the tool automatically calculates and displays the <strong>HEX</strong>, <strong>RGB</strong>, and <strong>HSL</strong> values.</li>
+            <li><strong>Copy:</strong> Click the "Copy" button next to any value to instantly copy it to your clipboard.</li>
+        </ol>
 
-                const max = Math.max(r, g, b);
-                const min = Math.min(r, g, b);
-                let h, s, l = (max + min) / 2;
+        <h2>Benefits of Using This Tool</h2>
+        <p>Colors are the foundation of digital design. Having a reliable converter and picker is essential for maintaining consistency across projects.</p>
+        <ul>
+            <li><strong>Instant Conversion:</strong> No need for manual calculations. Get RGB and HSL values from a HEX code instantly.</li>
+            <li><strong>Cross-Browser Compatible:</strong> Works seamlessly on Chrome, Firefox, Safari, and Edge.</li>
+            <li><strong>Privacy Focused:</strong> Unlike other tools that track your usage, VIP Tool processes everything in your browser.</li>
+            <li><strong>Lightweight:</strong> The page loads instantly with no heavy frameworks, ensuring a smooth experience even on slow connections.</li>
+        </ul>
 
-                if (max === min) {
-                    h = s = 0; // achromatic
-                } else {
-                    const d = max - min;
-                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-                    
-                    switch (max) {
-                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                        case g: h = (b - r) / d + 2; break;
-                        case b: h = (r - g) / d + 4; break;
-                    }
-                    h /= 6;
+        <h3>Understanding Color Formats</h3>
+        <p><strong>HEX (Hexadecimal):</strong> The most common format for web design, starting with a hashtag (#) followed by six characters (e.g., #FFFFFF for white).</p>
+        <p><strong>RGB (Red, Green, Blue):</strong> Defines colors by the intensity of red, green, and blue light. Used widely in screen displays and CSS (e.g., rgb(255, 255, 255)).</p>
+        <p><strong>HSL (Hue, Saturation, Lightness):</strong> A more intuitive way to describe color, often used by designers to adjust shades without changing the fundamental color.</p>
+
+        <p>For more utility tools, check out our <a href="/image-resizer" style="color:var(--primary-color)">Image Resizer</a> or <a href="/word-counter" style="color:var(--primary-color)">Word Counter</a>.</p>
+    </section>
+
+    <div class="ad-container" id="ad-bottom">
+        </div>
+
+    <section class="content-section">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+        <div class="faq-item">
+            <div class="faq-question">Is the Colour Picker Tool free?</div>
+            <div class="faq-answer">Yes, this tool is completely free to use for personal and commercial projects.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I use this on my phone?</div>
+            <div class="faq-answer">Absolutely. The interface is optimized for mobile touchscreens.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is the difference between HEX and RGB?</div>
+            <div class="faq-answer">They represent the same color but in different formats. HEX is a base-16 code used primarily in HTML/CSS, while RGB uses decimal numbers (0-255) to represent Red, Green, and Blue channels.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do I need to install any software?</div>
+            <div class="faq-answer">No, this is a web-based tool. You can access it directly from your browser without downloading anything.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is my data secure?</div>
+            <div class="faq-answer">Yes. We do not store or transmit the colors you pick. All functionality runs locally on your device.</div>
+        </div>
+    </section>
+
+    <section class="legal-section">
+        <h2>Privacy Policy</h2>
+        <p>At VIP Tool ([https://viptool.online](https://viptool.online)), we prioritize your privacy. This Colour Picker Tool operates entirely on the client-side (in your browser). We do not collect, store, or transmit any personal data or input values to our servers.</p>
+        <p><strong>Cookies & Third-Party Services:</strong> We use Google Analytics (Measurement ID: G-SWZKBP3TTS) to understand website traffic. Google Analytics may use cookies. We also display ads via Google AdSense, which may use cookies to serve personalized ads based on your visits to this and other websites. You can manage your ad preferences via Google's Ad Settings.</p>
+        
+        <h2>Terms and Conditions</h2>
+        <p>By using this tool, you agree that it is provided "as is" without warranty of any kind. VIP Tool allows you to use this software for free but reserves the right to modify or discontinue the service at any time. You are responsible for ensuring that your use of the generated data complies with your local laws.</p>
+
+        <h2>Disclaimer</h2>
+        <p>The results provided by this Colour Picker Tool are for informational and design purposes only. While we strive for accuracy, VIP Tool cannot be held liable for any discrepancies in color reproduction across different screens, printers, or devices. This tool is not affiliated with any government entity.</p>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
+        <div style="margin-top: 10px;">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-conditions">Terms & Conditions</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="[https://viptool.online](https://viptool.online)">All Tools</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // --- Tool Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const colorInput = document.getElementById('colorInput');
+        const colorDisplay = document.getElementById('colorDisplay');
+        const hexOutput = document.getElementById('hexOutput');
+        const rgbOutput = document.getElementById('rgbOutput');
+        const hslOutput = document.getElementById('hslOutput');
+
+        function hexToRgb(hex) {
+            // Remove # if present
+            hex = hex.replace(/^#/, '');
+            const bigint = parseInt(hex, 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return { r, g, b };
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
                 }
-
-                h = Math.round(h * 360);
-                s = Math.round(s * 100);
-                l = Math.round(l * 100);
-
-                return `hsl(${h}, ${s}%, ${l}%)`;
+                h /= 6;
             }
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
 
-            // FAQ Accordion Logic
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const btn = item.querySelector('.faq-question');
-                btn.addEventListener('click', () => {
-                    item.classList.toggle('active');
-                });
-            });
+        function updateValues(hex) {
+            // Update display background
+            colorDisplay.style.backgroundColor = hex;
+            
+            // Update HEX Input
+            hexOutput.value = hex;
+
+            // Update RGB
+            const rgb = hexToRgb(hex);
+            rgbOutput.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+            // Update HSL
+            const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            hslOutput.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        }
+
+        // Event Listener for Input
+        colorInput.addEventListener('input', (e) => {
+            updateValues(e.target.value);
         });
 
-        // Copy Functionality
-        function copyToClipboard(elementId) {
+        // Initial call
+        updateValues(colorInput.value);
+
+        // --- Copy Functionality ---
+        window.copyToClipboard = function(elementId) {
             const copyText = document.getElementById(elementId);
             copyText.select();
-            copyText.setSelectionRange(0, 99999); // Mobile support
-            
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
             navigator.clipboard.writeText(copyText.value).then(() => {
-                showToast();
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                // Fallback
-                document.execCommand("copy");
-                showToast();
+                const btn = copyText.nextElementSibling;
+                const originalText = btn.innerText;
+                btn.innerText = "Copied!";
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
             });
-        }
+        };
 
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-    </script>
+        // --- Ad Visibility Logic ---
+        // Checks if ad containers have actual AdSense content (ins tags or script outputs)
+        // If empty, they remain hidden via CSS. If content detected, show them.
+        const adContainers = document.querySelectorAll('.ad-container');
+        adContainers.forEach(container => {
+            // Start observer to detect if AdSense injects code
+            const observer = new MutationObserver(() => {
+                if (container.innerHTML.trim().length > 0 && container.querySelector('ins, iframe, script')) {
+                    container.setAttribute('data-has-ad', 'true');
+                }
+            });
+            observer.observe(container, { childList: true, subtree: true });
+            
+            // Initial check in case code is static
+            if (container.querySelector('ins, iframe')) {
+                container.setAttribute('data-has-ad', 'true');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
