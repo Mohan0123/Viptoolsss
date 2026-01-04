@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>HTML Compiler - Online Live Code Editor & Viewer | VIP Tool</title>
+    <meta name="description" content="Use VIP Tool's free Online HTML Compiler. Write HTML, CSS, and JavaScript code and view the result instantly. Mobile-friendly, split-screen editor similar to W3Schools.">
+    <meta name="keywords" content="html compiler, online html editor, live code viewer, run html online, viptool, html css js runner">
+    <link rel="canonical" href="https://viptool.online/html-compiler">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viptool.online/html-compiler">
+    <meta property="og:title" content="HTML Compiler - Online Live Code Editor">
+    <meta property="og:description" content="Write and run HTML/CSS/JS code instantly on mobile or desktop with VIP Tool.">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #04AA6D;
+            --primary-hover: #059862;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #d3d3d3;
+            --editor-bg: #1e1e1e;
+            --editor-text: #ffffff;
+            --header-bg: #f1f1f1;
+            --section-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --border-color: #444;
+            --header-bg: #1e1e1e;
+            --section-bg: #1e1e1e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        header { 
+            background-color: var(--header-bg); 
+            border-bottom: 1px solid var(--border-color); 
+            padding: 10px 15px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.2rem; font-weight: bold; color: var(--text-color); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .logo span { color: var(--primary-color); }
+        
+        .theme-btn { 
+            background: none; border: 1px solid var(--border-color); 
+            border-radius: 20px; padding: 5px 12px; cursor: pointer; 
+            color: var(--text-color); font-size: 0.85rem; 
+        }
+
+        /* --- TOOL WORKSPACE (THE COMPILER) --- */
+        /* This section ensures the tool fits on one screen on mobile */
+        .workspace-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 85vh; /* Fixed height for the tool area */
+            border-bottom: 5px solid var(--border-color);
+        }
+
+        /* Control Bar */
+        .control-bar {
+            background: var(--bg-color);
+            padding: 8px 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        .btn { 
+            background-color: var(--primary-color); color: white; border: none; 
+            padding: 8px 16px; border-radius: 4px; cursor: pointer; 
+            font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 5px;
+        }
+        .btn-black { background-color: #282A35; }
+        .btn-clear { background-color: #dc3545; }
+
+        /* Split Screen Area */
+        .split-view {
+            flex: 1;
+            display: flex;
+            flex-direction: row; /* Desktop: Side by Side */
+            overflow: hidden;
+        }
+
+        /* Editor (Left/Top) */
+        .editor-pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--editor-bg);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .tabs { display: flex; background: #333; }
+        .tab {
+            flex: 1; padding: 10px; cursor: pointer; background: #444; color: #ccc;
+            border: none; font-weight: bold; font-size: 0.85rem; border-right: 1px solid #555;
+        }
+        .tab.active { background: var(--editor-bg); color: #fff; border-top: 2px solid var(--primary-color); }
+
+        .code-input {
+            flex: 1; width: 100%; background-color: var(--editor-bg); color: var(--editor-text);
+            border: none; padding: 15px; font-family: 'Courier New', monospace; font-size: 14px;
+            resize: none; display: none;
+        }
+        .code-input.active { display: block; }
+
+        /* Preview (Right/Bottom) */
+        .preview-pane {
+            flex: 1;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .preview-label {
+            position: absolute; top: 0; right: 0; background: #eee; color: #333;
+            padding: 2px 8px; font-size: 0.7rem; font-weight: bold; z-index: 10;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- MOBILE LAYOUT (Android Fix) --- */
+        @media (max-width: 768px) {
+            .split-view {
+                flex-direction: column; /* Stack Vertically */
+            }
+            .editor-pane {
+                flex: 1; /* 50% Height */
+                border-right: none;
+                border-bottom: 2px solid var(--border-color);
+            }
+            .preview-pane {
+                flex: 1; /* 50% Height */
+            }
+            /* Adjust workspace height for mobile browser bars */
+            .workspace-wrapper { height: 85vh; } 
+        }
+
+        /* --- CONTENT & SEO SECTION (Scrollable) --- */
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .seo-text { margin-bottom: 30px; }
+        h1 { font-size: 1.8rem; margin-bottom: 15px; color: var(--primary-color); }
+        h2 { font-size: 1.4rem; margin: 25px 0 10px; color: var(--text-color); }
+        p { margin-bottom: 15px; opacity: 0.9; }
+        ul { padding-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 5px; }
+
+        /* Ad Placeholder */
+        .ad-box {
+            width: 100%; height: 100px; background: #f0f0f0; border: 1px dashed #ccc;
+            display: flex; align-items: center; justify-content: center; color: #888;
+            margin: 20px 0; border-radius: 5px;
+        }
+
+        /* Legal & Footer */
+        .legal-section {
+            background: var(--header-bg);
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;
+        }
+        .footer-links a { color: var(--text-color); text-decoration: none; opacity: 0.8; }
+        .footer-links a:hover { color: var(--primary-color); opacity: 1; }
+        .copyright { text-align: center; opacity: 0.6; margin-top: 20px; }
+
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "HTML Compiler",
+      "url": "https://viptool.online/html-compiler",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool",
+        "url": "https://viptool.online"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <a href="https://viptool.online" class="logo">VIP<span>Tool</span></a>
+        <button id="theme-toggle" class="theme-btn">🌗 Dark Mode</button>
+    </header>
+
+    <div class="workspace-wrapper">
+        <div class="control-bar">
+            <button class="btn btn-clear" onclick="clearCode()">🗑 Clear</button>
+            <button class="btn btn-black" onclick="downloadCode()">⬇ Save</button>
+            <button class="btn" onclick="runCode()">▶ Run</button>
+        </div>
+
+        <div class="split-view">
+            <div class="editor-pane">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('html', this)">index.html</button>
+                    <button class="tab" onclick="switchTab('css', this)">style.css</button>
+                    <button class="tab" onclick="switchTab('js', this)">script.js</button>
+                </div>
+                
+                <textarea id="html-code" class="code-input active" placeholder="<div class='container'>
+  <h1>Hello VIP Tool</h1>
+  <p>Edit this code and click Run!</p>
+</div>"></textarea>
+                <textarea id="css-code" class="code-input" placeholder="/* CSS Here */
+body { font-family: sans-serif; padding: 20px; }
+.container { text-align: center; color: #333; }
+h1 { color: #04AA6D; }"></textarea>
+                <textarea id="js-code" class="code-input" placeholder="// JS Here
+console.log('Welcome to VIP Tool Compiler');"></textarea>
+            </div>
+
+            <div class="preview-pane">
+                <div class="preview-label">Preview Output</div>
+                <iframe id="output-frame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <main class="content-container">
+        
+        <div class="ad-box"></div>
+
+        <article class="seo-text">
+            <h1>Free Online HTML Compiler & Editor</h1>
+            <p>Welcome to <strong>VIP Tool's HTML Compiler</strong>. This is a robust, mobile-friendly development environment designed for students, bloggers, and web developers. Unlike other editors, our tool offers a <strong>Split-Screen View</strong> optimized for Android and iOS devices, allowing you to code and preview results simultaneously without endless scrolling.</p>
+            
+            <h2>How to Use</h2>
+            <ul>
+                <li><strong>HTML Tab:</strong> Write your document structure here. No need for doctype declarations.</li>
+                <li><strong>CSS Tab:</strong> Add styling to make your page look beautiful.</li>
+                <li><strong>JS Tab:</strong> Add interactivity using JavaScript.</li>
+                <li><strong>Run Button:</strong> Click "Run" to instantly compile and render your code in the Preview pane.</li>
+                <li><strong>Save Button:</strong> Download your work as a single <code>.html</code> file to your device.</li>
+            </ul>
+
+            <h2>Why Choose VIP Tool?</h2>
+            <p>Most online editors are hard to use on mobile phones because the keyboard hides the preview. We solved this with our dynamic <strong>50/50 Split Layout</strong>, giving you full control over your code on any screen size. All processing happens locally in your browser, ensuring speed and privacy.</p>
+        </article>
+
+        <div class="ad-box"></div>
+    </main>
+
+    <footer class="legal-section">
+        <div class="content-container">
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms & Conditions</a>
+                <a href="#disclaimer">Disclaimer</a>
+            </div>
+
+            <div id="privacy" style="margin-top: 30px;">
+                <h3>Privacy Policy</h3>
+                <p>At VIP Tool (viptool.online), we prioritize your privacy. This HTML Compiler operates entirely on the <strong>client-side</strong>. The code you write is processed within your web browser and is never transmitted to or stored on our servers. We use Google Analytics (G-SWZKBP3TTS) to collect anonymous usage data to improve our services. Cookies are used solely to remember your Dark Mode preference.</p>
+            </div>
+
+            <div id="terms" style="margin-top: 20px;">
+                <h3>Terms & Conditions</h3>
+                <p>By using this tool, you agree that VIP Tool is not liable for any data loss or errors that may occur during usage. This tool is provided "as-is" for educational and testing purposes. You are responsible for any code you generate or download.</p>
+            </div>
+
+            <div class="copyright">
+                &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const htmlCode = document.getElementById('html-code');
+        const cssCode = document.getElementById('css-code');
+        const jsCode = document.getElementById('js-code');
+        const outputFrame = document.getElementById('output-frame');
+
+        // Tab Switching
+        function switchTab(type, btn) {
+            document.querySelectorAll('.code-input').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
+            if(type === 'html') document.getElementById('html-code').classList.add('active');
+            if(type === 'css') document.getElementById('css-code').classList.add('active');
+            if(type === 'js') document.getElementById('js-code').classList.add('active');
+            
+            btn.classList.add('active');
+        }
+
+        // Compilation Logic
+        function runCode() {
+            const html = htmlCode.value;
+            const css = `<style>${cssCode.value}</style>`;
+            const js = `<script>${jsCode.value}<\/script>`;
+            
+            const source = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    ${css}
+                </head>
+                <body>
+                    ${html}
+                    ${js}
+                </body>
+                </html>
+            `;
+            
+            const frameDoc = outputFrame.contentWindow.document;
+            frameDoc.open();
+            frameDoc.write(source);
+            frameDoc.close();
+        }
+
+        // Download Logic
+        function downloadCode() {
+            const fullCode = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VIP Tool Project</title>
+<style>${cssCode.value}</style>
+</head>
+<body>
+${htmlCode.value}
+<script>${jsCode.value}<\/script>
+</body>
+</html>`;
+            
+            const blob = new Blob([fullCode], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'viptool-project.html';
+            a.click();
+        }
+
+        function clearCode() {
+            if(confirm("Are you sure you want to delete all code?")) {
+                htmlCode.value = ""; cssCode.value = ""; jsCode.value = "";
+                runCode();
+            }
+        }
+
+        // Dark Mode Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        if(localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = "☀️ Light Mode";
+        }
+
+        themeBtn.addEventListener('click', () => {
+            if(body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerText = "🌗 Dark Mode";
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerText = "☀️ Light Mode";
+            }
+        });
+
+        // Initialize
+        window.onload = runCode;
+    </script>
+</body>
+</html>
