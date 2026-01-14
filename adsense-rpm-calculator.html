@@ -1,40 +1,548 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SWZKBP3TTS');
-</script>
+<html lang="en" data-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free AdSense RPM Calculator by VIP Tool. Instantly calculate your Revenue Per Mille (RPM) based on estimated earnings and page views. Optimize your ad revenue.">
-    <title>AdSense RPM Calculator - Calculate Revenue Per Mille | VIP Tool</title>
-    
+    <meta name="description" content="Free Online AdSense RPM Calculator. Instantly calculate Page RPM (Revenue Per Mille) and eCPM. Optimize your website ad revenue strategy with VIP Tool.">
+    <title>AdSense RPM Calculator - Calculate Page Revenue | VIP Tool</title>
+    <link rel="canonical" href="https://viptool.online/adsense-rpm-calculator">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <style>
+        :root {
+            /* Light Mode Variables */
+            --bg-body-light: #f0f4f8;
+            --bg-card-light: rgba(255, 255, 255, 0.65);
+            --border-light: rgba(255, 255, 255, 0.8);
+            --text-main-light: #1e293b;
+            --text-muted-light: #64748b;
+            --accent-light: #4f46e5; /* Indigo */
+            --glow-light: rgba(79, 70, 229, 0.3);
+
+            /* Dark Mode Variables (Default/SaaS) */
+            --bg-body-dark: #0f172a;
+            --bg-card-dark: rgba(30, 41, 59, 0.6);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --text-main-dark: #f8fafc;
+            --text-muted-dark: #94a3b8;
+            --accent-dark: #06b6d4; /* Cyan/Neon */
+            --glow-dark: rgba(6, 182, 212, 0.4);
+
+            /* Defaults mapped to variables */
+            --bg-body: var(--bg-body-dark);
+            --bg-card: var(--bg-card-dark);
+            --border: var(--border-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --accent: var(--accent-dark);
+            --glow: var(--glow-dark);
+            --glass-blur: blur(16px);
+        }
+
+        [data-theme="light"] {
+            --bg-body: var(--bg-body-light);
+            --bg-card: var(--bg-card-light);
+            --border: var(--border-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --accent: var(--accent-light);
+            --glow: var(--glow-light);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden; }
+
+        /* Background Mesh Gradient */
+        body::before {
+            content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, var(--glow) 0%, transparent 60%);
+            opacity: 0.15; z-index: -1; pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+        }
+        [data-theme="light"] header { background: rgba(255, 255, 255, 0.8); }
+
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+        
+        .theme-toggle {
+            background: transparent; border: 1px solid var(--border);
+            color: var(--text-main); padding: 0.5rem; border-radius: 50%;
+            cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        }
+        .theme-toggle:hover { background: var(--bg-card); border-color: var(--accent); box-shadow: 0 0 10px var(--glow); }
+
+        /* Main Container */
+        .container { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; }
+
+        /* Tool Interface */
+        .tool-wrapper {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+            margin-bottom: 3rem;
+            position: relative; overflow: hidden;
+        }
+        
+        /* Neon Top Border */
+        .tool-wrapper::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.8;
+        }
+
+        h1 { text-align: center; margin-bottom: 0.5rem; font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; }
+        .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem; }
+
+        /* Grid Input */
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr; } }
+
+        .input-group { position: relative; }
+        .input-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        .input-group input {
+            width: 100%; padding: 1rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            outline: none; transition: all 0.3s;
+        }
+        [data-theme="light"] .input-group input { background: rgba(255,255,255,0.5); }
+        
+        .input-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--glow);
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* Buttons */
+        .btn-action {
+            width: 100%; padding: 1rem;
+            background: var(--accent);
+            color: #fff; border: none;
+            border-radius: 12px; font-size: 1.1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 4px 15px var(--glow);
+            position: relative; overflow: hidden;
+        }
+        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--glow); }
+        .btn-action:disabled { opacity: 0.7; cursor: not-allowed; }
+
+        /* Results */
+        .results-area {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+        [data-theme="light"] .results-area { background: rgba(255,255,255,0.5); }
+
+        .result-item { text-align: center; }
+        .result-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .result-value { font-size: 3rem; font-weight: 800; color: var(--accent); text-shadow: 0 0 20px var(--glow); line-height: 1; }
+        
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+        .stat-box { text-align: center; }
+        .stat-val { font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+        .stat-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Related Tools */
+        .related-section { margin: 4rem 0; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; }
+        .section-title::before { content: ''; width: 6px; height: 24px; background: var(--accent); border-radius: 4px; display: block; }
+        
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .tool-link {
+            text-decoration: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem; border-radius: 12px;
+            color: var(--text-main); font-weight: 600;
+            transition: all 0.3s; display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .tool-link:hover { border-color: var(--accent); box-shadow: 0 0 15px var(--glow); transform: translateY(-3px); color: var(--accent); }
+
+        /* Content & SEO */
+        .content-block { background: var(--bg-card); border-radius: 16px; padding: 2.5rem; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .content-block h2 { margin: 2rem 0 1rem; font-size: 1.8rem; color: var(--text-main); }
+        .content-block h3 { margin: 1.5rem 0 0.8rem; font-size: 1.4rem; color: var(--text-main); }
+        .content-block p { margin-bottom: 1rem; color: var(--text-muted); font-size: 1.05rem; }
+        .content-block ul { margin-bottom: 1rem; padding-left: 1.5rem; color: var(--text-muted); }
+        .content-block li { margin-bottom: 0.5rem; }
+        .content-block a { color: var(--accent); text-decoration: none; }
+        .content-block a:hover { text-decoration: underline; }
+
+        /* FAQ Accordion */
+        .accordion-item { border-bottom: 1px solid var(--border); }
+        .accordion-btn {
+            width: 100%; padding: 1.2rem 0; background: none; border: none;
+            text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--text-main);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-muted); }
+        .accordion-content p { padding-bottom: 1.2rem; }
+        .icon-plus { font-size: 1.5rem; transition: transform 0.3s; }
+        .accordion-btn.active .icon-plus { transform: rotate(45deg); color: var(--accent); }
+        .accordion-content.active { max-height: 200px; }
+
+        /* Ad Placeholders */
+        .ad-slot {
+            width: 100%; height: auto; min-height: 100px;
+            background: rgba(0,0,0,0.05); border: 1px dashed var(--border);
+            border-radius: 8px; margin: 2rem 0;
+            display: flex; justify-content: center; align-items: center;
+            display: none; /* Hidden unless logic enables */
+        }
+        .ad-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card); border-top: 1px solid var(--border);
+            padding: 3rem 1rem; text-align: center; margin-top: auto;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://viptool.online" class="logo">
+            <span>VIP</span> Tool
+        </a>
+        <button id="themeBtn" class="theme-toggle" aria-label="Toggle Theme">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+    </header>
+
+    <div class="container">
+        
+        <div class="ad-slot" id="ad-top">
+            </div>
+
+        <div class="tool-wrapper">
+            <h1>AdSense RPM Calculator</h1>
+            <p class="subtitle">Calculate Page RPM, eCPM & Traffic Revenue Potential</p>
+
+            <form id="rpmForm" onsubmit="event.preventDefault(); calculateRPM();">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="earnings">Estimated Earnings ($)</label>
+                        <input type="number" id="earnings" step="0.01" min="0" placeholder="e.g. 50.00" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="views">Page Views / Impressions</label>
+                        <input type="number" id="views" min="1" placeholder="e.g. 10000" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-action" id="calcBtn">Calculate RPM</button>
+            </form>
+
+            <div class="results-area" id="results">
+                <div class="result-item">
+                    <div class="result-label">Your Page RPM</div>
+                    <div class="result-value" id="rpmValue">$0.00</div>
+                </div>
+                
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-val" id="perView">$0.0000</div>
+                        <div class="stat-desc">Earnings Per View</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val" id="traffic100">0</div>
+                        <div class="stat-desc">Views needed for $100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-section">
+            <h3 class="section-title">Related Tools</h3>
+            <div class="tools-grid">
+                <a href="https://viptool.online/cpm-calculator" class="tool-link">CPM Calculator</a>
+                <a href="https://viptool.online/adsense-revenue-calculator" class="tool-link">AdSense Revenue Estimator</a>
+                <a href="https://viptool.online/youtube-money-calculator" class="tool-link">YouTube Money Calc</a>
+                <a href="https://viptool.online/roi-calculator" class="tool-link">ROI Calculator</a>
+            </div>
+        </div>
+
+        <div class="ad-slot" id="ad-mid">
+            </div>
+
+        <div class="content-block">
+            <h2>How to Use the AdSense RPM Calculator</h2>
+            <p>Maximizing your website's ad revenue requires understanding your key metrics. The <strong>VIP Tool AdSense RPM Calculator</strong> makes it easy to determine your Page RPM (Revenue Per Mille) instantly.</p>
+            <ol>
+                <li><strong>Enter Earnings:</strong> Input your estimated earnings for a specific period (e.g., Yesterday, Last 7 Days).</li>
+                <li><strong>Enter Page Views:</strong> Input the total number of page views or impressions for that same period.</li>
+                <li><strong>Click Calculate:</strong> The tool will instantly generate your RPM value.</li>
+            </ol>
+            <p>In addition to RPM, this tool provides advanced insights like "Earnings Per Single View" and "Traffic Needed for $100," helping you set realistic traffic goals for your blog or application.</p>
+
+            <h2>What is Page RPM?</h2>
+            <p><strong>Page RPM</strong> stands for <em>Revenue Per Mille</em> (Mille means 1,000 in Latin). It represents the estimated earnings you generate for every 1,000 page views.</p>
+            <p>The formula is:</p>
+            <p><code>RPM = (Estimated Earnings / Number of Page Views) * 1000</code></p>
+            <p>Unlike CPC (Cost Per Click) which focuses on individual ad clicks, RPM gives you a holistic view of how well your pages monetize traffic overall. It is one of the most critical metrics for publishers using <a href="https://viptool.online">VIP Tool</a> and Google AdSense.</p>
+
+            <h3>Why is RPM Important?</h3>
+            <p>Tracking RPM helps you identify which pages perform best. A high RPM indicates that your content is valuable to advertisers and that your ad placement is optimized. If your RPM is low, you might need to adjust your ad density, improve content quality, or target high-paying keywords.</p>
+        </div>
+
+        <div class="content-block">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        What is a good AdSense RPM?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>A "good" RPM varies wildly by niche. General blogs might see $2-$5 RPM, while finance, insurance, and tech niches can see $10-$50+ RPM. Geography of your traffic also plays a major role.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Is RPM the same as CPM?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Not exactly. CPM (Cost Per Mille) is what advertisers pay for 1,000 impressions. RPM is what you (the publisher) earn per 1,000 page views. RPM accounts for fill rate and click-through rate, making it a better metric for publishers.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        How can I increase my RPM?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>To increase RPM: target high-paying keywords, improve ad viewability, experiment with ad formats (like sticky ads or interstitials), and focus on traffic from Tier-1 countries (USA, UK, Canada).</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Is this calculator accurate?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, the math is precise based on the standard AdSense formula. However, actual payouts depend on Google's final validation of clicks and impressions.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Does this tool save my data?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>No. This tool operates 100% client-side. Your earnings data never leaves your browser.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" style="font-size: 0.9rem;">
+            <h3>Privacy Policy</h3>
+            <p>At VIP Tool, we prioritize your privacy. This AdSense RPM Calculator runs entirely in your browser using JavaScript. We do not collect, store, or transmit your financial data. We use Google Analytics (G-SWZKBP3TTS) to track anonymous usage statistics to improve user experience. We use cookies only to save your theme preference (Dark/Light mode).</p>
+            
+            <h3>Terms & Conditions</h3>
+            <p>By using this tool, you agree that it is provided for informational purposes only. VIP Tool is not responsible for any financial decisions made based on these calculations. We reserve the right to modify or discontinue this service at any time.</p>
+            
+            <h3>Disclaimer</h3>
+            <p>This tool is not affiliated with Google or AdSense. "AdSense" is a trademark of Google LLC. Results are estimates and do not guarantee future earnings.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://viptool.online/privacy">Privacy Policy</a>
+            <a href="https://viptool.online/terms">Terms of Service</a>
+            <a href="https://viptool.online/disclaimer">Disclaimer</a>
+            <a href="https://viptool.online">All Tools</a>
+        </div>
+        <div class="copyright">
+            &copy; <span id="year"></span> VIP Tool. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Management ---
+        const themeBtn = document.getElementById('themeBtn');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const root = document.documentElement;
+
+        function setTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if(theme === 'dark') {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            } else {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            }
+        }
+
+        // Init Theme
+        const savedTheme = localStorage.getItem('theme');
+        const sysTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        setTheme(savedTheme || sysTheme);
+
+        themeBtn.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // --- Calculation Logic ---
+        function calculateRPM() {
+            const earnings = parseFloat(document.getElementById('earnings').value);
+            const views = parseInt(document.getElementById('views').value);
+            
+            if(!earnings || !views || views <= 0) {
+                alert("Please enter valid positive numbers for earnings and views.");
+                return;
+            }
+
+            // Calculations
+            const rpm = (earnings / views) * 1000;
+            const perView = earnings / views;
+            const viewsFor100 = (100 / rpm) * 1000;
+
+            // Display UI
+            document.getElementById('results').style.display = 'block';
+            
+            // Animate Numbers
+            animateValue("rpmValue", 0, rpm, 1000, "$", 2);
+            document.getElementById('perView').innerText = "$" + perView.toFixed(4);
+            document.getElementById('traffic100').innerText = Math.ceil(viewsFor100).toLocaleString();
+
+            // Smooth scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function animateValue(id, start, end, duration, prefix = "", decimals = 0) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const val = progress * (end - start) + start;
+                obj.innerHTML = prefix + val.toFixed(decimals);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // --- Accordion Logic ---
+        const accBtns = document.querySelectorAll('.accordion-btn');
+        accBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                const content = btn.nextElementSibling;
+                if(btn.classList.contains('active')){
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        });
+
+        // --- Footer Year ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Ad Placeholder Logic ---
+        // Checks if any <ins> tags exist (simulating real ads) and shows slots if so.
+        window.addEventListener('load', () => {
+            const hasAds = document.getElementsByTagName('ins').length > 0;
+            if(hasAds) {
+                document.querySelectorAll('.ad-slot').forEach(el => el.style.display = 'flex');
+            }
+        });
+
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "AdSense RPM Calculator",
       "url": "https://viptool.online/adsense-rpm-calculator",
-      "description": "A professional tool to calculate Google AdSense Page RPM. Input earnings and views to determine your revenue per 1000 impressions.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. HTML5.",
-      "author": {
-        "@type": "Organization",
-        "name": "VIP Tool"
-      },
+      "description": "Calculate AdSense Page RPM and revenue potential instantly.",
+      "applicationCategory": "Utility",
+      "operatingSystem": "Any",
       "offers": {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+        "price": "0"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
       }
     }
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What is a good AdSense RPM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good RPM typically ranges from $2 to $5 for general blogs, but can exceed $50 in finance and tech niches."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How to calculate RPM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The formula is (Estimated Earnings / Page Views) * 1000."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is RPM the same as CPM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. RPM is revenue per 1000 views for the publisher, while CPM is cost per 1000 impressions for the advertiser."
+        }
+      }]
+    }
+    </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -48,7 +556,7 @@
         "@type": "ListItem",
         "position": 2,
         "name": "Tools",
-        "item": "https://viptool.online/tools"
+        "item": "https://viptool.online"
       },{
         "@type": "ListItem",
         "position": 3,
@@ -56,489 +564,5 @@
       }]
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "What is AdSense RPM?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "RPM stands for Revenue Per Mille (thousand). It represents the estimated earnings you would accrue for every 1000 page views or impressions."
-        }
-      }, {
-        "@type": "Question",
-        "name": "How is RPM calculated?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The formula is: (Estimated Earnings / Number of Page Views) * 1000."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is RPM the same as CPC?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. CPC (Cost Per Click) is what you earn when someone clicks an ad. RPM is a metric to measure total revenue efficiency per 1000 views, regardless of clicks."
-        }
-      }, {
-        "@type": "Question",
-        "name": "What is a good AdSense RPM?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A 'good' RPM varies wildly by niche, geography, and season. It can range from $0.50 to over $50.00 depending on traffic quality and keyword value."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is this tool free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, the AdSense RPM Calculator on VIP Tool is completely free and works directly in your browser."
-        }
-      }]
-    }
-    </script>
-
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --primary-dark: #0056b3;
-            --secondary-color: #6c757d;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-light: #666666;
-            --border-color: #dee2e6;
-            --success-color: #28a745;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        h1 {
-            color: var(--text-main);
-            margin: 20px 0 10px;
-            font-size: 2rem;
-        }
-
-        .subtitle {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        /* Tool Card */
-        .tool-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .col {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #545b62;
-        }
-
-        /* Results Section */
-        #result-area {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px dashed var(--border-color);
-            display: none;
-        }
-
-        .result-box {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-            border: 1px solid #c3e6cb;
-        }
-
-        .result-label {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .result-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--success-color);
-        }
-
-        /* RELATED TOOLS SECTION (CRITICAL POSITION) */
-        .related-tools-section {
-            margin: 0 0 40px 0; /* No top margin, bottom margin 40 */
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .related-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .related-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .related-link-item {
-            background: #f8f9fa;
-            color: var(--primary-color);
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s;
-            flex: 1 1 auto;
-            text-align: center;
-            min-width: 150px;
-        }
-
-        .related-link-item:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Conditional Ad Container */
-        .ad-wrapper {
-            display: none; /* Hidden by default */
-            margin: 30px 0;
-            padding: 10px;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            text-align: center;
-            min-height: 100px;
-        }
-
-        /* Content & Legal */
-        .content-section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .content-section h2 {
-            margin-top: 25px;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .content-section h3 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .content-section p, .content-section ul {
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        .content-section ul {
-            padding-left: 20px;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            padding: 40px 20px;
-            background: #343a40;
-            color: #adb5bd;
-            text-align: center;
-        }
-
-        footer a {
-            color: #f8f9fa;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.9rem;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.6rem; }
-            .btn-group { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <header>
-        <a href="https://viptool.online" class="brand-name">VIP Tool</a>
-    </header>
-
-    <main>
-        <h1>AdSense RPM Calculator</h1>
-        <p class="subtitle">Optimize your ad strategy by calculating your Revenue Per Mille (RPM) instantly.</p>
-
-        <div class="tool-card">
-            <div class="form-row">
-                <div class="col">
-                    <label for="earnings">Estimated Earnings ($)</label>
-                    <input type="number" id="earnings" placeholder="e.g. 50.00" min="0" step="0.01">
-                </div>
-                <div class="col">
-                    <label for="pageViews">Page Views / Impressions</label>
-                    <input type="number" id="pageViews" placeholder="e.g. 10000" min="1" step="1">
-                </div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn-primary" onclick="calculateRPM()">Calculate RPM</button>
-                <button class="btn-secondary" onclick="resetForm()">Reset</button>
-            </div>
-
-            <div id="result-area">
-                <div class="result-box">
-                    <div class="result-label">Your RPM (Revenue Per 1000 Views)</div>
-                    <div class="result-value" id="rpmOutput">$0.00</div>
-                </div>
-            </div>
-        </div>
-
-        <section class="related-tools-section">
-            <div class="related-title">Related Tools</div>
-            <div class="related-links">
-                <a href="https://viptool.online/youtube-thumbnail-downloader" class="related-link-item">Thumbnail Downloader</a>
-                <a href="https://viptool.online/gst-calculator" class="related-link-item">GST Calculator</a>
-                <a href="https://viptool.online/percentage-calculator" class="related-link-item">Percentage Calculator</a>
-                <a href="https://viptool.online/word-counter" class="related-link-item">Word Counter</a>
-                <a href="https://viptool.online/discount-calculator" class="related-link-item">Discount Calculator</a>
-                <a href="https://viptool.online/cpm-calculator" class="related-link-item">CPM Calculator</a>
-            </div>
-        </section>
-
-        <div class="ad-wrapper">
-            </div>
-
-        <div class="content-section">
-            <h2>How to Use the AdSense RPM Calculator</h2>
-            <p>Calculating your website's performance is crucial for growth. Follow these simple steps to use the VIP Tool AdSense RPM Calculator:</p>
-            <ol>
-                <li><strong>Enter Estimated Earnings:</strong> Input the total amount of money earned in a specific period (e.g., yesterday, last 7 days).</li>
-                <li><strong>Enter Page Views:</strong> Input the total number of page views or impressions received during that same period.</li>
-                <li><strong>Click Calculate:</strong> The tool will instantly compute your RPM value.</li>
-            </ol>
-
-            <h3>What is AdSense RPM?</h3>
-            <p>RPM stands for <strong>Revenue Per Mille</strong> (Mille is Latin for thousand). It is a metric used by Google AdSense and other ad networks to compare revenue across different channels.</p>
-            <p>It answers the question: <em>"How much revenue am I generating for every 1,000 views on my page?"</em></p>
-
-            <div class="ad-wrapper">
-                </div>
-
-            <h2>The AdSense RPM Formula</h2>
-            <p>The calculation is straightforward:</p>
-            <blockquote style="background: #f1f1f1; padding: 15px; border-left: 5px solid #007bff; margin: 20px 0;">
-                <strong>RPM = (Estimated Earnings / Page Views) * 1000</strong>
-            </blockquote>
-            <p>For example, if you earned $15 from 5,000 page views:</p>
-            <ul>
-                <li>($15 / 5000) = 0.003</li>
-                <li>0.003 * 1000 = <strong>$3.00 RPM</strong></li>
-            </ul>
-
-            <h2>Benefits of Monitoring RPM</h2>
-            <p>Using a <a href="https://viptool.online/tools" style="color: var(--primary-color);">reliable calculator</a> to track RPM helps you:</p>
-            <ul>
-                <li><strong>Identify High-Performing Content:</strong> See which pages generate the most revenue per view.</li>
-                <li><strong>Optimize Ad Placements:</strong> Test different ad locations and see if your RPM increases.</li>
-                <li><strong>Compare Networks:</strong> If you use multiple ad networks, RPM gives you a standard metric to compare their performance.</li>
-            </ul>
-
-            <h2>Frequently Asked Questions (FAQs)</h2>
-            
-            <h3>1. Does a higher RPM mean more traffic?</h3>
-            <p>No. RPM measures <em>efficiency</em>, not traffic volume. You can have low traffic but a high RPM if your ads are very relevant and expensive.</p>
-
-            <h3>2. How can I increase my AdSense RPM?</h3>
-            <p>To increase RPM, focus on high-paying keywords (niche), improve ad placement (above the fold), and ensure your site loads quickly to view ads.</p>
-
-            <h3>3. What is the difference between RPM and CPM?</h3>
-            <p>CPM (Cost Per Mille) is what advertisers pay for 1000 impressions. RPM is what the publisher (you) earns per 1000 views. RPM calculates your effective revenue.</p>
-
-            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
-
-            <div id="legal">
-                <h3>Privacy Policy</h3>
-                <p>At VIP Tool, we prioritize your privacy. This RPM Calculator operates entirely on the client-side (in your browser). We do not collect, store, or transmit your financial data or traffic stats. We use third-party services like Google Analytics and AdSense, which may use cookies to serve ads and analyze traffic.</p>
-
-                <h3>Terms & Conditions</h3>
-                <p>By using this tool, you agree that it is provided for informational purposes only. VIP Tool does not guarantee the accuracy of the calculations or your future earnings. We reserve the right to modify or discontinue the tool at any time.</p>
-
-                <h3>Disclaimer</h3>
-                <p>The results provided by this calculator are estimates based on your input. VIP Tool is not affiliated with Google or AdSense. Use this tool at your own risk for planning and analysis purposes.</p>
-            </div>
-        </div>
-
-        <div class="ad-wrapper">
-            </div>
-    </main>
-
-    <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Disclaimer</a>
-            <a href="https://viptool.online">All Tools</a>
-        </div>
-    </footer>
-</div>
-
-<script>
-    // Tool Logic
-    function calculateRPM() {
-        const earnings = parseFloat(document.getElementById('earnings').value);
-        const views = parseFloat(document.getElementById('pageViews').value);
-        
-        if (isNaN(earnings) || isNaN(views) || views <= 0) {
-            alert("Please enter valid earnings and page views (views must be greater than 0).");
-            return;
-        }
-
-        const rpm = (earnings / views) * 1000;
-        
-        document.getElementById('rpmOutput').innerText = '$' + rpm.toFixed(2);
-        document.getElementById('result-area').style.display = 'block';
-    }
-
-    function resetForm() {
-        document.getElementById('earnings').value = '';
-        document.getElementById('pageViews').value = '';
-        document.getElementById('result-area').style.display = 'none';
-        document.getElementById('rpmOutput').innerText = '$0.00';
-    }
-
-    // Conditional Ad Visibility Logic
-    // This script checks if the ad containers have actual content (injected by AdSense).
-    // If they are empty (just comments or whitespace), they remain hidden.
-    document.addEventListener("DOMContentLoaded", function() {
-        const adContainers = document.querySelectorAll('.ad-wrapper');
-        
-        adContainers.forEach(container => {
-            // Check if the container has child elements (like <script> or <ins>)
-            // If the user pastes code, 'children' length will be > 0.
-            if (container.children.length > 0) {
-                container.style.display = 'block';
-            }
-        });
-    });
-</script>
-
 </body>
 </html>
