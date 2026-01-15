@@ -1,578 +1,681 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SWZKBP3TTS');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Online Percentage Calculator. Calculate the percentage of a number, find percentage increase/decrease, and solve what percent X is of Y instantly.">
-    <meta name="keywords" content="percentage calculator, calculate percentage, percentage increase calculator, percentage decrease tool, math calculator, finance calculator, online percent tool">
-    <meta name="author" content="Percentage Calculator Tool">
-    <meta name="robots" content="index, follow">
-    <title>Free Percentage Calculator - Calculate %, Increase & Decrease Online</title>
+    <meta name="description" content="Free Online Percentage Calculator. Calculate percentage of a number, percent change, increase/decrease, and reverse percentages instantly. Fast, accurate, and AI-powered interface.">
+    <title>Percentage Calculator - Free Online Percent & Change Tool | VIP Tool</title>
+    <link rel="canonical" href="https://viptool.online/percentage-calculator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
 
     <style>
-        /* RESET & BASE STYLES */
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #475569;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #0f172a;
-            --border-color: #e2e8f0;
-            --success-color: #10b981;
-            --error-color: #ef4444;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Light Theme Variables */
+            --bg-body-light: #f3f4f6;
+            --bg-glass-light: rgba(255, 255, 255, 0.85);
+            --border-light: rgba(209, 213, 219, 0.6);
+            --text-main-light: #111827;
+            --text-muted-light: #6b7280;
+            --primary-light: #4f46e5;
+            --accent-light: #06b6d4;
+            --card-shadow-light: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            --modal-bg-light: #ffffff;
+            --input-bg-light: rgba(255, 255, 255, 0.6);
+
+            /* Dark Theme Variables (Futuristic/Neon) */
+            --bg-body-dark: #0f172a;
+            --bg-glass-dark: rgba(30, 41, 59, 0.7);
+            --border-dark: rgba(148, 163, 184, 0.1);
+            --text-main-dark: #f8fafc;
+            --text-muted-dark: #94a3b8;
+            --primary-dark: #818cf8;
+            --accent-dark: #22d3ee;
+            --card-shadow-dark: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+            --neon-glow: 0 0 15px rgba(129, 140, 248, 0.3);
+            --modal-bg-dark: #1e293b;
+            --input-bg-dark: rgba(15, 23, 42, 0.3);
+
+            /* Default Mappings (Dark Default) */
+            --bg-body: var(--bg-body-dark);
+            --bg-glass: var(--bg-glass-dark);
+            --border: var(--border-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --primary: var(--primary-dark);
+            --accent: var(--accent-dark);
+            --card-shadow: var(--card-shadow-dark);
+            --glow: var(--neon-glow);
+            --modal-bg: var(--modal-bg-dark);
+            --input-bg: var(--input-bg-dark);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        [data-theme="light"] {
+            --bg-body: var(--bg-body-light);
+            --bg-glass: var(--bg-glass-light);
+            --border: var(--border-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --primary: var(--primary-light);
+            --accent: var(--accent-light);
+            --card-shadow: var(--card-shadow-light);
+            --glow: none;
+            --modal-bg: var(--modal-bg-light);
+            --input-bg: var(--input-bg-light);
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
         }
 
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* LAYOUT UTILITIES */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        /* HEADER */
+        /* --- Utility & Typography --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        a { color: var(--text-muted); text-decoration: none; transition: 0.3s; cursor: pointer; }
+        a:hover { color: var(--primary); }
+        
+        /* --- Header --- */
         header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+            padding: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 50;
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em; }
+        
+        .theme-btn {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .theme-btn:hover { border-color: var(--primary); box-shadow: var(--glow); }
+
+        /* --- Hero Section --- */
+        .hero-section { text-align: center; margin: 3rem 0 2rem; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(to right, var(--text-main), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- Tool Interface (SaaS Dashboard Style) --- */
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            font-weight: 800;
+        .calc-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-
-        .subtitle {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-        }
-
-        /* ADSENSE PLACEHOLDER */
-        .ad-placeholder {
-            width: 100%;
-            height: 100px;
-            background-color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            border: 2px dashed #cbd5e1;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* TOOL INTERFACE */
-        .tool-wrapper {
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .calc-mode {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .calc-mode h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 10px;
-        }
-
-        .input-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .input-wrapper {
-            flex: 1;
-            min-width: 120px;
-        }
-
+        .calc-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--glow); }
+        .calc-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .calc-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .calc-row span { color: var(--text-muted); font-weight: 500; }
+        
         input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .static-text {
+            flex: 1;
+            min-width: 80px;
+            padding: 0.8rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--secondary-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            -moz-appearance: textfield;
         }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--glow); background: rgba(255,255,255,0.05); }
 
-        .action-btn {
-            background-color: var(--primary-color);
+        .btn-calc {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 1rem;
+            border-radius: 10px;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
+            transition: 0.2s;
+            margin-bottom: 1rem;
         }
-
-        .action-btn:hover {
-            background-color: var(--primary-hover);
-        }
+        .btn-calc:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-calc:active { transform: scale(0.98); }
 
         .result-box {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            border-radius: 6px;
-            color: #065f46;
-            font-weight: bold;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 1rem;
             text-align: center;
-            display: none; /* Hidden by default */
+            border: 1px solid var(--border);
+        }
+        [data-theme="light"] .result-box { background: rgba(0,0,0,0.03); }
+        .res-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .res-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .res-value.positive { color: #10b981; }
+        .res-value.negative { color: #ef4444; }
+
+        /* --- Related Tools --- */
+        .related-section { margin-bottom: 4rem; }
+        .related-title { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 600; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .related-card {
+            background: var(--bg-glass); border: 1px solid var(--border); padding: 1rem; border-radius: 12px; text-align: center;
+            transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .related-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glow); }
+        .related-card span { font-weight: 500; font-size: 0.9rem; color: var(--text-main); }
+        .related-card svg { color: var(--primary); }
+
+        /* --- Content & FAQ --- */
+        .content-card { background: var(--bg-glass); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; }
+        .content-card h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-card h3 { font-size: 1.4rem; margin: 1.5rem 0 0.8rem; color: var(--text-main); }
+        .content-card p, .content-card li { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7; }
+        .content-card ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        /* Accordion */
+        .accordion-item { border-bottom: 1px solid var(--border); }
+        .accordion-btn { width: 100%; padding: 1.2rem 0; text-align: left; background: none; border: none; color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-muted); line-height: 1.6; }
+        .accordion-content p { padding-bottom: 1.2rem; }
+        .icon-plus { transition: transform 0.3s; font-size: 1.5rem; font-weight: 300; }
+        .accordion-btn.active .icon-plus { transform: rotate(45deg); color: var(--primary); }
+
+        /* --- Ads --- */
+        .ad-slot { 
+            width: 100%; height: auto; min-height: 100px; 
+            background: rgba(0,0,0,0.02); border: 1px dashed var(--border); 
+            display: flex; align-items: center; justify-content: center; 
+            margin: 2rem 0; border-radius: 12px; color: var(--text-muted);
+            font-size: 0.8rem; display: none; /* Auto-hidden */
         }
 
-        .result-value {
-            font-size: 1.2rem;
+        /* --- Modals (Legal) --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 1000;
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
         }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box {
+            background: var(--modal-bg); width: 90%; max-width: 700px; max-height: 85vh;
+            border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow-y: auto;
+            position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+            color: var(--text-main);
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.1);
+            border: none; color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;
+        }
+        .modal-close:hover { background: var(--primary); color: white; }
+        .modal-title { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6; font-size: 0.95rem; }
+        .modal-content h3 { color: var(--text-main); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
 
-        .error-msg {
-            color: var(--error-color);
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
+        /* --- Footer --- */
+        footer { border-top: 1px solid var(--border); background: var(--bg-glass); padding: 3rem 0; margin-top: auto; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .copyright { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* CONTENT STYLES */
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            margin: 25px 0 15px 0;
-            color: var(--text-color);
-        }
-
-        p {
-            margin-bottom: 15px;
-            color: #334155;
-        }
-
-        ul, ol {
-            margin-bottom: 20px;
-            padding-left: 25px;
-            color: #334155;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* FAQ ACCORDION */
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-        }
-        
-        .faq-question {
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-color);
-        }
-
-        .faq-answer {
-            margin-top: 15px;
-            display: none;
-            color: var(--secondary-color);
-            line-height: 1.6;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        .faq-toggle {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-
-        /* LEGAL SECTIONS */
-        .legal-section {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-top: 40px;
-            background: #fff;
-            padding: 25px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #1e293b;
-            color: #cbd5e1;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #fff;
-            margin: 0 12px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        footer a:hover {
-            opacity: 1;
-            text-decoration: none;
-        }
-
-        /* RESPONSIVE */
+        /* Responsive */
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .section { padding: 20px; }
-            .input-row { flex-direction: column; align-items: stretch; }
-            .static-text { text-align: center; margin: 5px 0; }
+            h1 { font-size: 2rem; }
+            .calc-row { flex-direction: column; align-items: stretch; }
+            .calc-row span { text-align: center; margin: 0.2rem 0; }
+            .content-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="container">
-        <h1>Percentage Calculator</h1>
-        <p class="subtitle">Quickly calculate percentages, percentage changes, and fractional values.</p>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="https://viptool.online" class="logo">VIP Tool</a>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle Theme">
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
     </header>
 
-    <div class="container">
+    <main class="container">
         
-        <div class="ad-placeholder">
-            Advertisement Space
+        <div class="hero-section">
+            <h1>Percentage Calculator</h1>
+            <p class="subtitle">Calculate percentages, percent changes, and differences instantly.</p>
         </div>
 
-        <section class="section tool-wrapper">
+        <div class="ad-slot">
+            </div>
+
+        <div class="calculators-grid">
             
-            <div class="calc-mode">
-                <h3>Calculate Percentage of a Number</h3>
-                <div class="input-row">
-                    <span class="static-text">What is</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="mode1-percent" placeholder="%">
-                    </div>
-                    <span class="static-text">% of</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="mode1-number" placeholder="Number">
-                    </div>
+            <div class="calc-card">
+                <div class="calc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19"></path><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                    Percentage Of
                 </div>
-                <button class="action-btn" onclick="calcMode1()">Calculate</button>
-                <div class="error-msg" id="error1">Please enter valid numbers.</div>
-                <div class="result-box" id="result1">
-                    Result: <span class="result-value" id="res1-val">0</span>
+                <div class="calc-row">
+                    <span>What is</span>
+                    <input type="number" id="t1_a" placeholder="20">
+                    <span>% of</span>
+                    <input type="number" id="t1_b" placeholder="100">
                 </div>
-            </div>
-
-            <div class="calc-mode">
-                <h3>Calculate What Percent X is of Y</h3>
-                <div class="input-row">
-                    <div class="input-wrapper">
-                        <input type="number" id="mode2-num1" placeholder="Number">
-                    </div>
-                    <span class="static-text">is what % of</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="mode2-num2" placeholder="Total">
-                    </div>
-                </div>
-                <button class="action-btn" onclick="calcMode2()">Calculate</button>
-                <div class="error-msg" id="error2">Please enter valid numbers (Total cannot be 0).</div>
-                <div class="result-box" id="result2">
-                    Result: <span class="result-value" id="res2-val">0%</span>
+                <button class="btn-calc" onclick="calcPercentageOf()">Calculate</button>
+                <div class="result-box">
+                    <div class="res-label">Result</div>
+                    <div class="res-value" id="t1_res">--</div>
                 </div>
             </div>
 
-            <div class="calc-mode">
-                <h3>Percentage Increase / Decrease</h3>
-                <div class="input-row">
-                    <span class="static-text">From</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="mode3-from" placeholder="Old Value">
-                    </div>
-                    <span class="static-text">to</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="mode3-to" placeholder="New Value">
-                    </div>
+            <div class="calc-card">
+                <div class="calc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    What % is
                 </div>
-                <button class="action-btn" onclick="calcMode3()">Calculate Change</button>
-                <div class="error-msg" id="error3">Please enter valid numbers.</div>
-                <div class="result-box" id="result3">
-                    Result: <span class="result-value" id="res3-val">0%</span>
+                <div class="calc-row">
+                    <input type="number" id="t2_a" placeholder="25">
+                    <span>is what % of</span>
+                    <input type="number" id="t2_b" placeholder="100">
+                </div>
+                <button class="btn-calc" onclick="calcWhatPercent()">Calculate</button>
+                <div class="result-box">
+                    <div class="res-label">Result</div>
+                    <div class="res-value" id="t2_res">--</div>
                 </div>
             </div>
 
-        </section>
+            <div class="calc-card">
+                <div class="calc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                    Percentage Change
+                </div>
+                <div class="calc-row">
+                    <span>From</span>
+                    <input type="number" id="t3_a" placeholder="50">
+                    <span>To</span>
+                    <input type="number" id="t3_b" placeholder="75">
+                </div>
+                <button class="btn-calc" onclick="calcPercentChange()">Calculate</button>
+                <div class="result-box">
+                    <div class="res-label">Difference</div>
+                    <div class="res-value" id="t3_res">--</div>
+                </div>
+            </div>
 
-        <div class="ad-placeholder">
-            Advertisement Space
         </div>
 
-        <section class="section">
-            <h2>How to Use This Percentage Calculator</h2>
-            <p>Our tool is designed to solve the most common percentage math problems quickly. Just choose the section that matches your question:</p>
-            <ol>
-                <li><strong>Percentage of a Number:</strong> Use the first calculator if you want to know "What is 20% of 150?". Enter the percentage and the total number.</li>
-                <li><strong>What Percent is X of Y:</strong> Use the second calculator to find out the percentage relation between two numbers. For example, "25 is what percent of 200?".</li>
-                <li><strong>Percentage Increase/Decrease:</strong> Use the third calculator to compare values over time. Enter the original value and the new value to see if it's an increase or decrease.</li>
-            </ol>
-        </section>
+        <div class="related-section">
+            <div class="related-title">Related Tools</div>
+            <div class="related-grid">
+                <a href="https://viptool.online/roi-calculator" class="related-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <span>ROI Calculator</span>
+                </a>
+                <a href="https://viptool.online/gst-calculator" class="related-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>GST Calculator</span>
+                </a>
+                <a href="https://viptool.online/loan-calculator" class="related-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    <span>Loan Calculator</span>
+                </a>
+                <a href="https://viptool.online/age-calculator" class="related-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Age Calculator</span>
+                </a>
+            </div>
+        </div>
 
-        <section class="section">
-            <h2>Why Use Our Online Percentage Tool?</h2>
+        <div class="ad-slot">
+             </div>
+
+        <div class="content-card">
+            <h2>Master Percentages Effortlessly</h2>
+            <p>Whether you are calculating a tip at a restaurant, determining a discount on a sale item, or analyzing financial growth, percentages are everywhere. The <strong>VIP Tool Percentage Calculator</strong> is designed to be your go-to utility for all things related to percent mathematics. It replaces complex manual formulas with a simple, futuristic interface.</p>
+            
+            <h3>Supported Calculations</h3>
             <ul>
-                <li><strong>100% Free:</strong> Perform unlimited calculations without any cost or registration.</li>
-                <li><strong>Instant Results:</strong> No waiting time. The JavaScript engine calculates answers immediately.</li>
-                <li><strong>Mobile Friendly:</strong> Works perfectly on smartphones, tablets, and desktop computers.</li>
-                <li><strong>Privacy Focused:</strong> All calculations happen in your browser. We do not collect your data.</li>
-                <li><strong>Multiple Modes:</strong> Covers the three most common mathematical percentage scenarios in one place.</li>
+                <li><strong>Percentage Of:</strong> Find the value of a specific percentage (e.g., 20% of 1500). Great for tax and discounts.</li>
+                <li><strong>What Percent Is:</strong> Determine what percentage one number represents of another (e.g., 20 is what % of 50?). Useful for test scores.</li>
+                <li><strong>Percentage Change:</strong> Calculate the percentage increase or decrease between two values. Essential for ROI and growth analysis.</li>
             </ul>
-        </section>
 
-        <section class="section">
-            <h2>The Importance of Understanding Percentages</h2>
-            <p>Percentages are a fundamental part of daily life and are used in almost every industry. From calculating discounts during a shopping sale to determining interest rates on loans, understanding how to work with percentages is a vital skill. However, doing the math in your head can sometimes be tricky or prone to error. That's where our <strong>Percentage Calculator</strong> comes in handy.</p>
-
-            <h3>Percentages in Finance</h3>
-            <p>In the financial world, percentages dictate everything. Whether you are calculating the return on investment (ROI), the interest accrued on a savings account, or the EMI for a home loan, you are dealing with percentages. A small error in these calculations can lead to significant financial discrepancies. Our tool ensures accuracy for these critical computations.</p>
-
-            <h3>Percentages in Shopping</h3>
-            <p>We all love a good sale. Seeing "30% OFF" is exciting, but knowing exactly how much you save and what the final price will be is important for budgeting. By using the "Percentage of a Number" feature, you can quickly determine the discount amount and the final price tag before you reach the checkout counter.</p>
-
-            <h3>Mathematical Concept</h3>
-            <p>The term "percent" comes from the Latin "per centum," meaning "by the hundred." It is a dimensionless number (pure number) that is used to express ratios. For example, 50% means 50 per 100, or simply half. This standardized way of expressing fractions makes it easier to compare different quantities, such as test scores, growth rates, or nutritional values.</p>
-        </section>
-
-        <section class="section">
-            <h2>Frequently Asked Questions (FAQs)</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">How do I calculate a percentage manually? <span class="faq-toggle">+</span></div>
-                <div class="faq-answer">To find X% of Y manually, convert the percentage to a decimal (divide by 100) and multiply by Y. For example, to find 20% of 50: 0.20 * 50 = 10.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">What is the formula for percentage increase? <span class="faq-toggle">+</span></div>
-                <div class="faq-answer">The formula is: ((New Value - Old Value) / Old Value) * 100. If the result is positive, it's an increase; if negative, it's a decrease.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Is this tool accurate? <span class="faq-toggle">+</span></div>
-                <div class="faq-answer">Yes, this tool uses standard mathematical formulas processed by your browser's computing engine to ensure precise results.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Does this calculate reverse percentages? <span class="faq-toggle">+</span></div>
-                <div class="faq-answer">Currently, this tool focuses on finding percentages, what percent one number is of another, and percentage changes. We plan to add reverse percentage tools in the future.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Is my data saved? <span class="faq-toggle">+</span></div>
-                <div class="faq-answer">No. We do not store any of the numbers you enter. All calculations are performed temporarily on your device.</div>
-            </div>
-        </section>
-
-        <div class="legal-section" id="privacy">
-            <h3>Privacy Policy</h3>
-            <p><strong>Last Updated: 30/12/2025 </strong></p>
-            <p>Your privacy is important to us. This Privacy Policy explains how we handle information.</p>
-            <p><strong>1. Data Collection:</strong> We do not collect, store, or transmit any personal data or calculation inputs entered into this tool. All processing is done locally on your device via client-side JavaScript.</p>
-            <p><strong>2. Cookies:</strong> We may use cookies to improve user experience. You can disable cookies in your browser settings at any time.</p>
-            <p><strong>3. Third-Party Ads (Google AdSense):</strong> We use third-party advertising companies to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you. If you would like more information about this practice and to know your choices about not having this information used by these companies, please visit Google's ad settings.</p>
-            <p><strong>4. Analytics:</strong> We may use tools like Google Analytics to understand traffic trends. This data is aggregated and anonymous.</p>
+            <h3>Why Use This Tool?</h3>
+            <p>Unlike standard calculators, our tool separates these distinct logic flows into an easy-to-use dashboard. It handles decimals, large numbers, and negative values gracefully, ensuring precision for students and professionals alike.</p>
         </div>
 
-        <div class="legal-section" id="terms">
-            <h3>Terms and Conditions</h3>
-            <p>By using this website, you agree to the following terms:</p>
-            <p><strong>1. Usage:</strong> This tool is provided for personal, educational, and informational use only. You agree not to use it for any illegal activities.</p>
-            <p><strong>2. Liability:</strong> We are not responsible for any financial losses, calculation errors, or damages resulting from the use of this tool. Always verify important calculations with a professional.</p>
-            <p><strong>3. Modifications:</strong> We reserve the right to modify or discontinue the service at any time without notice.</p>
+        <div class="content-card">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        How do I calculate a percentage increase?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>To calculate percentage increase: (New Value - Original Value) ÷ Original Value × 100. Our "Percentage Change" tool does this automatically.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Is this calculator free?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, the VIP Tool Percentage Calculator is 100% free and works on all devices without any installation.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Can it handle negative numbers?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, the calculator supports negative numbers, which is useful for calculating losses or negative growth.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        What is the formula for X% of Y?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>The formula is simply: (X ÷ 100) × Y. For example, 20% of 50 is (20 ÷ 100) × 50 = 10.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Does it work offline?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, once the page is loaded, the calculation logic runs entirely in your browser client-side, so it works even if you lose internet connection.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="legal-section" id="disclaimer">
-            <h3>Disclaimer</h3>
-            <p>The Percentage Calculator provided on this website is for estimation and convenience purposes only. While we strive for accuracy, we cannot guarantee that the results will meet your specific requirements in every instance. Users are responsible for verifying the accuracy of results before using them for critical financial or academic purposes. The tool is provided "as-is" without any warranties.</p>
-        </div>
-
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2025 VIP Tool. All Rights Reserved.</p>
-        <p>
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#terms">Terms & Conditions</a> | 
-            <a href="#disclaimer">Disclaimer</a>
-        </p>
+        <div class="container">
+            <div class="footer-links">
+                <a href="javascript:void(0)" onclick="openModal('privacyModal')">Privacy Policy</a>
+                <a href="javascript:void(0)" onclick="openModal('termsModal')">Terms & Conditions</a>
+                <a href="javascript:void(0)" onclick="openModal('disclaimerModal')">Disclaimer</a>
+                <a href="https://viptool.online">All Tools</a>
+            </div>
+            <p class="copyright">© <span id="year"></span> VIP Tool. All rights reserved.</p>
+        </div>
     </footer>
 
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('privacyModal')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-title">Privacy Policy</div>
+            <div class="modal-content">
+                <p><strong>Effective Date:</strong> January 1, 2026</p>
+                <p>At VIP Tool, your privacy is our priority. This policy outlines how we handle your information.</p>
+                <h3>1. Data Collection</h3>
+                <p>We do not collect, store, or transmit any personal data or calculation inputs entered into the Percentage Calculator. All processing occurs locally on your device.</p>
+                <h3>2. Analytics</h3>
+                <p>We use Google Analytics (Measurement ID: G-SWZKBP3TTS) to collect anonymous usage data (e.g., page views, device type) to improve user experience.</p>
+                <h3>3. Cookies</h3>
+                <p>We use local storage to save your theme preference (Dark/Light mode). Third-party vendors, including Google, use cookies to serve ads based on prior visits.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('termsModal')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-title">Terms & Conditions</div>
+            <div class="modal-content">
+                <p>By using VIP Tool (viptool.online), you agree to the following terms:</p>
+                <h3>1. Usage</h3>
+                <p>This tool is provided for free for personal and educational use. You may not reverse engineer or scrape the tool.</p>
+                <h3>2. Limitation of Liability</h3>
+                <p>VIP Tool is not liable for any errors in calculation or damages arising from the use of this website.</p>
+                <h3>3. Modifications</h3>
+                <p>We reserve the right to modify or discontinue this service at any time without notice.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="disclaimerModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('disclaimerModal')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-title">Disclaimer</div>
+            <div class="modal-content">
+                <p>The Percentage Calculator is provided "as-is" for informational purposes only.</p>
+                <h3>1. Accuracy</h3>
+                <p>While we strive for accuracy, we do not guarantee that results are error-free. Do not use for critical financial or medical calculations without verification.</p>
+                <h3>2. Affiliation</h3>
+                <p>VIP Tool is not affiliated with any government or educational institution.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "url": "https://viptool.online/percentage-calculator",
+      "description": "Free online tool to calculate percentage of a number, percentage change, and more.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I calculate a percentage increase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Formula: (New - Old) / Old * 100."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it is 100% free to use."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the formula for X% of Y?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "(X / 100) * Y."
+        }
+      }]
+    }
+    </script>
+
     <script>
-        // Helper function to format numbers
-        function formatNum(num) {
-            return parseFloat(num.toFixed(2));
-        }
+        // --- Theme Logic ---
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const html = document.documentElement;
 
-        // Mode 1: What is X% of Y?
-        function calcMode1() {
-            const percent = parseFloat(document.getElementById('mode1-percent').value);
-            const number = parseFloat(document.getElementById('mode1-number').value);
-            const error = document.getElementById('error1');
-            const resultBox = document.getElementById('result1');
-            const resultVal = document.getElementById('res1-val');
-
-            if (isNaN(percent) || isNaN(number)) {
-                error.style.display = 'block';
-                resultBox.style.display = 'none';
-                return;
-            }
-
-            error.style.display = 'none';
-            const res = (percent / 100) * number;
-            resultVal.textContent = formatNum(res);
-            resultBox.style.display = 'block';
-        }
-
-        // Mode 2: X is what percent of Y?
-        function calcMode2() {
-            const num1 = parseFloat(document.getElementById('mode2-num1').value);
-            const num2 = parseFloat(document.getElementById('mode2-num2').value);
-            const error = document.getElementById('error2');
-            const resultBox = document.getElementById('result2');
-            const resultVal = document.getElementById('res2-val');
-
-            if (isNaN(num1) || isNaN(num2) || num2 === 0) {
-                error.style.display = 'block';
-                resultBox.style.display = 'none';
-                return;
-            }
-
-            error.style.display = 'none';
-            const res = (num1 / num2) * 100;
-            resultVal.textContent = formatNum(res) + "%";
-            resultBox.style.display = 'block';
-        }
-
-        // Mode 3: Percentage Increase/Decrease
-        function calcMode3() {
-            const from = parseFloat(document.getElementById('mode3-from').value);
-            const to = parseFloat(document.getElementById('mode3-to').value);
-            const error = document.getElementById('error3');
-            const resultBox = document.getElementById('result3');
-            const resultVal = document.getElementById('res3-val');
-
-            if (isNaN(from) || isNaN(to) || from === 0) {
-                error.style.display = 'block';
-                error.textContent = (from === 0) ? "Start value cannot be zero for % change." : "Please enter valid numbers.";
-                resultBox.style.display = 'none';
-                return;
-            }
-
-            error.style.display = 'none';
-            const diff = to - from;
-            const res = (diff / from) * 100;
-            
-            let text = formatNum(res) + "%";
-            if (res > 0) text += " (Increase)";
-            else if (res < 0) text += " (Decrease)";
-            else text += " (No Change)";
-
-            resultVal.textContent = text;
-            resultBox.style.display = 'block';
-        }
-
-        // Accordion Logic
-        function toggleFaq(el) {
-            const item = el.parentElement;
-            const toggle = el.querySelector('.faq-toggle');
-            
-            if (item.classList.contains('active')) {
-                item.classList.remove('active');
-                toggle.textContent = '+';
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if(theme === 'dark') {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
             } else {
-                // Close others
-                document.querySelectorAll('.faq-item').forEach(i => {
-                    i.classList.remove('active');
-                    const t = i.querySelector('.faq-toggle');
-                    if(t) t.textContent = '+';
-                });
-                item.classList.add('active');
-                toggle.textContent = '-';
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
             }
         }
+
+        const savedTheme = localStorage.getItem('theme') || 
+                           (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // --- Calculation Logic ---
+
+        // 1. Percentage Of
+        function calcPercentageOf() {
+            const a = parseFloat(document.getElementById('t1_a').value);
+            const b = parseFloat(document.getElementById('t1_b').value);
+            const resEl = document.getElementById('t1_res');
+            
+            if (isNaN(a) || isNaN(b)) {
+                resEl.innerText = "--";
+                return;
+            }
+            const res = (a / 100) * b;
+            resEl.innerText = parseFloat(res.toFixed(4));
+        }
+
+        // 2. What Percent Is
+        function calcWhatPercent() {
+            const a = parseFloat(document.getElementById('t2_a').value);
+            const b = parseFloat(document.getElementById('t2_b').value);
+            const resEl = document.getElementById('t2_res');
+
+            if (isNaN(a) || isNaN(b) || b === 0) {
+                resEl.innerText = "--";
+                return;
+            }
+            const res = (a / b) * 100;
+            resEl.innerText = parseFloat(res.toFixed(4)) + "%";
+        }
+
+        // 3. Percentage Change
+        function calcPercentChange() {
+            const a = parseFloat(document.getElementById('t3_a').value);
+            const b = parseFloat(document.getElementById('t3_b').value);
+            const resEl = document.getElementById('t3_res');
+
+            if (isNaN(a) || isNaN(b) || a === 0) {
+                resEl.innerText = "--";
+                resEl.className = "res-value";
+                return;
+            }
+            const diff = b - a;
+            const res = (diff / a) * 100;
+            
+            resEl.innerText = (res > 0 ? "+" : "") + parseFloat(res.toFixed(2)) + "%";
+            resEl.className = "res-value " + (res >= 0 ? "positive" : "negative");
+        }
+
+        // Auto-calculate on Enter key
+        document.querySelectorAll('input').forEach(inp => {
+            inp.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    // Trigger the button inside the same parent card
+                    this.closest('.calc-card').querySelector('button').click();
+                }
+            });
+        });
+
+        // --- Accordion Logic ---
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+
+        // --- Modal Logic ---
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // --- Footer Year ---
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
