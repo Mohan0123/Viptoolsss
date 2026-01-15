@@ -1,614 +1,688 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SWZKBP3TTS');
-</script>
-    <link rel="canonical" href="https://viptool.online/age-calculator">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Online Age Calculator. This free age calculator online helps you calculate your exact age 
-by date of birth in years, months and days. 
-VIPTool Online age calculator is fast, accurate and mobile-friendly.">
-    <meta name="keywords" content="age calculator, date of birth calculator, calculate age, chronological age, birthday calculator, how old am i">
-    <meta name="author" content="Age Calculator Tool">
-    <meta name="robots" content="index, follow">
-    <title>Free Age Calculator Online – Exact Age by Date of Birth | VIPTool Online</title>
+    <meta name="description" content="Free Online Age Calculator. Calculate your exact age in years, months, and days. Find out total days lived and time until your next birthday.">
+    <title>Age Calculator - Calculate Exact Age Online | VIP Tool</title>
+    <link rel="canonical" href="https://viptool.online/age-calculator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
 
     <style>
-        /* RESET & BASE STYLES */
         :root {
-            --primary-color: #4f46e5; /* Indigo */
-            --primary-hover: #4338ca;
-            --secondary-color: #64748b;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --success-color: #10b981;
-            --error-color: #ef4444;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Dark Theme (Default) */
+            --bg-body-dark: #0f172a;
+            --bg-glass-dark: rgba(30, 41, 59, 0.6);
+            --border-dark: rgba(148, 163, 184, 0.1);
+            --text-main-dark: #f8fafc;
+            --text-muted-dark: #94a3b8;
+            --primary-dark: #818cf8;
+            --accent-dark: #22d3ee;
+            --card-shadow-dark: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+            --neon-glow: 0 0 20px rgba(129, 140, 248, 0.2);
+            --modal-bg-dark: #1e293b;
+
+            /* Light Theme */
+            --bg-body-light: #f3f4f6;
+            --bg-glass-light: rgba(255, 255, 255, 0.85);
+            --border-light: rgba(209, 213, 219, 0.6);
+            --text-main-light: #111827;
+            --text-muted-light: #6b7280;
+            --primary-light: #4f46e5;
+            --accent-light: #06b6d4;
+            --card-shadow-light: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            --modal-bg-light: #ffffff;
+
+            /* Dynamic Variables */
+            --bg-body: var(--bg-body-dark);
+            --bg-glass: var(--bg-glass-dark);
+            --border: var(--border-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --primary: var(--primary-dark);
+            --accent: var(--accent-dark);
+            --card-shadow: var(--card-shadow-dark);
+            --glow: var(--neon-glow);
+            --modal-bg: var(--modal-bg-dark);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        [data-theme="light"] {
+            --bg-body: var(--bg-body-light);
+            --bg-glass: var(--bg-glass-light);
+            --border: var(--border-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --primary: var(--primary-light);
+            --accent: var(--accent-light);
+            --card-shadow: var(--card-shadow-light);
+            --glow: none;
+            --modal-bg: var(--modal-bg-light);
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* LAYOUT UTILITIES */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        /* HEADER */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-        }
-
-        /* ADSENSE PLACEHOLDER */
-        .ad-placeholder {
-            width: 100%;
-            height: 100px;
-            background-color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.9rem;
-            border: 1px dashed #cbd5e1;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            flex-direction: column;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(129, 140, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
         }
 
-        /* TOOL INTERFACE */
-        .tool-wrapper {
-            border-top: 4px solid var(--primary-color);
+        /* Utils */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        a { color: var(--text-muted); text-decoration: none; transition: 0.3s; cursor: pointer; }
+        a:hover { color: var(--primary); }
+
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.05);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 50;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em; }
+        
+        .theme-btn {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .theme-btn:hover { border-color: var(--primary); box-shadow: var(--glow); }
+
+        /* Hero */
+        .hero { text-align: center; margin: 3rem 0 2rem; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(to right, var(--text-main), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Tool UI */
+        .tool-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
         }
 
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .input-control {
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .input-group label { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+        
+        input[type="date"] {
             width: 100%;
-            padding: 12px 15px;
-            font-size: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+            cursor: pointer;
         }
-
-        .input-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.6;
+            cursor: pointer;
         }
+        [data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0); }
+        
+        input:focus { outline: none; border-color: var(--primary); box-shadow: var(--glow); background: rgba(255,255,255,0.05); }
 
-        button.btn-primary {
+        .btn-calc {
             width: 100%;
-            background-color: var(--primary-color);
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border: none;
-            padding: 14px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: 0.3s;
+            box-shadow: var(--glow);
+            letter-spacing: 0.5px;
         }
+        .btn-calc:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        button.btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        /* OUTPUT AREA */
-        #result-area {
+        /* Results */
+        .result-container {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
             display: none;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
             animation: fadeIn 0.5s ease;
         }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .main-result {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
+        [data-theme="light"] .main-result { background: rgba(0,0,0,0.03); }
 
-        .age-cards {
+        .age-big { font-size: 2.5rem; font-weight: 700; color: var(--text-main); }
+        .age-big span { color: var(--accent); }
+        .age-label { color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
         }
-
-        .age-card {
-            background-color: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
+        .stat-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
             text-align: center;
         }
-
-        .age-value {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .age-label {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            text-transform: uppercase;
-        }
-
-        .extra-stats {
-            background: #fff;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .stat-row:last-child {
-            border-bottom: none;
-        }
+        .stat-val { display: block; font-size: 1.2rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+        .stat-lbl { font-size: 0.8rem; color: var(--text-muted); }
 
         .next-birthday {
-            background-color: #ecfdf5;
-            color: #065f46;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
+            margin-top: 1.5rem;
             text-align: center;
-            font-weight: 600;
-            border: 1px solid #a7f3d0;
+            padding: 1rem;
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border-radius: 12px;
+            color: var(--text-main);
+            border: 1px solid var(--border);
         }
 
-        .error-msg {
-            color: var(--error-color);
-            margin-top: 10px;
-            display: none;
-            font-weight: 600;
+        /* Related Tools */
+        .related-section { margin-bottom: 3rem; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .related-card {
+            display: block; text-align: center; padding: 1rem;
+            background: var(--bg-glass); border: 1px solid var(--border);
+            border-radius: 12px; color: var(--text-main); font-weight: 500;
+            transition: 0.3s;
+        }
+        .related-card:hover { border-color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); color: var(--primary); }
+
+        /* Content */
+        .content-block { background: var(--bg-glass); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; }
+        .content-block h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-block h3 { font-size: 1.4rem; margin: 1.5rem 0 0.8rem; color: var(--text-main); }
+        .content-block p, .content-block li { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7; }
+        .content-block ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+
+        /* Accordion */
+        .accordion-item { border-bottom: 1px solid var(--border); }
+        .accordion-btn { width: 100%; padding: 1.2rem 0; text-align: left; background: none; border: none; color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-muted); line-height: 1.6; }
+        .accordion-content p { padding-bottom: 1rem; }
+        .icon-plus { transition: 0.3s; }
+        .accordion-btn.active .icon-plus { transform: rotate(45deg); color: var(--primary); }
+
+        /* Ads */
+        .ad-slot { 
+            width: 100%; min-height: 100px; 
+            background: rgba(0,0,0,0.03); border: 1px dashed var(--border); 
+            border-radius: 12px; display: none; align-items: center; justify-content: center; 
+            margin: 2rem 0; color: var(--text-muted); font-size: 0.8rem;
         }
 
-        /* CONTENT STYLES */
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
+        /* Footer */
+        footer { margin-top: auto; padding: 3rem 0; background: var(--bg-glass); border-top: 1px solid var(--border); text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .copyright { color: var(--text-muted); font-size: 0.9rem; }
 
-        h3 {
-            font-size: 1.4rem;
-            margin: 20px 0 10px 0;
-            color: var(--text-color);
+        /* Modals */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);
+            z-index: 1000; display: none; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s;
         }
+        .modal-overlay.open { display: flex; opacity: 1; }
+        .modal-box {
+            background: var(--modal-bg); width: 90%; max-width: 600px; max-height: 85vh;
+            border-radius: 20px; border: 1px solid var(--border); padding: 2.5rem;
+            overflow-y: auto; position: relative; transform: translateY(20px); transition: 0.3s;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .modal-overlay.open .modal-box { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            background: rgba(255,255,255,0.05); border: none; color: var(--text-muted);
+            width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.2s;
+        }
+        .modal-close:hover { background: var(--primary); color: white; }
+        .modal-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .modal-text { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+        .modal-text h3 { color: var(--text-main); margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
 
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul, ol {
-            margin-bottom: 20px;
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* FAQ ACCORDION */
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-        }
-        
-        .faq-question {
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .faq-answer {
-            margin-top: 10px;
-            display: none;
-            color: var(--secondary-color);
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        /* LEGAL SECTIONS */
-        .legal-section {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-top: 40px;
-            background: #fff;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #1e293b;
-            color: #cbd5e1;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 0.9rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .section { padding: 20px; }
-            .age-cards { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .input-grid { grid-template-columns: 1fr; }
+            .age-big { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="container">
-        <h1>Age Calculator</h1>
-        <p class="subtitle">Calculate your exact age in years, months, and days instantly.</p>
+    <header>
+        <div class="container nav-inner">
+            <a href="https://viptool.online" class="logo">VIP Tool</a>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle Theme">
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
     </header>
 
-    <div class="container">
+    <main class="container">
         
-        <div class="ad-placeholder">
-            <span>Advertisement Space</span>
+        <div class="hero">
+            <h1>Age Calculator</h1>
+            <p class="subtitle">Determine your exact age, total days lived, and next birthday countdown.</p>
         </div>
 
-        <section class="section tool-wrapper">
-            
-            <div class="input-group">
-                <label for="dob-input">Date of Birth</label>
-                <input type="date" id="dob-input" class="input-control">
+        <div class="ad-slot">
             </div>
 
-            <div class="input-group">
-                <label for="target-date">Calculate Age At (Optional, defaults to Today)</label>
-                <input type="date" id="target-date" class="input-control">
+        <div class="tool-card">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                </div>
+                <div class="input-group">
+                    <label for="today">Calculate Age as of</label>
+                    <input type="date" id="today">
+                </div>
             </div>
 
-            <button class="btn-primary" onclick="calculateAge()">Calculate Age</button>
-            
-            <p class="error-msg" id="error-msg">Please enter a valid Date of Birth.</p>
+            <button class="btn-calc" onclick="calculateAge()">Calculate Age</button>
 
-            <div id="result-area">
-                <h3>Your Exact Age:</h3>
-                <div class="age-cards">
-                    <div class="age-card">
-                        <span class="age-value" id="res-years">0</span>
-                        <span class="age-label">Years</span>
-                    </div>
-                    <div class="age-card">
-                        <span class="age-value" id="res-months">0</span>
-                        <span class="age-label">Months</span>
-                    </div>
-                    <div class="age-card">
-                        <span class="age-value" id="res-days">0</span>
-                        <span class="age-label">Days</span>
-                    </div>
+            <div class="result-container" id="resultContainer">
+                <div class="main-result">
+                    <div class="age-big" id="ageDisplay">0 <span>Years</span> 0 <span>Months</span> 0 <span>Days</span></div>
+                    <div class="age-label">Your Exact Age</div>
                 </div>
 
-                <div class="extra-stats">
-                    <div class="stat-row">
-                        <span>Total Months:</span>
-                        <strong id="total-months">0</strong>
+                <div class="next-birthday" id="nextBirthday"></div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-val" id="totalMonths">0</span>
+                        <span class="stat-lbl">Total Months</span>
                     </div>
-                    <div class="stat-row">
-                        <span>Total Weeks:</span>
-                        <strong id="total-weeks">0</strong>
+                    <div class="stat-card">
+                        <span class="stat-val" id="totalWeeks">0</span>
+                        <span class="stat-lbl">Total Weeks</span>
                     </div>
-                    <div class="stat-row">
-                        <span>Total Days:</span>
-                        <strong id="total-days">0</strong>
+                    <div class="stat-card">
+                        <span class="stat-val" id="totalDays">0</span>
+                        <span class="stat-lbl">Total Days</span>
                     </div>
-                    <div class="stat-row">
-                        <span>Total Hours (Approx):</span>
-                        <strong id="total-hours">0</strong>
+                    <div class="stat-card">
+                        <span class="stat-val" id="totalHours">0</span>
+                        <span class="stat-lbl">Total Hours</span>
                     </div>
                 </div>
-
-                <div class="next-birthday" id="next-bday-msg">
-                    </div>
             </div>
-        </section>
-
-        <div class="ad-placeholder">
-            <span>Advertisement Space</span>
         </div>
 
-        <section class="section">
-            <h2>How to Use This Age Calculator</h2>
-            <ol>
-                <li><strong>Select Date of Birth:</strong> Click on the calendar icon or type your birth date in the "Date of Birth" field.</li>
-                <li><strong>Select Target Date (Optional):</strong> By default, the tool calculates your age as of today. You can change this date to calculate how old you were in the past or will be in the future.</li>
-                <li><strong>Click Calculate:</strong> Press the button to generate the results.</li>
-                <li><strong>View Results:</strong> See your age displayed in Years, Months, and Days, along with a detailed breakdown of total weeks and hours.</li>
-            </ol>
-        </section>
+        <div class="related-section">
+            <h3 style="text-align:center; color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.2rem;">Related Tools</h3>
+            <div class="related-grid">
+                <a href="https://viptool.online/roi-calculator" class="related-card">ROI Calculator</a>
+                <a href="https://viptool.online/gst-calculator" class="related-card">GST Calculator</a>
+                <a href="https://viptool.online/loan-calculator" class="related-card">Loan EMI Calculator</a>
+                <a href="https://viptool.online/percentage-calculator" class="related-card">Percentage Calc</a>
+                <a href="https://viptool.online/fuel-cost-converter" class="related-card">Fuel Converter</a>
+            </div>
+        </div>
 
-        <section class="section">
-            <h2>Benefits of Using Our Tool</h2>
-            <ul>
-                <li><strong>Precision:</strong> Get the exact calculation including leap years and varying month lengths.</li>
-                <li><strong>Speed:</strong> Instant results without manual math or counting on fingers.</li>
-                <li><strong>Versatility:</strong> Use it to calculate age differences, work anniversaries, or duration between two dates.</li>
-                <li><strong>Privacy:</strong> All calculations are done in your browser. No data is sent to any server.</li>
-            </ul>
-        </section>
+        <div class="ad-slot">
+            </div>
 
-        <section class="section">
-            <h2>Why Use an Online Age Calculator?</h2>
-            <p>Determining someone's exact age might seem simple, but the varying number of days in months and the occurrence of leap years every four years can make manual calculation tricky. An <strong>Age Calculator</strong> simplifies this process by providing a precise chronological age based on the Gregorian calendar.</p>
-
-            <h3>Chronological vs. Biological Age</h3>
-            <p>This tool calculates your <em>chronological age</em>, which is the amount of time that has passed from your birth to the given date. This is different from biological age, which depends on health, genetics, and lifestyle factors. Chronological age is the standard used for legal documents, school admissions, retirement planning, and government IDs.</p>
-
-            <h3>Common Uses for Age Calculation</h3>
-            <p>Beyond just curiosity, accurately knowing an age or duration is useful in many scenarios:</p>
-            <ul>
-                <li><strong>Administrative Forms:</strong> Filling out job applications, insurance forms, or medical records often requires precise age details.</li>
-                <li><strong>Event Planning:</strong> Calculating upcoming milestone birthdays (like 18th, 21st, or 50th) to plan parties in advance.</li>
-                <li><strong>Human Resources:</strong> Determining retirement dates or calculating tenure and experience for employees.</li>
-                <li><strong>Astrology:</strong> Finding exact age down to the day for horoscope charts.</li>
-            </ul>
-
-            <h3>How Accurate is the Calculation?</h3>
-            <p>Our tool uses standard Javascript Date objects which account for leap years (29 days in February) and the specific number of days in every month (30 or 31). This ensures that the result is mathematically correct according to the international date standard.</p>
-        </section>
-
-        <section class="section">
-            <h2>Frequently Asked Questions (FAQs)</h2>
+        <div class="content-block">
+            <h2>Why Use an Age Calculator?</h2>
+            <p>Calculating your age manually can be tricky, especially when accounting for leap years and varying month lengths (30 vs 31 days). Our <strong>Age Calculator</strong> provides precision down to the day, ensuring you never miscalculate for important forms or milestones.</p>
             
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Is this tool free to use? <span>+</span></div>
-                <div class="faq-answer">Yes, this Age Calculator is 100% free and open for everyone to use as many times as needed.</div>
-            </div>
+            <h3>Common Uses:</h3>
+            <ul>
+                <li><strong>Government Forms:</strong> Accurately fill out "Age as of" fields for exams like UPSC, SSC, or banking.</li>
+                <li><strong>Retirement Planning:</strong> Calculate exact years left until retirement age.</li>
+                <li><strong>Medical Records:</strong> Provide precise age in months/days for pediatric appointments.</li>
+                <li><strong>Astrology:</strong> Determine exact days lived for charts and predictions.</li>
+            </ul>
 
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Does it account for leap years? <span>+</span></div>
-                <div class="faq-answer">Absolutely. The calculator logic automatically adjusts for leap years to provide the correct number of days.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Do you store my date of birth? <span>+</span></div>
-                <div class="faq-answer">No. This tool runs entirely on the "client-side" (in your browser). We do not collect, store, or share your personal data.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Can I calculate age for a future date? <span>+</span></div>
-                <div class="faq-answer">Yes, simply change the "Calculate Age At" date to a future date to see how old you will be at that specific time.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">What format is the age displayed in? <span>+</span></div>
-                <div class="faq-answer">The primary output is in Years, Months, and Days. We also provide a breakdown of total months, weeks, and days.</div>
-            </div>
-        </section>
-
-        <div class="legal-section" id="privacy">
-            <h3>Privacy Policy</h3>
-            <p><strong>Last Updated: 30/12/2025</strong></p>
-            <p>Your privacy is important to us. This Privacy Policy explains how we handle information.</p>
-            <p><strong>1. Data Collection:</strong> We do not collect, store, or transmit any personal data entered into the calculator (such as Date of Birth). All calculations are performed locally on your device.</p>
-            <p><strong>2. Cookies:</strong> We may use cookies to improve user experience. You can disable cookies in your browser settings.</p>
-            <p><strong>3. Third-Party Ads (Google AdSense):</strong> We use third-party advertising companies to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you. If you would like more information about this practice and to know your choices about not having this information used by these companies, please visit Google's ad settings.</p>
-            <p><strong>4. Analytics:</strong> We may use tools like Google Analytics to understand traffic trends. This data is anonymous.</p>
+            <h3>How It Works</h3>
+            <p>The tool takes your Date of Birth (DOB) and compares it against the "As of" date (defaulting to today). It calculates the full years, then the remaining months, and finally the days. It also calculates the total duration in various units like weeks and hours for a comprehensive view of your timeline.</p>
         </div>
 
-        <div class="legal-section" id="terms">
-            <h3>Terms and Conditions</h3>
-            <p>By using this website, you agree to the following terms:</p>
-            <p><strong>1. Usage:</strong> This tool is provided for personal and educational use.</p>
-            <p><strong>2. Liability:</strong> We are not responsible for any errors or damages resulting from the use of this tool. While we strive for accuracy, users should verify critical calculations.</p>
-            <p><strong>3. Modifications:</strong> We reserve the right to modify or discontinue the service at any time without notice.</p>
+        <div class="content-block">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Is this Age Calculator accurate?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, our algorithm accounts for leap years and the specific number of days in each month to provide 100% accurate results.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Does it calculate my next birthday?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, the tool displays a countdown showing exactly how many months and days are left until your next birthday.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Is my date of birth saved?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>No. All calculations are performed locally on your device (client-side). We do not store or transmit your personal data.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        Can I calculate age for a past date?
+                        <span class="icon-plus">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, simply change the "Calculate Age as of" date to any date in the past to see how old you were at that specific time.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="legal-section" id="disclaimer">
-            <h3>Disclaimer</h3>
-            <p>The materials on this website are provided "as is". We make no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
-        </div>
-
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2025 VIP Tool. All Rights Reserved.</p>
-        <p>
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#terms">Terms & Conditions</a> | 
-            <a href="#disclaimer">Disclaimer</a>
-        </p>
+        <div class="container">
+            <div class="footer-links">
+                <a onclick="openModal('privacy')">Privacy Policy</a>
+                <a onclick="openModal('terms')">Terms & Conditions</a>
+                <a onclick="openModal('disclaimer')">Disclaimer</a>
+                <a href="https://viptool.online">All Tools</a>
+            </div>
+            <p class="copyright">© <span id="year"></span> VIP Tool. All rights reserved.</p>
+        </div>
     </footer>
 
+    <div id="privacy" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('privacy')">✕</button>
+            <div class="modal-title">Privacy Policy</div>
+            <div class="modal-text">
+                <p><strong>Effective Date:</strong> January 1, 2026</p>
+                <h3>1. Data Collection</h3>
+                <p>VIP Tool operates as a client-side application. We do not collect, store, or transmit personal data (such as Date of Birth) entered into the Age Calculator. All calculations happen locally on your device.</p>
+                <h3>2. Cookies & Analytics</h3>
+                <p>We use Google Analytics (G-SWZKBP3TTS) to track anonymous usage patterns to improve our service. We may use local storage to save your theme preference (Dark/Light). Third-party vendors, including Google, use cookies to serve ads based on prior visits.</p>
+                <h3>3. Security</h3>
+                <p>Since no data is sent to our servers, your personal information remains secure on your device.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('terms')">✕</button>
+            <div class="modal-title">Terms & Conditions</div>
+            <div class="modal-text">
+                <h3>1. Acceptance</h3>
+                <p>By using VIP Tool, you agree to these terms. The tools are free for personal and commercial use.</p>
+                <h3>2. Accuracy</h3>
+                <p>While we strive for precision, VIP Tool does not guarantee 100% accuracy for legal or critical medical purposes. Users should verify results independently.</p>
+                <h3>3. Liability</h3>
+                <p>VIP Tool is not liable for any damages or losses resulting from the use of our tools.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="disclaimer" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('disclaimer')">✕</button>
+            <div class="modal-title">Disclaimer</div>
+            <div class="modal-text">
+                <p>The Age Calculator is provided for informational purposes only. It is not an official government tool and should not be used as the sole basis for legal age verification.</p>
+                <p>This website is not affiliated with any government entity. AdSense ads shown are automated and do not imply endorsement.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Age Calculator",
+      "url": "https://viptool.online/age-calculator",
+      "description": "Calculate your exact age in years, months, and days.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is this Age Calculator accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it accounts for leap years and specific month lengths for 100% accuracy."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is my date of birth saved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all calculations are performed locally on your device."
+        }
+      }]
+    }
+    </script>
+
     <script>
-        // Set default date for "Target Date" to today
-        document.getElementById('target-date').valueAsDate = new Date();
+        // --- Theme Logic ---
+        const themeBtn = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if(theme === 'dark') {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            } else {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 
+                           (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        setTheme(savedTheme);
+
+        themeBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // --- Age Calculation Logic ---
+        // Set default date to today
+        document.getElementById('today').valueAsDate = new Date();
 
         function calculateAge() {
-            const dobInput = document.getElementById('dob-input').value;
-            const targetInput = document.getElementById('target-date').value;
-            const errorMsg = document.getElementById('error-msg');
-            const resultArea = document.getElementById('result-area');
+            const dobVal = document.getElementById('dob').value;
+            const todayVal = document.getElementById('today').value;
 
-            // Validation
-            if (!dobInput) {
-                errorMsg.style.display = 'block';
-                resultArea.style.display = 'none';
+            if(!dobVal || !todayVal) {
+                alert("Please select both Date of Birth and the Calculation Date.");
                 return;
             }
 
-            const birthDate = new Date(dobInput);
-            const targetDate = targetInput ? new Date(targetInput) : new Date();
+            const dob = new Date(dobVal);
+            const today = new Date(todayVal);
 
-            if (birthDate > targetDate) {
-                errorMsg.textContent = "Date of Birth cannot be in the future relative to the target date.";
-                errorMsg.style.display = 'block';
-                resultArea.style.display = 'none';
+            if(dob > today) {
+                alert("Date of Birth cannot be in the future relative to the calculation date.");
                 return;
             }
 
-            errorMsg.style.display = 'none';
-
-            // Calculate Difference
-            let years = targetDate.getFullYear() - birthDate.getFullYear();
-            let months = targetDate.getMonth() - birthDate.getMonth();
-            let days = targetDate.getDate() - birthDate.getDate();
+            // Calculate Year, Month, Day
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
 
             // Adjust for negative days (borrow from previous month)
             if (days < 0) {
                 months--;
                 // Get days in previous month
-                const prevMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0);
+                const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
                 days += prevMonth.getDate();
             }
 
-            // Adjust for negative months (borrow from previous year)
+            // Adjust for negative months (borrow from year)
             if (months < 0) {
                 years--;
                 months += 12;
             }
 
-            // Calculate Total Stats
-            const diffTime = Math.abs(targetDate - birthDate);
-            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            // Total Stats
+            const diffTime = Math.abs(today - dob);
+            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
             const totalWeeks = Math.floor(totalDays / 7);
-            const totalMonths = (years * 12) + months; // approx
             const totalHours = totalDays * 24;
+            // Approximate Total Months (Standardized) or use precise year * 12 + months
+            const totalMonthsExact = (years * 12) + months;
 
-            // Calculate Next Birthday
-            const currentYear = targetDate.getFullYear();
-            let nextBirthday = new Date(birthDate);
-            nextBirthday.setFullYear(currentYear);
-
-            if (nextBirthday < targetDate) {
-                nextBirthday.setFullYear(currentYear + 1);
-            } else if (nextBirthday.getDate() === targetDate.getDate() && nextBirthday.getMonth() === targetDate.getMonth()) {
-                // Today is birthday
-                nextBirthday = null; 
+            // Next Birthday Logic
+            const nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+            if (today > nextBirthday) {
+                nextBirthday.setFullYear(today.getFullYear() + 1);
             }
+            const diffNext = nextBirthday - today;
+            const daysToNext = Math.ceil(diffNext / (1000 * 60 * 60 * 24));
+            
+            // Format Next Birthday String
+            let nbMonths = 0;
+            let nbDays = daysToNext;
+            // Simple approximation for display:
+            if(daysToNext >= 30) {
+                 // For display only, rough estimate
+            }
+            
+            // Precise Next Birthday (Month/Day breakdown)
+            let nextBMonth = nextBirthday.getMonth() - today.getMonth();
+            let nextBDay = nextBirthday.getDate() - today.getDate();
+            if(nextBDay < 0) {
+                nextBMonth--;
+                const prevM = new Date(nextBirthday.getFullYear(), nextBirthday.getMonth(), 0);
+                nextBDay += prevM.getDate();
+            }
+            if(nextBMonth < 0) nextBMonth += 12;
 
             // Update UI
-            document.getElementById('res-years').textContent = years;
-            document.getElementById('res-months').textContent = months;
-            document.getElementById('res-days').textContent = days;
-
-            document.getElementById('total-months').textContent = totalMonths.toLocaleString();
-            document.getElementById('total-weeks').textContent = totalWeeks.toLocaleString();
-            document.getElementById('total-days').textContent = totalDays.toLocaleString();
-            document.getElementById('total-hours').textContent = totalHours.toLocaleString();
-
-            // Next Birthday Message
-            const nextBdayMsg = document.getElementById('next-bday-msg');
-            if (nextBirthday === null) {
-                nextBdayMsg.innerHTML = "🎉 Happy Birthday! 🎉";
-            } else {
-                const diffNext = nextBirthday - targetDate;
-                const daysToNext = Math.ceil(diffNext / (1000 * 60 * 60 * 24));
-                const dayStr = daysToNext === 1 ? 'day' : 'days';
-                
-                // Format next birthday date
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                nextBdayMsg.innerHTML = `Your next birthday is in <strong>${daysToNext} ${dayStr}</strong><br><span style="font-size:0.9rem; color:#666">(${nextBirthday.toLocaleDateString(undefined, options)})</span>`;
-            }
-
-            resultArea.style.display = 'block';
-        }
-
-        // FAQ Accordion Logic
-        function toggleFaq(element) {
-            const parent = element.parentElement;
-            const isOpen = parent.classList.contains('active');
+            document.getElementById('ageDisplay').innerHTML = `${years} <span>Years</span> ${months} <span>Months</span> ${days} <span>Days</span>`;
             
-            // Close all
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.faq-question span').textContent = '+';
-            });
+            const nextBText = daysToNext === 0 
+                ? "🎉 Happy Birthday! It's Today! 🎉" 
+                : `Next Birthday in: <strong>${nextBMonth} Months, ${nextBDay} Days</strong>`;
+            
+            document.getElementById('nextBirthday').innerHTML = nextBText;
 
-            // Open clicked if it wasn't open
-            if (!isOpen) {
-                parent.classList.add('active');
-                element.querySelector('span').textContent = '-';
+            // Animate Stats (Simple Count Up could be added, for now direct set)
+            document.getElementById('totalMonths').innerText = totalMonthsExact.toLocaleString();
+            document.getElementById('totalWeeks').innerText = totalWeeks.toLocaleString();
+            document.getElementById('totalDays').innerText = totalDays.toLocaleString();
+            document.getElementById('totalHours').innerText = totalHours.toLocaleString();
+
+            document.getElementById('resultContainer').style.display = 'block';
+        }
+
+        // --- Modal Logic ---
+        window.openModal = function(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        window.closeModal = function(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('open');
+                document.body.style.overflow = 'auto';
             }
         }
+
+        // --- Accordion Logic ---
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+
+        // Year Update
+        document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
 </html>
