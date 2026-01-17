@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir PDF a Imagen | VIP Tool</title>
+    <meta name="description" content="Convierte archivos PDF a imágenes de alta calidad (JPG/PNG) gratis. Herramienta rápida, segura y privada. No requiere instalación.">
+    <meta name="theme-color" content="#6366f1">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Light Theme */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-primary: #4f46e5; /* Indigo 600 */
+            --accent-hover: #4338ca;
+            --accent-glow: rgba(79, 70, 229, 0.3);
+            --border-color: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --card-radius: 16px;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-primary: #0f172a; /* Slate 900 */
+            --bg-secondary: #1e293b; /* Slate 800 */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1; /* Indigo 500 */
+            --accent-hover: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --border-color: #334155;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        body { background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Layout Utilities */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; border: none; font-size: 1rem; gap: 8px; }
+        .btn-primary { background-color: var(--accent-primary); color: white; box-shadow: 0 4px 14px var(--accent-glow); }
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-glow); }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
+        .btn-secondary:hover { background-color: var(--glass-border); border-color: var(--accent-primary); }
+        
+        /* Header */
+        header { padding: 20px 0; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); background: rgba(var(--bg-primary), 0.8); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; text-decoration: none; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--text-secondary); font-size: 1.25rem; padding: 8px; border-radius: 50%; transition: all 0.2s; }
+        .theme-toggle:hover { background-color: var(--border-color); color: var(--text-primary); }
+
+        /* Tool Section */
+        .tool-section { padding: 60px 0; text-align: center; }
+        .tool-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; background: linear-gradient(to right, var(--text-primary), var(--text-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tool-desc { color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* Input Zone */
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.02);
+            position: relative;
+        }
+        .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent-primary); background-color: rgba(79, 70, 229, 0.05); }
+        .drop-zone input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        .drop-icon { font-size: 3rem; color: var(--text-secondary); margin-bottom: 16px; display: block; }
+        .drop-text { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; }
+        .drop-sub { font-size: 0.9rem; color: var(--text-secondary); }
+
+        /* Controls */
+        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; display: none; }
+        .select-wrapper select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none; }
+        .select-wrapper select:focus { border-color: var(--accent-primary); }
+
+        /* Results */
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .result-item {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+        .result-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .result-img-container {
+            height: 200px;
+            width: 100%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .result-img-container img { width: 100%; height: 100%; object-fit: contain; }
+        .result-meta { padding: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-secondary); }
+        .download-mini { color: var(--accent-primary); cursor: pointer; text-decoration: none; font-weight: 600; }
+
+        .progress-container { margin-top: 20px; display: none; }
+        .progress-bar { width: 100%; height: 6px; background: var(--border-color); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent-primary); width: 0%; transition: width 0.3s; }
+        .status-text { text-align: center; font-size: 0.9rem; margin-top: 8px; color: var(--text-secondary); }
+
+        .file-info { margin-top: 15px; display: none; align-items: center; justify-content: center; gap: 10px; background: var(--bg-secondary); padding: 10px; border-radius: 8px; font-size: 0.9rem; }
+        
+        /* Content Sections */
+        .content-section { padding: 40px 0; border-top: 1px solid var(--border-color); }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 24px; color: var(--text-primary); }
+        .text-block { color: var(--text-secondary); margin-bottom: 20px; font-size: 1rem; line-height: 1.7; }
+        .text-block ul { padding-left: 20px; margin-bottom: 20px; }
+        .text-block li { margin-bottom: 10px; }
+
+        /* Related Tools */
+        .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .tool-link { display: block; padding: 20px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; text-decoration: none; transition: all 0.2s; }
+        .tool-link:hover { border-color: var(--accent-primary); transform: translateY(-2px); }
+        .tool-link-title { font-weight: 600; color: var(--text-primary); margin-bottom: 4px; display: block; }
+        .tool-link-desc { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* FAQ */
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 20px 0; }
+        .faq-question { font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-primary); }
+        .faq-answer { margin-top: 12px; color: var(--text-secondary); display: none; font-size: 0.95rem; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-icon { transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border-color); padding: 40px 0; margin-top: auto; background-color: var(--bg-primary); }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: color 0.2s; }
+        .footer-link:hover { color: var(--accent-primary); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-content { background: var(--bg-primary); padding: 30px; border-radius: 16px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; border: 1px solid var(--border-color); }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); background: none; border: none; }
+        .modal-title { margin-bottom: 20px; color: var(--text-primary); }
+        .modal-text { font-size: 0.9rem; color: var(--text-secondary); white-space: pre-line; }
+
+        @media (max-width: 768px) {
+            .tool-title { font-size: 2rem; }
+            .glass-card { padding: 20px; }
+            .controls { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script>
+        // Theme Init
+        const savedTheme = localStorage.getItem('viptool-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="https://viptool.online/es/" class="logo">VIP Tool</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tool-section">
+                <h1 class="tool-title">Convertir PDF a Imagen</h1>
+                <p class="tool-desc">Herramienta gratuita para extraer páginas de PDF y guardarlas como imágenes JPG de alta calidad en segundos.</p>
+
+                <div class="glass-card">
+                    <div class="drop-zone" id="dropZone">
+                        <input type="file" id="fileInput" accept=".pdf">
+                        <span class="drop-icon">📄</span>
+                        <div class="drop-text">Arrastra tu PDF aquí</div>
+                        <div class="drop-sub">o haz clic para seleccionar archivo</div>
+                    </div>
+
+                    <div id="fileInfo" class="file-info"></div>
+
+                    <div class="controls" id="controls">
+                        <div class="select-wrapper">
+                            <select id="formatSelect">
+                                <option value="jpeg">Formato: JPG</option>
+                                <option value="png">Formato: PNG</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="convertBtn">Convertir PDF</button>
+                    </div>
+
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                        <div class="status-text" id="statusText">Procesando...</div>
+                    </div>
+
+                    <div id="downloadAllContainer" style="margin-top:20px; display:none;">
+                        <button class="btn btn-primary" id="downloadZipBtn">Descargar Todo (ZIP)</button>
+                    </div>
+
+                    <div class="result-grid" id="resultGrid"></div>
+                </div>
+            </section>
+
+            <section class="container" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: var(--text-primary);">Otras herramientas útiles</h3>
+                <div class="related-tools">
+                    <a href="/es/word-counter.html" class="tool-link">
+                        <span class="tool-link-title">Contador de Palabras</span>
+                        <span class="tool-link-desc">Cuenta palabras y caracteres en tiempo real.</span>
+                    </a>
+                    <a href="/es/image-compressor.html" class="tool-link">
+                        <span class="tool-link-title">Compresor de Imágenes</span>
+                        <span class="tool-link-desc">Reduce el tamaño de tus fotos sin perder calidad.</span>
+                    </a>
+                    <a href="/es/password-generator.html" class="tool-link">
+                        <span class="tool-link-title">Generador de Contraseñas</span>
+                        <span class="tool-link-desc">Crea contraseñas seguras y aleatorias.</span>
+                    </a>
+                    <a href="/es/qr-generator.html" class="tool-link">
+                        <span class="tool-link-title">Generador de QR</span>
+                        <span class="tool-link-desc">Crea códigos QR personalizados gratis.</span>
+                    </a>
+                </div>
+            </section>
+
+            <div id="ad-slot" style="min-height: 0px; margin: 40px 0; text-align: center; overflow: hidden;">
+                </div>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">¿Cómo convertir PDF a Imagen gratis?</h2>
+                    <div class="text-block">
+                        <ol style="padding-left: 20px;">
+                            <li><strong>Sube tu archivo:</strong> Arrastra y suelta tu documento PDF en el cuadro de carga o haz clic para seleccionarlo desde tu dispositivo.</li>
+                            <li><strong>Elige el formato:</strong> Selecciona si prefieres las imágenes en formato JPG (más ligero) o PNG (mayor calidad).</li>
+                            <li><strong>Convierte:</strong> Presiona el botón "Convertir PDF". La herramienta procesará cada página individualmente.</li>
+                            <li><strong>Descarga:</strong> Puedes descargar cada página como una imagen individual o bajar un archivo ZIP con todas las imágenes.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">¿Por qué usar VIP Tool para convertir PDF?</h2>
+                    <div class="text-block">
+                        <ul>
+                            <li><strong>Privacidad Total:</strong> La conversión se realiza en tu navegador. Tus archivos nunca se suben a ningún servidor externo.</li>
+                            <li><strong>Calidad HD:</strong> Renderizado de alta definición para asegurar que los textos y gráficos se vean nítidos.</li>
+                            <li><strong>Sin Límite:</strong> Convierte tantos archivos como necesites sin restricciones y totalmente gratis.</li>
+                            <li><strong>Compatible con Móviles:</strong> Funciona perfectamente en teléfonos Android, iPhone, tablets y computadoras de escritorio.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Conversor de PDF seguro y rápido</h2>
+                    <div class="text-block">
+                        <p>En el mundo digital actual, la flexibilidad de formatos es crucial. A menudo recibimos documentos PDF que necesitamos compartir en redes sociales, insertar en presentaciones o editar en software de diseño gráfico. Nuestra herramienta <strong>PDF a Imagen</strong> de VIP Tool es la solución perfecta para transformar documentos estáticos en archivos visuales versátiles.</p>
+                        <p>A diferencia de otros convertidores online, nuestra tecnología basada en JavaScript procesa el archivo localmente en tu dispositivo. Esto no solo garantiza una velocidad superior al no tener que esperar cargas y descargas, sino que ofrece el máximo nivel de seguridad para documentos confidenciales.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Preguntas Frecuentes</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Es gratuito este convertidor? <span class="faq-icon">▼</span></div>
+                        <div class="faq-answer">Sí, nuestra herramienta es 100% gratuita y no requiere registro ni suscripciones.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Se guardan mis archivos en su servidor? <span class="faq-icon">▼</span></div>
+                        <div class="faq-answer">No. Toda la conversión ocurre en tu navegador (Client-side). Ningún archivo sale de tu dispositivo, garantizando tu privacidad.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Puedo convertir un PDF de muchas páginas? <span class="faq-icon">▼</span></div>
+                        <div class="faq-answer">Sí, no hay límite estricto de páginas, aunque el rendimiento dependerá de la potencia de tu dispositivo.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Qué formatos de imagen soporta? <span class="faq-icon">▼</span></div>
+                        <div class="faq-answer">Actualmente soportamos exportación a JPG (ideal para web y compartir) y PNG (mejor calidad para edición).</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Funciona en celular? <span class="faq-icon">▼</span></div>
+                        <div class="faq-answer">Absolutamente. Nuestra web es responsiva y funciona en iOS y Android sin necesidad de instalar apps.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 VIP Tool. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#" onclick="openModal('privacyModal'); return false;" class="footer-link">Política de Privacidad</a>
+                <a href="#" onclick="openModal('termsModal'); return false;" class="footer-link">Términos y Condiciones</a>
+                <a href="#" onclick="openModal('disclaimerModal'); return false;" class="footer-link">Descargo de Responsabilidad</a>
+                <a href="https://viptool.online" class="footer-link">Todas las Herramientas</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            <h3 class="modal-title">Política de Privacidad</h3>
+            <div class="modal-text">
+                En VIP Tool, valoramos su privacidad.
+                
+                1. Recopilación de datos: Utilizamos Google Analytics (GA4) para recopilar estadísticas de uso anónimas. No recopilamos datos personales identificables sin su consentimiento.
+                
+                2. Uso de archivos: Las herramientas de este sitio (como el conversor de PDF) procesan los archivos localmente en su navegador. Sus archivos NO se cargan a nuestros servidores.
+                
+                3. Cookies: Utilizamos cookies técnicas para recordar su preferencia de tema (oscuro/claro) y cookies de terceros de Google para análisis y publicidad.
+                
+                4. Contacto: Si tiene dudas, contáctenos a través de los canales oficiales.
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            <h3 class="modal-title">Términos y Condiciones</h3>
+            <div class="modal-text">
+                Al usar VIP Tool, usted acepta lo siguiente:
+                
+                1. Uso: Estas herramientas se proporcionan "tal cual". Usted es responsable del uso que haga de los archivos generados.
+                
+                2. Propiedad Intelectual: No debe usar esta herramienta para violar derechos de autor de terceros.
+                
+                3. Disponibilidad: No garantizamos que el sitio esté disponible el 100% del tiempo. Nos reservamos el derecho de modificar las herramientas sin previo aviso.
+            </div>
+        </div>
+    </div>
+
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+            <h3 class="modal-title">Descargo de Responsabilidad</h3>
+            <div class="modal-text">
+                VIP Tool no se hace responsable de:
+                
+                1. Pérdida de datos resultante del uso de nuestras herramientas.
+                2. Errores en la conversión o procesamiento de archivos.
+                3. El contenido de los archivos procesados por el usuario.
+                
+                Esta herramienta es para fines educativos y de productividad. Úsela bajo su propio riesgo.
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Convertidor PDF a Imagen VIP Tool",
+      "url": "https://viptool.online/es/pdf-to-image",
+      "description": "Herramienta online gratuita para convertir archivos PDF a imágenes JPG o PNG de alta calidad.",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Es gratuito este convertidor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, es completamente gratuito y sin límites de uso."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Es seguro usar esta herramienta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, el procesamiento se realiza en su navegador, los archivos nunca se suben a un servidor."
+        }
+      }]
+    }
+    </script>
+
+    <script>
+        // --- UI Interactions ---
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('viptool-theme', next);
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                item.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Modals
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        // --- PDF Logic ---
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const controls = document.getElementById('controls');
+        const resultGrid = document.getElementById('resultGrid');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const statusText = document.getElementById('statusText');
+        const fileInfo = document.getElementById('fileInfo');
+        const downloadZipBtn = document.getElementById('downloadZipBtn');
+        const downloadAllContainer = document.getElementById('downloadAllContainer');
+
+        let currentPdf = null;
+        let generatedImages = []; // Stores {blob, filename}
+
+        // Drag & Drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+        function handleFiles(files) {
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                const file = files[0];
+                fileInfo.innerHTML = `<strong>Archivo seleccionado:</strong> ${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`;
+                fileInfo.style.display = 'flex';
+                controls.style.display = 'grid';
+                
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    const typedarray = new Uint8Array(ev.target.result);
+                    pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+                        currentPdf = pdf;
+                        console.log('PDF Loaded, pages:', pdf.numPages);
+                        // Reset UI
+                        resultGrid.innerHTML = '';
+                        generatedImages = [];
+                        downloadAllContainer.style.display = 'none';
+                    });
+                };
+                reader.readAsArrayBuffer(file);
+            } else {
+                alert('Por favor selecciona un archivo PDF válido.');
+            }
+        }
+
+        convertBtn.addEventListener('click', async () => {
+            if (!currentPdf) return;
+
+            const format = document.getElementById('formatSelect').value; // jpeg or png
+            const totalPages = currentPdf.numPages;
+            
+            resultGrid.innerHTML = '';
+            generatedImages = [];
+            progressContainer.style.display = 'block';
+            controls.style.opacity = '0.5';
+            convertBtn.disabled = true;
+
+            const zip = new JSZip();
+
+            for (let i = 1; i <= totalPages; i++) {
+                // Update Progress
+                const percent = Math.round(((i - 1) / totalPages) * 100);
+                progressFill.style.width = percent + '%';
+                statusText.innerText = `Procesando página ${i} de ${totalPages}...`;
+
+                try {
+                    const page = await currentPdf.getPage(i);
+                    const scale = 2; // High quality
+                    const viewport = page.getViewport({scale: scale});
+
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+
+                    // Convert to Blob
+                    const blob = await new Promise(resolve => canvas.toBlob(resolve, `image/${format}`, 0.9));
+                    const filename = `pagina-${i}.${format}`;
+                    
+                    // Add to ZIP
+                    zip.file(filename, blob);
+
+                    // Add to Grid
+                    const url = URL.createObjectURL(blob);
+                    
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+                    div.innerHTML = `
+                        <div class="result-img-container">
+                            <img src="${url}" alt="Página ${i}">
+                        </div>
+                        <div class="result-meta">
+                            <span>Pág ${i}</span>
+                            <a href="${url}" download="${filename}" class="download-mini">⬇ Descargar</a>
+                        </div>
+                    `;
+                    resultGrid.appendChild(div);
+
+                } catch (err) {
+                    console.error("Error page " + i, err);
+                }
+            }
+
+            // Finish
+            progressFill.style.width = '100%';
+            statusText.innerText = '¡Conversión completada!';
+            controls.style.opacity = '1';
+            convertBtn.disabled = false;
+
+            // Setup Zip Download
+            const zipContent = await zip.generateAsync({type:"blob"});
+            downloadAllContainer.style.display = 'block';
+            
+            downloadZipBtn.onclick = () => {
+                saveAs(zipContent, "imagenes-pdf-viptool.zip");
+            };
+        });
+
+    </script>
+</body>
+</html>
