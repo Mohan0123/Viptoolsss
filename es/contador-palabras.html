@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palabras - Cuenta Palabras y Caracteres Online | VIP Tool</title>
+    <meta name="description" content="Herramienta gratuita para contar palabras, caracteres, oraciones y párrafos en tiempo real. Ideal para escritores, estudiantes y SEO. Rápido y seguro.">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Theme Initialization (No Flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme || 'dark');
+        })();
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Contador de Palabras",
+          "url": "https://viptool.online/es/contador-palabras",
+          "description": "Herramienta online para contar palabras y caracteres en tiempo real.",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "Any",
+          "inLanguage": "es",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "VIP Tool",
+            "url": "https://viptool.online",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://viptool.online/logo.png"
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://viptool.online/es"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Herramientas",
+              "item": "https://viptool.online/es/herramientas"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Contador de Palabras",
+              "item": "https://viptool.online/es/contador-palabras"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Es gratuito este contador de palabras?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, esta herramienta es 100% gratuita y sin límites de uso."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Guardan el texto que escribo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Todo el procesamiento se realiza en su navegador. Ningún texto se envía a nuestros servidores."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuenta espacios como caracteres?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nuestra herramienta muestra ambos conteos: caracteres con espacios y caracteres sin espacios."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Design Tokens: Neon Futuristic SaaS */
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --accent: #2d6aff;
+            --surface-dark: #0a0e17;
+            --surface-light: #f8fafc;
+            --glass-bg-dark: rgba(20, 25, 40, 0.75);
+            --glass-bg-light: rgba(255, 255, 255, 0.85);
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-main-dark: #ffffff;
+            --text-muted-dark: #94a3b8;
+            --text-main-light: #1e293b;
+            --text-muted-light: #64748b;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --card-radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--surface-dark);
+            --card-bg: var(--glass-bg-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --border: var(--border-dark);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--surface-light);
+            --card-bg: var(--glass-bg-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --border: var(--border-light);
+            --input-bg: rgba(255, 255, 255, 0.6);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            transition: background var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover { border-color: var(--primary); background: rgba(255,255,255,0.1); }
+        [data-theme="light"] .icon-moon { display: none; }
+        [data-theme="dark"] .icon-sun { display: none; }
+
+        /* Main Layout */
+        main {
+            flex: 1;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tool-header { text-align: center; margin-bottom: 2.5rem; }
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            color: var(--text-main); /* Fallback */
+        }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Tool Interface */
+        .tool-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5;
+        }
+
+        .input-area { margin-bottom: 2rem; }
+        textarea {
+            width: 100%;
+            height: 250px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+        textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.2); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        [data-theme="light"] .stat-card { background: rgba(255,255,255,0.5); }
+        .stat-val { font-size: 1.8rem; font-weight: 700; color: var(--primary); display: block; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .action-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .btn-primary { background: var(--primary); color: #000; }
+        .btn-primary:hover { background: #00d5e0; box-shadow: 0 0 15px rgba(0,242,255,0.4); }
+        .btn-reset { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+        .btn-reset:hover { border-color: #ff4444; color: #ff4444; }
+
+        /* Related Tools */
+        .related-section { margin-bottom: 3rem; }
+        .related-header { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 700; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .related-card {
+            display: block;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            text-align: center;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .related-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+
+        /* Content & Ads */
+        .content-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-block p, .content-block li { color: var(--text-muted); margin-bottom: 1rem; }
+        .content-block ul { margin-left: 1.5rem; }
+
+        .ad-container {
+            width: 100%; min-height: 100px;
+            background: rgba(0,0,0,0.02);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            display: none; /* Auto-show via JS */
+            align-items: center; justify-content: center;
+            margin: 2rem 0; overflow: hidden;
+        }
+
+        .faq-item { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .faq-item:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+        .faq-q { font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+        .faq-a { color: var(--text-muted); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--bg);
+            margin-top: auto;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .footer-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
+        .footer-link:hover { color: var(--primary); }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            z-index: 1000; display: none; justify-content: center; align-items: center; padding: 1rem;
+        }
+        .modal-active { display: flex; animation: fadeIn 0.3s ease; }
+        .modal-content {
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 100%; max-width: 600px; max-height: 80vh;
+            overflow-y: auto; padding: 2rem; position: relative;
+        }
+        [data-theme="light"] .modal-content { background: var(--surface-light); }
+        .close-modal {
+            position: absolute; top: 1rem; right: 1rem;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.5rem; cursor: pointer;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .tool-card { padding: 1.5rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="https://viptool.online/es" class="brand">VIP Tool</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar Tema">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="tool-header">
+            <h1>Contador de Palabras</h1>
+            <p class="subtitle">Herramienta profesional para análisis de texto y SEO</p>
+        </div>
+
+        <div class="ad-container" id="ad-top">
+            <!-- AdSense Placeholder -->
+        </div>
+
+        <!-- Tool Interface -->
+        <div class="tool-card">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-val" id="wordCount">0</span>
+                    <span class="stat-label">Palabras</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" id="charCount">0</span>
+                    <span class="stat-label">Caracteres</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" id="sentenceCount">0</span>
+                    <span class="stat-label">Oraciones</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" id="paragraphCount">0</span>
+                    <span class="stat-label">Párrafos</span>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea id="textInput" placeholder="Escribe o pega tu texto aquí para comenzar el análisis..."></textarea>
+            </div>
+
+            <div class="stats-grid" style="margin-bottom: 1.5rem;">
+                <div class="stat-card">
+                    <span class="stat-val" id="charNoSpaceCount">0</span>
+                    <span class="stat-label">Sin Espacios</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" id="readingTime">0s</span>
+                    <span class="stat-label">Tiempo Lectura</span>
+                </div>
+            </div>
+
+            <div class="action-row">
+                <button class="btn btn-primary" id="copyBtn">Copiar Texto</button>
+                <button class="btn btn-reset" id="clearBtn">Borrar Todo</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-section">
+            <h3 class="related-header">Herramientas Relacionadas</h3>
+            <div class="related-grid">
+                <a href="/es/transformar-mayusculas" class="related-card">Mayúsculas y Minúsculas</a>
+                <a href="/es/generador-lorem-ipsum" class="related-card">Generador Lorem Ipsum</a>
+                <a href="/es/eliminador-saltos-linea" class="related-card">Eliminar Saltos de Línea</a>
+                <a href="/es/calculadora-descuentos" class="related-card">Calculadora de Descuentos</a>
+            </div>
+        </div>
+
+        <div class="ad-container" id="ad-mid">
+            <!-- AdSense Placeholder -->
+        </div>
+
+        <!-- Content -->
+        <article class="content-block">
+            <h2>Cómo usar el Contador de Palabras</h2>
+            <p>Nuestro contador de palabras inteligente está diseñado para ser rápido y eficiente. Simplemente comience a escribir en el cuadro de texto o pegue su documento. Las estadísticas se actualizarán automáticamente en tiempo real, mostrándole no solo el recuento de palabras, sino también caracteres, oraciones, párrafos y el tiempo estimado de lectura.</p>
+
+            <h2>Beneficios para SEO y Redacción</h2>
+            <p>Mantener una longitud adecuada en sus textos es crucial para el posicionamiento web (SEO) y la legibilidad. Artículos demasiado cortos pueden no clasificar bien en Google, mientras que párrafos interminables pueden aburrir a los lectores. Esta herramienta le ayuda a estructurar su contenido perfectamente.</p>
+            <ul>
+                <li><strong>Redes Sociales:</strong> Ajuste sus posts para Twitter (280 caracteres) o descripciones de Instagram.</li>
+                <li><strong>Blogging:</strong> Asegure que sus artículos tengan la profundidad necesaria (generalmente +1000 palabras).</li>
+                <li><strong>Académico:</strong> Cumpla con los requisitos estrictos de ensayos y tesis.</li>
+            </ul>
+        </article>
+
+        <!-- FAQs -->
+        <div class="content-block">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <div class="faq-q">¿Cómo se calcula el tiempo de lectura?</div>
+                <div class="faq-a">Utilizamos el estándar promedio de lectura de 200 palabras por minuto para estimar cuánto tardará un usuario en leer su contenido.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Incluye los espacios en el conteo de caracteres?</div>
+                <div class="faq-a">Proporcionamos dos métricas: "Caracteres" (con espacios) y "Sin Espacios" para mayor precisión.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Existe un límite de palabras?</div>
+                <div class="faq-a">No, nuestra herramienta puede procesar textos muy largos sin problemas de rendimiento, ya que todo funciona en su dispositivo.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Es seguro para documentos confidenciales?</div>
+                <div class="faq-a">Absolutamente. El texto nunca sale de su navegador. No almacenamos ni enviamos su información a ningún servidor.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Funciona sin internet?</div>
+                <div class="faq-a">Sí, una vez cargada la página, puede desconectarse y seguir usando la herramienta sin interrupciones.</div>
+            </div>
+        </div>
+
+        <div class="ad-container" id="ad-bottom">
+            <!-- AdSense Placeholder -->
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <span class="footer-link" onclick="openModal('privacyModal')">Política de Privacidad</span>
+            <span class="footer-link" onclick="openModal('termsModal')">Términos y Condiciones</span>
+            <span class="footer-link" onclick="openModal('disclaimerModal')">Descargo de Responsabilidad</span>
+            <a href="https://viptool.online/es" class="footer-link">Todas las Herramientas</a>
+        </div>
+        <div class="copyright">
+            &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            <h2>Política de Privacidad</h2>
+            <p>En VIP Tool, su privacidad es nuestra prioridad. No recopilamos datos personales ni el contenido que procesa en nuestras herramientas.</p>
+            <p>Utilizamos Google Analytics (GA4) para estadísticas anónimas y Google AdSense para publicidad. Estas herramientas pueden usar cookies.</p>
+            <p>Preferencias como el "Modo Oscuro" se guardan localmente en su dispositivo.</p>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            <h2>Términos y Condiciones</h2>
+            <p>Al utilizar este sitio web, usted acepta que las herramientas se proporcionan "tal cual". VIP Tool no se hace responsable de errores o interrupciones en el servicio.</p>
+            <p>Nos reservamos el derecho de modificar o retirar herramientas en cualquier momento.</p>
+        </div>
+    </div>
+
+    <div id="disclaimerModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+            <h2>Descargo de Responsabilidad</h2>
+            <p>Los resultados proporcionados por nuestras herramientas son para fines informativos. No garantizamos una precisión del 100% en todos los casos extremos.</p>
+            <p>Este sitio no está afiliado a ninguna entidad gubernamental.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Logic
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('viptool-theme', next);
+            });
+
+            // Ad Logic
+            setTimeout(() => {
+                document.querySelectorAll('.ad-container').forEach(ad => {
+                    if (ad.innerHTML.includes('<ins') || ad.innerHTML.includes('<script')) {
+                        ad.style.display = 'flex';
+                    }
+                });
+            }, 2000);
+
+            // Modal Logic
+            window.openModal = (id) => document.getElementById(id).classList.add('modal-active');
+            window.closeModal = (id) => document.getElementById(id).classList.remove('modal-active');
+            document.querySelectorAll('.modal-overlay').forEach(m => {
+                m.addEventListener('click', (e) => { if(e.target === m) m.classList.remove('modal-active'); });
+            });
+
+            // Tool Logic: Word Counter
+            const textInput = document.getElementById('textInput');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            
+            const els = {
+                words: document.getElementById('wordCount'),
+                chars: document.getElementById('charCount'),
+                sentences: document.getElementById('sentenceCount'),
+                paragraphs: document.getElementById('paragraphCount'),
+                noSpaces: document.getElementById('charNoSpaceCount'),
+                readTime: document.getElementById('readingTime')
+            };
+
+            function analyzeText() {
+                const text = textInput.value;
+                
+                // Words
+                const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+                
+                // Chars
+                const chars = text.length;
+                const charsNoSpace = text.replace(/\s/g, '').length;
+                
+                // Sentences (Simple heuristic: split by punctuation followed by space or end of line)
+                const sentences = text.trim() === '' ? 0 : text.split(/[.!?]+/).filter(Boolean).length;
+                
+                // Paragraphs
+                const paragraphs = text.trim() === '' ? 0 : text.split(/\n+/).filter(Boolean).length;
+                
+                // Reading Time (Avg 200 wpm)
+                const time = Math.ceil(words / 200);
+                const timeStr = time < 60 ? `${time * 60 < 1 ? '< 1' : Math.ceil(words / 3.3)}s` : `${Math.ceil(time)}m`;
+
+                // Update UI with animation
+                updateStat(els.words, words);
+                updateStat(els.chars, chars);
+                updateStat(els.sentences, sentences);
+                updateStat(els.paragraphs, paragraphs);
+                updateStat(els.noSpaces, charsNoSpace);
+                els.readTime.innerText = words > 0 ? (words < 200 ? "< 1m" : `${Math.ceil(words/200)}m`) : "0s";
+            }
+
+            function updateStat(el, val) {
+                el.innerText = new Intl.NumberFormat('es-ES').format(val);
+            }
+
+            textInput.addEventListener('input', analyzeText);
+
+            copyBtn.addEventListener('click', () => {
+                textInput.select();
+                document.execCommand('copy');
+                const original = copyBtn.innerText;
+                copyBtn.innerText = "¡Copiado!";
+                setTimeout(() => copyBtn.innerText = original, 2000);
+            });
+
+            clearBtn.addEventListener('click', () => {
+                textInput.value = '';
+                analyzeText();
+            });
+        });
+    </script>
+</body>
+</html>
+
