@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de EMI - Calcule su Cuota Mensual | VIP Tool</title>
+    <meta name="description" content="Utilice nuestra Calculadora de EMI gratuita para calcular sus pagos mensuales de préstamos. Herramienta precisa para préstamos hipotecarios, de auto y personales.">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Theme Variables - Dark (Default) */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #8b5cf6; /* Violet Neon */
+            --accent-secondary: #06b6d4; /* Cyan Neon */
+            --accent-glow: rgba(139, 92, 246, 0.3);
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --font-main: 'Outfit', sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f0f9ff;
+            --bg-secondary: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #0ea5e9;
+            --accent-glow: rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --input-bg: rgba(241, 245, 249, 0.8);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, var(--accent-glow) 0%, transparent 20%);
+        }
+
+        /* Utility Components */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(var(--bg-primary), 0.8);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent-primary);
+        }
+
+        .theme-toggle {
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        /* Tool Title */
+        .tool-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .tool-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tool Interface */
+        .tool-interface {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .tool-interface {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .result-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .emi-display {
+            margin-bottom: 30px;
+        }
+
+        .emi-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .emi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .breakdown {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .breakdown-item h4 {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .breakdown-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Related Tools */
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+            display: block;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .tool-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            background: var(--glass-bg);
+        }
+
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--input-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .tool-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .tool-mini-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .content-section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: var(--accent-primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--glass-border);
+            padding: 40px 0;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .tool-interface { grid-template-columns: 1fr; }
+            .breakdown { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Initialization -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="/es/index.html" class="logo">
+                <i class="fa-solid fa-layer-group"></i>
+                VIP Tool
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar Tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Tool Section -->
+    <main class="container">
+        <section class="tool-header">
+            <h1>Calculadora de EMI</h1>
+            <p class="tool-desc">Calcule su cuota mensual (EMI) de manera rápida y precisa para préstamos hipotecarios, de auto o personales.</p>
+        </section>
+
+        <!-- Tool Interface -->
+        <div class="tool-interface">
+            <!-- Inputs -->
+            <div class="glass-card">
+                <div class="input-group">
+                    <label for="loanAmount">Monto del Préstamo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                        <input type="number" id="loanAmount" class="form-control" placeholder="Ej. 10000" min="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="interestRate">Tasa de Interés Anual (%)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-percent"></i>
+                        <input type="number" id="interestRate" class="form-control" placeholder="Ej. 5.5" min="0" step="0.1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="loanTenure">Plazo del Préstamo (Años)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="number" id="loanTenure" class="form-control" placeholder="Ej. 5" min="0" max="50">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 25px;">
+                    <button class="btn btn-primary" onclick="calculateEMI()" style="flex: 1; justify-content: center;">
+                        <i class="fa-solid fa-calculator"></i> Calcular
+                    </button>
+                    <button class="btn" onclick="resetCalculator()" style="background: var(--input-bg); color: var(--text-secondary); border: 1px solid var(--glass-border);">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output -->
+            <div class="glass-card result-card">
+                <div class="emi-display">
+                    <div class="emi-label">Su Cuota Mensual (EMI)</div>
+                    <div class="emi-value" id="emiResult">-</div>
+                </div>
+
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <h4>Interés Total</h4>
+                        <p id="totalInterest" style="color: var(--accent-primary)">-</p>
+                    </div>
+                    <div class="breakdown-item">
+                        <h4>Monto Total</h4>
+                        <p id="totalPayment" style="color: var(--text-primary)">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <h3 class="section-title">Herramientas Relacionadas</h3>
+        <div class="tools-grid">
+            <a href="/es/calculadora-prestamos/index.html" class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                <div class="tool-name">Calculadora de Préstamos</div>
+                <div class="tool-mini-desc">Análisis detallado de crédito.</div>
+            </a>
+            <a href="/es/calculadora-hipoteca/index.html" class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                <div class="tool-name">Calculadora de Hipoteca</div>
+                <div class="tool-mini-desc">Planifique la compra de su casa.</div>
+            </a>
+            <a href="/es/calculadora-interes-compuesto/index.html" class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="tool-name">Interés Compuesto</div>
+                <div class="tool-mini-desc">Maximice sus inversiones.</div>
+            </a>
+            <a href="/es/calculadora-descuentos/index.html" class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-tags"></i></div>
+                <div class="tool-name">Calculadora de Descuentos</div>
+                <div class="tool-mini-desc">Calcule precios finales.</div>
+            </a>
+        </div>
+
+        <!-- Ad Placeholder -->
+        <div id="ad-container" style="display: none; margin-bottom: 40px; text-align: center;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- How to Use -->
+        <section class="content-section">
+            <h2>Cómo Usar la Calculadora de EMI</h2>
+            <p>Nuestra Calculadora de EMI (Cuota Mensual Equitativa) está diseñada para simplificar su planificación financiera. Siga estos sencillos pasos:</p>
+            <ul>
+                <li><strong>Monto del Préstamo:</strong> Ingrese la cantidad total de dinero que desea solicitar.</li>
+                <li><strong>Tasa de Interés:</strong> Ingrese la tasa de interés anual que ofrece el banco o entidad financiera.</li>
+                <li><strong>Plazo:</strong> Especifique el número de años que tardará en devolver el préstamo.</li>
+                <li><strong>Calcular:</strong> Presione el botón y obtenga al instante su cuota mensual, el interés total a pagar y el costo total del préstamo.</li>
+            </ul>
+        </section>
+
+        <!-- Benefits -->
+        <section class="content-section">
+            <h2>Beneficios de Usar una Calculadora de EMI</h2>
+            <p>Planificar un préstamo antes de solicitarlo es crucial para mantener una salud financiera estable. Aquí le explicamos por qué debería usar esta herramienta:</p>
+            <ul>
+                <li><strong>Precisión Financiera:</strong> Evite errores manuales complejos y obtenga cifras exactas al instante.</li>
+                <li><strong>Planificación del Presupuesto:</strong> Conozca exactamente cuánto debe apartar de sus ingresos mensuales.</li>
+                <li><strong>Comparación de Opciones:</strong> Pruebe diferentes montos y plazos para encontrar la combinación que mejor se adapte a su capacidad de pago.</li>
+                <li><strong>Transparencia:</strong> Visualice claramente cuánto pagará en intereses a lo largo de la vida del préstamo.</li>
+            </ul>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="content-section">
+            <h2>¿Qué es un EMI y cómo se calcula?</h2>
+            <p>EMI son las siglas en inglés de "Equated Monthly Installment", que se traduce como Cuota Mensual Equitativa. Es la cantidad fija que un prestatario paga a un prestamista en una fecha específica de cada mes durante un período determinado.</p>
+            <p>El EMI consta de dos componentes: el pago del interés y el pago del capital principal. En los primeros años del préstamo, la mayor parte del EMI se destina a pagar los intereses. A medida que avanza el plazo del préstamo, la proporción del pago de intereses disminuye y la proporción del pago del capital aumenta.</p>
+            <p>La fórmula matemática utilizada para calcular el EMI es: <br><strong>E = P x r x (1+r)^n / ((1+r)^n - 1)</strong><br> Donde P es el capital, r es la tasa de interés mensual y n es el plazo en meses.</p>
+        </section>
+
+        <!-- FAQs -->
+        <section class="content-section">
+            <h2>Preguntas Frecuentes (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿La calculadora sirve para préstamos hipotecarios? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Sí, esta herramienta es perfecta para calcular EMIs de hipotecas, préstamos personales, préstamos para automóviles y préstamos estudiantiles.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Los resultados incluyen tasas de procesamiento? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">No, el cálculo se basa únicamente en el capital, la tasa de interés y el plazo. Las tarifas de procesamiento y otros cargos bancarios adicionales no están incluidos.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo puedo reducir mi EMI? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Puede reducir su EMI disminuyendo el monto del préstamo, negociando una tasa de interés más baja o extendiendo el plazo del préstamo (aunque esto aumentará el interés total pagado).</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿La tasa de interés es fija o variable? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Esta calculadora asume una tasa de interés fija durante todo el plazo del préstamo. Si tiene una tasa variable, el EMI podría cambiar en el futuro.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Es gratis usar esta herramienta? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Sí, VIP Tool ofrece todas sus calculadoras de forma 100% gratuita para uso personal y profesional.</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a class="footer-link" onclick="openModal('privacy')">Política de Privacidad</a>
+                <a class="footer-link" onclick="openModal('terms')">Términos y Condiciones</a>
+                <a class="footer-link" onclick="openModal('disclaimer')">Descargo de Responsabilidad</a>
+                <a href="https://viptool.online/es/index.html" class="footer-link">Todas las Herramientas</a>
+            </div>
+            <p class="copyright">© 2024 VIP Tool. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Legal Modals -->
+    <div id="legalModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Título</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // --- Theme Management ---
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        const html = document.documentElement;
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Initialize icon state
+        updateThemeIcon(localStorage.getItem('viptool-theme') || 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('viptool-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // --- EMI Calculation Logic ---
+        function calculateEMI() {
+            // Get inputs
+            const P = parseFloat(document.getElementById('loanAmount').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value);
+            const years = parseFloat(document.getElementById('loanTenure').value);
+
+            // Validation
+            if (!P || !annualRate || !years || P <= 0 || annualRate <= 0 || years <= 0) {
+                alert("Por favor, ingrese valores válidos en todos los campos.");
+                return;
+            }
+
+            // Formula: E = P * r * (1+r)^n / ((1+r)^n - 1)
+            const r = annualRate / 12 / 100; // Monthly interest rate
+            const n = years * 12; // Tenure in months
+
+            const emi = P * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            const totalPayment = emi * n;
+            const totalInterest = totalPayment - P;
+
+            // Update UI
+            document.getElementById('emiResult').textContent = formatCurrency(emi);
+            document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);
+            document.getElementById('totalPayment').textContent = formatCurrency(totalPayment);
+        }
+
+        function formatCurrency(num) {
+            return num.toLocaleString('es-ES', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+        }
+
+        function resetCalculator() {
+            document.getElementById('loanAmount').value = '';
+            document.getElementById('interestRate').value = '';
+            document.getElementById('loanTenure').value = '';
+            document.getElementById('emiResult').textContent = '-';
+            document.getElementById('totalInterest').textContent = '-';
+            document.getElementById('totalPayment').textContent = '-';
+        }
+
+        // --- FAQ Logic ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- AdSense Check ---
+        window.addEventListener('load', () => {
+            const adContainer = document.getElementById('ad-container');
+            const ins = adContainer.querySelector('ins');
+            // Check if AdSense injected content (simplified check)
+            if (ins && ins.innerHTML.trim() !== "") {
+                adContainer.style.display = 'block';
+            }
+        });
+
+        // --- Modal Logic & Legal Content ---
+        const modal = document.getElementById('legalModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+
+        const legalContent = {
+            privacy: {
+                title: "Política de Privacidad",
+                text: "<p>En VIP Tool, valoramos su privacidad. Esta política describe cómo manejamos la información cuando utiliza nuestras herramientas.</p><h3>Recopilación de Datos</h3><p>No almacenamos datos personales ingresados en nuestras calculadoras. Todo el procesamiento se realiza en su navegador.</p><h3>Cookies</h3><p>Utilizamos cookies para mejorar la experiencia del usuario y analizar el tráfico mediante Google Analytics.</p>"
+            },
+            terms: {
+                title: "Términos y Condiciones",
+                text: "<p>Al utilizar VIP Tool, usted acepta estos términos.</p><h3>Uso Aceptable</h3><p>Nuestras herramientas son para uso informativo. No garantizamos la exactitud absoluta para fines legales o financieros profesionales.</p><h3>Propiedad Intelectual</h3><p>Todo el contenido y diseño pertenece a VIP Tool.</p>"
+            },
+            disclaimer: {
+                title: "Descargo de Responsabilidad",
+                text: "<p>Los resultados proporcionados por esta calculadora son solo estimaciones. VIP Tool no es una entidad financiera y no ofrece préstamos. Le recomendamos consultar con un asesor financiero calificado antes de tomar decisiones financieras importantes.</p>"
+            }
+        };
+
+        function openModal(type) {
+            if (legalContent[type]) {
+                modalTitle.textContent = legalContent[type].title;
+                modalBody.innerHTML = legalContent[type].text;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de EMI",
+      "url": "https://viptool.online/es/index.html",
+      "description": "Herramienta gratuita para calcular cuotas mensuales de préstamos (EMI).",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿La calculadora sirve para préstamos hipotecarios?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, esta herramienta es perfecta para calcular EMIs de hipotecas, préstamos personales, préstamos para automóviles y préstamos estudiantiles."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Los resultados incluyen tasas de procesamiento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, el cálculo se basa únicamente en el capital, la tasa de interés y el plazo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cómo puedo reducir mi EMI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Puede reducir su EMI disminuyendo el monto del préstamo, negociando una tasa de interés más baja o extendiendo el plazo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿La tasa de interés es fija o variable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Esta calculadora asume una tasa de interés fija durante todo el plazo del préstamo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Es gratis usar esta herramienta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, VIP Tool ofrece todas sus calculadoras de forma 100% gratuita."
+        }
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://viptool.online/es/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadoras Financieras",
+        "item": "https://viptool.online/es/calculadoras/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Calculadora de EMI",
+        "item": "https://viptool.online/es/index.html"
+      }]
+    }
+    </script>
+
+</body>
+</html>
+
