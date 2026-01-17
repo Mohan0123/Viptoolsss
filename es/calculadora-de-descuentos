@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Descuentos - Calcula el Precio Final y Ahorro | VIP Tool</title>
+    <meta name="description" content="Calcula el precio final y el ahorro al instante con la Calculadora de Descuentos de VIP Tool. Herramienta gratuita, rápida y precisa con soporte de impuestos.">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Calculadora de Descuentos",
+          "url": "https://viptool.online/es/calculadora-de-descuentos",
+          "description": "Una calculadora inteligente para determinar el precio final de venta y los ahorros totales.",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "Any",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "VIP Tool",
+            "url": "https://viptool.online",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://viptool.online/logo.png"
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://viptool.online/es"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Herramientas",
+              "item": "https://viptool.online/es/herramientas"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Calculadora de Descuentos",
+              "item": "https://viptool.online/es/calculadora-de-descuentos"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cómo calculo un descuento?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Para calcular un descuento, multiplica el precio original por el porcentaje de descuento (en decimal). Resta este resultado del precio original."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuál es la fórmula del porcentaje de descuento?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La fórmula es: (Descuento / Precio Original) × 100. Esto te da el porcentaje ahorrado."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Es gratuita esta herramienta?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, la Calculadora de Descuentos de VIP Tool es 100% gratuita para uso ilimitado."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Funciona sin internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Una vez cargada, esta calculadora funciona completamente en tu navegador mediante JavaScript, sin enviar datos a servidores."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo incluir impuestos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, nuestra herramienta permite añadir un porcentaje de impuesto de venta opcional para obtener el precio final exacto."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Palette: Neon Futuristic SaaS */
+            --primary: #00f2ff; /* Cyan Neon */
+            --secondary: #7000ff; /* Violet Neon */
+            --accent: #2d6aff; /* Blue */
+            --surface-dark: #0a0e17;
+            --surface-light: #ffffff;
+            --glass-bg-dark: rgba(20, 25, 40, 0.7);
+            --glass-bg-light: rgba(255, 255, 255, 0.8);
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-main-dark: #ffffff;
+            --text-muted-dark: #94a3b8;
+            --text-main-light: #1e293b;
+            --text-muted-light: #64748b;
+            --glow-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--surface-dark);
+            --card-bg: var(--glass-bg-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --border: var(--border-dark);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg: #f1f5f9;
+            --card-bg: var(--glass-bg-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --border: var(--border-light);
+            --input-bg: rgba(255, 255, 255, 0.5);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            transition: background 0.3s ease;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover { background: rgba(255,255,255,0.1); border-color: var(--primary); }
+        .icon-sun { display: none; }
+        [data-theme="light"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: block; }
+
+        /* --- Main Layout --- */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .page-header { text-align: center; margin-bottom: 2.5rem; }
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; 
+            color: var(--text-main); /* Fallback */
+        }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* --- Tool Interface --- */
+        .tool-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.5;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+
+        .input-group { margin-bottom: 1.5rem; }
+        label { display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 500; }
+        
+        .input-wrapper {
+            position: relative;
+        }
+
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            appearance: none;
+        }
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2rem;
+            padding-right: 2.5rem;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.2);
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            font-weight: 600;
+        }
+        .has-symbol input { padding-left: 2.5rem; }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary);
+            transition: transform 0.1s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .results-panel {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+        [data-theme="light"] .results-panel { background: rgba(0,0,0,0.03); }
+
+        .result-item {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .result-item:last-child { margin-bottom: 0; }
+        .result-label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .result-value { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            color: var(--primary);
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+        .result-value.saved { color: var(--secondary); font-size: 1.8rem; }
+        
+        .action-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        .btn-reset { background: var(--input-bg); color: var(--text-muted); border: 1px solid var(--border); }
+        .btn-reset:hover { background: rgba(255,50,50,0.1); color: #ff5555; border-color: #ff5555; }
+
+        /* --- Related Tools --- */
+        .related-section { margin-bottom: 3rem; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .related-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .related-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Content & Ads --- */
+        .content-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-block h3 { font-size: 1.2rem; margin: 1.5rem 0 0.5rem; color: var(--text-main); }
+        .content-block p { color: var(--text-muted); margin-bottom: 1rem; }
+        .content-block ul { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted); }
+        .content-block li { margin-bottom: 0.5rem; }
+
+        .ad-container {
+            width: 100%;
+            min-height: 100px;
+            background: rgba(0,0,0,0.02);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .faq-item { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .faq-item:last-child { border: none; }
+        .faq-q { font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+        .faq-a { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--bg);
+            margin-top: auto;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-link:hover { color: var(--primary); }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- Modals --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        [data-theme="light"] .modal-content { background: var(--surface-light); }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .modal-body h2 { color: var(--text-main); margin-bottom: 1rem; }
+        .modal-body p, .modal-body li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .modal-active { display: flex; animation: fadeIn 0.3s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="https://viptool.online/es" class="brand">VIP Tool</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar Tema">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Calculadora de Descuentos</h1>
+            <p class="subtitle">Calcula el precio final y el ahorro instantáneamente con precisión AI</p>
+        </div>
+
+        <!-- Top Ad Placeholder -->
+        <div class="ad-container" id="ad-top">
+            <!-- AdSense Ad Placeholder (Auto-hidden if empty) -->
+        </div>
+
+        <!-- Tool Interface -->
+        <div class="tool-container">
+            <div class="calculator-grid">
+                <!-- Inputs -->
+                <div class="inputs-panel">
+                    
+                    <!-- Country/Currency Selection -->
+                    <div class="input-group">
+                        <label for="countrySelect">Seleccionar País / Moneda</label>
+                        <select id="countrySelect">
+                            <option value="EUR|es-ES|€" selected>España (EUR - €)</option>
+                            <option value="USD|es-MX|$">México (MXN - $)</option>
+                            <option value="USD|en-US|$">Estados Unidos (USD - $)</option>
+                            <option value="ARS|es-AR|$">Argentina (ARS - $)</option>
+                            <option value="COP|es-CO|$">Colombia (COP - $)</option>
+                            <option value="CLP|es-CL|$">Chile (CLP - $)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="originalPrice">Precio Original</label>
+                        <div class="input-wrapper has-symbol">
+                            <span class="currency-symbol" id="currencySymbolDisplay">€</span>
+                            <input type="number" id="originalPrice" placeholder="0.00" min="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="discountPercent">Porcentaje de Descuento (<span id="discountVal">20</span>%)</label>
+                        <div class="slider-container">
+                            <input type="range" id="discountRange" min="0" max="100" value="20">
+                            <input type="number" id="discountInput" value="20" min="0" max="100" style="width: 80px;">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="salesTax">Impuesto de Venta (Opcional %)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="salesTax" placeholder="0" min="0" max="100" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-reset" id="resetBtn">Restablecer</button>
+                    </div>
+                </div>
+
+                <!-- Outputs -->
+                <div class="results-panel">
+                    <div class="result-item">
+                        <div class="result-label">Precio Final</div>
+                        <div class="result-value" id="finalPrice">€0.00</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Te Ahorras</div>
+                        <div class="result-value saved" id="savedAmount">€0.00</div>
+                    </div>
+                    <div class="result-item" style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                        <div class="result-label" style="font-size: 0.8rem;">Impuesto Incluido</div>
+                        <div class="result-value" id="taxAmount" style="font-size: 1.2rem; color: var(--text-muted);">€0.00 Impuesto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-section">
+            <h3>Herramientas Relacionadas</h3>
+            <div class="related-grid">
+                <a href="/es/calculadora-de-porcentajes" class="related-card">Calculadora de Porcentajes</a>
+                <a href="/es/calculadora-de-iva" class="related-card">Calculadora de IVA</a>
+                <a href="/es/calculadora-de-margen" class="related-card">Calculadora de Margen</a>
+                <a href="/es/conversor-de-moneda" class="related-card">Conversor de Moneda</a>
+            </div>
+        </div>
+
+        <!-- Mid Ad Placeholder -->
+        <div class="ad-container" id="ad-mid">
+            <!-- AdSense Ad Placeholder (Auto-hidden if empty) -->
+        </div>
+
+        <!-- Content -->
+        <article class="content-block">
+            <h2>Calcula Descuentos y Ahorros Fácilmente</h2>
+            <p>La Calculadora de Descuentos de VIP Tool es tu aliada perfecta para compras y negocios. Ya sea que estés comprando ropa en rebajas, calculando promociones para tu tienda o verificando precios en el extranjero, nuestra herramienta te da cifras precisas al instante.</p>
+            
+            <h3>Cómo Usar la Calculadora</h3>
+            <ol>
+                <li><strong>Selecciona tu Moneda:</strong> Elige tu país o moneda preferida (Euros, Pesos, Dólares).</li>
+                <li><strong>Ingresa el Precio:</strong> Escribe el precio original del producto sin descuento.</li>
+                <li><strong>Aplica el Descuento:</strong> Usa el control deslizante o escribe el porcentaje de descuento exacto.</li>
+                <li><strong>Añade Impuestos (Opcional):</strong> Si el precio no incluye IVA o impuestos locales, agrégalos para ver el costo real.</li>
+            </ol>
+
+            <h3>Beneficios Clave</h3>
+            <ul>
+                <li><strong>Ahorro de Tiempo:</strong> Evita cálculos mentales complejos y errores.</li>
+                <li><strong>Precisión Financiera:</strong> Conoce exactamente cuánto pagarás en caja.</li>
+                <li><strong>Soporte Internacional:</strong> Funciona con las principales monedas de habla hispana y global.</li>
+            </ul>
+        </article>
+
+        <!-- FAQs -->
+        <div class="content-block">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <div class="faq-q">¿El impuesto se calcula antes o después del descuento?</div>
+                <div class="faq-a">Generalmente, el impuesto se calcula sobre el precio ya descontado (precio final). Nuestra calculadora sigue esta norma estándar.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Sirve para descuentos dobles?</div>
+                <div class="faq-a">Para descuentos dobles (ej. 20% + 10% adicional), primero calcula el precio con el 20%, y luego usa ese nuevo precio como base para el segundo cálculo.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Guardan mis datos financieros?</div>
+                <div class="faq-a">No. Todos los cálculos se realizan localmente en tu dispositivo. VIP Tool no almacena ni transmite ningún dato que ingreses.</div>
+            </div>
+        </div>
+
+        <!-- Bottom Ad Placeholder -->
+        <div class="ad-container" id="ad-bottom">
+            <!-- AdSense Ad Placeholder (Auto-hidden if empty) -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <span class="footer-link" onclick="openModal('privacyModal')">Política de Privacidad</span>
+            <span class="footer-link" onclick="openModal('termsModal')">Términos y Condiciones</span>
+            <span class="footer-link" onclick="openModal('disclaimerModal')">Aviso Legal</span>
+            <a href="https://viptool.online/es" class="footer-link">Todas las Herramientas</a>
+        </div>
+        <div class="copyright">
+            &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Política de Privacidad</h2>
+                <p>En VIP Tool, tu privacidad es primordial. Esta política describe cómo manejamos tus datos.</p>
+                <h3>1. Recopilación de Datos</h3>
+                <p>No recopilamos datos personales ni datos de entrada. Todos los cálculos se realizan en el lado del cliente (tu navegador).</p>
+                <h3>2. Cookies y Almacenamiento Local</h3>
+                <p>Usamos almacenamiento local únicamente para guardar tu preferencia de tema (Oscuro/Claro). Usamos Google Analytics (GA4) que utiliza cookies para analizar el tráfico de forma anónima.</p>
+                <h3>3. Publicidad de Terceros</h3>
+                <p>Podemos usar Google AdSense para mostrar anuncios. Google puede usar cookies para mostrar anuncios basados en tus visitas anteriores.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Términos y Condiciones</h2>
+                <p>Al usar VIP Tool, aceptas los siguientes términos:</p>
+                <h3>1. Uso</h3>
+                <p>Esta herramienta es solo para fines informativos y educativos. Eres responsable de cómo utilizas los datos generados.</p>
+                <h3>2. Responsabilidad</h3>
+                <p>VIP Tool proporciona este servicio "tal cual" sin garantías. No somos responsables de pérdidas financieras o errores resultantes del uso de esta herramienta.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="disclaimerModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Aviso Legal</h2>
+                <p>Los resultados proporcionados por la Calculadora de Descuentos son estimaciones basadas en fórmulas matemáticas estándar.</p>
+                <p>VIP Tool no es un asesor financiero. Por favor, verifica todas las cifras financieras con una fuente oficial o profesional.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Theme Logic ---
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            const themeKey = 'viptool-theme';
+            
+            // Priority: LocalStorage -> System -> Default (Dark)
+            const savedTheme = localStorage.getItem(themeKey);
+            const systemPref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            const initialTheme = savedTheme || systemPref || 'dark';
+            
+            html.setAttribute('data-theme', initialTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem(themeKey, next);
+            });
+
+            // --- Calculator Logic ---
+            const inputs = {
+                country: document.getElementById('countrySelect'),
+                price: document.getElementById('originalPrice'),
+                discountRange: document.getElementById('discountRange'),
+                discountInput: document.getElementById('discountInput'),
+                tax: document.getElementById('salesTax')
+            };
+
+            const displays = {
+                symbol: document.getElementById('currencySymbolDisplay'),
+                discountVal: document.getElementById('discountVal'),
+                finalPrice: document.getElementById('finalPrice'),
+                savedAmount: document.getElementById('savedAmount'),
+                taxAmount: document.getElementById('taxAmount')
+            };
+
+            // Currency Config
+            let currentLocale = 'es-ES';
+            let currentCurrency = 'EUR';
+
+            function updateCurrencyConfig() {
+                const [currency, locale, symbol] = inputs.country.value.split('|');
+                currentCurrency = currency;
+                currentLocale = locale;
+                displays.symbol.textContent = symbol;
+                calculate();
+            }
+
+            function calculate() {
+                const price = parseFloat(inputs.price.value) || 0;
+                const discount = parseFloat(inputs.discountInput.value) || 0;
+                const taxRate = parseFloat(inputs.tax.value) || 0;
+
+                // Sync UI
+                inputs.discountRange.value = discount;
+                displays.discountVal.textContent = discount;
+
+                // Math
+                const savings = price * (discount / 100);
+                const priceAfterDiscount = price - savings;
+                const taxAmt = priceAfterDiscount * (taxRate / 100);
+                const final = priceAfterDiscount + taxAmt;
+
+                // Formatting
+                const formatter = new Intl.NumberFormat(currentLocale, {
+                    style: 'currency',
+                    currency: currentCurrency
+                });
+
+                displays.finalPrice.textContent = formatter.format(final);
+                displays.savedAmount.textContent = formatter.format(savings);
+                displays.taxAmount.textContent = taxRate > 0 
+                    ? `+ ${formatter.format(taxAmt)} Impuesto` 
+                    : `${formatter.format(0)} Impuesto`;
+            }
+
+            // Event Listeners
+            inputs.country.addEventListener('change', updateCurrencyConfig);
+            inputs.price.addEventListener('input', calculate);
+            inputs.tax.addEventListener('input', calculate);
+            
+            inputs.discountRange.addEventListener('input', (e) => {
+                inputs.discountInput.value = e.target.value;
+                calculate();
+            });
+            inputs.discountInput.addEventListener('input', (e) => {
+                let val = parseFloat(e.target.value);
+                if(val > 100) val = 100; 
+                if(val < 0) val = 0;
+                inputs.discountRange.value = val;
+                calculate();
+            });
+
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                inputs.price.value = '';
+                inputs.discountInput.value = 20;
+                inputs.discountRange.value = 20;
+                inputs.tax.value = '';
+                calculate();
+            });
+
+            // Initialize
+            updateCurrencyConfig();
+
+            // --- Modal Logic ---
+            window.openModal = (id) => { document.getElementById(id).classList.add('modal-active'); };
+            window.closeModal = (id) => { document.getElementById(id).classList.remove('modal-active'); };
+            document.querySelectorAll('.modal-overlay').forEach(m => {
+                m.addEventListener('click', (e) => { if(e.target === m) m.classList.remove('modal-active'); });
+            });
+
+            // --- Ad Logic ---
+            setTimeout(() => {
+                document.querySelectorAll('.ad-container').forEach(ad => {
+                    if (ad.innerHTML.includes('<ins') || ad.innerHTML.includes('<script')) ad.style.display = 'flex';
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
