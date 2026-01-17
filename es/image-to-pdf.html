@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir Imagen a PDF - Herramienta Online Gratuita | VIP Tool</title>
+    <meta name="description" content="Convierta JPG, PNG y WEBP a PDF al instante con VIP Tool. Herramienta segura, rápida y gratuita sin marcas de agua. Procesamiento 100% en el navegador.">
+    
+    <!-- External Library: jsPDF (Required for robust PDF generation) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Convertidor de Imagen a PDF",
+          "url": "https://viptool.online/es/image-to-pdf",
+          "description": "Herramienta profesional para convertir imágenes a documentos PDF.",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "Any",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "VIP Tool",
+            "url": "https://viptool.online/es",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://viptool.online/logo.png"
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://viptool.online/es"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Herramientas",
+              "item": "https://viptool.online/es/tools"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Imagen a PDF",
+              "item": "https://viptool.online/es/image-to-pdf"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Es gratis convertir imágenes a PDF?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, es completamente gratuito y sin límites de uso."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Mis fotos se suben a Internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Todo el proceso ocurre en su dispositivo. Sus archivos nunca salen de su navegador."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Design Tokens: Neon Futuristic SaaS */
+            --primary: #00f2ff; /* Cyan Neon */
+            --secondary: #7000ff; /* Violet Neon */
+            --accent: #2d6aff; /* Blue */
+            --surface-dark: #0a0e17;
+            --surface-light: #ffffff;
+            --glass-bg-dark: rgba(20, 25, 40, 0.7);
+            --glass-bg-light: rgba(255, 255, 255, 0.8);
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-main-dark: #ffffff;
+            --text-muted-dark: #94a3b8;
+            --text-main-light: #1e293b;
+            --text-muted-light: #64748b;
+            --glow-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--surface-dark);
+            --card-bg: var(--glass-bg-dark);
+            --text-main: var(--text-main-dark);
+            --text-muted: var(--text-muted-dark);
+            --border: var(--border-dark);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg: #f1f5f9;
+            --card-bg: var(--glass-bg-light);
+            --text-main: var(--text-main-light);
+            --text-muted: var(--text-muted-light);
+            --border: var(--border-light);
+            --input-bg: rgba(255, 255, 255, 0.5);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            transition: background 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover { background: rgba(255,255,255,0.1); border-color: var(--primary); }
+        .icon-sun { display: none; }
+        [data-theme="light"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: block; }
+
+        /* --- Main Layout --- */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header { text-align: center; margin-bottom: 2.5rem; }
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; 
+            color: var(--text-main);
+        }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* --- Tool Interface --- */
+        .tool-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.5;
+        }
+
+        /* Tool Specific: Image Upload & Preview */
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--input-bg);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary);
+            background: rgba(0, 242, 255, 0.05);
+        }
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .file-input { display: none; }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            box-shadow: var(--card-shadow);
+        }
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.8);
+            color: #ff5555;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        .remove-btn:hover { transform: scale(1.1); background: #ff5555; color: white; }
+
+        .action-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+        }
+        .btn-reset { background: var(--input-bg); color: var(--text-muted); border: 1px solid var(--border); }
+        .btn-reset:hover { background: rgba(255,50,50,0.1); color: #ff5555; border-color: #ff5555; }
+
+        /* --- Related Tools --- */
+        .related-section { margin-bottom: 3rem; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .related-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .related-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Content & Ads --- */
+        .content-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-block h3 { font-size: 1.2rem; margin: 1.5rem 0 0.5rem; color: var(--text-main); }
+        .content-block p { color: var(--text-muted); margin-bottom: 1rem; }
+        .content-block ul { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted); }
+        .content-block li { margin-bottom: 0.5rem; }
+
+        .ad-container {
+            width: 100%;
+            min-height: 100px;
+            background: rgba(0,0,0,0.02);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            display: none; /* JS handles visibility */
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .faq-item { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .faq-item:last-child { border: none; }
+        .faq-q { font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+        .faq-a { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--bg);
+            margin-top: auto;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-link:hover { color: var(--primary); }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- Modals --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        [data-theme="light"] .modal-content { background: var(--surface-light); }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .modal-body h2 { color: var(--text-main); margin-bottom: 1rem; }
+        .modal-body p, .modal-body li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .modal-active { display: flex; animation: fadeIn 0.3s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="https://viptool.online/es" class="brand">VIP Tool</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar Tema">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Convertir Imagen a PDF</h1>
+            <p class="subtitle">Convierta sus fotos a documentos PDF profesionales</p>
+        </div>
+
+        <!-- Top Ad Placeholder -->
+        <div class="ad-container" id="ad-top">
+            <!-- AdSense Placeholder -->
+        </div>
+
+        <!-- Tool Interface -->
+        <div class="tool-container">
+            <div class="upload-area" id="dropZone">
+                <span class="upload-icon">📁</span>
+                <p><strong>Arrastre y suelte sus imágenes aquí</strong></p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">(o haga clic para seleccionar)</p>
+                <input type="file" id="fileInput" class="file-input" accept="image/png, image/jpeg, image/webp" multiple>
+            </div>
+
+            <div class="preview-grid" id="previewGrid"></div>
+
+            <div class="action-row">
+                <button class="btn btn-reset" id="resetBtn">Limpiar Todo</button>
+                <button class="btn btn-primary" id="convertBtn" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                    Convertir y Descargar
+                </button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-section">
+            <h3>Herramientas Relacionadas</h3>
+            <div class="related-grid">
+                <a href="/es/word-counter" class="related-card">Contador de Palabras</a>
+                <a href="/es/discount-calculator" class="related-card">Calculadora de Descuentos</a>
+                <a href="/es/internet-speed-test" class="related-card">Test de Velocidad</a>
+                <a href="/es/percentage-calculator" class="related-card">Calculadora de Porcentajes</a>
+            </div>
+        </div>
+
+        <!-- Mid Ad Placeholder -->
+        <div class="ad-container" id="ad-mid">
+            <!-- AdSense Placeholder -->
+        </div>
+
+        <!-- Content -->
+        <article class="content-block">
+            <h2>Cómo convertir imágenes a PDF</h2>
+            <p>Nuestra herramienta facilita la creación de documentos PDF a partir de una o varias imágenes. El proceso es seguro y se realiza completamente en su dispositivo.</p>
+            
+            <h3>Pasos para generar su PDF:</h3>
+            <ol>
+                <li><strong>Subir Imágenes:</strong> Haga clic en el área de carga o arrastre sus archivos JPG o PNG.</li>
+                <li><strong>Revisar:</strong> Verifique las imágenes en la cuadrícula de vista previa. Puede eliminar las que no necesite.</li>
+                <li><strong>Generar:</strong> Pulse el botón "Convertir y Descargar".</li>
+                <li><strong>Listo:</strong> El archivo PDF se descargará automáticamente en su dispositivo.</li>
+            </ol>
+
+            <h3>Beneficios de usar VIP Tool</h3>
+            <ul>
+                <li><strong>Privacidad Total:</strong> Sus archivos no se envían a ningún servidor.</li>
+                <li><strong>Sin Instalación:</strong> Funciona directamente en Chrome, Safari, Firefox o Edge.</li>
+                <li><strong>Calidad:</strong> Ajusta automáticamente las imágenes para que encajen en el PDF.</li>
+            </ul>
+        </article>
+
+        <!-- FAQs -->
+        <div class="content-block">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <div class="faq-q">¿Cuántas imágenes puedo combinar?</div>
+                <div class="faq-a">No hay un límite estricto, pero recomendamos procesar menos de 50 imágenes a la vez para un mejor rendimiento del navegador.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Es seguro para documentos sensibles?</div>
+                <div class="faq-a">Sí, absolutamente. Como la conversión es local (client-side), nadie más tiene acceso a sus archivos.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">¿Funciona sin internet?</div>
+                <div class="faq-a">Sí, una vez cargada la página, la librería de conversión funciona completamente offline.</div>
+            </div>
+        </div>
+
+        <!-- Bottom Ad Placeholder -->
+        <div class="ad-container" id="ad-bottom">
+            <!-- AdSense Placeholder -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <span class="footer-link" onclick="openModal('privacyModal')">Política de Privacidad</span>
+            <span class="footer-link" onclick="openModal('termsModal')">Términos y Condiciones</span>
+            <span class="footer-link" onclick="openModal('disclaimerModal')">Descargo de Responsabilidad</span>
+            <a href="https://viptool.online/es" class="footer-link">Todas las Herramientas</a>
+        </div>
+        <div class="copyright">
+            &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Política de Privacidad</h2>
+                <p>En VIP Tool, valoramos su privacidad. No recopilamos datos personales ni archivos. Todo el procesamiento de esta herramienta ocurre localmente en su navegador.</p>
+                <p>Utilizamos Google Analytics y Google AdSense, que pueden usar cookies para mejorar su experiencia.</p>
+            </div>
+        </div>
+    </div>
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Términos y Condiciones</h2>
+                <p>El uso de esta herramienta es bajo su propia responsabilidad. VIP Tool se proporciona "tal cual" sin garantías de ningún tipo.</p>
+            </div>
+        </div>
+    </div>
+    <div id="disclaimerModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+            <div class="modal-body">
+                <h2>Descargo de Responsabilidad</h2>
+                <p>Esta herramienta no es un servicio oficial de Adobe. Los resultados dependen de la calidad de las imágenes proporcionadas.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Theme Logic ---
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const initialTheme = savedTheme || 'dark';
+            html.setAttribute('data-theme', initialTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('viptool-theme', next);
+            });
+
+            // --- IMAGE TO PDF LOGIC (JSPDF INTEGRATION) ---
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const previewGrid = document.getElementById('previewGrid');
+            const convertBtn = document.getElementById('convertBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            let selectedFiles = [];
+
+            // UI Interaction
+            dropZone.addEventListener('click', () => fileInput.click());
+            
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+            function handleFiles(files) {
+                const validFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+                selectedFiles = [...selectedFiles, ...validFiles];
+                updatePreview();
+                updateButtons();
+                // Reset input
+                fileInput.value = '';
+            }
+
+            function updateButtons() {
+                convertBtn.disabled = selectedFiles.length === 0;
+            }
+
+            function updatePreview() {
+                previewGrid.innerHTML = '';
+                selectedFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const div = document.createElement('div');
+                        div.className = 'preview-item';
+                        div.innerHTML = `
+                            <img src="${e.target.result}" class="preview-img" alt="preview">
+                            <button class="remove-btn" onclick="window.removeImage(${index})">&times;</button>
+                        `;
+                        previewGrid.appendChild(div);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Expose remove function to global scope for inline onclick
+            window.removeImage = (index) => {
+                selectedFiles.splice(index, 1);
+                updatePreview();
+                updateButtons();
+            };
+
+            resetBtn.addEventListener('click', () => {
+                selectedFiles = [];
+                updatePreview();
+                updateButtons();
+            });
+
+            // --- JS PDF GENERATION LOGIC ---
+            function readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            convertBtn.addEventListener('click', async () => {
+                if (selectedFiles.length === 0) return;
+                
+                const originalText = convertBtn.innerHTML;
+                convertBtn.innerHTML = 'Procesando...';
+                convertBtn.disabled = true;
+
+                try {
+                    // Check if jsPDF is loaded
+                    if (!window.jspdf) {
+                        throw new Error("Librería jsPDF no cargada.");
+                    }
+
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    for (let i = 0; i < selectedFiles.length; i++) {
+                        if (i > 0) doc.addPage();
+                        
+                        const imgData = await readFileAsDataURL(selectedFiles[i]);
+                        const imgProps = doc.getImageProperties(imgData);
+                        
+                        // Calculate Aspect Ratio Fit
+                        const pdfWidth = doc.internal.pageSize.getWidth();
+                        const pdfHeight = doc.internal.pageSize.getHeight();
+                        
+                        const imgRatio = imgProps.width / imgProps.height;
+                        const pageRatio = pdfWidth / pdfHeight;
+                        
+                        let w, h;
+                        
+                        // Logic to fit image within margins (10mm margin approx)
+                        const margin = 10;
+                        const maxWidth = pdfWidth - (margin * 2);
+                        const maxHeight = pdfHeight - (margin * 2);
+
+                        if (imgRatio > 1) { 
+                            // Landscapeish image
+                            w = maxWidth;
+                            h = w / imgRatio;
+                            if (h > maxHeight) {
+                                h = maxHeight;
+                                w = h * imgRatio;
+                            }
+                        } else {
+                            // Portraitish image
+                            h = maxHeight;
+                            w = h * imgRatio;
+                            if (w > maxWidth) {
+                                w = maxWidth;
+                                h = w / imgRatio;
+                            }
+                        }
+                        
+                        const x = (pdfWidth - w) / 2;
+                        const y = (pdfHeight - h) / 2;
+                        
+                        doc.addImage(imgData, 'JPEG', x, y, w, h);
+                    }
+                    
+                    doc.save('viptool-images.pdf');
+                    
+                } catch (error) {
+                    console.error(error);
+                    alert('Ocurrió un error al generar el PDF. Por favor intente de nuevo.');
+                } finally {
+                    convertBtn.innerHTML = originalText;
+                    convertBtn.disabled = false;
+                }
+            });
+
+            // --- Modal Logic ---
+            window.openModal = (id) => document.getElementById(id).classList.add('modal-active');
+            window.closeModal = (id) => document.getElementById(id).classList.remove('modal-active');
+            document.querySelectorAll('.modal-overlay').forEach(m => {
+                m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('modal-active'); });
+            });
+
+            // --- Ad Visibility ---
+            setTimeout(() => {
+                document.querySelectorAll('.ad-container').forEach(ad => {
+                    if (ad.innerHTML.includes('<ins') || ad.innerHTML.includes('<script')) {
+                        ad.style.display = 'flex';
+                    }
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
+
