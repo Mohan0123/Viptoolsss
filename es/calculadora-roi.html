@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de ROI (Retorno de Inversión) | VIP Tool</title>
+    <meta name="description" content="Calcula el Retorno de Inversión (ROI) con precisión profesional. Herramienta gratuita para inversores, marketers y dueños de negocios. Optimiza tus ganancias ahora.">
+    <meta name="keywords" content="calculadora roi, calcular retorno inversión, roi formula, herramienta financiera, rentabilidad, marketing roi, vip tool">
+    <meta name="author" content="VIP Tool">
+    <meta name="theme-color" content="#4f46e5">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viptool.online/es/calculadora-roi">
+    <meta property="og:title" content="Calculadora de ROI Profesional | VIP Tool">
+    <meta property="og:description" content="Calcula el Retorno de Inversión (ROI) instantáneamente. Herramienta financiera precisa y gratuita para maximizar tus beneficios.">
+    <meta property="og:image" content="https://viptool.online/assets/og-roi-es.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://viptool.online/es/calculadora-roi">
+    <meta property="twitter:title" content="Calculadora de ROI Profesional | VIP Tool">
+    <meta property="twitter:description" content="Calcula el Retorno de Inversión (ROI) instantáneamente. Herramienta financiera precisa y gratuita.">
+    <meta property="twitter:image" content="https://viptool.online/assets/og-roi-es.jpg">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Tailwind CSS (CDN for standalone output) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .dark .glass {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Input Auto-fill fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+            -webkit-text-fill-color: #1e293b !important;
+        }
+        .dark input:-webkit-autofill,
+        .dark input:-webkit-autofill:hover, 
+        .dark input:-webkit-autofill:focus, 
+        .dark input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #1e293b inset !important;
+            -webkit-text-fill-color: white !important;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de ROI VIP Tool",
+      "url": "https://viptool.online/es/calculadora-roi",
+      "description": "Herramienta profesional gratuita para calcular el Retorno de Inversión (ROI) y el beneficio neto.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Qué es el ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El ROI (Retorno de Inversión) es una métrica de rendimiento utilizada para evaluar la eficiencia de una inversión o comparar la eficiencia de varias inversiones diferentes. Mide directamente la cantidad de retorno de una inversión particular, en relación con el costo de la inversión."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cómo se calcula el ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La fórmula del ROI es: (Beneficio Neto / Costo de Inversión) x 100. El resultado se expresa como un porcentaje."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué se considera un buen ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un 'buen' ROI depende de la industria, el riesgo y el plazo. Generalmente, un ROI anual del 7% al 10% se considera bueno para inversiones en bolsa, mientras que las empresas pueden buscar un 15-20% o más para proyectos internos."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Esta calculadora es gratuita?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, la Calculadora de ROI de VIP Tool es 100% gratuita y puede usarse tantas veces como sea necesario."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Puedo calcular ROI negativo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, si el costo de la inversión supera a los ingresos generados, el resultado será un porcentaje negativo, indicando una pérdida."
+        }
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://viptool.online/es/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Herramientas Financieras",
+        "item": "https://viptool.online/es/calculadora-roi"
+      }, {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Calculadora de ROI"
+      }]
+    }
+    </script>
+</head>
+<body class="bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-gray-100 flex flex-col min-h-screen selection:bg-primary-500 selection:text-white">
+
+    <!-- Theme Initialization Script (Blocks FOUC) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemTheme)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    <!-- 1. Header (FIXED) -->
+    <header class="sticky top-0 z-50 glass border-b border-gray-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/es/" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-primary-500/30 group-hover:scale-105 transition-transform">
+                    V
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    VIP <span class="text-primary-500">Tool</span>
+                </span>
+            </a>
+
+            <!-- Tool Name (Desktop) -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2">
+                <span class="text-sm font-medium px-3 py-1 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400">
+                    Herramientas Financieras
+                </span>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" aria-label="Cambiar tema" class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500">
+                <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                <i class="fas fa-moon block dark:hidden text-slate-600"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow pb-12">
+        
+        <!-- 2. Tool Title Section -->
+        <section class="pt-12 pb-8 px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight animate-fade-in">
+                Calculadora de <span class="gradient-text">ROI</span>
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.1s;">
+                Mide la eficiencia de tus inversiones. Calcula tu porcentaje de retorno y ganancia neta en segundos con precisión profesional.
+            </p>
+        </section>
+
+        <!-- 3. Tool Interface (CORE) -->
+        <section class="max-w-4xl mx-auto px-4 animate-slide-up" style="animation-delay: 0.2s;">
+            <div class="glass-card rounded-2xl p-6 md:p-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Inputs -->
+                    <div class="space-y-6">
+                        <div class="relative">
+                            <label for="investment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Inversión Inicial ($)
+                            </label>
+                            <div class="relative rounded-md shadow-sm">
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input type="number" id="investment" placeholder="Ej: 5000" 
+                                    class="block w-full rounded-xl border-gray-300 dark:border-gray-600 pl-7 pr-3 py-3 text-slate-900 dark:text-white bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 transition-all duration-200"
+                                    oninput="this.value = Math.abs(this.value)">
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <label for="returned" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Ingresos Totales ($)
+                            </label>
+                            <div class="relative rounded-md shadow-sm">
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input type="number" id="returned" placeholder="Ej: 7500" 
+                                    class="block w-full rounded-xl border-gray-300 dark:border-gray-600 pl-7 pr-3 py-3 text-slate-900 dark:text-white bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 transition-all duration-200"
+                                    oninput="this.value = Math.abs(this.value)">
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-4 pt-2">
+                            <button id="calc-btn" class="flex-1 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-500 hover:to-purple-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary-500/20 transform hover:-translate-y-0.5 transition-all duration-200">
+                                <i class="fas fa-calculator mr-2"></i> Calcular
+                            </button>
+                            <button id="clear-btn" class="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors font-medium">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div class="bg-gray-50 dark:bg-slate-800/50 rounded-xl p-6 border border-gray-200 dark:border-white/5 flex flex-col justify-center relative overflow-hidden group">
+                        
+                        <!-- Decoration -->
+                        <div class="absolute top-0 right-0 p-4 opacity-10 dark:opacity-5 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-chart-line text-8xl text-primary-500"></i>
+                        </div>
+
+                        <div class="relative z-10 text-center space-y-6">
+                            <div>
+                                <h3 class="text-sm uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                                    Retorno de Inversión (ROI)
+                                </h3>
+                                <div id="roi-result" class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-purple-500">
+                                    0.00%
+                                </div>
+                            </div>
+
+                            <div class="h-px w-full bg-gray-200 dark:bg-white/10"></div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="text-xs text-gray-500 dark:text-gray-400 mb-1">Ganancia Neta</h4>
+                                    <p id="profit-result" class="text-xl font-bold text-slate-800 dark:text-white">$0.00</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-gray-500 dark:text-gray-400 mb-1">Inversión Total</h4>
+                                    <p id="total-invested" class="text-xl font-bold text-slate-800 dark:text-white">$0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Related Tools (STRICT POSITION) -->
+        <section class="max-w-4xl mx-auto px-4 mt-12">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <i class="fas fa-th-large text-primary-500"></i> Herramientas Relacionadas
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <!-- Tool 1 -->
+                <a href="/es/calculadora-iva.html" class="group block p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/10">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-primary-500 transition-colors">Calculadora IVA</h4>
+                </a>
+
+                <!-- Tool 2 -->
+                <a href="/es/calculadora-margen.html" class="group block p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/10">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-primary-500 transition-colors">Margen de Ganancia</h4>
+                </a>
+
+                <!-- Tool 3 -->
+                <a href="/es/conversor-divisas.html" class="group block p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/10">
+                    <div class="w-10 h-10 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-primary-500 transition-colors">Conversor Divisas</h4>
+                </a>
+
+                <!-- Tool 4 -->
+                <a href="/es/contador-palabras.html" class="group block p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg hover:shadow-primary-500/10">
+                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-paragraph"></i>
+                    </div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-primary-500 transition-colors">Contador Palabras</h4>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- 5. Conditional Ad Section -->
+        <div class="max-w-4xl mx-auto px-4 mt-8 hidden" id="ad-container">
+            <!-- AdSense Placeholder: Only populated if script is detected -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- 6, 7, 8, 9 Content Sections -->
+        <div class="max-w-3xl mx-auto px-4 mt-16 space-y-12 text-slate-700 dark:text-gray-300">
+            
+            <!-- How to Use -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">¿Cómo usar la Calculadora de ROI?</h2>
+                <ol class="list-decimal list-inside space-y-2 marker:text-primary-500 marker:font-bold">
+                    <li>Introduce el <strong>Costo de la Inversión</strong> (la cantidad total de dinero gastado).</li>
+                    <li>Introduce los <strong>Ingresos Totales</strong> (el valor final o ganancia bruta generada).</li>
+                    <li>Haz clic en el botón <strong>Calcular</strong>.</li>
+                    <li>Revisa instantáneamente tu porcentaje de ROI, ganancia neta y detalles.</li>
+                </ol>
+            </section>
+
+            <!-- Benefits -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Beneficios de calcular tu ROI</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-gray-200 dark:border-white/10">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Toma de Decisiones</h3>
+                        <p class="text-sm">Identifica qué inversiones son rentables y cuáles no para ajustar tu estrategia.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-gray-200 dark:border-white/10">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Comparación</h3>
+                        <p class="text-sm">Compara la eficiencia de diferentes activos o campañas de marketing de manera justa.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO Long Content -->
+            <section class="prose dark:prose-invert max-w-none">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Entendiendo el Retorno de Inversión (ROI)</h2>
+                <p>
+                    El <strong>Retorno de Inversión</strong>, comúnmente conocido como ROI (por sus siglas en inglés <em>Return on Investment</em>), es una de las métricas financieras más importantes tanto para inversores individuales como para grandes empresas. Básicamente, el ROI mide la rentabilidad de una inversión en relación con su costo.
+                </p>
+                <p class="mt-4">
+                    La fórmula básica del ROI es simple pero poderosa: 
+                    <br>
+                    <code class="bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded text-primary-600 dark:text-primary-400 font-mono">ROI = (Ganancia - Inversión) / Inversión x 100</code>
+                </p>
+                <p class="mt-4">
+                    Un ROI positivo significa que la inversión ha generado ganancias, mientras que un ROI negativo indica una pérdida financiera. Utilizar nuestra calculadora gratuita te permite evitar errores manuales y obtener una visión clara de tus finanzas personales, campañas publicitarias o rendimiento de acciones en tiempo real.
+                </p>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">¿Por qué es importante para el Marketing?</h3>
+                <p>
+                    En el mundo del marketing digital, calcular el ROI es crucial para determinar el éxito de las campañas de PPC (Pago Por Clic), SEO o email marketing. Permite a los especialistas en marketing asignar presupuestos de manera eficiente a los canales que ofrecen el mayor retorno por cada dólar gastado.
+                </p>
+            </section>
+
+            <!-- FAQs -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Preguntas Frecuentes (FAQ)</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/10">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                            <span>¿Qué significa un ROI del 100%?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-gray-400"></i></span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 mt-0 px-4 pb-4">
+                            Un ROI del 100% significa que has duplicado tu dinero. Has recuperado tu inversión inicial y has obtenido una ganancia igual a esa inversión.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/10">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                            <span>¿Cuál es la diferencia entre ROI y ROE?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-gray-400"></i></span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 mt-0 px-4 pb-4">
+                            El ROI mide el retorno de una inversión específica, mientras que el ROE (Return on Equity) mide la rentabilidad de una empresa en relación con el patrimonio de los accionistas.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/10">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                            <span>¿Cómo calculo el ROI anualizado?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-gray-400"></i></span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 mt-0 px-4 pb-4">
+                            Para anualizar el ROI, necesitas conocer el periodo de tiempo de la inversión. La fórmula es un poco más compleja: [(1 + ROI total) ^ (1 / número de años)] - 1.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/10">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                            <span>¿Esta herramienta guarda mis datos?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-gray-400"></i></span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 mt-0 px-4 pb-4">
+                            No. Todos los cálculos se realizan en tu navegador. VIP Tool no almacena ni transmite tus datos financieros.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/10">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                            <span>¿Es aplicable a inversiones inmobiliarias?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-gray-400"></i></span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 mt-0 px-4 pb-4">
+                            Sí, es una métrica fundamental en bienes raíces para calcular la rentabilidad de propiedades de alquiler o reventa.
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- 10. Footer (FIXED) -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-white/10 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="w-6 h-6 rounded bg-primary-500 text-white flex items-center justify-center font-bold text-xs">V</div>
+                <span class="font-bold text-slate-900 dark:text-white">VIP Tool</span>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                Herramientas online profesionales de alta precisión para todos.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm font-medium text-gray-600 dark:text-gray-300">
+                <button onclick="openModal('privacy')" class="hover:text-primary-500 transition-colors">Política de Privacidad</button>
+                <button onclick="openModal('terms')" class="hover:text-primary-500 transition-colors">Términos y Condiciones</button>
+                <button onclick="openModal('disclaimer')" class="hover:text-primary-500 transition-colors">Descargo de Responsabilidad</button>
+                <a href="https://viptool.online/es/" class="hover:text-primary-500 transition-colors">Más Herramientas</a>
+            </div>
+            <div class="text-xs text-gray-400 border-t border-gray-100 dark:border-white/5 pt-8">
+                &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals (Legal) -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0" onclick="closeModal()"></div>
+    
+    <div id="modal-content" class="fixed inset-x-4 top-[10%] bottom-[10%] md:inset-x-auto md:w-[600px] md:left-1/2 md:-translate-x-1/2 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl z-[70] hidden flex flex-col border border-gray-200 dark:border-white/10 transition-all transform scale-95 opacity-0">
+        <div class="p-6 border-b border-gray-100 dark:border-white/10 flex justify-between items-center">
+            <h3 id="modal-title" class="text-xl font-bold text-slate-900 dark:text-white">Legal</h3>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <div id="modal-body" class="p-6 overflow-y-auto prose dark:prose-invert prose-sm max-w-none flex-grow">
+            <!-- Dynamic Content -->
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // --- Theme System ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('viptool-theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('viptool-theme', 'dark');
+            }
+        });
+
+        // --- ROI Logic ---
+        const investmentInput = document.getElementById('investment');
+        const returnedInput = document.getElementById('returned');
+        const calcBtn = document.getElementById('calc-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        
+        const roiResult = document.getElementById('roi-result');
+        const profitResult = document.getElementById('profit-result');
+        const totalInvested = document.getElementById('total-invested');
+
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('es-US', { style: 'currency', currency: 'USD' }).format(num);
+        }
+
+        function calculateROI() {
+            const investment = parseFloat(investmentInput.value);
+            const returned = parseFloat(returnedInput.value);
+
+            if (isNaN(investment) || isNaN(returned)) {
+                alert('Por favor, ingresa números válidos en ambos campos.');
+                return;
+            }
+
+            if (investment === 0) {
+                alert('La inversión inicial no puede ser cero.');
+                return;
+            }
+
+            const profit = returned - investment;
+            const roi = (profit / investment) * 100;
+
+            // Animate numbers
+            roiResult.textContent = roi.toFixed(2) + '%';
+            roiResult.className = `text-5xl font-extrabold text-transparent bg-clip-text ${roi >= 0 ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-orange-500'}`;
+            
+            profitResult.textContent = formatCurrency(profit);
+            profitResult.className = `text-xl font-bold ${profit >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`;
+            
+            totalInvested.textContent = formatCurrency(investment);
+        }
+
+        function clearInputs() {
+            investmentInput.value = '';
+            returnedInput.value = '';
+            roiResult.textContent = '0.00%';
+            roiResult.className = 'text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-purple-500';
+            profitResult.textContent = '$0.00';
+            profitResult.className = 'text-xl font-bold text-slate-800 dark:text-white';
+            totalInvested.textContent = '$0.00';
+            investmentInput.focus();
+        }
+
+        calcBtn.addEventListener('click', calculateROI);
+        clearBtn.addEventListener('click', clearInputs);
+
+        // Enter key support
+        [investmentInput, returnedInput].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') calculateROI();
+            });
+        });
+
+        // --- Modal System ---
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+
+        const legalContent = {
+            privacy: {
+                title: 'Política de Privacidad',
+                body: `<p>En VIP Tool, valoramos su privacidad. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos su información cuando utiliza nuestro sitio web.</p>
+                       <h4>Recopilación de Datos</h4>
+                       <p>Utilizamos Google Analytics (GA4) para analizar el tráfico. No recopilamos información personal identificable (PII) a menos que usted la proporcione voluntariamente.</p>
+                       <h4>Uso de Cookies</h4>
+                       <p>Utilizamos cookies para recordar sus preferencias de tema y para la funcionalidad de anuncios de Google AdSense.</p>`
+            },
+            terms: {
+                title: 'Términos y Condiciones',
+                body: `<p>Al acceder a este sitio web, usted acepta estar vinculado por estos términos de servicio, todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables.</p>
+                       <h4>Licencia de Uso</h4>
+                       <p>Se concede permiso para usar las herramientas de VIP Tool para fines personales o comerciales. No puede modificar o copiar los materiales ni intentar descompilar el software.</p>`
+            },
+            disclaimer: {
+                title: 'Descargo de Responsabilidad',
+                body: `<p>Los materiales en el sitio web de VIP Tool se proporcionan "tal cual". VIP Tool no ofrece garantías, expresas o implícitas, y por la presente renuncia y niega todas las otras garantías, incluidas, sin limitación, las garantías implícitas o condiciones de comerciabilidad.</p>
+                       <h4>Exactitud de los Cálculos</h4>
+                       <p>Aunque nos esforzamos por la precisión, los resultados de nuestras calculadoras son solo para fines informativos y no deben considerarse asesoramiento financiero profesional.</p>`
+            }
+        };
+
+        window.openModal = function(type) {
+            const content = legalContent[type];
+            if (!content) return;
+
+            modalTitle.textContent = content.title;
+            modalBody.innerHTML = content.body;
+
+            modalBackdrop.classList.remove('hidden');
+            modalContent.classList.remove('hidden');
+            
+            // Animation tick
+            setTimeout(() => {
+                modalBackdrop.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        };
+
+        window.closeModal = function() {
+            modalBackdrop.classList.add('opacity-0');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modalBackdrop.classList.add('hidden');
+                modalContent.classList.add('hidden');
+            }, 300);
+        };
+
+        // --- AdSense Check ---
+        window.addEventListener('load', () => {
+            const adContainer = document.getElementById('ad-container');
+            const ins = adContainer.querySelector('ins');
+            // Check if ad script injected anything (basic check)
+            if (ins && ins.innerHTML.length > 0) {
+                adContainer.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
