@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Préstamos Online | VIP Tool</title>
+    <meta name="description" content="Calcule sus pagos mensuales, intereses totales y amortización de préstamos con nuestra Calculadora de Préstamos gratuita y profesional. Ideal para préstamos personales, hipotecarios y automotrices.">
+    <link rel="canonical" href="https://viptool.online/es/calculadora-prestamos">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Theme Initialization (Critical to prevent flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemTheme)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Sky blue
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(14, 165, 233, 0.3)',
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .input-group input:focus {
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.5);
+        }
+
+        /* Hide scrollbar for legal modals */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de Préstamos",
+      "url": "https://viptool.online/es/calculadora-prestamos",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "description": "Herramienta online gratuita para calcular cuotas mensuales de préstamos, intereses totales y tablas de amortización.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool",
+        "url": "https://viptool.online"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://viptool.online/es/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Herramientas Financieras",
+        "item": "https://viptool.online/es/herramientas-financieras"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Calculadora de Préstamos"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Cómo se calcula la cuota mensual de un préstamo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La cuota mensual se calcula utilizando la fórmula de amortización francesa, que considera el capital principal, la tasa de interés anual y el plazo total del préstamo para determinar pagos iguales."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Esta calculadora incluye impuestos o seguros?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, esta herramienta calcula solo el capital y los intereses. Los costos adicionales como seguros de vida, comisiones de apertura o impuestos locales deben sumarse por separado."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Es gratuita esta calculadora?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, nuestra calculadora de préstamos es 100% gratuita y no requiere registro para su uso ilimitado."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué es la tasa de interés efectiva anual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es el costo real del crédito en términos anuales, incluyendo los intereses compuestos. Nuestra calculadora utiliza la tasa nominal para simplificar el cálculo mensual."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Puedo usar esto para préstamos hipotecarios?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, la fórmula es estándar para préstamos personales, automotrices e hipotecarios de tasa fija."
+        }
+      }]
+    }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col font-sans">
+
+    <!-- 1. Header (FIXED) -->
+    <header class="fixed w-full top-0 z-50 glass-panel border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/es/" class="flex items-center space-x-2 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-neon">
+                    V
+                </div>
+                <span class="font-bold text-xl tracking-tight text-gray-900 dark:text-white group-hover:text-brand-500 transition-colors">VIP Tool</span>
+            </a>
+
+            <!-- Tool Name (Mobile Hidden) -->
+            <div class="hidden md:block font-medium text-sm text-gray-500 dark:text-gray-400">
+                Calculadora de Préstamos
+            </div>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Cambiar tema">
+                <!-- Sun Icon -->
+                <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+                <!-- Moon Icon -->
+                <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        
+        <!-- 2. Tool Title Section -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-purple-600 dark:from-brand-400 dark:to-purple-400">
+                Calculadora de Préstamos
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+                Planifique sus finanzas calculando cuotas mensuales, intereses y amortización total al instante.
+            </p>
+        </div>
+
+        <!-- 3. Tool Interface (CORE) -->
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl shadow-2xl p-6 sm:p-10 transition-all duration-300">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <!-- Inputs -->
+                    <div class="space-y-6">
+                        <div class="input-group">
+                            <label for="amount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Monto del Préstamo</label>
+                            <div class="relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input type="number" id="amount" class="block w-full pl-7 pr-12 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-brand-500 focus:border-brand-500 dark:text-white transition-all text-lg" placeholder="10000" min="0">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="rate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tasa de Interés Anual (%)</label>
+                            <div class="relative rounded-md shadow-sm">
+                                <input type="number" id="rate" class="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-brand-500 focus:border-brand-500 dark:text-white transition-all text-lg" placeholder="5.5" step="0.01" min="0">
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="term" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Plazo del Préstamo</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="term" class="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-brand-500 focus:border-brand-500 dark:text-white transition-all text-lg" placeholder="5" min="1">
+                                <select id="termType" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-white font-medium">
+                                    <option value="years">Años</option>
+                                    <option value="months">Meses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button id="calculateBtn" class="w-full bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition hover:-translate-y-0.5 hover:shadow-neon focus:outline-none focus:ring-4 focus:ring-brand-500 focus:ring-opacity-50 text-lg">
+                            Calcular Cuota
+                        </button>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700 flex flex-col justify-center relative overflow-hidden">
+                        <!-- Decorative bg blob -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500 opacity-10 rounded-full blur-3xl"></div>
+                        
+                        <div class="relative z-10 text-center space-y-8">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Cuota Mensual</h3>
+                                <div id="monthlyPayment" class="text-5xl sm:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                                    -
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                <div>
+                                    <h4 class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Total Intereses</h4>
+                                    <p id="totalInterest" class="text-xl font-bold text-gray-800 dark:text-gray-200">-</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Total a Pagar</h4>
+                                    <p id="totalPayment" class="text-xl font-bold text-gray-800 dark:text-gray-200">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Related Tools (STRICT POSITION) -->
+        <div class="max-w-4xl mx-auto mt-12">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Herramientas Relacionadas</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <a href="/es/calculadora-hipoteca" class="block p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all hover:border-brand-500 group">
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-brand-500 text-center">Hipoteca</span>
+                </a>
+                <a href="/es/calculadora-roi" class="block p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all hover:border-brand-500 group">
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-brand-500 text-center">Calculadora ROI</span>
+                </a>
+                <a href="/es/conversor-divisas" class="block p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all hover:border-brand-500 group">
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-brand-500 text-center">Divisas</span>
+                </a>
+                <a href="/es/calculadora-interes-compuesto" class="block p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all hover:border-brand-500 group">
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-brand-500 text-center">Interés Compuesto</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 5. Conditional Ad Section -->
+        <div class="max-w-4xl mx-auto mt-8 hidden" id="ad-container">
+            <!-- AdSense Placeholder -->
+            <div class="w-full h-24 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-sm">
+                Espacio Publicitario
+            </div>
+        </div>
+
+        <!-- Content Section Wrapper -->
+        <div class="max-w-3xl mx-auto mt-16 space-y-16">
+            
+            <!-- 6. How to Use -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900 text-brand-600 dark:text-brand-400 flex items-center justify-center text-sm mr-3">1</span>
+                    ¿Cómo usar la calculadora?
+                </h2>
+                <div class="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Monto del Préstamo:</strong> Ingrese la cantidad total de dinero que desea solicitar.</li>
+                        <li><strong>Tasa de Interés:</strong> Escriba la tasa de interés anual que ofrece su banco o entidad financiera.</li>
+                        <li><strong>Plazo:</strong> Indique en cuánto tiempo planea devolver el dinero (años o meses).</li>
+                        <li><strong>Calcular:</strong> Presione el botón para ver instantáneamente su cuota mensual y el desglose de intereses.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 7. Benefits -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900 text-brand-600 dark:text-brand-400 flex items-center justify-center text-sm mr-3">2</span>
+                    Beneficios de planificar su préstamo
+                </h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="font-semibold text-brand-600 dark:text-brand-400 mb-2">Claridad Financiera</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Conozca exactamente cuánto pagará cada mes para ajustar su presupuesto personal o familiar.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="font-semibold text-brand-600 dark:text-brand-400 mb-2">Ahorro de Intereses</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Compare diferentes plazos para ver cómo reducir el tiempo del préstamo puede ahorrarle miles en intereses.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. SEO Long Content -->
+            <section class="prose dark:prose-invert max-w-none">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">La Importancia de Calcular su Préstamo Antes de Solicitarlo</h2>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Tomar la decisión de solicitar un préstamo es un compromiso financiero importante que puede afectar su economía durante años. Ya sea para comprar una vivienda, un vehículo nuevo o consolidar deudas, entender los números detrás del contrato es fundamental.
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    Nuestra <strong>Calculadora de Préstamos</strong> está diseñada para ofrecer transparencia total. Muchos prestatarios se centran únicamente en la cuota mensual, olvidando el impacto de la tasa de interés a largo plazo. Una diferencia de apenas un 1% en la tasa de interés puede significar una gran diferencia en el monto total a pagar al final del plazo.
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    Además, esta herramienta le permite experimentar con diferentes escenarios. ¿Qué pasa si pago en 5 años en lugar de 10? ¿Cuánto baja mi cuota si consigo una mejor tasa? Al tener estas respuestas de antemano, usted llega al banco con el poder de la negociación y una comprensión clara de su capacidad de endeudamiento, evitando sorpresas desagradables en el futuro.
+                </p>
+            </section>
+
+            <!-- 9. FAQs -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Preguntas Frecuentes</h2>
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <button class="flex items-center justify-between w-full p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                            <span class="font-medium text-gray-900 dark:text-white">¿La calculadora incluye comisiones bancarias?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="hidden p-4 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 text-sm border-t border-gray-200 dark:border-gray-700">
+                            No. Esta calculadora determina los pagos basados únicamente en el capital y la tasa de interés. Las comisiones de apertura, seguros y otros cargos administrativos varían según el banco y deben sumarse aparte.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <button class="flex items-center justify-between w-full p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                            <span class="font-medium text-gray-900 dark:text-white">¿Qué fórmula utiliza esta herramienta?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="hidden p-4 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 text-sm border-t border-gray-200 dark:border-gray-700">
+                            Utilizamos el sistema de amortización francés, que es el estándar internacional para la mayoría de los préstamos personales e hipotecarios, donde las cuotas mensuales son fijas durante todo el plazo.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <button class="flex items-center justify-between w-full p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                            <span class="font-medium text-gray-900 dark:text-white">¿Es seguro usar esta calculadora?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="hidden p-4 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 text-sm border-t border-gray-200 dark:border-gray-700">
+                            Totalmente. Todos los cálculos se realizan en su navegador. No solicitamos ni almacenamos ningún dato personal o financiero en nuestros servidores.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <button class="flex items-center justify-between w-full p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                            <span class="font-medium text-gray-900 dark:text-white">¿Puedo calcular en otras monedas?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="hidden p-4 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 text-sm border-t border-gray-200 dark:border-gray-700">
+                            Sí. Aunque el símbolo por defecto es "$", la matemática funciona igual para Euros (€), Libras (£) o cualquier otra moneda. Simplemente ingrese los números correspondientes.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 5 -->
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <button class="flex items-center justify-between w-full p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                            <span class="font-medium text-gray-900 dark:text-white">¿Cómo afecta el plazo a los intereses?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="hidden p-4 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 text-sm border-t border-gray-200 dark:border-gray-700">
+                            Generalmente, un plazo más largo reduce la cuota mensual pero aumenta significativamente el total de intereses pagados. Un plazo más corto aumenta la cuota mensual pero ahorra dinero en intereses totales.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 10. Footer (FIXED) -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-12 mt-12 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <a href="/es/" class="inline-flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                        V
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-gray-900 dark:text-white">VIP Tool</span>
+                </a>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                Herramientas profesionales para la era digital. Simple, rápido y seguro.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm text-gray-600 dark:text-gray-300">
+                <button onclick="openModal('privacy')" class="hover:text-brand-500 transition-colors">Política de Privacidad</button>
+                <button onclick="openModal('terms')" class="hover:text-brand-500 transition-colors">Términos y Condiciones</button>
+                <button onclick="openModal('disclaimer')" class="hover:text-brand-500 transition-colors">Descargo de Responsabilidad</button>
+                <a href="https://viptool.online" class="hover:text-brand-500 transition-colors">Todas las Herramientas</a>
+            </div>
+            <div class="text-xs text-gray-400 dark:text-gray-500">
+                &copy; <script>document.write(new Date().getFullYear())</script> VIP Tool. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals (Hidden by default) -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0" onclick="closeModal()"></div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="modal-privacy" class="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-[70] hidden transition-all transform scale-95 opacity-0 flex flex-col max-h-[90vh]">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Política de Privacidad</h3>
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto prose dark:prose-invert text-sm">
+            <p>En VIP Tool, la privacidad de nuestros visitantes es de extrema importancia para nosotros. Este documento de política de privacidad describe los tipos de información personal que recibe y recopila VIP Tool y cómo se utiliza.</p>
+            <h4>Archivos de registro</h4>
+            <p>Al igual que muchos otros sitios web, VIP Tool hace uso de archivos de registro. La información dentro de los archivos de registro incluye direcciones de protocolo de Internet (IP), tipo de navegador, proveedor de servicios de Internet (ISP), sello de fecha / hora, páginas de referencia / salida y número de clics para analizar tendencias, administrar el sitio y rastrear el movimiento del usuario alrededor del sitio.</p>
+            <h4>Cookies y Web Beacons</h4>
+            <p>VIP Tool utiliza cookies para almacenar información sobre las preferencias de los visitantes, registrar información específica del usuario sobre qué páginas accede o visita el usuario, personalizar el contenido de la página web según el tipo de navegador de los visitantes u otra información que el visitante envía a través de su navegador.</p>
+            <h4>Google Analytics</h4>
+            <p>Utilizamos Google Analytics para analizar el uso de este sitio web. Google Analytics genera información estadística y de otro tipo sobre el uso del sitio web mediante cookies, que se almacenan en las computadoras de los usuarios.</p>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="modal-terms" class="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-[70] hidden transition-all transform scale-95 opacity-0 flex flex-col max-h-[90vh]">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Términos y Condiciones</h3>
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto prose dark:prose-invert text-sm">
+            <p>Bienvenido a VIP Tool. Al acceder a este sitio web, asumimos que acepta estos términos y condiciones en su totalidad. No continúe utilizando el sitio web de VIP Tool si no acepta todos los términos y condiciones establecidos en esta página.</p>
+            <h4>Licencia</h4>
+            <p>A menos que se indique lo contrario, VIP Tool y/o sus licenciantes poseen los derechos de propiedad intelectual de todo el material en VIP Tool. Todos los derechos de propiedad intelectual están reservados.</p>
+            <h4>Uso Aceptable</h4>
+            <p>No debe utilizar este sitio web de ninguna manera que cause, o pueda causar, daños al sitio web o menoscabo de la disponibilidad o accesibilidad del sitio web; o de cualquier manera que sea ilegal, fraudulenta o dañina.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="modal-disclaimer" class="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-[70] hidden transition-all transform scale-95 opacity-0 flex flex-col max-h-[90vh]">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Descargo de Responsabilidad</h3>
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto prose dark:prose-invert text-sm">
+            <p>La información proporcionada por VIP Tool ("nosotros", "nos" o "nuestro") en https://viptool.online es solo para fines informativos generales. Toda la información en el sitio se proporciona de buena fe, sin embargo, no hacemos ninguna representación o garantía de ningún tipo, expresa o implícita, con respecto a la precisión, idoneidad, validez, confiabilidad, disponibilidad o integridad de cualquier información en el Sitio.</p>
+            <p>Bajo ninguna circunstancia tendremos ninguna responsabilidad ante usted por cualquier pérdida o daño de cualquier tipo incurrido como resultado del uso del sitio o la confianza en cualquier información proporcionada en el sitio. Su uso del sitio y su confianza en cualquier información en el sitio es bajo su propio riesgo.</p>
+            <h4>Descargo de Responsabilidad Financiera</h4>
+            <p>Este sitio web proporciona herramientas de cálculo financiero solo con fines informativos. No somos asesores financieros y los resultados de nuestras calculadoras no deben considerarse asesoramiento financiero profesional. Consulte siempre a un asesor calificado antes de tomar decisiones financieras importantes.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Theme Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateThemeIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleDarkIcon.classList.add('hidden');
+                themeToggleLightIcon.classList.remove('hidden');
+            } else {
+                themeToggleLightIcon.classList.add('hidden');
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+        }
+        
+        updateThemeIcons();
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle Theme
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('viptool-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('viptool-theme', 'dark');
+            }
+            updateThemeIcons();
+        });
+
+        // --- FAQ Accordion Logic ---
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            // Toggle hidden class
+            content.classList.toggle('hidden');
+            
+            // Rotate icon
+            if (content.classList.contains('hidden')) {
+                icon.classList.remove('rotate-180');
+            } else {
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // --- Modal Logic ---
+        const overlay = document.getElementById('modal-overlay');
+        const modals = {
+            'privacy': document.getElementById('modal-privacy'),
+            'terms': document.getElementById('modal-terms'),
+            'disclaimer': document.getElementById('modal-disclaimer')
+        };
+        let currentModal = null;
+
+        window.openModal = function(type) {
+            const modal = modals[type];
+            if (!modal) return;
+            
+            currentModal = modal;
+            
+            // Show overlay
+            overlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                overlay.classList.remove('opacity-0');
+            });
+
+            // Show modal
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0', 'scale-95');
+                modal.classList.add('opacity-100', 'scale-100');
+            });
+            
+            document.body.style.overflow = 'hidden'; // Prevent body scroll
+        };
+
+        window.closeModal = function() {
+            if (!currentModal) return;
+
+            // Hide overlay
+            overlay.classList.add('opacity-0');
+            
+            // Hide modal
+            currentModal.classList.add('opacity-0', 'scale-95');
+            currentModal.classList.remove('opacity-100', 'scale-100');
+
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                currentModal.classList.add('hidden');
+                currentModal = null;
+                document.body.style.overflow = ''; // Restore body scroll
+            }, 300); // Wait for transition
+        };
+
+        // --- Tool Logic: Loan Calculator ---
+        const amountInput = document.getElementById('amount');
+        const rateInput = document.getElementById('rate');
+        const termInput = document.getElementById('term');
+        const termTypeSelect = document.getElementById('termType');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        const monthlyPaymentEl = document.getElementById('monthlyPayment');
+        const totalInterestEl = document.getElementById('totalInterest');
+        const totalPaymentEl = document.getElementById('totalPayment');
+
+        // Helper to format currency
+        const formatCurrency = (val) => {
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'USD' }).format(val);
+        };
+
+        function calculateLoan() {
+            const principal = parseFloat(amountInput.value);
+            const rateYearly = parseFloat(rateInput.value);
+            let term = parseFloat(termInput.value);
+            
+            // Validation
+            if (!principal || !rateYearly || !term) {
+                // You could show an error toast here, or just reset
+                if (!principal) monthlyPaymentEl.innerText = '-';
+                return;
+            }
+
+            // Convert rate to monthly decimal
+            const rateMonthly = (rateYearly / 100) / 12;
+            
+            // Convert term to months
+            if (termTypeSelect.value === 'years') {
+                term = term * 12;
+            }
+
+            // Formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
+            const x = Math.pow(1 + rateMonthly, term);
+            const monthly = (principal * x * rateMonthly) / (x - 1);
+
+            if (isFinite(monthly)) {
+                const totalPay = monthly * term;
+                const totalInt = totalPay - principal;
+
+                monthlyPaymentEl.innerText = formatCurrency(monthly);
+                totalInterestEl.innerText = formatCurrency(totalInt);
+                totalPaymentEl.innerText = formatCurrency(totalPay);
+            } else {
+                monthlyPaymentEl.innerText = '-';
+            }
+        }
+
+        // Add event listeners
+        calculateBtn.addEventListener('click', calculateLoan);
+        
+        // Optional: Calculate on enter key
+        [amountInput, rateInput, termInput].forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') calculateLoan();
+            });
+        });
+
+        // AdSense Check (Conditional Display)
+        window.onload = function() {
+            const ads = document.getElementsByTagName('ins');
+            if (ads.length > 0) {
+                const adContainer = document.getElementById('ad-container');
+                if(adContainer) {
+                    adContainer.classList.remove('hidden');
+                }
+            }
+        };
+
+    </script>
+</body>
+</html>
+
