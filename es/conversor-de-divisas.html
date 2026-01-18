@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Divisas Universal | VIP Tool</title>
+    <meta name="description" content="Convierta monedas internacionales al instante con el Conversor de Divisas de VIP Tool. Tipos de cambio actualizados, soporte para USD, EUR, MXN, y más. Gratuito y preciso.">
+    <meta name="keywords" content="conversor de divisas, cambio de moneda, calculadora de divisas, tipo de cambio, convertidor de dinero, USD a EUR, MXN a USD, herramienta financiera">
+    <meta name="author" content="VIP Tool">
+    <meta name="theme-color" content="#4f46e5">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viptool.online/es/conversor-de-divisas">
+    <meta property="og:title" content="Conversor de Divisas Universal | VIP Tool">
+    <meta property="og:description" content="Herramienta profesional para convertir divisas con tasas actualizadas. Rápido, seguro y diseñado para finanzas globales.">
+    <meta property="og:image" content="https://viptool.online/images/currency-converter-cover.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://viptool.online/es/conversor-de-divisas">
+    <meta property="twitter:title" content="Conversor de Divisas Universal | VIP Tool">
+    <meta property="twitter:description" content="Convierta dinero entre múltiples monedas mundiales con precisión milimétrica.">
+    <meta property="twitter:image" content="https://viptool.online/images/currency-converter-cover.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://viptool.online/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Conversor de Divisas Universal",
+        "url": "https://viptool.online/es/conversor-de-divisas",
+        "description": "Herramienta online gratuita para convertir divisas internacionales con tipos de cambio actualizados.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "VIP Tool"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://viptool.online/es/conversor-de-divisas"
+        }, {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Herramientas Financieras",
+            "item": "https://viptool.online/es/conversor-de-divisas"
+        }, {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Conversor de Divisas"
+        }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "¿Con qué frecuencia se actualizan los tipos de cambio?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nuestras tasas de cambio se basan en promedios del mercado global y se actualizan regularmente para ofrecer estimaciones precisas para transacciones personales y comerciales."
+            }
+        }, {
+            "@type": "Question",
+            "name": "¿Es gratuito este conversor de divisas?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, el Conversor de Divisas de VIP Tool es 100% gratuito y no requiere registro ni suscripción para su uso ilimitado."
+            }
+        }, {
+            "@type": "Question",
+            "name": "¿Puedo usar esta herramienta en mi móvil?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutamente. Nuestra herramienta está optimizada para dispositivos móviles, tabletas y ordenadores de escritorio, garantizando una experiencia fluida en cualquier pantalla."
+            }
+        }]
+    }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .light .glass {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Input Autofill Fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1e293b inset !important;
+            -webkit-text-fill-color: white !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .light input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+            -webkit-text-fill-color: black !important;
+        }
+
+        /* Hide Number Arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; margin: 0; 
+        }
+    </style>
+
+    <!-- Theme Initialization (Critical to prevent flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
+        })();
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white overflow-x-hidden">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 glass border-b border-gray-200 dark:border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-primary-500/30">
+                        V
+                    </div>
+                    <span class="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
+                        VIP Tool
+                    </span>
+                </div>
+
+                <!-- Tool Name (Desktop) -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2">
+                    <span class="text-sm font-medium px-4 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300">
+                        Conversor de Divisas
+                    </span>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Cambiar tema">
+                    <i class="fas fa-moon hidden dark:block text-lg"></i>
+                    <i class="fas fa-sun block dark:hidden text-lg text-yellow-500"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-32 pb-12 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- Tool Header -->
+            <div class="text-center space-y-4 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 pb-2">
+                    Conversor de Divisas
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Convierta monedas internacionales al instante con tipos de cambio precisos y actualizados.
+                </p>
+            </div>
+
+            <!-- TOOL INTERFACE -->
+            <div class="glass rounded-2xl p-1 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 animate-fade-in" style="animation-delay: 0.1s;">
+                <div class="bg-white/50 dark:bg-dark-card/50 rounded-xl p-6 md:p-8 space-y-8 backdrop-blur-sm">
+                    
+                    <!-- Input Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
+                        
+                        <!-- From Currency -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">De</label>
+                            <div class="relative">
+                                <select id="fromCurrency" class="w-full pl-4 pr-10 py-3 rounded-xl bg-gray-50 dark:bg-dark-bg border-gray-200 dark:border-dark-border focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer">
+                                    <option value="USD">USD - Dólar Estadounidense</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - Libra Esterlina</option>
+                                    <option value="JPY">JPY - Yen Japonés</option>
+                                    <option value="MXN" selected>MXN - Peso Mexicano</option>
+                                    <option value="CAD">CAD - Dólar Canadiense</option>
+                                    <option value="AUD">AUD - Dólar Australiano</option>
+                                    <option value="CHF">CHF - Franco Suizo</option>
+                                    <option value="CNY">CNY - Yuan Chino</option>
+                                    <option value="INR">INR - Rupia India</option>
+                                    <option value="BRL">BRL - Real Brasileño</option>
+                                    <option value="COP">COP - Peso Colombiano</option>
+                                    <option value="ARS">ARS - Peso Argentino</option>
+                                    <option value="CLP">CLP - Peso Chileno</option>
+                                    <option value="PEN">PEN - Sol Peruano</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <div class="flex justify-center md:pt-6">
+                            <button id="swapBtn" class="p-3 rounded-full bg-gray-100 dark:bg-white/5 text-primary-500 hover:bg-primary-500 hover:text-white border border-gray-200 dark:border-white/10 transition-all transform hover:rotate-180 duration-300 shadow-sm" aria-label="Intercambiar monedas">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                        </div>
+
+                        <!-- To Currency -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">A</label>
+                            <div class="relative">
+                                <select id="toCurrency" class="w-full pl-4 pr-10 py-3 rounded-xl bg-gray-50 dark:bg-dark-bg border-gray-200 dark:border-dark-border focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer">
+                                    <option value="USD" selected>USD - Dólar Estadounidense</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - Libra Esterlina</option>
+                                    <option value="JPY">JPY - Yen Japonés</option>
+                                    <option value="MXN">MXN - Peso Mexicano</option>
+                                    <option value="CAD">CAD - Dólar Canadiense</option>
+                                    <option value="AUD">AUD - Dólar Australiano</option>
+                                    <option value="CHF">CHF - Franco Suizo</option>
+                                    <option value="CNY">CNY - Yuan Chino</option>
+                                    <option value="INR">INR - Rupia India</option>
+                                    <option value="BRL">BRL - Real Brasileño</option>
+                                    <option value="COP">COP - Peso Colombiano</option>
+                                    <option value="ARS">ARS - Peso Argentino</option>
+                                    <option value="CLP">CLP - Peso Chileno</option>
+                                    <option value="PEN">PEN - Sol Peruano</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amount Input -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 dark:text-gray-400 font-bold" id="currencySymbol">$</span>
+                            <input type="number" id="amount" value="100" min="0" step="any" class="w-full pl-10 pr-4 py-4 rounded-xl bg-gray-50 dark:bg-dark-bg border-gray-200 dark:border-dark-border focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-xl font-semibold placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button id="convertBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-bold text-lg shadow-lg shadow-primary-500/30 transform hover:-translate-y-0.5 transition-all duration-200">
+                        <i class="fas fa-coins mr-2"></i> Convertir Ahora
+                    </button>
+
+                    <!-- Result Section -->
+                    <div id="resultCard" class="hidden rounded-xl bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border p-6 text-center animate-fade-in">
+                        <div class="text-sm text-gray-500 dark:text-gray-400 mb-1" id="conversionText">100 MXN =</div>
+                        <div class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight break-words" id="resultValue">
+                            5.84 USD
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-center items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-info-circle"></i>
+                            <span id="rateInfo">1 MXN = 0.0584 USD</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RELATED TOOLS -->
+            <div class="animate-fade-in" style="animation-delay: 0.2s;">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-layer-group text-primary-500"></i> Herramientas Relacionadas
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="/es/index.html" class="group p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-900 dark:text-gray-100 text-sm">Calculadora de Edad</h4>
+                    </a>
+                    <a href="/es/index.html" class="group p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-900 dark:text-gray-100 text-sm">Contador de Palabras</h4>
+                    </a>
+                    <a href="/es/index.html" class="group p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-900 dark:text-gray-100 text-sm">Test de Velocidad</h4>
+                    </a>
+                    <a href="/es/index.html" class="group p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-900 dark:text-gray-100 text-sm">Generador de Claves</h4>
+                    </a>
+                </div>
+            </div>
+
+            <!-- AD SECTION -->
+            <div class="w-full h-auto min-h-[100px] bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-700 relative overflow-hidden hidden" id="ad-placeholder">
+                <span class="text-xs text-gray-400 font-mono">Espacio Publicitario</span>
+                <!-- AdSense code will inject here if available -->
+            </div>
+
+            <!-- CONTENT SECTIONS (SEO) -->
+            <div class="space-y-12 animate-fade-in" style="animation-delay: 0.3s;">
+                
+                <!-- How to Use -->
+                <section class="prose dark:prose-invert max-w-none">
+                    <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white">
+                        <span class="w-8 h-8 rounded-full bg-primary-500 text-white flex items-center justify-center text-sm">1</span>
+                        Cómo usar el Conversor de Divisas
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+                        Nuestra herramienta ha sido diseñada para ser intuitiva y rápida. Siga estos sencillos pasos para realizar su conversión:
+                    </p>
+                    <ol class="list-none space-y-4 mt-6">
+                        <li class="flex gap-4 items-start bg-white dark:bg-white/5 p-4 rounded-lg border border-gray-200 dark:border-white/5">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <div>
+                                <strong class="block text-gray-900 dark:text-white">Seleccione la moneda de origen</strong>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">En el campo "De", elija la divisa que posee actualmente (ej. Pesos Mexicanos).</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start bg-white dark:bg-white/5 p-4 rounded-lg border border-gray-200 dark:border-white/5">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <div>
+                                <strong class="block text-gray-900 dark:text-white">Seleccione la moneda de destino</strong>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">En el campo "A", seleccione la divisa que desea obtener (ej. Dólares Americanos).</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start bg-white dark:bg-white/5 p-4 rounded-lg border border-gray-200 dark:border-white/5">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <div>
+                                <strong class="block text-gray-900 dark:text-white">Ingrese la cantidad</strong>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">Escriba el monto exacto que desea convertir. El cálculo se realizará automáticamente al pulsar el botón.</span>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Benefits -->
+                <section class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-white/5 p-6 rounded-2xl border border-gray-200 dark:border-white/5">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Velocidad Instantánea</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cálculos realizados en milisegundos directamente en su navegador, sin recargas lentas.</p>
+                    </div>
+                    <div class="bg-white dark:bg-white/5 p-6 rounded-2xl border border-gray-200 dark:border-white/5">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Soporte Global</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Compatible con las principales divisas mundiales, incluyendo USD, EUR, LATAM y Asia.</p>
+                    </div>
+                    <div class="bg-white dark:bg-white/5 p-6 rounded-2xl border border-gray-200 dark:border-white/5">
+                        <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">100% Seguro</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">No almacenamos sus datos financieros. Todo el proceso es anónimo y seguro.</p>
+                    </div>
+                </section>
+
+                <!-- FAQs -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Preguntas Frecuentes</h2>
+                    <div class="space-y-4">
+                        <details class="group bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 overflow-hidden">
+                            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium text-gray-900 dark:text-white">
+                                ¿Con qué frecuencia se actualizan las tasas?
+                                <span class="transition group-open:rotate-180">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-4">
+                                Nuestras tasas de cambio se basan en datos del mercado medio y se actualizan periódicamente para garantizar la mayor precisión posible en sus conversiones diarias.
+                            </div>
+                        </details>
+                        <details class="group bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 overflow-hidden">
+                            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium text-gray-900 dark:text-white">
+                                ¿Este servicio tiene algún costo?
+                                <span class="transition group-open:rotate-180">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-4">
+                                No, VIP Tool es una plataforma totalmente gratuita. Puede realizar tantas conversiones como desee sin costo alguno y sin necesidad de registrarse.
+                            </div>
+                        </details>
+                        <details class="group bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 overflow-hidden">
+                            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium text-gray-900 dark:text-white">
+                                ¿Puedo convertir criptomonedas?
+                                <span class="transition group-open:rotate-180">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-4">
+                                Actualmente nos enfocamos en divisas fiduciarias (Fiat) como Dólares, Euros y Pesos. Estamos trabajando para integrar criptomonedas en futuras actualizaciones.
+                            </div>
+                        </details>
+                        <details class="group bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 overflow-hidden">
+                            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium text-gray-900 dark:text-white">
+                                ¿Es preciso para transacciones comerciales?
+                                <span class="transition group-open:rotate-180">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-4">
+                                Si bien nuestras tasas son altamente precisas, siempre recomendamos verificar con su banco o institución financiera antes de realizar transacciones internacionales de gran volumen, ya que ellos pueden aplicar comisiones o tasas de venta diferentes.
+                            </div>
+                        </details>
+                        <details class="group bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 overflow-hidden">
+                            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium text-gray-900 dark:text-white">
+                                ¿Cómo puedo contactar al soporte?
+                                <span class="transition group-open:rotate-180">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-4">
+                                Si encuentra algún error o tiene sugerencias, puede contactarnos a través de nuestras redes sociales o mediante el formulario de contacto general en nuestra página principal.
+                            </div>
+                        </details>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-dark-card border-t border-gray-200 dark:border-white/5 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold">V</div>
+                        <span class="font-bold text-xl text-gray-900 dark:text-white">VIP Tool</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Herramientas digitales premium diseñadas para la productividad, el análisis y la eficiencia. Gratuitas y accesibles para todos.
+                    </p>
+                </div>
+                <div class="col-span-2 flex flex-wrap gap-8 md:justify-end">
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-4">Legal</h4>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><button onclick="openModal('privacyModal')" class="hover:text-primary-500 transition-colors">Política de Privacidad</button></li>
+                            <li><button onclick="openModal('termsModal')" class="hover:text-primary-500 transition-colors">Términos y Condiciones</button></li>
+                            <li><button onclick="openModal('disclaimerModal')" class="hover:text-primary-500 transition-colors">Descargo de Responsabilidad</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500 dark:text-gray-400 text-center md:text-left">
+                    &copy; 2024 VIP Tool. Todos los derechos reservados.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS (Legal) -->
+    
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal('privacyModal')"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white dark:bg-dark-card rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-gray-200 dark:border-white/10">
+                <div class="px-6 py-4 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 dark:text-white">Política de Privacidad</h3>
+                    <button onclick="closeModal('privacyModal')" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-6 max-h-[60vh] overflow-y-auto prose dark:prose-invert text-sm">
+                    <p>En VIP Tool, la privacidad de nuestros visitantes es de extrema importancia. Este documento de política de privacidad describe los tipos de información personal que recibe y recopila VIP Tool y cómo se utiliza.</p>
+                    <h4>Archivos de registro</h4>
+                    <p>Al igual que muchos otros sitios web, VIP Tool hace uso de archivos de registro. La información dentro de los archivos de registro incluye direcciones de protocolo de internet (IP), tipo de navegador, proveedor de servicios de Internet (ISP), fecha y hora, páginas de referencia/salida y el número de clics para analizar tendencias, administrar el sitio, rastrear el movimiento del usuario alrededor del sitio y recopilar información demográfica. Las direcciones IP y otra información similar no están vinculadas a ninguna información que sea personalmente identificable.</p>
+                    <h4>Cookies y Web Beacons</h4>
+                    <p>VIP Tool utiliza cookies para almacenar información sobre las preferencias de los visitantes, registrar información específica del usuario sobre qué páginas accede o visita el usuario, personalizar el contenido de la página web según el tipo de navegador de los visitantes u otra información que el visitante envía a través de su navegador.</p>
+                    <h4>Google Analytics</h4>
+                    <p>Utilizamos Google Analytics para analizar el uso de nuestro sitio web. Google Analytics recopila información sobre el uso del sitio web mediante cookies. La información recopilada relacionada con nuestro sitio web se utiliza para crear informes sobre el uso de nuestro sitio web. La política de privacidad de Google está disponible en: https://www.google.com/policies/privacy/</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-white/5 flex justify-end">
+                    <button type="button" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors" onclick="closeModal('privacyModal')">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal('termsModal')"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white dark:bg-dark-card rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-gray-200 dark:border-white/10">
+                <div class="px-6 py-4 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 dark:text-white">Términos y Condiciones</h3>
+                    <button onclick="closeModal('termsModal')" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-6 max-h-[60vh] overflow-y-auto prose dark:prose-invert text-sm">
+                    <p>Bienvenido a VIP Tool. Al acceder a este sitio web, asumimos que acepta estos términos y condiciones en su totalidad. No continúe utilizando el sitio web de VIP Tool si no acepta todos los términos y condiciones establecidos en esta página.</p>
+                    <h4>Licencia</h4>
+                    <p>A menos que se indique lo contrario, VIP Tool y/o sus licenciantes poseen los derechos de propiedad intelectual de todo el material en VIP Tool. Todos los derechos de propiedad intelectual están reservados. Puede ver y/o imprimir páginas de https://viptool.online para su uso personal sujeto a las restricciones establecidas en estos términos y condiciones.</p>
+                    <h4>Restricciones</h4>
+                    <p>No debe: publicar material de VIP Tool; vender, alquilar o sublicenciar material de VIP Tool; reproducir, duplicar o copiar material de VIP Tool.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-white/5 flex justify-end">
+                    <button type="button" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors" onclick="closeModal('termsModal')">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal('disclaimerModal')"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white dark:bg-dark-card rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-gray-200 dark:border-white/10">
+                <div class="px-6 py-4 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
+                    <h3 class="text-lg leading-6 font-bold text-gray-900 dark:text-white">Descargo de Responsabilidad</h3>
+                    <button onclick="closeModal('disclaimerModal')" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-6 max-h-[60vh] overflow-y-auto prose dark:prose-invert text-sm">
+                    <p>La información proporcionada por VIP Tool ("nosotros", "nos" o "nuestro") en https://viptool.online (el "Sitio") es solo para fines informativos generales. Toda la información en el Sitio se proporciona de buena fe, sin embargo, no hacemos ninguna representación o garantía de ningún tipo, expresa o implícita, con respecto a la precisión, idoneidad, validez, confiabilidad, disponibilidad o integridad de cualquier información en el Sitio.</p>
+                    <h4>Descargo de Responsabilidad Financiera</h4>
+                    <p>El Conversor de Divisas y otras herramientas financieras se proporcionan solo con fines informativos y no deben considerarse asesoramiento financiero profesional. Los tipos de cambio pueden variar y no garantizamos su exactitud en tiempo real para transacciones comerciales.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-white/5 flex justify-end">
+                    <button type="button" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors" onclick="closeModal('disclaimerModal')">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Theme Logic (Persistent) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        themeToggleBtn.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                localStorage.setItem('viptool-theme', 'light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                localStorage.setItem('viptool-theme', 'dark');
+            }
+        });
+
+        // --- Modal Logic ---
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('[role="dialog"]').forEach(modal => {
+                    if (!modal.classList.contains('hidden')) {
+                        modal.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // --- Currency Converter Logic ---
+        // Base rates relative to USD (Approximate - Stable fallback)
+        const rates = {
+            USD: 1,
+            EUR: 0.92,
+            GBP: 0.79,
+            JPY: 148.05,
+            MXN: 17.12,
+            CAD: 1.35,
+            AUD: 1.52,
+            CHF: 0.86,
+            CNY: 7.19,
+            INR: 83.12,
+            BRL: 4.95,
+            COP: 3950.00,
+            ARS: 820.50,
+            CLP: 920.00,
+            PEN: 3.75
+        };
+
+        const symbols = {
+            USD: '$', EUR: '€', GBP: '£', JPY: '¥', MXN: '$', 
+            CAD: '$', AUD: '$', CHF: 'Fr', CNY: '¥', INR: '₹', 
+            BRL: 'R$', COP: '$', ARS: '$', CLP: '$', PEN: 'S/'
+        };
+
+        const amountInput = document.getElementById('amount');
+        const fromSelect = document.getElementById('fromCurrency');
+        const toSelect = document.getElementById('toCurrency');
+        const swapBtn = document.getElementById('swapBtn');
+        const convertBtn = document.getElementById('convertBtn');
+        const resultCard = document.getElementById('resultCard');
+        const resultValue = document.getElementById('resultValue');
+        const conversionText = document.getElementById('conversionText');
+        const rateInfo = document.getElementById('rateInfo');
+        const currencySymbol = document.getElementById('currencySymbol');
+
+        function updateSymbol() {
+            currencySymbol.textContent = symbols[fromSelect.value] || '$';
+        }
+
+        function convert() {
+            const amount = parseFloat(amountInput.value);
+            const from = fromSelect.value;
+            const to = toSelect.value;
+
+            if (isNaN(amount) || amount < 0) return;
+
+            // Conversion Logic: (Amount / FromRate) * ToRate
+            const baseAmount = amount / rates[from];
+            const finalAmount = baseAmount * rates[to];
+            const singleRate = (1 / rates[from]) * rates[to];
+
+            // Display
+            resultCard.classList.remove('hidden');
+            
+            // Format number
+            const formatter = new Intl.NumberFormat('es-MX', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+            resultValue.textContent = `${formatter.format(finalAmount)} ${to}`;
+            conversionText.textContent = `${formatter.format(amount)} ${from} =`;
+            rateInfo.textContent = `1 ${from} = ${singleRate.toFixed(4)} ${to}`;
+        }
+
+        // Event Listeners
+        convertBtn.addEventListener('click', convert);
+        fromSelect.addEventListener('change', updateSymbol);
+        
+        swapBtn.addEventListener('click', () => {
+            const temp = fromSelect.value;
+            fromSelect.value = toSelect.value;
+            toSelect.value = temp;
+            updateSymbol();
+            convert(); // Auto convert on swap
+        });
+
+        // Trigger convert on Enter key in input
+        amountInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') convert();
+        });
+
+        // Init
+        updateSymbol();
+
+        // --- AdSense Visibility Check ---
+        // Checks if AdSense loaded any ads, if so, shows the container
+        window.addEventListener('load', () => {
+            const adContainer = document.getElementById('ad-placeholder');
+            const ins = adContainer.querySelector('ins');
+            if (ins && ins.innerHTML.trim() !== '') {
+                adContainer.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
