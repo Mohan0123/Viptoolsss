@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आयु कैलकुलेटर (Age Calculator) - VIP Tool</title>
+    <meta name="description" content="VIP Tool द्वारा सटीक आयु कैलकुलेटर। अपनी जन्म तिथि से वर्ष, महीने और दिनों में अपनी सटीक उम्र की गणना करें। छात्रों और पेशेवरों के लिए निःशुल्क ऑनलाइन टूल।">
+    <meta name="keywords" content="age calculator hindi, आयु कैलकुलेटर, age calculation, online age checker, date of birth calculator">
+    <meta name="author" content="VIP Tool">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="canonical" href="https://viptool.online/hi/age-calculator.html">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Theme Initialization (Prevents Flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('viptool-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "आयु कैलकुलेटर (Age Calculator)",
+      "url": "https://viptool.online/hi/age-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "description": "अपनी जन्म तिथि से वर्ष, महीने और दिनों में सटीक आयु की गणना करें।",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "मैं अपनी सटीक आयु की गणना कैसे करूँ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "बस अपनी जन्म तिथि चुनें और 'गणना करें' पर क्लिक करें। यह टूल आपको वर्ष, महीने और दिनों में परिणाम दिखाएगा।"
+        }
+      }, {
+        "@type": "Question",
+        "name": "क्या यह आयु कैलकुलेटर उपयोग करने के लिए सुरक्षित है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, यह 100% सुरक्षित है। सभी गणनाएँ आपके ब्राउज़र में स्थानीय रूप से की जाती हैं; कोई भी डेटा सर्वर पर नहीं भेजा जाता है।"
+        }
+      }, {
+        "@type": "Question",
+        "name": "क्या मैं भविष्य की तारीख के लिए आयु की गणना कर सकता हूँ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, आप 'आज की तारीख' फ़ील्ड को बदलकर किसी भविष्य की तारीख पर अपनी आयु देख सकते हैं।"
+        }
+      }, {
+        "@type": "Question",
+        "name": "क्या यह टूल लीप वर्ष (Leap Year) को मानता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "बिल्कुल। हमारा एल्गोरिदम लीप वर्षों और महीनों के दिनों की सही संख्या को सटीक रूप से संभालता है।"
+        }
+      }, {
+        "@type": "Question",
+        "name": "क्या यह सेवा निःशुल्क है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, VIP Tool की सभी सेवाएँ, जिनमें आयु कैलकुलेटर शामिल है, सभी उपयोगकर्ताओं के लिए पूरी तरह से निःशुल्क हैं।"
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent: #06b6d4;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+            --text-dark: #f1f5f9;
+            --glass-light: rgba(255, 255, 255, 0.7);
+            --glass-dark: rgba(30, 41, 59, 0.7);
+            --border-light: rgba(0, 0, 0, 0.1);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        html.dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.8);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+        }
+        html.dark header {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--border-dark);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            color: inherit;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            background: rgba(128,128,128,0.1);
+        }
+
+        /* Tool Section */
+        .tool-hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        .tool-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tool-hero p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-light);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        html.dark .glass-card {
+            background: var(--glass-dark);
+            border-color: var(--border-dark);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        /* Inputs & Controls */
+        .control-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--border-light);
+            background: transparent;
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        html.dark input[type="date"] {
+            border-color: var(--border-dark);
+        }
+        input[type="date"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .btn {
+            border: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--primary-glow);
+        }
+        .btn-secondary {
+            background: rgba(128,128,128,0.1);
+            color: inherit;
+        }
+        .btn-secondary:hover {
+            background: rgba(128,128,128,0.2);
+        }
+
+        /* Results */
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+        html.dark .result-grid {
+            border-top-color: var(--border-dark);
+        }
+        .result-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(128,128,128,0.05);
+            border-radius: 12px;
+        }
+        .result-val {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .result-label {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+        .extra-stats {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Related Tools */
+        .related-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .tool-link {
+            display: block;
+            padding: 1.5rem;
+            background: var(--glass-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            text-align: center;
+        }
+        html.dark .tool-link {
+            background: var(--glass-dark);
+            border-color: var(--border-dark);
+        }
+        .tool-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .tool-name {
+            font-weight: 600;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .content-section h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .content-section p, .content-section li {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .content-section ul {
+            padding-left: 1.5rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+        }
+        html.dark .faq-item {
+            border-bottom-color: var(--border-dark);
+        }
+        .faq-question {
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.05);
+            padding: 3rem 0;
+            margin-top: auto;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+        html.dark footer {
+            background: rgba(255, 255, 255, 0.02);
+            border-top-color: var(--border-dark);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        .footer-link:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* Modals */
+        dialog {
+            background: var(--bg-light);
+            color: var(--text-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            margin: auto;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+        }
+        html.dark dialog {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            border-color: var(--border-dark);
+        }
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: inherit;
+        }
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .result-grid { grid-template-columns: 1fr; }
+            .tool-hero h1 { font-size: 2rem; }
+            .glass-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <a href="/hi/index.html" class="logo">VIP Tool</a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 0.8rem; font-weight: 600; padding: 2px 6px; background: var(--primary); color: white; border-radius: 4px;">HI</span>
+                <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero -->
+        <section class="tool-hero">
+            <h1>आयु कैलकुलेटर</h1>
+            <p>वर्ष, महीने और दिनों में अपनी सटीक आयु तुरंत जानें</p>
+        </section>
+
+        <!-- Tool Interface -->
+        <section class="glass-card">
+            <div class="control-group">
+                <label for="dob">जन्म तिथि</label>
+                <input type="date" id="dob">
+            </div>
+            
+            <div class="control-group">
+                <label for="today">गणना की तिथि (वैकल्पिक)</label>
+                <input type="date" id="today">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="calculateAge()">गणना करें</button>
+                <button class="btn btn-secondary" onclick="resetCalculator()">रीसेट</button>
+            </div>
+
+            <div class="result-grid" id="resultSection" style="display:none;">
+                <div class="result-item">
+                    <span class="result-val" id="resYears">0</span>
+                    <span class="result-label">वर्ष</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-val" id="resMonths">0</span>
+                    <span class="result-label">महीने</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-val" id="resDays">0</span>
+                    <span class="result-label">दिन</span>
+                </div>
+            </div>
+            
+            <div class="extra-stats" id="nextBdaySection" style="display:none;">
+                आपका अगला जन्मदिन <strong><span id="nextBdayDays">0</span></strong> दिनों में है!
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section>
+            <div class="related-title">संबंधित उपकरण</div>
+            <div class="tools-grid">
+                <a href="./bmi-calculator.html" class="tool-link">
+                    <span class="tool-icon">⚖️</span>
+                    <span class="tool-name">BMI कैलकुलेटर</span>
+                </a>
+                <a href="./percentage-calculator.html" class="tool-link">
+                    <span class="tool-icon">PERCENT</span>
+                    <span class="tool-name">प्रतिशत कैलकुलेटर</span>
+                </a>
+                <a href="./discount-calculator.html" class="tool-link">
+                    <span class="tool-icon">🏷️</span>
+                    <span class="tool-name">छूट कैलकुलेटर</span>
+                </a>
+                <a href="./date-calculator.html" class="tool-link">
+                    <span class="tool-icon">📅</span>
+                    <span class="tool-name">दिनांक कैलकुलेटर</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Ad Placeholder -->
+        <section style="margin-bottom: 4rem; min-height: 100px; text-align: center;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="content-section">
+            <h2>आयु कैलकुलेटर (Age Calculator) का उपयोग कैसे करें?</h2>
+            <p>VIP Tool का आयु कैलकुलेटर उपयोग करने में बेहद आसान है। बस अपनी जन्म तिथि को दिए गए इनपुट बॉक्स में दर्ज करें। यदि आप आज की तारीख के अलावा किसी अन्य तारीख तक अपनी आयु की गणना करना चाहते हैं, तो दूसरे इनपुट बॉक्स में उस तारीख को चुनें। 'गणना करें' बटन दबाते ही आपको सेकंडों में परिणाम मिल जाएगा।</p>
+            
+            <h3>VIP Tool क्यों चुनें?</h3>
+            <p>हमारा टूल न केवल आपको वर्ष बताता है, बल्कि आपकी आयु को महीनों और दिनों में भी तोड़ता है। यह टूल लीप वर्ष (Leap Year) और महीनों के अलग-अलग दिनों की संख्या को ध्यान में रखकर 100% सटीक परिणाम प्रदान करता है।</p>
+
+            <h3>आयु गणना का महत्व</h3>
+            <ul>
+                <li><strong>सरकारी नौकरी के लिए:</strong> कई बार आवेदन भरते समय आपको अपनी सटीक आयु (वर्ष, महीने, दिन) भरनी होती है।</li>
+                <li><strong>स्वास्थ्य और फिटनेस:</strong> सही BMI या स्वास्थ्य मेट्रिक्स जानने के लिए सटीक आयु जरूरी है।</li>
+                <li><strong>उत्सुकता:</strong> यह जानना हमेशा मजेदार होता है कि आपने इस दुनिया में कितने दिन बिताए हैं!</li>
+            </ul>
+        </section>
+
+        <!-- FAQ -->
+        <section class="content-section">
+            <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    क्या यह कैलकुलेटर सही परिणाम देता है?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">हाँ, यह टूल ग्रिगोरियन कैलेंडर एल्गोरिदम का उपयोग करता है जो लीप वर्षों को ध्यान में रखकर पूरी तरह सटीक है।</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    क्या मैं किसी और की आयु की गणना कर सकता हूँ?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">हाँ, आप किसी भी व्यक्ति की जन्म तिथि दर्ज करके उनकी आयु का पता लगा सकते हैं।</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    क्या यह मोबाइल पर काम करता है?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">बिल्कुल! VIP Tool पूरी तरह से रिस्पॉन्सिव है और सभी मोबाइल, टैबलेट और डेस्कटॉप पर आसानी से चलता है।</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    क्या मेरा डेटा सुरक्षित है?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">हाँ, हम कोई भी डेटा स्टोर नहीं करते हैं। सारी गणना आपके डिवाइस पर ही होती है।</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    क्या यह टूल फ्री है?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">हाँ, यह टूल हमेशा के लिए 100% मुफ़्त है।</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <span class="footer-link" onclick="openModal('privacyModal')">गोपनीयता नीति</span>
+                <span class="footer-link" onclick="openModal('termsModal')">नियम और शर्तें</span>
+                <span class="footer-link" onclick="openModal('disclaimerModal')">अस्वीकरण</span>
+                <a href="https://viptool.online" class="footer-link">सभी उपकरण</a>
+            </div>
+            <p style="opacity: 0.5; font-size: 0.85rem;">&copy; 2024 VIP Tool. सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <!-- Legal Modals -->
+    <dialog id="privacyModal">
+        <div class="modal-header">
+            <h3>गोपनीयता नीति (Privacy Policy)</h3>
+            <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p><strong>अंतिम अद्यतन: 2024</strong></p>
+            <p>VIP Tool में, हम आपकी गोपनीयता का सम्मान करते हैं। यह आयु कैलकुलेटर क्लाइंट-साइड (Client-side) काम करता है, जिसका अर्थ है कि आपकी जन्म तिथि हमारे सर्वर पर कभी नहीं भेजी जाती है।</p>
+            <p>हम उपयोग के आंकड़ों को ट्रैक करने के लिए Google Analytics (GA4) का उपयोग करते हैं। विज्ञापन प्रदर्शित करने के लिए Google AdSense का उपयोग किया जा सकता है। कुकीज़ का उपयोग उपयोगकर्ता अनुभव को बेहतर बनाने के लिए किया जा सकता है।</p>
+        </div>
+    </dialog>
+
+    <dialog id="termsModal">
+        <div class="modal-header">
+            <h3>नियम और शर्तें (Terms & Conditions)</h3>
+            <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>इस वेबसाइट का उपयोग करके, आप निम्नलिखित नियमों से सहमत होते हैं:</p>
+            <ul>
+                <li>यह टूल केवल सूचनात्मक उद्देश्यों के लिए है।</li>
+                <li>हम किसी भी गणना त्रुटि के लिए उत्तरदायी नहीं हैं।</li>
+                <li>सामग्री का दुरुपयोग या कॉपी करना प्रतिबंधित है।</li>
+            </ul>
+        </div>
+    </dialog>
+
+    <dialog id="disclaimerModal">
+        <div class="modal-header">
+            <h3>अस्वीकरण (Disclaimer)</h3>
+            <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>यह आयु कैलकुलेटर सर्वोत्तम प्रयास के आधार पर प्रदान किया जाता है। हालांकि हम सटीकता का प्रयास करते हैं, लेकिन हम किसी भी विसंगति के लिए ज़िम्मेदार नहीं हैं। आधिकारिक दस्तावेजों के लिए कृपया आधिकारिक स्रोतों से पुष्टि करें।</p>
+        </div>
+    </dialog>
+
+    <script>
+        /* Theme Logic */
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('viptool-theme', isDark ? 'dark' : 'light');
+        });
+
+        /* Accordion Logic */
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        /* Modal Logic */
+        function openModal(id) { document.getElementById(id).showModal(); }
+        function closeModal(id) { document.getElementById(id).close(); }
+        
+        // Close modal on click outside
+        document.querySelectorAll('dialog').forEach(dialog => {
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+            });
+        });
+
+        /* Age Calculator Logic */
+        function calculateAge() {
+            const dobInput = document.getElementById('dob').value;
+            const todayInput = document.getElementById('today').value;
+
+            if (!dobInput) {
+                alert("कृपया अपनी जन्म तिथि चुनें।");
+                return;
+            }
+
+            const dob = new Date(dobInput);
+            const now = todayInput ? new Date(todayInput) : new Date();
+
+            if (dob > now) {
+                alert("जन्म तिथि भविष्य में नहीं हो सकती!");
+                return;
+            }
+
+            let years = now.getFullYear() - dob.getFullYear();
+            let months = now.getMonth() - dob.getMonth();
+            let days = now.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                // Get days in previous month
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            // Next Birthday Calculation
+            const currentYear = now.getFullYear();
+            let nextBirthday = new Date(dob);
+            nextBirthday.setFullYear(currentYear);
+            
+            if (nextBirthday < now) {
+                nextBirthday.setFullYear(currentYear + 1);
+            }
+            
+            const timeDiff = nextBirthday - now;
+            const daysToBday = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            // Animation for numbers
+            animateValue("resYears", 0, years, 1000);
+            animateValue("resMonths", 0, months, 1000);
+            animateValue("resDays", 0, days, 1000);
+            document.getElementById("nextBdayDays").innerText = daysToBday;
+
+            document.getElementById('resultSection').style.display = 'grid';
+            document.getElementById('nextBdaySection').style.display = 'block';
+        }
+
+        function resetCalculator() {
+            document.getElementById('dob').value = '';
+            document.getElementById('today').value = '';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('nextBdaySection').style.display = 'none';
+        }
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Set default date for "Today" input (optional UX enhancement)
+        document.getElementById('today').valueAsDate = new Date();
+    </script>
+</body>
+</html>
