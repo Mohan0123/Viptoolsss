@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>डिस्काउंट कैलकुलेटर - छूट और अंतिम मूल्य की गणना करें | VIP Tool</title>
+<meta name="description" content="सबसे सटीक ऑनलाइन डिस्काउंट कैलकुलेटर। किसी भी उत्पाद पर छूट (Discount) के बाद अंतिम कीमत और बचत राशि का तुरंत पता लगाएं। छात्रों और दुकानदारों के लिए फ्री टूल।">
+
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SWZKBP3TTS');
+</script>
+
+<!-- Schema Markup (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "डिस्काउंट कैलकुलेटर (Discount Calculator)",
+  "url": "https://viptool.online/hi/discount-calculator",
+  "description": "एक क्लिक में किसी भी उत्पाद पर छूट और अंतिम मूल्य की गणना करें।",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VIP Tool",
+    "url": "https://viptool.online"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "डिस्काउंट (छूट) की गणना कैसे की जाती है?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "डिस्काउंट निकालने का सूत्र है: (मूल मूल्य × छूट दर) / 100। उदाहरण के लिए, यदि ₹1000 पर 20% की छूट है, तो छूट ₹200 होगी और अंतिम मूल्य ₹800 होगा।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "क्या यह डिस्काउंट कैलकुलेटर उपयोग करने के लिए मुफ़्त है?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "हाँ, VIP Tool का डिस्काउंट कैलकुलेटर सभी उपयोगकर्ताओं के लिए 100% मुफ़्त है और इसे आप जितनी बार चाहें उपयोग कर सकते हैं।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "क्या मैं इस टूल का उपयोग मोबाइल पर कर सकता हूँ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "जी हाँ, यह टूल पूरी तरह से रिस्पॉन्सिव है और मोबाइल, टैबलेट, और डेस्कटॉप सभी पर आसानी से काम करता है।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "मूल मूल्य (Original Price) क्या है?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "मूल मूल्य वह कीमत है जो किसी उत्पाद पर छूट लागू होने से पहले निर्धारित की जाती है (MRP)।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "क्या परिणाम सटीक हैं?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "हाँ, हमारा कैलकुलेटर गणितीय सूत्रों का उपयोग करता है जो 100% सटीक परिणाम प्रदान करते हैं।"
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+    /* ════════════════════════════════════
+       DESIGN TOKENS & RESET
+    ════════════════════════════════════ */
+    :root {
+        --primary: #6366f1; /* Indigo Neon */
+        --primary-glow: rgba(99, 102, 241, 0.4);
+        --secondary: #ec4899; /* Pink Neon */
+        --bg-dark: #0f172a;
+        --bg-light: #f8fafc;
+        --surface-dark: rgba(30, 41, 59, 0.7);
+        --surface-light: rgba(255, 255, 255, 0.8);
+        --text-dark: #f1f5f9;
+        --text-light: #1e293b;
+        --border-dark: rgba(255, 255, 255, 0.1);
+        --border-light: rgba(0, 0, 0, 0.1);
+        --glass-blur: blur(16px);
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* LIGHT MODE OVERRIDES */
+    body.light-mode {
+        --bg-dark: var(--bg-light);
+        --text-dark: var(--text-light);
+        --surface-dark: var(--surface-light);
+        --border-dark: var(--border-light);
+        --primary-glow: rgba(99, 102, 241, 0.2);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font-main);
+    }
+
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    ul { list-style: none; }
+
+    /* ════════════════════════════════════
+       LAYOUT COMPONENTS
+    ════════════════════════════════════ */
+    /* HEADER */
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-dark);
+        padding: 1rem 5%;
+    }
+    body.light-mode header { background: rgba(255, 255, 255, 0.8); }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
+    }
+
+    .theme-toggle {
+        background: var(--surface-dark);
+        border: 1px solid var(--border-dark);
+        color: var(--text-dark);
+        padding: 0.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+    .theme-toggle:hover {
+        transform: rotate(15deg);
+        border-color: var(--primary);
+    }
+
+    /* MAIN CONTENT */
+    main {
+        flex: 1;
+        padding: 100px 5% 4rem;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* TOOL TITLE SECTION */
+    .tool-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #fff, #cbd5e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    body.light-mode h1 {
+        background: linear-gradient(to right, #1e293b, #475569);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .tool-desc {
+        color: #94a3b8;
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    body.light-mode .tool-desc { color: #64748b; }
+
+    /* GLASS CARD (CORE INTERFACE) */
+    .glass-card {
+        background: var(--surface-dark);
+        backdrop-filter: var(--glass-blur);
+        border: 1px solid var(--border-dark);
+        border-radius: var(--radius-lg);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    /* INPUTS & CONTROLS */
+    .input-group {
+        margin-bottom: 1.5rem;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #cbd5e1;
+    }
+    body.light-mode label { color: #475569; }
+
+    input {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-dark);
+        border-radius: var(--radius-sm);
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        transition: var(--transition);
+    }
+    body.light-mode input { background: rgba(255, 255, 255, 0.5); }
+    input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        border-radius: var(--radius-sm);
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 1rem;
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -10px var(--primary);
+    }
+
+    /* OUTPUT SECTION */
+    .output-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-dark);
+        display: none; /* Hidden by default */
+        animation: fadeIn 0.5s ease;
+    }
+    .output-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius-sm);
+    }
+    .output-label { font-size: 1rem; opacity: 0.9; }
+    .output-value { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .output-value.final { color: #4ade80; } /* Green for final price */
+
+    /* RELATED TOOLS */
+    .related-tools {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+    .tool-link {
+        background: var(--surface-dark);
+        border: 1px solid var(--border-dark);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        text-align: center;
+        transition: var(--transition);
+    }
+    .tool-link:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        background: rgba(99, 102, 241, 0.1);
+    }
+    .tool-link h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .tool-link p { font-size: 0.9rem; opacity: 0.7; }
+
+    /* CONTENT SECTIONS */
+    .content-block {
+        width: 100%;
+        margin-bottom: 3rem;
+        background: var(--surface-dark);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-dark);
+    }
+    .content-block h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary); }
+    .content-block h3 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
+    .content-block p { margin-bottom: 1rem; opacity: 0.9; text-align: justify; }
+    .content-block ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+    .content-block li { margin-bottom: 0.5rem; opacity: 0.9; }
+
+    /* FAQ ACCORDION */
+    .faq-item {
+        border-bottom: 1px solid var(--border-dark);
+    }
+    .faq-question {
+        width: 100%;
+        text-align: left;
+        padding: 1.5rem 0;
+        background: none;
+        border: none;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        opacity: 0.8;
+        line-height: 1.7;
+    }
+    .faq-answer p { padding-bottom: 1.5rem; }
+    .active .faq-answer { max-height: 200px; }
+    .icon-plus { transition: transform 0.3s; }
+    .active .icon-plus { transform: rotate(45deg); }
+
+    /* FOOTER */
+    footer {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 3rem 5%;
+        border-top: 1px solid var(--border-dark);
+        text-align: center;
+        margin-top: auto;
+    }
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    .footer-link {
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+    .footer-link:hover { color: var(--primary); }
+    .copyright { color: #64748b; font-size: 0.9rem; }
+
+    /* MODALS */
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .modal-content {
+        background: var(--bg-dark);
+        width: 100%;
+        max-width: 700px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-dark);
+        position: relative;
+        color: var(--text-dark);
+    }
+    body.light-mode .modal-content { background: #fff; }
+    .close-modal {
+        position: absolute;
+        top: 1rem; right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--text-dark);
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        h1 { font-size: 2rem; }
+        .glass-card { padding: 1.5rem; }
+        .output-row { flex-direction: column; text-align: center; gap: 0.5rem; }
+    }
+</style>
+
+<!-- THEME INIT SCRIPT (PREVENTS FLASH) -->
+<script>
+    const savedTheme = localStorage.getItem('viptool-theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+    }
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="nav-container">
+        <a href="/hi/" class="logo">VIP Tool</a>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
+            <span id="themeIcon">☀️</span>
+        </button>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    
+    <!-- TITLE SECTION -->
+    <div class="tool-header">
+        <h1>ऑनलाइन डिस्काउंट कैलकुलेटर</h1>
+        <p class="tool-desc">
+            किसी भी उत्पाद का मूल मूल्य और छूट प्रतिशत दर्ज करें ताकि आप अपनी बचत और अंतिम भुगतान योग्य राशि का तुरंत पता लगा सकें।
+        </p>
+    </div>
+
+    <!-- TOOL INTERFACE -->
+    <div class="glass-card">
+        <div class="input-group">
+            <label for="originalPrice">मूल मूल्य (Original Price) ₹</label>
+            <input type="number" id="originalPrice" placeholder="उदा. 1000" min="0">
+        </div>
+        
+        <div class="input-group">
+            <label for="discountRate">छूट प्रतिशत (Discount %) </label>
+            <input type="number" id="discountRate" placeholder="उदा. 20" min="0" max="100">
+        </div>
+
+        <button class="btn-primary" onclick="calculateDiscount()">गणना करें (Calculate)</button>
+
+        <!-- OUTPUT SECTION -->
+        <div class="output-section" id="outputSection">
+            <div class="output-row">
+                <span class="output-label">आपकी बचत (You Save):</span>
+                <span class="output-value" id="saveAmount">₹0.00</span>
+            </div>
+            <div class="output-row" style="background: rgba(99, 102, 241, 0.1); border: 1px solid var(--primary);">
+                <span class="output-label">अंतिम मूल्य (Final Price):</span>
+                <span class="output-value final" id="finalPrice">₹0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- RELATED TOOLS -->
+    <div class="related-tools">
+        <h2 class="section-title">संबंधित टूल्स</h2>
+        <div class="tools-grid">
+            <a href="/hi/gst-calculator" class="tool-link">
+                <h3>GST कैलकुलेटर</h3>
+                <p>भारत के लिए आसान GST गणना।</p>
+            </a>
+            <a href="/hi/percentage-calculator" class="tool-link">
+                <h3>प्रतिशत कैलकुलेटर</h3>
+                <p>किसी भी संख्या का प्रतिशत निकालें।</p>
+            </a>
+            <a href="/hi/age-calculator" class="tool-link">
+                <h3>आयु कैलकुलेटर</h3>
+                <p>अपनी सटीक जन्म आयु जानें।</p>
+            </a>
+            <a href="/hi/loan-calculator" class="tool-link">
+                <h3>लोन (EMI) कैलकुलेटर</h3>
+                <p>अपनी मासिक EMI की गणना करें।</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- ADS SECTION -->
+    <div class="ad-placeholder" style="width:100%; min-height:100px; background:rgba(0,0,0,0.1); display:flex; justify-content:center; align-items:center; margin-bottom:3rem; border-radius:8px; display:none;">
+        <!-- AdSense Code Here (Hidden if empty) -->
+        <span style="opacity:0.5;">विज्ञापन (Advertisement)</span>
+    </div>
+
+    <!-- HOW TO USE -->
+    <div class="content-block">
+        <h2>डिस्काउंट कैलकुलेटर का उपयोग कैसे करें?</h2>
+        <p>हमारे टूल का उपयोग करना बहुत आसान है। बस इन चरणों का पालन करें:</p>
+        <ul>
+            <li>सबसे पहले, 'मूल मूल्य' बॉक्स में उत्पाद की कीमत (MRP) दर्ज करें।</li>
+            <li>इसके बाद, 'छूट प्रतिशत' बॉक्स में दी जा रही छूट की दर दर्ज करें।</li>
+            <li>अंत में, 'गणना करें' बटन पर क्लिक करें।</li>
+            <li>नीचे आपको तुरंत अपनी बचत राशि और अंतिम भुगतान मूल्य दिखाई देगा।</li>
+        </ul>
+    </div>
+
+    <!-- BENEFITS & SEO CONTENT -->
+    <div class="content-block">
+        <h2>डिस्काउंट कैलकुलेटर की आवश्यकता क्यों है?</h2>
+        <p>चाहे आप खरीदारी कर रहे हों या अपना व्यवसाय चला रहे हों, सही छूट की गणना करना महत्वपूर्ण है। अक्सर दुकानों में "20% ऑफ" या "50% ऑफ" जैसे बोर्ड लगे होते हैं, लेकिन अंतिम कीमत का अंदाजा लगाना कठिन हो सकता है। यह डिस्काउंट कैलकुलेटर आपको सेकंडों में सही उत्तर देता है, जिससे आप स्मार्ट खरीदारी कर सकते हैं।</p>
+        
+        <h3>इस टूल की विशेषताएं:</h3>
+        <ul>
+            <li><strong>तेज़ और सटीक:</strong> तुरंत परिणाम प्राप्त करें बिना किसी मैन्युअल गणित के।</li>
+            <li><strong>पैसे बचाएं:</strong> खरीदारी से पहले सही कीमत जानें और बजट बनाएं।</li>
+            <li><strong>उपयोग में आसान:</strong> सरल इंटरफ़ेस जिसे कोई भी उपयोग कर सकता है।</li>
+            <li><strong>मोबाइल फ्रेंडली:</strong> किसी भी डिवाइस पर कभी भी उपयोग करें।</li>
+        </ul>
+
+        <h3>डिस्काउंट का फॉर्मूला</h3>
+        <p>डिस्काउंट निकालने का गणितीय सूत्र बहुत सीधा है:</p>
+        <p style="background:rgba(255,255,255,0.1); padding:1rem; border-radius:8px; font-family:monospace;">
+            बचत = (मूल्य × छूट %) / 100<br>
+            अंतिम मूल्य = मूल्य - बचत
+        </p>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="content-block">
+        <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
+        
+        <div class="faq-item">
+            <button class="faq-question">
+                छूट की गणना कैसे की जाती है?
+                <span class="icon-plus">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>छूट की गणना करने के लिए, मूल कीमत को छूट प्रतिशत से गुणा करें और फिर 100 से भाग दें। यह आपको बचत राशि देगा। फिर मूल कीमत से बचत राशि घटाएं।</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                क्या यह कैलकुलेटर डबल डिस्काउंट संभाल सकता है?
+                <span class="icon-plus">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>फिलहाल यह कैलकुलेटर एकल फ्लैट छूट के लिए डिज़ाइन किया गया है। यदि आपके पास दो क्रमिक छूट (जैसे 50% + 20%) हैं, तो पहले एक की गणना करें, फिर प्राप्त राशि पर दूसरी गणना करें।</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                क्या यह टूल ऑफ़लाइन काम करता है?
+                <span class="icon-plus">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>यह एक वेब-आधारित टूल है, इसलिए इसे पहली बार लोड करने के लिए इंटरनेट की आवश्यकता होती है। लोड होने के बाद, यह आपके ब्राउज़र में काम करता है।</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                क्या इसका उपयोग करना सुरक्षित है?
+                <span class="icon-plus">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>बिल्कुल। हम आपके द्वारा दर्ज किए गए किसी भी डेटा को स्टोर नहीं करते हैं। सभी गणनाएं आपके डिवाइस पर ही होती हैं।</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                मूल मूल्य (MRP) क्या है?
+                <span class="icon-plus">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>मूल मूल्य वह कीमत है जो विक्रेता छूट देने से पहले उत्पाद के लिए निर्धारित करता है। इसे अक्सर सूची मूल्य या खुदरा मूल्य भी कहा जाता है।</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <span class="footer-link" onclick="openModal('privacyModal')">गोपनीयता नीति</span>
+        <span class="footer-link" onclick="openModal('termsModal')">नियम और शर्तें</span>
+        <span class="footer-link" onclick="openModal('disclaimerModal')">अस्वीकरण</span>
+        <a href="https://viptool.online/hi/" class="footer-link">सभी टूल्स</a>
+    </div>
+    <p class="copyright">© 2024 VIP Tool. सर्वाधिकार सुरक्षित।</p>
+</footer>
+
+<!-- MODALS (LEGAL) -->
+<div id="privacyModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+        <h2>गोपनीयता नीति (Privacy Policy)</h2>
+        <p><strong>अंतिम अद्यतन: 2024</strong></p>
+        <p>VIP Tool में, आपकी गोपनीयता हमारी प्राथमिकता है। यह दस्तावेज़ बताता है कि हम जानकारी कैसे एकत्र करते हैं।</p>
+        <h3>जानकारी का संग्रह</h3>
+        <p>हम व्यक्तिगत रूप से पहचान योग्य जानकारी एकत्र नहीं करते हैं। हमारे टूल्स क्लाइंट-साइड (आपके ब्राउज़र में) काम करते हैं। हम Google Analytics (GA4) का उपयोग ट्रैफ़िक विश्लेषण के लिए करते हैं।</p>
+        <h3>कुकीज़</h3>
+        <p>हम उपयोगकर्ता के अनुभव को बेहतर बनाने के लिए कुकीज़ का उपयोग कर सकते हैं। आप अपनी ब्राउज़र सेटिंग्स में इन्हें अक्षम कर सकते हैं।</p>
+    </div>
+</div>
+
+<div id="termsModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+        <h2>नियम और शर्तें (Terms & Conditions)</h2>
+        <p>इस वेबसाइट का उपयोग करके, आप निम्नलिखित नियमों से सहमत हैं:</p>
+        <ul>
+            <li>यह टूल केवल सूचनात्मक उद्देश्यों के लिए है।</li>
+            <li>हम बिना किसी पूर्व सूचना के सेवाओं को संशोधित करने का अधिकार सुरक्षित रखते हैं।</li>
+            <li>दुरुपयोग या अवैध गतिविधियों के लिए इस वेबसाइट का उपयोग सख्त वर्जित है।</li>
+        </ul>
+    </div>
+</div>
+
+<div id="disclaimerModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal('disclaimerModal')">&times;</button>
+        <h2>अस्वीकरण (Disclaimer)</h2>
+        <p>VIP Tool पर प्रदान की गई जानकारी और गणनाएं केवल सामान्य मार्गदर्शन के लिए हैं। यद्यपि हम सटीकता सुनिश्चित करने का प्रयास करते हैं, हम किसी भी वित्तीय नुकसान या त्रुटि के लिए उत्तरदायी नहीं हैं। कोई भी महत्वपूर्ण वित्तीय निर्णय लेने से पहले किसी विशेषज्ञ से परामर्श करें।</p>
+    </div>
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // ════════════════════════════════════
+    // THEME LOGIC
+    // ════════════════════════════════════
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+
+    // Initialize icon based on current state
+    if (body.classList.contains('light-mode')) {
+        themeIcon.textContent = '🌙';
+    } else {
+        themeIcon.textContent = '☀️';
+    }
+
+    themeBtn.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        const isLight = body.classList.contains('light-mode');
+        
+        // Update Icon
+        themeIcon.textContent = isLight ? '🌙' : '☀️';
+        
+        // Save to LocalStorage
+        localStorage.setItem('viptool-theme', isLight ? 'light' : 'dark');
+    });
+
+    // ════════════════════════════════════
+    // CALCULATOR LOGIC (Discount)
+    // ════════════════════════════════════
+    function calculateDiscount() {
+        const price = parseFloat(document.getElementById('originalPrice').value);
+        const discount = parseFloat(document.getElementById('discountRate').value);
+        const outputSection = document.getElementById('outputSection');
+        const saveEl = document.getElementById('saveAmount');
+        const finalEl = document.getElementById('finalPrice');
+
+        // Validation
+        if (isNaN(price) || isNaN(discount)) {
+            alert("कृपया मान्य संख्याएँ दर्ज करें। (Please enter valid numbers)");
+            return;
+        }
+
+        if (price < 0 || discount < 0) {
+            alert("मूल्य और छूट ऋणात्मक नहीं हो सकते।");
+            return;
+        }
+
+        // Calculation
+        const savedAmount = (price * discount) / 100;
+        const finalAmount = price - savedAmount;
+
+        // Update UI
+        saveEl.textContent = '₹' + savedAmount.toFixed(2);
+        finalEl.textContent = '₹' + finalAmount.toFixed(2);
+        
+        outputSection.style.display = 'block';
+    }
+
+    // ════════════════════════════════════
+    // FAQ ACCORDION LOGIC
+    // ════════════════════════════════════
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // ════════════════════════════════════
+    // MODAL LOGIC
+    // ════════════════════════════════════
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
