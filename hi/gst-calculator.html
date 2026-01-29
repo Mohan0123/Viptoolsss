@@ -1,0 +1,942 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST कैलकुलेटर | भारत का सटीक ऑनलाइन GST टूल - VIP Tool</title>
+    <meta name="description" content="मुफ्त ऑनलाइन GST कैलकुलेटर। 5%, 12%, 18%, और 28% दरों के साथ आसानी से जीएसटी जोड़ें या हटाएं। व्यापारियों और छात्रों के लिए सबसे तेज़ टूल।">
+    <meta name="keywords" content="GST कैलकुलेटर, ऑनलाइन जीएसटी गणना, भारत जीएसटी दरें, tax calculator hindi, goods and services tax calculator">
+    <meta name="author" content="VIP Tool">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Google Fonts: Inter & Noto Sans Devanagari (Hindi Support) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWZKBP3TTS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SWZKBP3TTS');
+    </script>
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "GST Calculator",
+      "alternateName": "GST कैलकुलेटर",
+      "url": "https://viptool.online/hi/gst-calculator.html",
+      "description": "भारत के लिए उन्नत जीएसटी कैलकुलेटर। जीएसटी रकम जोड़ें या हटाएं।",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "softwareVersion": "1.0.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VIP Tool"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "GST की गणना कैसे की जाती है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GST की गणना वस्तु की कीमत पर लागू दर (जैसे 18%) लगाकर की जाती है। हमारा टूल इसे स्वचालित रूप से करता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या यह कैलकुलेटर रिवर्स GST (जीएसटी हटाने) के लिए काम करता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हां, आप 'जीएसटी हटाएं' विकल्प का चयन करके कुल राशि से मूल राशि और कर राशि का पता लगा सकते हैं।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "भारत में वर्तमान GST दरें क्या हैं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "भारत में मुख्य रूप से 5%, 12%, 18% और 28% टैक्स स्लैब हैं। यह टूल इन सभी का समर्थन करता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या यह टूल मुफ्त है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "जी हां, VIP Tool पर सभी टूल्स 100% मुफ्त हैं और किसी पंजीकरण की आवश्यकता नहीं है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "मैं परिणाम का उपयोग कैसे कर सकता हूं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "आप गणना किए गए डेटा का उपयोग इनवॉइसिंग, टैक्स फाइलिंग या व्यक्तिगत बजट बनाने के लिए कर सकते हैं।"
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "होम",
+            "item": "https://viptool.online/hi/index.html"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "टूल्स",
+            "item": "https://viptool.online/hi/index.html"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "GST कैलकुलेटर",
+            "item": "https://viptool.online/hi/gst-calculator"
+        }]
+    }
+    </script>
+
+    <style>
+        /* 
+         * GLOBAL DESIGN SYSTEM (LOCKED)
+         * DO NOT MODIFY COLORS, SPACING, OR FONTS
+         */
+        :root {
+            /* Theme Variables */
+            --primary: #6366f1; /* Indigo Neon */
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --secondary: #ec4899; /* Pink Neon */
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass-blur: blur(16px);
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            --font-main: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Mode Overrides */
+        body.light-mode {
+            --bg-dark: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0, 0, 0, 0.1);
+            --primary: #4f46e5;
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background Mesh Gradient */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 25%);
+            pointer-events: none;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        body.light-mode header { background: rgba(241, 245, 249, 0.8); }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span { color: var(--text-main); }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: var(--border);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        /* Tool Logic Inputs */
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            padding-left: 40px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        body.light-mode input[type="number"] { background: #fff; }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Segmented Control for Rates */
+        .rates-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .rate-btn {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-align: center;
+        }
+        body.light-mode .rate-btn { background: #fff; }
+
+        .rate-btn:hover { border-color: var(--primary); }
+        
+        .rate-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Operation Toggle (Add/Remove) */
+        .operation-toggle {
+            display: flex;
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+        body.light-mode .operation-toggle { background: #e2e8f0; }
+
+        .op-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text-muted);
+        }
+
+        .op-btn.active {
+            background: var(--bg-card);
+            color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-weight: 700;
+        }
+        body.light-mode .op-btn.active { background: #fff; }
+
+        /* Action Button */
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 30px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--primary-glow);
+        }
+
+        /* Result Section */
+        .result-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid var(--border);
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+        body.light-mode .result-box { background: rgba(255,255,255,0.5); }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .result-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .result-label { color: var(--text-muted); font-size: 0.95rem; }
+        .result-val { font-weight: 600; font-size: 1.1rem; }
+        
+        .result-val.highlight {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Related Tools */
+        .related-tools {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 60px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .tool-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-main);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .tool-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Content Sections */
+        .content-section, .faq-section {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+        
+        .content-section h2, .faq-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+        
+        .content-section p {
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            margin-top: 10px;
+            color: var(--text-muted);
+            display: none;
+        }
+        .faq-item.active .faq-answer { display: block; }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+        }
+        body.light-mode footer { background: #e2e8f0; }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .footer-link:hover { color: var(--primary); }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: var(--bg-dark);
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .modal-body h2 { margin-bottom: 16px; color: var(--primary); }
+        .modal-body p { margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; }
+
+        /* AdSense Placeholder */
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: rgba(255,255,255,0.05);
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            overflow: hidden;
+        }
+        
+        /* Utility */
+        .hidden { display: none; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .tool-card { padding: 24px; }
+            .rates-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="/hi/index.html" class="logo">
+                💎 <span>VIP Tool</span>
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                🌗 <span style="font-size: 0.9rem;">थीम</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Header Section -->
+        <h1>GST कैलकुलेटर</h1>
+        <p class="subtitle">भारत के लिए सबसे सटीक, मुफ्त और तेज़ GST (Goods and Services Tax) गणना टूल।</p>
+
+        <!-- Tool Interface -->
+        <div class="tool-card">
+            
+            <!-- Amount Input -->
+            <div class="input-group">
+                <label>कुल रकम (Total Amount)</label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">₹</span>
+                    <input type="number" id="amount" placeholder="5000" min="0">
+                </div>
+            </div>
+
+            <!-- GST Rate Selection -->
+            <div class="input-group">
+                <label>जीएसटी दर (GST Rate)</label>
+                <div class="rates-grid" id="rateContainer">
+                    <div class="rate-btn" data-rate="5">5%</div>
+                    <div class="rate-btn" data-rate="12">12%</div>
+                    <div class="rate-btn active" data-rate="18">18%</div>
+                    <div class="rate-btn" data-rate="28">28%</div>
+                </div>
+            </div>
+
+            <!-- Operation Type -->
+            <div class="input-group">
+                <label>गणना का प्रकार (Calculation Type)</label>
+                <div class="operation-toggle">
+                    <div class="op-btn active" id="opAdd" onclick="setOperation('add')">GST जोड़ें (Exclusive)</div>
+                    <div class="op-btn" id="opRemove" onclick="setOperation('remove')">GST हटाएं (Inclusive)</div>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <button class="action-btn" onclick="calculateGST()">हिसाब करें (Calculate)</button>
+
+            <!-- Output Section -->
+            <div class="result-box" id="resultBox">
+                <div class="result-row">
+                    <span class="result-label">मूल रकम (Net Amount):</span>
+                    <span class="result-val" id="resNet">₹0.00</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">GST राशि:</span>
+                    <span class="result-val" id="resGst" style="color: var(--secondary);">₹0.00</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">कुल रकम (Total Amount):</span>
+                    <span class="result-val highlight" id="resTotal">₹0.00</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Related Tools (Strict Placement) -->
+        <div class="related-tools">
+            <h3 class="section-title">अन्य उपयोगी टूल्स</h3>
+            <div class="tools-grid">
+                <a href="/hi/index.html" class="tool-link">🔍 शब्द काउंटर (Word Counter)</a>
+                <a href="/hi/index.html" class="tool-link">📅 आयु कैलकुलेटर (Age Calc)</a>
+                <a href="/hi/index.html" class="tool-link">🔐 पासवर्ड जेनरेटर</a>
+                <a href="/hi/index.html" class="tool-link">📉 डिस्काउंट कैलकुलेटर</a>
+            </div>
+        </div>
+
+        <!-- Ad Placeholder -->
+        <div class="ad-container">
+            <!-- Google AdSense Placeholder - Inserts here dynamically -->
+            <span style="opacity: 0.5;">Advertisement</span>
+        </div>
+
+        <!-- How to Use -->
+        <div class="content-section">
+            <h2>GST कैलकुलेटर का उपयोग कैसे करें?</h2>
+            <p>1. <strong>रकम दर्ज करें:</strong> उस राशि को दर्ज करें जिसके लिए आप GST की गणना करना चाहते हैं।</p>
+            <p>2. <strong>दर चुनें:</strong> लागू GST दर (5%, 12%, 18%, या 28%) का चयन करें।</p>
+            <p>3. <strong>प्रकार चुनें:</strong> चुनें कि आप GST जोड़ना चाहते हैं (Tax Exclusive) या हटाना चाहते हैं (Tax Inclusive)।</p>
+            <p>4. <strong>परिणाम देखें:</strong> 'हिसाब करें' बटन दबाएं और तुरंत शुद्ध मूल्य, GST राशि और कुल मूल्य प्राप्त करें।</p>
+        </div>
+
+        <!-- Benefits -->
+        <div class="content-section">
+            <h2>VIP Tool के GST कैलकुलेटर के लाभ</h2>
+            <p>हमारा टूल विशेष रूप से भारतीय व्यापार मालिकों, दुकानदारों और सीए (CA) के लिए डिज़ाइन किया गया है। यह जटिल गणितीय सूत्रों को मिलीसेकंड में हल करता है। यह पूरी तरह से मोबाइल-फ्रेंडली है और डार्क मोड सपोर्ट करता है, जिससे आप इसे दिन या रात कभी भी उपयोग कर सकते हैं। इसके अलावा, रिवर्स कैलकुलेशन फीचर (GST हटाना) इसे इनवॉइस बनाने के लिए बेहद उपयोगी बनाता है।</p>
+        </div>
+
+        <!-- FAQs -->
+        <div class="faq-section">
+            <h2>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    GST का मतलब क्या है? <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    GST का मतलब 'Goods and Services Tax' (वस्तु एवं सेवा कर) है। यह भारत में वस्तुओं और सेवाओं की आपूर्ति पर लगाया जाने वाला एक अप्रत्यक्ष कर है।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    GST की गणना का फॉर्मूला क्या है? <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    GST जोड़ने के लिए: GST राशि = (मूल लागत x GST%) / 100। शुद्ध मूल्य = मूल लागत + GST राशि।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    जीएसटी समावेशी (Inclusive) राशि की गणना कैसे करें? <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    यदि कुल राशि में GST शामिल है, तो फॉर्मूला है: GST राशि = कुल रकम - (कुल रकम x (100 / (100 + GST दर)))।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    क्या यह कैलकुलेटर 100% सटीक है? <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    हां, यह टूल मानक गणितीय सूत्रों का उपयोग करता है और दशमलव के 2 स्थानों तक सटीक परिणाम देता है।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    क्या मैं इस डेटा को सेव कर सकता हूं? <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    वर्तमान में, यह टूल गोपनीयता को ध्यान में रखते हुए आपके ब्राउज़र में डेटा को स्थानीय रूप से संसाधित करता है। हम कोई डेटा सर्वर पर स्टोर नहीं करते।
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <span class="footer-link" onclick="openModal('privacyModal')">गोपनीयता नीति (Privacy)</span>
+                <span class="footer-link" onclick="openModal('termsModal')">शर्तें (Terms)</span>
+                <span class="footer-link" onclick="openModal('disclaimerModal')">अस्वीकरण (Disclaimer)</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 VIP Tool. सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Privacy Policy -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('privacyModal')">&times;</span>
+            <div class="modal-body">
+                <h2>गोपनीयता नीति</h2>
+                <p>VIP Tool आपकी गोपनीयता का सम्मान करता है। हम आपके द्वारा दर्ज किए गए किसी भी डेटा को स्टोर या साझा नहीं करते हैं। सभी गणनाएँ आपके डिवाइस (Client-side) पर की जाती हैं।</p>
+                <p>हम वेबसाइट एनालिटिक्स के लिए Google Analytics का उपयोग करते हैं। कुकीज़ का उपयोग केवल उपयोगकर्ता अनुभव को बेहतर बनाने के लिए किया जाता है।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms -->
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('termsModal')">&times;</span>
+            <div class="modal-body">
+                <h2>नियम और शर्तें</h2>
+                <p>इस वेबसाइट का उपयोग करके, आप इन शर्तों से सहमत होते हैं। यह टूल केवल सूचनात्मक उद्देश्यों के लिए है।</p>
+                <p>VIP Tool किसी भी वित्तीय नुकसान के लिए जिम्मेदार नहीं है जो गणना में त्रुटियों के कारण हो सकता है। कृपया आधिकारिक उपयोग से पहले परिणामों को सत्यापित करें।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div id="disclaimerModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('disclaimerModal')">&times;</span>
+            <div class="modal-body">
+                <h2>अस्वीकरण</h2>
+                <p>यह GST कैलकुलेटर सार्वजनिक रूप से उपलब्ध सूत्रों पर आधारित है। हालांकि हम सटीकता का प्रयास करते हैं, लेकिन कर कानून बदल सकते हैं।</p>
+                <p>यह टूल कानूनी या वित्तीय सलाह का विकल्प नहीं है। कृपया पेशेवर सीए से परामर्श करें।</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* 
+         * LOGIC: GST CALCULATOR
+         * LANGUAGE: HINDI
+         */
+
+        // State
+        let currentRate = 18;
+        let isInclusive = false; // false = Add GST, true = Remove GST
+
+        // --- Theme System (Global) ---
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const storedTheme = localStorage.getItem('viptool-theme');
+
+        if (storedTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggle.innerHTML = '🌘 <span style="font-size: 0.9rem;">थीम</span>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            localStorage.setItem('viptool-theme', isLight ? 'light' : 'dark');
+            themeToggle.innerHTML = isLight 
+                ? '🌘 <span style="font-size: 0.9rem;">थीम</span>' 
+                : '🌗 <span style="font-size: 0.9rem;">थीम</span>';
+        });
+
+        // --- Tool Logic ---
+
+        // Rate Selection
+        const rateBtns = document.querySelectorAll('.rate-btn');
+        rateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                rateBtns.forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                btn.classList.add('active');
+                // Update state
+                currentRate = parseFloat(btn.dataset.rate);
+            });
+        });
+
+        // Operation Toggle
+        function setOperation(type) {
+            const opAdd = document.getElementById('opAdd');
+            const opRemove = document.getElementById('opRemove');
+            
+            if (type === 'add') {
+                isInclusive = false;
+                opAdd.classList.add('active');
+                opRemove.classList.remove('active');
+            } else {
+                isInclusive = true;
+                opRemove.classList.add('active');
+                opAdd.classList.remove('active');
+            }
+        }
+
+        // Calculation Function
+        function calculateGST() {
+            const amountInput = document.getElementById('amount').value;
+            const amount = parseFloat(amountInput);
+
+            if (isNaN(amount) || amount < 0) {
+                alert("कृपया एक मान्य राशि दर्ज करें।");
+                return;
+            }
+
+            let netAmount = 0;
+            let gstAmount = 0;
+            let totalAmount = 0;
+
+            if (!isInclusive) {
+                // Exclusive: Add GST
+                // Formula: GST = Amount * (Rate/100)
+                netAmount = amount;
+                gstAmount = amount * (currentRate / 100);
+                totalAmount = netAmount + gstAmount;
+            } else {
+                // Inclusive: Remove GST (Reverse Calc)
+                // Formula: GST = Amount - (Amount * (100 / (100 + Rate)))
+                totalAmount = amount;
+                let preTax = amount * (100 / (100 + currentRate));
+                gstAmount = amount - preTax;
+                netAmount = preTax;
+            }
+
+            // Display Results with Animation
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'none'; // reset for animation
+            setTimeout(() => {
+                resultBox.style.display = 'block';
+                
+                // Format Currency (Indian Rupee)
+                const formatter = new Intl.NumberFormat('hi-IN', {
+                    style: 'currency',
+                    currency: 'INR'
+                });
+
+                document.getElementById('resNet').textContent = formatter.format(netAmount);
+                document.getElementById('resGst').textContent = formatter.format(gstAmount);
+                document.getElementById('resTotal').textContent = formatter.format(totalAmount);
+            }, 10);
+        }
+
+        // --- UI Interactions ---
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+            const symbol = element.querySelector('span');
+            symbol.textContent = parent.classList.contains('active') ? '-' : '+';
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
